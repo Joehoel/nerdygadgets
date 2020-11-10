@@ -3,12 +3,14 @@ include __DIR__ . "/header.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="Public\SCSS\dist\payment.css">
+    <link rel="stylesheet" href="Public/CSS/payment.css" type="text/css">
     <title>Document</title>
 </head>
+
 <body>
     <div class="content">
         <div class="information">
@@ -70,21 +72,22 @@ include __DIR__ . "/header.php";
                         <input class="end-column" type="text" placeholder="Security code" name="card-name">
                     </div>
                     <div class="inline-radio">
-                        <input type="radio" name="method"  value="PayPal">
+                        <input type="radio" name="method" value="PayPal">
                         <p>PayPal</p>
                     </div>
                     <div class="inline-radio">
-                        <input type="radio" name="method"  value="IDEAL">
+                        <input type="radio" name="method" value="IDEAL">
                         <p>IDEAL</p>
                     </div>
                     <div class="IDEAL">
                         <input type="text" placeholder="Bank name" name="method">
                     </div>
                 </form>
-               
+
             </div>
             <button>Continue to shipping</button>
         </div>
     </div>
 </body>
+
 </html>
