@@ -1,26 +1,26 @@
 html {
-	background-color: rgb(35, 35, 47) !important;
+    background-color: rgb(35, 35, 47) !important;
 }
 
 body {
-	overflow-x: hidden;
-	color: #fff !important;
-	background-color: rgb(35, 35, 47) !important;
+    overflow-x: hidden;
+    color: #fff !important;
+    background-color: rgb(35, 35, 47) !important;
 }
 @font-face {
-	font-family: MmrText;
-	src: url(/Public/fonts/mmrtext.ttf);
+    font-family: MmrText;
+    src: url(/Public/fonts/mmrtext.ttf);
 }
 select {
-	width: 100%;
-	padding: 5px 35px 5px 5px;
-	font-size: 16px;
-	border: 1px solid #ccc;
-	height: 50px;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-	background: url(../Img/mouse-hover-icon-22.jpg) 96% / 30px no-repeat #eee;
+    width: 100%;
+    padding: 5px 35px 5px 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    height: 50px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url(../Img/mouse-hover-icon-22.jpg) 96% / 30px no-repeat #eee;
 }
 
 a {
@@ -29,8 +29,8 @@ a {
     color:#000000;
 }
 a:hover {
-     text-decoration: none !important;
- }
+    text-decoration: none !important;
+}
 a span {
     display: none;
     position: absolute;
@@ -62,38 +62,38 @@ table tr td {
 }
 
 #header {
-	display: flex;
-	font-size: 1.2rem;
-	align-items: center;
-	padding: 1.5rem;
-	border-bottom: #676eff 1px solid;
+    display: flex;
+    font-size: 1.2rem;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: #676eff 1px solid;
 }
 
 #header #logo {
-	background-image: url("../Img/logo.png");
-	background-size: contain;
-	background-repeat: no-repeat;
-	width: 200px;
-	height: 50px;
-	margin-left: 1rem;
-	overflow: visible;
+    background-image: url("../Img/logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 50px;
+    margin-left: 1rem;
+    overflow: visible;
 }
 #header ul {
-	display: flex;
-	list-style-type: none;
-	margin: 0;
+    display: flex;
+    list-style-type: none;
+    margin: 0;
 }
 
 #header ul li {
-	margin-right: 2rem;
+    margin-right: 2rem;
 }
 
 #header .buttons {
-	margin-left: auto;
+    margin-left: auto;
 }
 
 #header .buttons ul li a {
-	margin-left: 2rem;
+    margin-left: 2rem;
 }
 
 ul#ul-class-navigation {
