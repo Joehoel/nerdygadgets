@@ -35,7 +35,7 @@ return [
         "categories" => [ CategoryController::class, 'index', [
             "type" => "GET",
         ]],
-        "payment" => [ PaymentController::class, 'show', [
+        "payment" => [ PaymentController::class, 'index', [
             "type" => "GET",
         ]],
         "cart" => [ CartController::class, 'index', [

@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="../Public/CSS/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="../Public/CSS/nha3fuq.css">
     <link rel="stylesheet" href="../Public/CSS/Style.css" type="text/css">
+    <link rel="stylesheet" href="../Public/CSS/payment.css" type="text/css">
     <link rel="apple-touch-icon" sizes="57x57" href="../Public/Favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../Public/Favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="../Public/Favicon/apple-icon-72x72.png">
