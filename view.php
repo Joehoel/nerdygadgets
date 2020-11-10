@@ -1,5 +1,4 @@
 <?php
-// Test comment
 $Connection = mysqli_connect("localhost", "root", "", "nerdygadgets");
 mysqli_set_charset($Connection, 'latin1');
 include __DIR__ . "/header.php";
@@ -48,10 +47,10 @@ if ($R) {
 <div id="CenteredContent">
     <?php
     if ($Result != null) {
-    ?>
+        ?>
         <?php
         if (isset($Result['Video'])) {
-        ?>
+            ?>
             <div id="VideoFrame">
                 <?php print $Result['Video']; ?>
             </div>
@@ -64,25 +63,27 @@ if ($R) {
             if (isset($Images)) {
                 // print Single
                 if (count($Images) == 1) {
-            ?>
-                    <div id="ImageFrame" style="background-image: url('Public/StockItemIMG/<?php print $Images[0]['ImagePath']; ?>'); background-size: 300px; background-repeat: no-repeat; background-position: center;"></div>
-                <?php
+                    ?>
+                    <div id="ImageFrame"
+                         style="background-image: url('Public/StockItemIMG/<?php print $Images[0]['ImagePath']; ?>'); background-size: 300px; background-repeat: no-repeat; background-position: center;"></div>
+                    <?php
                 } else if (count($Images) >= 2) { ?>
                     <div id="ImageFrame">
                         <div id="ImageCarousel" class="carousel slide" data-interval="false">
                             <!-- Indicators -->
                             <ul class="carousel-indicators">
                                 <?php for ($i = 0; $i < count($Images); $i++) {
-                                ?>
-                                    <li data-target="#ImageCarousel" data-slide-to="<?php print $i ?>" <?php print(($i == 0) ? 'class="active"' : ''); ?>></li>
-                                <?php
+                                    ?>
+                                    <li data-target="#ImageCarousel"
+                                        data-slide-to="<?php print $i ?>" <?php print (($i == 0) ? 'class="active"' : ''); ?>></li>
+                                    <?php
                                 } ?>
                             </ul>
 
                             <!-- The slideshow -->
                             <div class="carousel-inner">
                                 <?php for ($i = 0; $i < count($Images); $i++) {
-                                ?>
+                                    ?>
                                     <div class="carousel-item <?php print ($i == 0) ? 'active' : ''; ?>">
                                         <img src="Public/StockItemIMG/<?php print $Images[$i]['ImagePath'] ?>">
                                     </div>
@@ -98,12 +99,13 @@ if ($R) {
                             </a>
                         </div>
                     </div>
-                <?php
+                    <?php
                 }
             } else {
                 ?>
-                <div id="ImageFrame" style="background-image: url('Public/StockGroupIMG/<?php print $Result['BackupImagePath']; ?>'); background-size: cover;"></div>
-            <?php
+                <div id="ImageFrame"
+                     style="background-image: url('Public/StockGroupIMG/<?php print $Result['BackupImagePath']; ?>'); background-size: cover;"></div>
+                <?php
             }
             ?>
 
@@ -118,6 +120,10 @@ if ($R) {
                     <div class="CenterPriceLeftChild">
                         <p class="StockItemPriceText"><b><?php print sprintf("€ %.2f", $Result['SellPrice']); ?></b></p>
                         <h6> Inclusief BTW </h6>
+                        <forum>
+                        <input type="number" name="aantal" value="1" />
+                        <input type="submit" value="In winkelwagen">
+                        </forum>
                     </div>
                 </div>
             </div>
@@ -133,39 +139,39 @@ if ($R) {
             $CustomFields = json_decode($Result['CustomFields'], true);
             if (is_array($CustomFields)) { ?>
                 <table>
-                    <thead>
-                        <th>Naam</th>
-                        <th>Data</th>
-                    </thead>
-                    <?php
-                    foreach ($CustomFields as $SpecName => $SpecText) { ?>
-                        <tr>
-                            <td>
-                                <?php print $SpecName; ?>
-                            </td>
-                            <td>
-                                <?php
-                                if (is_array($SpecText)) {
-                                    foreach ($SpecText as $SubText) {
-                                        print $SubText . " ";
-                                    }
-                                } else {
-                                    print $SpecText;
+                <thead>
+                <th>Naam</th>
+                <th>Data</th>
+                </thead>
+                <?php
+                foreach ($CustomFields as $SpecName => $SpecText) { ?>
+                    <tr>
+                        <td>
+                            <?php print $SpecName; ?>
+                        </td>
+                        <td>
+                            <?php
+                            if (is_array($SpecText)) {
+                                foreach ($SpecText as $SubText) {
+                                    print $SubText . " ";
                                 }
-                                ?>
-                            </td>
-                        </tr>
-                    <?php } ?>
+                            } else {
+                                print $SpecText;
+                            }
+                            ?>
+                        </td>
+                    </tr>
+                <?php } ?>
                 </table><?php
-                    } else { ?>
+            } else { ?>
 
                 <p><?php print $Result['CustomFields']; ?>.</p>
-            <?php
-                    }
+                <?php
+            }
             ?>
         </div>
-    <?php
+        <?php
     } else {
-    ?><h2 id="ProductNotFound">Het opgevraagde product is niet gevonden.</h2><?php
-                                                                            } ?>
+        ?><h2 id="ProductNotFound">Het opgevraagde product is niet gevonden.</h2><?php
+    } ?>
 </div>

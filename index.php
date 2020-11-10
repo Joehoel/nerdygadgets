@@ -18,6 +18,4 @@ include __DIR__ . "/header.php";
         <div class="HomePageStockItemPicture"></div>
     </div>
 </div>
-<?php
-include __DIR__ . "/footer.php";
-?>
+
