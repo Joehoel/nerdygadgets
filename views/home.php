@@ -1,4 +1,5 @@
-<?php include 'header.php '; ?>
+<?php include __DIR__ . '/connect.php '; ?>
+<?php include __DIR__ . '/header.php '; ?>
 <div class="IndexStyle">
     <div class="col-11">
         <div class="TextPrice">
@@ -16,4 +17,4 @@
         <div class="HomePageStockItemPicture"></div>
     </div>
 </div>
-<?php include 'footer.php '; ?>
+<?php include __DIR__ . '/footer.php '; ?>

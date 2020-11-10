@@ -6,6 +6,6 @@ class HomeController
 {
     public function show()
     {
-        echo view('header');
+        echo view('home');
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Controller\HomeController;
+use App\Controller\ProductController;
 
 return [
     /*
@@ -16,6 +17,8 @@ return [
         "" => [ HomeController::class, 'show', [
             "type" => "GET",
         ]],
+        "product/{id}" => [ ProductController::class, 'show', [
+            "type" => "GET",
+        ]],
     ]
-
 ];
