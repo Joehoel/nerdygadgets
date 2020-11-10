@@ -24,11 +24,9 @@ return [
         "product/{id}" => [ ProductController::class, 'show', [
             "type" => "GET",
         ]],
-
         "update-cart/{id}" => [ CartController::class, 'update', [
             "type" => "POST",
         ]],
-
         "browse" => [ BrowseController::class, 'show', [
             "type" => "GET",
         ]],
