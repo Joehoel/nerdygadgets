@@ -4,7 +4,7 @@ include __DIR__ . "/connect.php";
 include __DIR__ . "/header.php";
 
 foreach ($cart as $key => $value) {
-    $productData = $cart->GetProductData($key);
+    $productData = $cartClass->GetProductData($key);
     ?>
 
     <a class="ListItem" href='view.php?id=<?php print $productData['StockItemID']; ?>'>
@@ -33,7 +33,5 @@ foreach ($cart as $key => $value) {
 }
 ?>
 
-
-
 <?php
-include "footer.php";
+include __DIR__ . "/footer.php";

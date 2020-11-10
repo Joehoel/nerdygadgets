@@ -43,6 +43,6 @@ class DatabaseInstance
 
     public function __destruct()
     {
-        $this->connection = null;
+       $this->connection = null;
     }
 }

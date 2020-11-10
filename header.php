@@ -20,9 +20,9 @@ include "connect.php";
     </style>
     <meta charset="ISO-8859-1">
     <title>NerdyGadgets</title>
-    <link rel="stylesheet" href="Public/CSS/Style.css" type="text/css">
     <link rel="stylesheet" href="Public/CSS/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="Public/CSS/nha3fuq.css">
+    <link rel="stylesheet" href="Public/CSS/Style.css" type="text/css">
     <link rel="apple-touch-icon" sizes="57x57" href="Public/Favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="Public/Favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="Public/Favicon/apple-icon-72x72.png">
@@ -44,21 +44,21 @@ include "connect.php";
 
 <body>
     <div class="Background">
-        <div class="row" id="Header">
-            <div class="col-2"><a href="./" id="LogoA">
-                    <div id="LogoImage"></div>
-                </a></div>
-            <div class="col-8" id="CategoriesBar">
-                <ul id="ul-class">
+        <header id="header">
+            <a href="./">
+                <div id="logo"></div>
+            </a>
+            <div id="categories">
+                <ul>
                     <?php
                     $Query = "
-                SELECT StockGroupID, StockGroupName, ImagePath
-                FROM stockgroups 
-                WHERE StockGroupID IN (
-                                        SELECT StockGroupID 
-                                        FROM stockitemstockgroups
-                                        ) AND ImagePath IS NOT NULL
-                ORDER BY StockGroupID ASC";
+                    SELECT StockGroupID, StockGroupName, ImagePath
+                    FROM stockgroups 
+                    WHERE StockGroupID IN (
+                                            SELECT StockGroupID 
+                                            FROM stockitemstockgroups
+                                            ) AND ImagePath IS NOT NULL
+                    ORDER BY StockGroupID ASC";
                     $Statement = mysqli_prepare($Connection, $Query);
                     mysqli_stmt_execute($Statement);
                     $HeaderStockGroups = mysqli_stmt_get_result($Statement);
@@ -66,10 +66,50 @@ include "connect.php";
                     foreach ($HeaderStockGroups as $HeaderStockGroup) {
                     ?>
                         <li>
-                            <a href="browse.php?category_id=<?php print $HeaderStockGroup['StockGroupID']; ?>" class="HrefDecoration"><?php print $HeaderStockGroup['StockGroupName']; ?></a>
+                            <a href="browse.php?category_id=<?php print $HeaderStockGroup['StockGroupID'];
+                                                            ?>" class="HrefDecoration"><?php print $HeaderStockGroup['StockGroupName']; ?></a>
                         </li>
                     <?php
                     }
+                    ?>
+                </ul>
+            </div>
+            <div class="buttons">
+                <ul>
+                    <li>
+                        <a href="browse.php" class="HrefDecoration"><i class="fas fa-search" style="color:#676EFF;"></i> Zoeken</a>
+                        <a href="cart.php" class="HrefDecoration"><i class="fas fa-shopping-cart" style="color:#676EFF;"></i> Winkelwagen</a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <!-- <div class="row" id="Header">
+            <div class="col-2"><a href="./" id="LogoA">
+                    <div id="LogoImage"></div>
+                </a></div>
+            <div class="col-8" id="CategoriesBar">
+                <ul id="ul-class">
+                    <?php
+                    //     $Query = "
+                    // SELECT StockGroupID, StockGroupName, ImagePath
+                    // FROM stockgroups 
+                    // WHERE StockGroupID IN (
+                    //                         SELECT StockGroupID 
+                    //                         FROM stockitemstockgroups
+                    //                         ) AND ImagePath IS NOT NULL
+                    // ORDER BY StockGroupID ASC";
+                    //     $Statement = mysqli_prepare($Connection, $Query);
+                    //     mysqli_stmt_execute($Statement);
+                    //     $HeaderStockGroups = mysqli_stmt_get_result($Statement);
+
+                    //     foreach ($HeaderStockGroups as $HeaderStockGroup) {
+                    ?>
+                        <li>
+                            <a href="browse.php?category_id=<?php //print $HeaderStockGroup['StockGroupID']; 
+                                                            ?>" class="HrefDecoration"><?php print $HeaderStockGroup['StockGroupName']; ?></a>
+                        </li>
+                    <?php
+                    // }
                     ?>
                     <li>
                         <a href="views/categories.php" class="HrefDecoration">Alle categorieën</a>
@@ -79,9 +119,10 @@ include "connect.php";
             <ul id="ul-class-navigation">
                 <li>
                     <a href="browse.php" class="HrefDecoration"><i class="fas fa-search" style="color:#676EFF;"></i> Zoeken</a>
+                    <a href="cart.php" class="HrefDecoration"><i class="fas fa-shopping-cart" style="color:#676EFF;"></i> Winkelwagen</a>
                 </li>
             </ul>
-        </div>
+        </div> -->
         <div class="row" id="Content">
             <div class="col-12">
                 <div id="SubContent">

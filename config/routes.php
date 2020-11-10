@@ -3,6 +3,7 @@
 use App\Controller\BrowseController;
 use App\Controller\CategoryController;
 use App\Controller\HomeController;
+use App\Controller\PaymentController;
 use App\Controller\ProductController;
 use App\Domain\Cart\CartController;
 
@@ -23,10 +24,18 @@ return [
         "product/{id}" => [ ProductController::class, 'show', [
             "type" => "GET",
         ]],
+
+        "update-cart/{id}" => [ CartController::class, 'update', [
+            "type" => "POST",
+        ]],
+
         "browse" => [ BrowseController::class, 'show', [
             "type" => "GET",
         ]],
         "categories" => [ CategoryController::class, 'index', [
+            "type" => "GET",
+        ]],
+        "payment" => [ PaymentController::class, 'show', [
             "type" => "GET",
         ]],
         "cart" => [ CartController::class, 'index', [

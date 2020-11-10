@@ -11,6 +11,7 @@ require __DIR__ . '/autoload.php';
 require __DIR__ . '/helper.php';
 
 define("base_dir", __DIR__);
+define("base_url", 'http://localhost:8000');
 
 /*
  *
