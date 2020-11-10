@@ -1,7 +1,8 @@
 <?php
-$Connection = mysqli_connect("localhost", "root", "", "nerdygadgets");
-mysqli_set_charset($Connection, 'latin1');
-include __DIR__ . "/header.php";
+include __DIR__ . '/connect.php';
+include __DIR__ . '/header.php';
+
+$_GET['id'] = $id;
 
 $Query = " 
            SELECT SI.StockItemID, 
@@ -37,24 +38,12 @@ $Query = "
 $Statement = mysqli_prepare($Connection, $Query);
 mysqli_stmt_bind_param($Statement, "i", $_GET['id']);
 mysqli_stmt_execute($Statement);
-$R = mysqli_stmt_get_result($Statement); 
+$R = mysqli_stmt_get_result($Statement);
 $R = mysqli_fetch_all($R, MYSQLI_ASSOC);
 
 if ($R) {
     $Images = $R;
 }
-
-include 'Classes/Cart.php';
-use NerdyGadgests\Classes\Cart;
-
-if (isset($_POST['aantal']) && !empty($_POST['aantal'])){
-    $id = $Result["StockItemID"];
-    $cart = new Cart();
-    $cart->AddItemToCart($id, $_POST['aantal']);
-}
-
-
-
 
 ?>
 <div id="CenteredContent">
@@ -130,7 +119,7 @@ if (isset($_POST['aantal']) && !empty($_POST['aantal'])){
                     <div class="CenterPriceLeftChild">
                         <p class="StockItemPriceText"><b><?php print sprintf("€ %.2f", $Result['SellPrice']); ?></b></p>
                         <h6> Inclusief BTW </h6>
-                        <form action="" method="POST">
+                        <form method="POST" action="/update-cart/<?php echo $Result["StockItemID"]; ?>">
                             <input type="number" name="aantal" required value="1" />
                             <input type="submit" name="voegtoe" value="In winkelwagen">
                         </form>
@@ -180,8 +169,7 @@ if (isset($_POST['aantal']) && !empty($_POST['aantal'])){
                     }
             ?>
         </div>
-    <?php
-    } else {
-    ?><h2 id="ProductNotFound">Het opgevraagde product is niet gevonden.</h2><?php
-                                                                                } ?>
+    <?php } else { ?>
+    <h2 id="ProductNotFound">Het opgevraagde product is niet gevonden.</h2>
+    <?php } ?>
 </div>

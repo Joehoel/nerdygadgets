@@ -1,21 +1,27 @@
 <?php
-include __DIR__ . "/header.php";
-?>
-<div class="IndexStyle">
-    <div class="col-11">
-        <div class="TextPrice">
-            <a href="view.php?id=93">
-                <div class="TextMain">
-                    "The Gu" red shirt XML tag t-shirt (Black) M
-                </div>
-                <ul id="ul-class-price">
 
-                    <li class="HomePagePrice">€30.95</li>
-                </ul>
+use App\Domain\Route\Route;
+session_start();
 
-        </div>
-        </a>
-        <div class="HomePageStockItemPicture"></div>
-    </div>
-</div>
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
+require __DIR__ . '/autoload.php';
+require __DIR__ . '/helper.php';
+
+define("base_dir", __DIR__);
+define("base_url", 'http://localhost:8000');
+
+/*
+ *
+ * This code removes everything after the / in the URL.
+ * so a URL like example.com/home/test becomes /hom/test
+ *
+ * */
+
+$route = new Route();
+$url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
+    . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+$route->match(trim(parse_url($url, PHP_URL_PATH), '/'));
