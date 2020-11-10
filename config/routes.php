@@ -1,7 +1,10 @@
 <?php
 
+use App\Controller\BrowseController;
+use App\Controller\CategoryController;
 use App\Controller\HomeController;
 use App\Controller\ProductController;
+use App\Domain\Cart\CartController;
 
 return [
     /*
@@ -18,6 +21,15 @@ return [
             "type" => "GET",
         ]],
         "product/{id}" => [ ProductController::class, 'show', [
+            "type" => "GET",
+        ]],
+        "browse" => [ BrowseController::class, 'show', [
+            "type" => "GET",
+        ]],
+        "categories" => [ CategoryController::class, 'index', [
+            "type" => "GET",
+        ]],
+        "cart" => [ CartController::class, 'index', [
             "type" => "GET",
         ]],
     ]

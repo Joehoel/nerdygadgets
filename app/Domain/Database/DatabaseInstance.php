@@ -2,11 +2,14 @@
 
 namespace App\Domain\Database;
 
+use App\Domain\Config\Config;
 use PDO;
 
 class DatabaseInstance
 {
     private $dsn;
+
+    public $connection;
 
     protected $options = [
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
@@ -14,9 +17,14 @@ class DatabaseInstance
         PDO::ATTR_EMULATE_PREPARES   => false,
     ];
 
-    public function __construct(array $dsn)
+    public function __construct()
     {
-        $this->dsn = $dsn;
+        $this->dsn = new Config('database');
+
+        $this->dsn = $this->dsn->get('mysql');
+
+        $this->connection = $this->create();
+        return $this->connection;
     }
 
     public function getDSN()
@@ -28,8 +36,13 @@ class DatabaseInstance
     public function create()
     {
         return new PDO($this->getDSN(),
-            $this->dsn["user"],
+            $this->dsn["username"],
             $this->dsn["password"]
         );
+    }
+
+    public function __destruct()
+    {
+        $this->connection = null;
     }
 }

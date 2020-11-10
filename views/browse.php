@@ -1,5 +1,7 @@
 <?php
+include __DIR__ . "/connect.php";
 include __DIR__ . "/header.php";
+
 $SearchString = "";
 $ReturnableResult = null;
 if (isset($_GET['search_string'])) {
@@ -166,10 +168,13 @@ if (isset($amount)) {
             <input type="text" name="search_string" id="search_string"
                    value="<?php print (isset($_GET['search_string'])) ? $_GET['search_string'] : ""; ?>"
                    class="form-submit">
-            <h4 class="FilterTopMargin"><i class="fas fa-list-ol"></i> Aantal producten op pagina</h4>
-
+            <h4 class="FilterTopMargin">
+                <i class="fas fa-list-ol"></i>
+                Aantal producten op pagina
+            </h4>
             <input type="hidden" name="category_id" id="category_id"
                    value="<?php print (isset($_GET['category_id'])) ? $_GET['category_id'] : ""; ?>">
+
             <select name="products_on_page" id="products_on_page" onchange="this.form.submit()">>
                 <option value="25" <?php if ($_SESSION['products_on_page'] == 25) {
                     print "selected";
@@ -211,7 +216,7 @@ if (isset($amount)) {
     if (isset($ReturnableResult) && count($ReturnableResult) > 0) {
         foreach ($ReturnableResult as $row) {
             ?>
-            <a class="ListItem" href='view.php?id=<?php print $row['StockItemID']; ?>'>
+            <a class="ListItem" href='/product/<?php print $row['StockItemID']; ?>'>
                 <div id="ProductFrame">
                     <?php
                     if (isset($row['ImagePath'])) { ?>

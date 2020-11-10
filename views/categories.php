@@ -1,5 +1,6 @@
 <?php
 
+include __DIR__ . "/connect.php";
 include __DIR__ . "/header.php";
 
 $Query = "
@@ -22,7 +23,7 @@ $StockGroups = mysqli_fetch_all($Result, MYSQLI_ASSOC);
         foreach ($StockGroups as $StockGroup) {
             if ($i < 6) {
                 ?>
-                <a href="<?php print "browse.php?category_id=";
+                <a href="<?php print "/browse?category_id=";
                 print $StockGroup["StockGroupID"]; ?>">
                     <div id="StockGroup<?php print $i + 1; ?>"
                          style="background-image: url('Public/StockGroupIMG/<?php print $StockGroup["ImagePath"]; ?>')"

@@ -61,19 +61,19 @@
                 foreach ($HeaderStockGroups as $HeaderStockGroup) {
                     ?>
                     <li>
-                        <a href="browse.php?category_id=<?php print $HeaderStockGroup['StockGroupID']; ?>" class="HrefDecoration"><?php print $HeaderStockGroup['StockGroupName']; ?></a>
+                        <a href="/browse?category_id=<?php print $HeaderStockGroup['StockGroupID']; ?>" class="HrefDecoration"><?php print $HeaderStockGroup['StockGroupName']; ?></a>
                     </li>
                     <?php
                 }
                 ?>
                 <li>
-                    <a href="categories.php" class="HrefDecoration">Alle categorieën</a>
+                    <a href="/categories" class="HrefDecoration">Alle categorieën</a>
                 </li>
             </ul>
         </div>
         <ul id="ul-class-navigation">
             <li>
-                <a href="browse.php" class="HrefDecoration"><i class="fas fa-search" style="color:#676EFF;"></i> Zoeken</a>
+                <a href="/browse" class="HrefDecoration"><i class="fas fa-search" style="color:#676EFF;"></i> Zoeken</a>
             </li>
         </ul>
     </div>

@@ -72,7 +72,7 @@ include "connect.php";
                     }
                     ?>
                     <li>
-                        <a href="categories.php" class="HrefDecoration">Alle categorieën</a>
+                        <a href="views/categories.php" class="HrefDecoration">Alle categorieën</a>
                     </li>
                 </ul>
             </div>

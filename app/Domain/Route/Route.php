@@ -50,7 +50,6 @@ class Route
      *
      * This function accepts a $route and a $slug.
      *
-     *
      */
     public function shouldBeMatching($route, $slug)
     {
