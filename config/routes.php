@@ -13,8 +13,8 @@ return [
     |
     */
     "routes" => [
-        "product/{id}" => [ HomeController::class, 'show', [
-            "param1" => "b"
+        "home/{id}/mondje/{help}" => [ HomeController::class, 'show', [
+            "type" => "GET",
         ]],
     ]
 

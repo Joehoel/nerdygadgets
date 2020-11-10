@@ -2,13 +2,10 @@
 
 namespace App\Controller;
 
-use App\Domain\Config\Config;
-
 class HomeController
 {
-    public function show(Config $config)
+    public function show($id, $help)
     {
-        echo 'Show the homepage.';
-    }
 
+    }
 }
