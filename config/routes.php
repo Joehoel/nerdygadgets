@@ -13,7 +13,7 @@ return [
     |
     */
     "routes" => [
-        "home/{id}/mondje/{help}" => [ HomeController::class, 'show', [
+        "" => [ HomeController::class, 'show', [
             "type" => "GET",
         ]],
     ]
