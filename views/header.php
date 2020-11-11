@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="<?php echo base_url ?>Public/CSS/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="<?php echo base_url ?>Public/CSS/nha3fuq.css">
     <link rel="stylesheet" href="<?php echo base_url ?>Public/CSS/main.css" type="text/css">
-    <link rel="stylesheet" href="<?php echo base_url ?>Public/CSS/payment.css" type="text/css">
     <link rel="apple-touch-icon" sizes="57x57" href="<?php echo base_url ?>Public/Favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="<?php echo base_url ?>Public/Favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="<?php echo base_url ?>Public/Favicon/apple-icon-72x72.png">
@@ -75,7 +74,7 @@
                     <a href="<?php echo base_url; ?>categories" class="HrefDecoration">Alle categorieën</a>
                 </li>
                 <li>
-                    <a href="<?php echo base_url; ?>payments" class="HrefDecoration">payments</a>
+                    <a href="<?php echo base_url; ?>payment" class="HrefDecoration">payments</a>
                 </li>
             </ul>
         </div>
