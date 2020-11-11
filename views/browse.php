@@ -216,7 +216,7 @@ if (isset($amount)) {
     if (isset($ReturnableResult) && count($ReturnableResult) > 0) {
         foreach ($ReturnableResult as $row) {
             ?>
-            <a class="ListItem" href='/product/<?php print $row['StockItemID']; ?>'>
+            <a class="ListItem" href='<?php echo base_url?>product/<?php print $row['StockItemID']; ?>'>
                 <div id="ProductFrame">
                     <?php
                     if (isset($row['ImagePath'])) { ?>

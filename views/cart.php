@@ -7,7 +7,7 @@ foreach ($cart as $key => $value) {
     $productData = $cartClass->GetProductData($key);
     ?>
 
-    <a class="ListItem" href='view.php?id=<?php print $productData['StockItemID']; ?>'>
+    <a class="ListItem" href='product/<?php print $productData['StockItemID']; ?>'>
         <div id="ProductFrame">
             <?php
             if (isset($productData['ImagePath'])) { ?>

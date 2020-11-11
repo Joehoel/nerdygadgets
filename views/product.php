@@ -9,6 +9,7 @@ $Query = "
             (RecommendedRetailPrice*(1+(TaxRate/100))) AS SellPrice, 
             StockItemName,
             CONCAT('Voorraad: ',QuantityOnHand)AS QuantityOnHand,
+            QuantityOnHand as voorraad,
             SearchDetails, 
             (CASE WHEN (RecommendedRetailPrice*(1+(TaxRate/100))) > 50 THEN 0 ELSE 6.95 END) AS SendCosts, MarketingComments, CustomFields, SI.Video,
             (SELECT ImagePath FROM stockgroups JOIN stockitemstockgroups USING(StockGroupID) WHERE StockItemID = SI.StockItemID LIMIT 1) as BackupImagePath   
@@ -119,10 +120,16 @@ if ($R) {
                     <div class="CenterPriceLeftChild">
                         <p class="StockItemPriceText"><b><?php print sprintf("€ %.2f", $Result['SellPrice']); ?></b></p>
                         <h6> Inclusief BTW </h6>
-                        <form method="POST" action="/update-cart/<?php echo $Result["StockItemID"]; ?>">
-                            <input type="number" name="aantal" required value="1" />
-                            <input type="submit" name="voegtoe" value="In winkelwagen">
-                        </form>
+                        <?php
+                        if ($Result['voorraad'] != 0) {
+                        ?>
+                            <form method="POST" action="<?php echo base_url; ?>update-cart/<?php echo $Result["StockItemID"]; ?>">
+                                <input type="number" name="aantal" required value="1" min="1" max="<?php echo $Result['voorraad'] ?>" />
+                                <input type="submit" name="voegtoe" value="In winkelwagen">
+                            </form>
+                        <?php
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -170,6 +177,6 @@ if ($R) {
             ?>
         </div>
     <?php } else { ?>
-    <h2 id="ProductNotFound">Het opgevraagde product is niet gevonden.</h2>
+        <h2 id="ProductNotFound">Het opgevraagde product is niet gevonden.</h2>
     <?php } ?>
 </div>

@@ -101,13 +101,13 @@ class Cart
                         where StockItemID = ?
                         limit 1;
                 ";
-            $Statement = mysqli_prepare($connection, $sql);
-            mysqli_stmt_bind_param($Statement, "i", $artNr);
-            mysqli_stmt_execute($Statement);
-            $ReturnableResult =  mysqli_stmt_get_result($Statement);
-            $Result = mysqli_fetch_all($ReturnableResult, MYSQLI_ASSOC)[0];
+            $statement = mysqli_prepare($connection, $sql);
+            mysqli_stmt_bind_param($statement, "i", $artNr);
+            mysqli_stmt_execute($statement);
+            $returnable_result =  mysqli_stmt_get_result($statement);
+            $result = mysqli_fetch_all($returnable_result, MYSQLI_ASSOC)[0];
 
-            return $Result;
+            return $result;
         }
     }
 
