@@ -32,10 +32,14 @@ include __DIR__ . "/header.php";
 
         <div class="payment">
             <table>
+            <?php foreach($stockitem as $item) { ?>
                 <tr>
-                    <td>Subtotaal</td>
-                    <td>€95,95</td>
+                    <td><?php echo($item['StockItemName'])?></td>
+                    <td><?php echo($item['UnitPrice'] * $_SESSION['Cart'][$item['StockItemID']])?></td>
                 </tr>
+            <?php } ?>
+            </table>
+            <table>
                 <tr>
                     <td>Subtotaal (excl. BTW)</td>
                     <td>€79,30</td>
