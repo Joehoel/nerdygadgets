@@ -17,8 +17,7 @@
     <title>NerdyGadgets</title>
     <link rel="stylesheet" href="<?php echo base_url ?>Public/CSS/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="<?php echo base_url ?>Public/CSS/nha3fuq.css">
-    <link rel="stylesheet" href="<?php echo base_url ?>Public/CSS/Style.css" type="text/css">
-    <link rel="stylesheet" href="<?php echo base_url ?>Public/CSS/payment.css" type="text/css">
+    <link rel="stylesheet" href="<?php echo base_url ?>Public/CSS/main.css" type="text/css">
     <link rel="apple-touch-icon" sizes="57x57" href="<?php echo base_url ?>Public/Favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="<?php echo base_url ?>Public/Favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="<?php echo base_url ?>Public/Favicon/apple-icon-72x72.png">
@@ -39,11 +38,13 @@
 </head>
 
 <body>
-<div class="Background">
-    <div class="row" id="Header">
-        <div class="col-2"><a href="./" id="LogoA">
+<div class="background">
+    <div class="row" id="header">
+        <div class="col-2">
+            <a href="./" id="LogoA">
                 <div id="LogoImage"></div>
-            </a></div>
+            </a>
+        </div>
         <div class="col-8" id="CategoriesBar">
             <ul id="ul-class">
                 <?php
