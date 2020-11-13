@@ -26,55 +26,58 @@ include __DIR__ . "/header.php";
         </form>
     </div>
 
-    <div class="payment">
-        <table>
-            <tr>
-                <td>Subtotaal</td>
-                <td>€95,95</td>
-            </tr>
-            <tr>
-                <td>Subtotaal (excl. BTW)</td>
-                <td>€79,30</td>
-            </tr>
-            <tr>
-                <td>BTW</td>
-                <td>€16,65</td>
-            </tr>
-            <tr>
-                <td>Verzendkosten</td>
-                <td>Gratis</td>
-            </tr>
-            <tr>
-                <td>Totaal</td>
-                <td>€95,95</td>
-            </tr>
-        </table>
-        <div class="pay-container">
-            <form>
-                <div class="inline-radio">
-                    <input type="radio" name="method" value="Credit">
-                    <p>Credit card</p>
-                </div>
-                <div class="credit-card">
-                    <input type="text" placeholder="Card number" name="card-number">
-                    <input type="text" placeholder="Name on card" name="card-name">
-                    <input class="start-column" type="text" placeholder="Expiration date (MM / YY)" name="card-number">
-                    <input class="end-column" type="text" placeholder="Security code" name="card-name">
-                </div>
-                <div class="inline-radio">
-                    <input type="radio" name="method" value="PayPal">
-                    <p>PayPal</p>
-                </div>
-                <div class="inline-radio">
-                    <input type="radio" name="method" value="IDEAL">
-                    <p>IDEAL</p>
-                </div>
-                <div class="IDEAL">
-                    <input type="text" placeholder="Bank name" name="method">
-                </div>
-            </form>
-        </div>
-        <button>Continue to shipping</button>
-    </div>
-</div>
+        <div class="payment">
+            <table>
+                <tr>
+                    <td>Subtotaal</td>
+                    <td>€95,95</td>
+                </tr>
+                <tr>
+                    <td>Subtotaal (excl. BTW)</td>
+                    <td>€79,30</td>
+                </tr>
+                <tr>
+                    <td>BTW</td>
+                    <td>€16,65</td>
+                </tr>
+                <tr>
+                    <td>Verzendkosten</td>
+                    <td>Gratis</td>
+                </tr>
+                <tr>
+                    <td>Totaal</td>
+                    <td>€95,95</td>
+                </tr>
+            </table>
+            <div class="pay-container">
+                <form>
+                    <div class="inline-radio">
+                        <input type="radio" name="method" value="Credit">
+                        <p>Credit card</p>
+                    </div>
+                    <div class="credit-card">
+                        <input type="text" placeholder="Card number" name="card-number">
+                        <input type="text" placeholder="Name on card" name="card-name">
+                        <input class="start-column" type="text" placeholder="Expiration date (MM / YY)" name="card-number">
+                        <input class="end-column" type="text" placeholder="Security code" name="card-name">
+                    </div>
+                    <div class="inline-radio">
+                        <input type="radio" name="method" value="PayPal">
+                        <p>PayPal</p>
+                    </div>
+                    <div class="inline-radio">
+                        <input type="radio" name="method" value="IDEAL">
+                        <p>IDEAL</p>
+                    </div>
+                    <div class="IDEAL">
+                        <input type="text" placeholder="Bank name" name="method">
+                    </div>
+                </form>
 
+            </div>
+            <button>Continue to shipping</button>
+        </div>
+    </div>
+</body>
+
+</html>
