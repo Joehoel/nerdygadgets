@@ -50,9 +50,9 @@
                 <?php
                 $Query = "
                 SELECT StockGroupID, StockGroupName, ImagePath
-                FROM stockgroups 
+                FROM stockgroups
                 WHERE StockGroupID IN (
-                                        SELECT StockGroupID 
+                                        SELECT StockGroupID
                                         FROM stockitemstockgroups
                                         ) AND ImagePath IS NOT NULL
                 ORDER BY StockGroupID ASC";
