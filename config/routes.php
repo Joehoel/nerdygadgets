@@ -43,5 +43,8 @@ return [
         "register" => [RegisterController::class, 'index', [
             "type" => "GET",
         ]],
+        "register-user" => [RegisterController::class, 'register', [
+            "type" => "POST",
+        ]],
     ]
 ];
