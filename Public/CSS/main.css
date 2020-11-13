@@ -1,0 +1,685 @@
+/* fonts */
+@import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap");
+@font-face {font-family: MmrText; src: url(/Public/fonts/mmrtext.ttf);}
+
+/* colors */
+:root {
+    --background: #23232f;
+    --font_pop: #676EFF;
+    --white: #fff;
+    --black: #000000;
+    --grey: #cccccc;
+    --blue: #24298f;
+    --filter_background: #23282fcc;
+    --page_selected: #629eff;
+    --page_unselected: #24298f;
+}
+
+body {
+    overflow-x: hidden;
+    color: var(--white) !important;
+}
+select {
+    width: 100%;
+    padding: 5px 35px 5px 5px;
+    font-size: 16px;
+    border: 1px solid var(--grey);
+    height: 50px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url(../Img/mouse-hover-icon-22.jpg) 96% / 30px no-repeat;
+    background-color: var(--white);
+}
+a {
+    text-decoration: none;
+    position: relative;
+    color: var(--black);
+}
+    a:hover {
+        text-decoration: none !important;
+    }
+    a span {
+        display: none;
+        position: absolute;
+        color: var(--pop);
+        background: var(--pop);
+        padding: 5px;
+    }
+    a:hover span {
+        display: inline-block;
+        text-align: center;
+        width: 250px;
+        min-height: 30px;
+        margin-top: 25px;
+        font-family: pt-sans, sans-serif;
+        color: var(--black);
+        font-size: 18px;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+input {
+    font-family: pt-sans, sans-serif;
+    height: 50px;
+    font-size: 20px;
+    width: 100%;
+    padding: 0 10px;
+    border: 1px solid var(--page_selected);
+	border-radius: 5px;
+    background-color: var(--white);
+}
+    input:focus {
+        outline: none !important;
+        border-color: var(--highlight);
+        box-shadow: 0 0 10px var(--highlight);
+    }
+    input, select, textarea{
+        color: var(--black);
+    }
+table tr th,
+table tr td {
+    padding: 10px;
+}
+.background {
+    /* container */
+    background-color: var(--background);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+
+/* header */
+#header {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 90px;
+    z-index: 1;
+    border-bottom: 1px solid var(--blue);
+    background-color: var(--background);
+}
+#LogoA {
+    /* nerdygadgets logo container*/
+    height: 90px;
+    width: 100%;
+    position: absolute;
+}
+    #LogoImage {
+        /* logo */
+        background-image: url("../ProductIMGHighRes/NerdyGadgetsLogo.png");
+        width: 250px;
+        height: 90px;
+}
+#CategoriesBar {
+    /* header links */
+    position: absolute;
+    left: 300px;
+}
+    .HrefDecoration {
+        /* header links color */
+        color: var(--white);
+    }
+    .HrefDecoration:hover, .HrefDecoration:active {
+        /* header links hover */
+        text-decoration: none;
+        color: var(--grey);
+    }
+    ul#ul-class li {
+        display: inline;
+        color: var(--white);
+        margin-right: 1em;
+        font-size: 18px;
+        text-decoration: none;
+        line-height: 90px;
+    }
+    ul#ul-class-navigation {
+        right: 10px;
+        line-height: 90px;
+        position: absolute;
+    }
+    ul#ul-class-navigation li {
+        color: var(--white);
+        display: inline;
+        font-family: pt-sans, sans-serif;
+        font-size: 20px;
+        text-decoration: none;
+        text-decoration-color: currentcolor;
+    }
+
+#Content {
+        margin-top: 90px;
+}
+
+
+/* home */
+.IndexStyle {
+    /* container banner */
+    margin: 0 auto;
+    width: 1400px;
+}
+.TextMain {
+    /* banner desciption */
+    color: var(--white);
+    font-family: vortice-concept, sans-serif;
+    font-size: 50px;
+    text-transform: uppercase;
+    font-weight: bold;
+    width: 60%;
+    margin-left: 10%;
+}
+.HomePagePrice {
+    /* banner pricing */
+    color: var(--font_pop);
+    font-family: vortice-concept, sans-serif;
+    font-size: 50px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-left: 7%;
+}
+.TextPrice {
+    margin-top: 16%;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+    ul#ul-class-price li {
+        display: inline;
+        }
+.HomePageStockItemPicture {
+    /* banner image */
+    background-image: url("../ProductIMGHighRes/580b57fbd9996e24bc43bf55.png");
+    background-size: 100% 100%;
+    width: 477px;
+    height: 477px;
+    background-repeat: no-repeat;
+    margin-left: 55%;
+    margin-top: -30%;
+}
+
+/* products {results page} */
+#ResultsArea.Browse  {
+    /* prduct container */
+    width: 78%;
+    margin-left: 21%;
+    float: left;
+    position: sticky;
+}
+#FilterFrame {
+    /* product filter */
+    position: fixed;
+    width: 19%;
+    background-color: var(--filter_background);
+    float: left;
+    top:216px;
+    border: 1px solid var(--white);
+    margin-left: 5px;
+    margin-top: 10px;
+    padding: 20px;
+}
+#ProductFrame {
+    /* container for every single product */
+    width: 100%;
+    height: 250px;
+    margin-top: 15px;
+    position: relative;
+    padding: 1px;
+    border-bottom: 1px solid var(--white);
+    }
+    .ImgFrame {
+        /* container for the product image */
+        width: 230px;
+        height: 230px;
+        background-color: var(--blue);
+        float: left;
+        margin-left: 10px;
+        margin-top: 10px;
+        margin-right: 10px
+    }
+        .ImgFrame img {
+            /* product image */
+            width: 230px;
+            height: 230px;
+        }
+    #StockItemFrameRight {
+        /* container for the product price and BTW */
+        float: right;
+        text-align: right;
+        margin-right: 10px;
+        margin-top: 10px;
+        position: absolute;
+        bottom: 10px;
+        right: 0;
+        top: 0;
+    }
+        .CenterPriceLeftChild {
+            /* another container */
+            position: relative;
+            top: 40%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+        .StockItemPriceText {
+            /* price of the product */
+            font-family: vortice-concept, sans-serif;
+            color: var(--font_pop);
+            font-size: 22px;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-top: 25px;
+        }
+        #ProductFrame h6 {
+            /* inclusief btw text */
+            color: var(--white);
+        }
+    .StockItemID {
+        /* the id of the product */
+        /* also used in the product page itself */
+        font-family: vortice-concept, sans-serif;
+        color: var(--font_pop);
+        font-size: 10px;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-top: 15px;
+    }
+    .StockItemName {
+        /* the name of the product */
+        font-family: pt-sans, sans-serif;
+        color: var(--white);
+        font-size: 20px;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+    .StockItemComments {
+        /* comments for the product */
+        font-family: pt-sans, sans-serif;
+        color: var(--white);
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .ItemQuantity {
+        /* quantity of the product */
+        position: absolute;
+        left: 250px;
+        bottom: 2.5px;
+        color: var(--white);
+        font-size: 15px;
+    }
+    #PageSelector {
+        /* container for the page selector */
+        text-align: center;
+        margin: 20px;
+    }
+        #SelectedPage {
+            /* currently selected page */
+            font-size: 18px;
+            display: inline;
+            font-weight: bold;
+            background-color: var(--page_selected);
+            padding: 15px 22px;
+            border-radius: 50px;
+        }
+        .PageNumber {
+            padding: 7px 15px;
+            border-radius: 39px;
+            background: var(--page_unselected);
+            border: 1px var(--page_selected) solid;
+            color: var(--white);
+        }
+
+
+/* single products page */
+#CenteredContent {
+    /* container for the products */
+    margin: 0 auto;
+    width: 70%;
+    padding-top: 10px;
+}
+    #ArticleHeader {
+        /* container for the header of the product */
+        width: 100%;
+        height: 300px;
+        position: relative
+    }
+        #ImageFrame {
+            /* product image */
+            width: 300px;
+            height: 300px;
+            background-color: var(--blue);
+            float: left;
+            margin-right: 10px;
+        }
+        /* StockItemID >> product css */
+        /* StockItemName >> product css*/
+        .QuantityText {
+            /* quantity of the product */
+            position: absolute;
+            left: 310px;
+            bottom: 0;
+        }
+    #StockItemHeaderLeft {
+        /* item block */
+        float: right;
+        text-align: right;
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 300px;
+    }
+        .CenterPriceLeft {
+            position: absolute;
+            height: 100%;
+            right: 0;
+            width: 200px;
+        }
+        /* CenterPriceLeftChild  >> product css */
+        /* StockItemPriceText >> product css */
+    #StockItemDescription {
+        /* desciption of the product */
+        background-color: var(--filter_background);
+        width: 49%;
+        float: left;
+        padding: 10px;
+        margin-top:10px;
+        border: 1px solid;
+        font-family: pt-sans, sans-serif;
+        font-size: 20px;
+    }
+    #StockItemSpecifications {
+        /* specifications of the product */
+        background-color: var(--filter_background);
+        width: 49%;
+        float: left;
+        padding: 10px;
+        margin-left: 1%;
+        margin-top:10px;
+        border: 1px solid;
+        font-family: pt-sans, sans-serif;
+        font-size: 20px;
+    }
+
+
+
+.ItemName {
+    position: relative;
+    top: 10px;
+    font-family: pt-sans, sans-serif;
+    color: var(--white);
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#VideoFrame {
+    width: 100%;
+    height: 350px;
+    background-color: #d6d6d6;
+    margin-bottom: 10px;
+}
+
+
+
+/* all categories */
+#Wrap {
+    width: 100%;
+    height: 600px;
+    margin-top: 3%;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+#Wrap a {
+    text-decoration: none;
+    color: var(--white);
+}
+#Wrap a:hover {
+    color: #ccc;
+    opacity: 0.9;
+}
+    .StockGroups {
+        position: relative;
+        border: 1px solid var(--grey);
+        background-repeat: no-repeat;
+        background-size: cover;
+        float: left;
+        margin-left: 1.5%;
+        font-family: vortice-concept, sans-serif;
+        color: var(--white);
+        font-size: 25px;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+        .StockGroups h1 {
+            position: absolute;
+            left:0;
+            right: 0;
+            font-size: 25px;
+        }
+    #StockGroup1 {
+        width: 18%;
+        height: 600px;
+        margin-left: 5%;
+    }
+        #StockGroup1 h1 {
+            bottom: 0;
+        }
+    #StockGroup2 {
+        width: 18%;
+        height: 600px;
+        background-size: cover;
+    }
+        #StockGroup2 h1 {
+            bottom: 0;
+        }
+    #StockGroup3 {
+        width: 15%;
+        height: 41.5%;
+    }
+    #StockGroup4 {
+        width: 30%;
+        height: 250px;
+    }
+    #StockGroup5 {
+        width: 25%;
+        height: 53.5%;
+        margin-top: 1.5%;
+    }
+        #StockGroup5 h1 {
+            bottom: 0;
+        }
+    #StockGroup6 {
+        width: 20%;
+        height: 53.5%;
+        margin-left: 1.5%;
+        margin-top: 1.5%;
+    }
+        #StockGroup6 h1 {
+            bottom: 0;
+        }
+
+
+/* payments */
+.payments-container > * {
+	font-family: "Muslish", sans-serif;
+	color: var(--white);
+	padding: 0;
+	margin: 0;
+}
+.payments-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 10px;
+}
+h1 {
+	margin-left: 10px;
+}
+
+.information {
+    /* left side of the payments page */
+	width: 60vw;
+	padding: 10px;
+	display: grid;
+	align-content: center;
+	justify-content: center;
+	height: 89vh;
+}
+    .information h1 {
+        color: var(--white);
+        font-size: 25px;
+    }
+    .information .form-1 {
+        /* customer information form */
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+        .information .form-1 input:nth-child(1) {
+            grid-column-start: 1;
+            grid-column-end: 3;
+        }
+        .information .form-1 div {
+            width: 100%;
+            grid-column-start: 1;
+            grid-column-end: 3;
+        }
+        .information .form-1 div input {
+            width: 25px;
+            display: inline;
+            float: left;
+        }
+        .information .form-1 div p {
+            margin-left: 20px;
+            padding: 14px;
+        }
+    .information .form-2 {
+        /* shipping address form */
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 10px;
+    }
+        .information .form-2 input:nth-child(1),
+        .information .form-2 input:nth-child(7) {
+            grid-column-start: 1;
+            grid-column-end: 3;
+        }
+        .information .form-2 input:nth-child(2),
+        .information .form-2 input:nth-child(8) {
+            grid-column-start: 3;
+            grid-column-end: 5;
+        }
+        .information .form-2 input:nth-child(3),
+        .information .form-2 input:nth-child(6),
+        .information .form-2 input:nth-child(9) {
+            grid-column-start: 1;
+            grid-column-end: 5;
+        }
+        .information .form-2 input:nth-child(4) {
+            grid-column-start: 1;
+            grid-column-end: 4;
+        }
+        .information .form-2 input:nth-child(5) {
+            grid-column-start: 4;
+            grid-column-end: 5;
+        }
+
+.payment {
+	width: 100%;
+	display: grid;
+	grid-template-rows: 1fr 1fr 1fr;
+	justify-content: center;
+	align-items: center;
+	grid-row-gap: 40px;
+	height: 89vh;
+	margin-right: 20px;
+}
+.payment table tr:nth-child(2) > td:nth-child(1),
+.payment table tr:nth-child(3) > td:nth-child(1) {
+	padding-left: 50px;
+}
+.payment table tr:nth-child(4) {
+	border-bottom: 1px solid lightgray;
+}
+.payment .pay-container {
+	border: 1px solid #dddddd;
+	padding: 5%;
+}
+.payment .pay-container .credit-card {
+	display: grid;
+	grid-gap: 10px;
+}
+.payment .pay-container .credit-card input:nth-child(1),
+.payment .pay-container .credit-card input:nth-child(2) {
+	grid-column-start: 1;
+	grid-column-end: 3;
+}
+.payment .pay-container .inline-radio {
+	width: 100%;
+	grid-column-start: 1;
+	grid-column-end: 3;
+}
+.payment .pay-container .inline-radio input {
+	width: 25px;
+	display: inline;
+	float: left;
+}
+.payment .pay-container .inline-radio p {
+	padding: 14px;
+	margin-left: 20px;
+}
+.payment button {
+	background-color: #475f84;
+	color: #fff;
+	border: none;
+	width: 250px;
+	height: 75px;
+	border-radius: 14px;
+	float: right;
+}
+
+
+/* i have no idea where this css belongs */
+.StockItemNameViewSize {
+    font-size: 35px !important;
+}
+.Labels {
+    margin-bottom: 0;
+    padding: 10px;
+    font-size: 20px;
+    margin-right: 5px;
+}
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
+}
+#ImageCarousel {
+    width: 300px;
+    height: 300px;
+}
+.carousel-control-next-icon:hover,
+.carousel-control-prev-icon:hover {
+    width: 20px;
+    height: 20px;
+}
+.ListItem:hover {
+    text-decoration: none;
+}
+#NoSearchResults {
+    text-align: center;
+    height: 100%;
+    margin: 20px;
+    position: relative;
+}
+#ProductNotFound {
+    text-align: center;
+    position: relative;
+
+}
+
