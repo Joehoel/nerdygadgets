@@ -5,6 +5,7 @@ use App\Controller\CategoryController;
 use App\Controller\HomeController;
 use App\Controller\PaymentController;
 use App\Controller\ProductController;
+use App\Controller\RegisterController;
 use App\Domain\Cart\CartController;
 
 return [
@@ -18,25 +19,28 @@ return [
     |
     */
     "routes" => [
-        "" => [ HomeController::class, 'show', [
+        "" => [HomeController::class, 'show', [
             "type" => "GET",
         ]],
-        "product/{id}" => [ ProductController::class, 'show', [
+        "product/{id}" => [ProductController::class, 'show', [
             "type" => "GET",
         ]],
-        "update-cart/{id}" => [ CartController::class, 'update', [
+        "update-cart/{id}" => [CartController::class, 'update', [
             "type" => "POST",
         ]],
-            "browse" => [ BrowseController::class, 'show', [
+        "browse" => [BrowseController::class, 'show', [
             "type" => "GET",
         ]],
-        "categories" => [ CategoryController::class, 'index', [
+        "categories" => [CategoryController::class, 'index', [
             "type" => "GET",
         ]],
-        "payment" => [ PaymentController::class, 'index', [
+        "payment" => [PaymentController::class, 'index', [
             "type" => "GET",
         ]],
-        "cart" => [ CartController::class, 'index', [
+        "cart" => [CartController::class, 'index', [
+            "type" => "GET",
+        ]],
+        "register" => [RegisterController::class, 'index', [
             "type" => "GET",
         ]],
     ]
