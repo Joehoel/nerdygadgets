@@ -27,6 +27,9 @@ return [
         "update-cart/{id}" => [ CartController::class, 'update', [
             "type" => "POST",
         ]],
+        "add-to-cart/{id}" => [ CartController::class, 'add', [
+            "type" => "POST",
+        ]],
         "delete-from-cart/{id}" => [ CartController::class, 'delete', [
             "type" => "GET",
         ]],

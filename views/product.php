@@ -124,7 +124,7 @@ if ($R) {
                         if ($Result['voorraad'] != 0) {
                         ?>
                         <!-- TODO: Change so that this doesnt just update item count in cart but adds on to it -->
-                            <form method="POST" action="<?php echo base_url; ?>update-cart/<?php echo $Result["StockItemID"]; ?>">
+                            <form method="POST" action="<?php echo base_url; ?>add-to-cart/<?php echo $Result["StockItemID"]; ?>">
                                 <input type="number" name="aantal" required value="1" min="1" max="<?php echo $Result['voorraad'] ?>" />
                                 <input type="submit" name="voegtoe" value="In winkelwagen">
                             </form>

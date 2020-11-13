@@ -19,6 +19,14 @@ class CartController
         ]);
     }
 
+    public function add($id) {
+        if (isset($_POST['aantal']) && !empty($_POST['aantal'])){
+            $cart = new Cart();
+            $cart->AddItemToCart($id, $_POST['aantal']);
+        }
+        return header('Location: ' . base_url . 'product/'. $id);
+    }
+
     public function update($id)
     {
         if (isset($_POST['aantal']) && !empty($_POST['aantal'])){
@@ -27,7 +35,7 @@ class CartController
             $cart->UpdateCart($id, $_POST['aantal']);
         }
         // return header('Location: ' . base_url . '/product/'. $id);
-        return header('Location: ' . base_url . '/cart');
+        return header('Location: ' . base_url . 'cart');
     }
 
     public function delete($id){
