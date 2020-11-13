@@ -92,16 +92,16 @@ if ($CategoryID == "") {
 
     $Query = "
                 SELECT SI.StockItemID, SI.StockItemName, SI.MarketingComments, ROUND(TaxRate * RecommendedRetailPrice / 100 + RecommendedRetailPrice,2) as SellPrice,
-                (CASE WHEN (SIH.QuantityOnHand) >= ? THEN 'Ruime voorraad beschikbaar.' ELSE CONCAT('Voorraad: ',QuantityOnHand) END) AS QuantityOnHand, 
+                (CASE WHEN (SIH.QuantityOnHand) >= ? THEN 'Ruime voorraad beschikbaar.' ELSE CONCAT('Voorraad: ',QuantityOnHand) END) AS QuantityOnHand,
                 (SELECT ImagePath
-                FROM stockitemimages 
+                FROM stockitemimages
                 WHERE StockItemID = SI.StockItemID LIMIT 1) as ImagePath,
                 (SELECT ImagePath FROM stockgroups JOIN stockitemstockgroups USING(StockGroupID) WHERE StockItemID = SI.StockItemID LIMIT 1) as BackupImagePath
                 FROM stockitems SI
                 JOIN stockitemholdings SIH USING(stockitemid)
                 " . $queryBuildResult . "
                 GROUP BY StockItemID
-                ORDER BY " . $Sort . " 
+                ORDER BY " . $Sort . "
                 LIMIT ?  OFFSET ?";
 
 
@@ -126,18 +126,18 @@ if ($CategoryID == "") {
     }
 
     $Query = "
-                SELECT SI.StockItemID, SI.StockItemName, SI.MarketingComments, 
-                ROUND(SI.TaxRate * SI.RecommendedRetailPrice / 100 + SI.RecommendedRetailPrice,2) as SellPrice, 
+                SELECT SI.StockItemID, SI.StockItemName, SI.MarketingComments,
+                ROUND(SI.TaxRate * SI.RecommendedRetailPrice / 100 + SI.RecommendedRetailPrice,2) as SellPrice,
                 (CASE WHEN (SIH.QuantityOnHand) >= ? THEN 'Ruime voorraad beschikbaar.' ELSE CONCAT('Voorraad: ',QuantityOnHand) END) AS QuantityOnHand,
                 (SELECT ImagePath FROM stockitemimages WHERE StockItemID = SI.StockItemID LIMIT 1) as ImagePath,
-                (SELECT ImagePath FROM stockgroups JOIN stockitemstockgroups USING(StockGroupID) WHERE StockItemID = SI.StockItemID LIMIT 1) as BackupImagePath           
-                FROM stockitems SI 
+                (SELECT ImagePath FROM stockgroups JOIN stockitemstockgroups USING(StockGroupID) WHERE StockItemID = SI.StockItemID LIMIT 1) as BackupImagePath
+                FROM stockitems SI
                 JOIN stockitemholdings SIH USING(stockitemid)
                 JOIN stockitemstockgroups USING(StockItemID)
                 JOIN stockgroups ON stockitemstockgroups.StockGroupID = stockgroups.StockGroupID
                 WHERE " . $queryBuildResult . " ? IN (SELECT StockGroupID from stockitemstockgroups WHERE StockItemID = SI.StockItemID)
                 GROUP BY StockItemID
-                ORDER BY " . $Sort . " 
+                ORDER BY " . $Sort . "
                 LIMIT ? OFFSET ?";
 
     $Statement = mysqli_prepare($Connection, $Query);
@@ -148,7 +148,7 @@ if ($CategoryID == "") {
 
     $Query = "
                 SELECT count(*)
-                FROM stockitems SI 
+                FROM stockitems SI
                 WHERE " . $queryBuildResult . " ? IN (SELECT SS.StockGroupID from stockitemstockgroups SS WHERE SS.StockItemID = SI.StockItemID)";
     $Statement = mysqli_prepare($Connection, $Query);
     mysqli_stmt_bind_param($Statement, "i", $CategoryID);
@@ -167,7 +167,8 @@ if (isset($amount)) {
             <h4 class="FilterTopMargin"><i class="fas fa-search"></i> Zoeken</h4>
             <input type="text" name="search_string" id="search_string"
                    value="<?php print (isset($_GET['search_string'])) ? $_GET['search_string'] : ""; ?>"
-                   class="form-submit">
+                   class="form-submit"
+                   autofocus>
             <h4 class="FilterTopMargin">
                 <i class="fas fa-list-ol"></i>
                 Aantal producten op pagina
