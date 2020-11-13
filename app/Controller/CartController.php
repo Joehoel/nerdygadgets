@@ -27,4 +27,11 @@ class CartController
         }
         return header('Location: ' . base_url . '/product/'. $id);
     }
+
+    public function delete($id){
+        $cart = new Cart();
+        $cart->RemoveFromCart($id);
+        return header('Location: ' . base_url . 'cart');
+
+    }
 }

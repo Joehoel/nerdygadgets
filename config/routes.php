@@ -27,7 +27,10 @@ return [
         "update-cart/{id}" => [ CartController::class, 'update', [
             "type" => "POST",
         ]],
-            "browse" => [ BrowseController::class, 'show', [
+        "delete-from-cart/{id}" => [ CartController::class, 'delete', [
+            "type" => "GET",
+        ]],
+        "browse" => [ BrowseController::class, 'show', [
             "type" => "GET",
         ]],
         "categories" => [ CategoryController::class, 'index', [

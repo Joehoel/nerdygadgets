@@ -66,8 +66,9 @@ class Cart
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        $cart = isset($_SESSION['Cart'])? $_SESSION['Cart'] : null;
-        unset($cart[$artNr]);
+        if (isset($_SESSION['Cart']) && !empty($_SESSION['Cart'])){
+            unset($_SESSION['Cart'][$artNr]);
+        }
     }
 
     /**

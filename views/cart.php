@@ -17,6 +17,12 @@ foreach ($cart as $key => $value) {
             <?php }
             ?>
             <div id="StockItemFrameRight">
+                <div class="topRightChild">
+                <form action="<?php echo base_url ?>delete-from-cart/<?php echo $productData["StockItemID"] ?>">
+                    <input type="submit" value="DELETE">;
+                    <!-- <h6>Delete</h6> -->
+                </form>
+                </div>
                 <div class="CenterPriceLeftChild">
                     <h1 class="StockItemPriceText"><?php print sprintf("€ %0.2f", $productData["SellPrice"]); ?></h1>
                     <h6>Inclusief BTW </h6>
