@@ -762,6 +762,7 @@ input {
 	position: absolute;
 	right: 2rem;
 	bottom: 2rem;
+	line-height: 1.5;
 }
 
 .update-count {

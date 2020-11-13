@@ -2,6 +2,7 @@
 
 namespace App\Domain\Cart;
 
+use App\Domain\Database\DatabaseInstance;
 use NerdyGadgests\Classes\CartDatabase;
 
 class Cart
@@ -95,7 +96,6 @@ class Cart
     public function GetProductData($artNr) {
         $connection = mysqli_connect("localhost", "root", "", "nerdygadgets");
         mysqli_set_charset($connection, 'latin1');
-
         if ($connection != null){
             $sql = "SELECT SI.StockItemID, SI.StockItemName, SI.MarketingComments,
                         ROUND(SI.TaxRate * SI.RecommendedRetailPrice / 100 + SI.RecommendedRetailPrice,2) as SellPrice,
@@ -118,5 +118,4 @@ class Cart
             return $result;
         }
     }
-
 }

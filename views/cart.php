@@ -41,7 +41,8 @@ include __DIR__ . "/header.php";
                         </button>
                     </form>
                     <div class="price">
-                        <h2><?php print sprintf("€ %0.2f", $productData["SellPrice"]); ?></h2>
+                        <!-- Weet niet zeker of de prijs klopt -->
+                        <h2><?php print sprintf("€%0.2f", $productData["SellPrice"] * $value); ?></h2>
                         <h6>Inclusief BTW </h6>
                     </div>
                 </div>
