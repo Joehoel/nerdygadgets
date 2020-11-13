@@ -73,9 +73,6 @@
                 <li>
                     <a href="<?php echo base_url; ?>categories" class="HrefDecoration">Alle categorieën</a>
                 </li>
-                <li>
-                    <a href="<?php echo base_url; ?>payment" class="HrefDecoration">payments</a>
-                </li>
             </ul>
         </div>
         <ul id="ul-class-navigation">

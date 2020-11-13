@@ -515,23 +515,34 @@ table tr td {
 	margin: 0;
 }
 .payments-container {
+    width: 100vw;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	grid-gap: 10px;
+    justify-items: end;
+    height: 86vh;
 }
 h1 {
 	margin-left: 10px;
 }
 
+
 .information {
     /* left side of the payments page */
-	width: 60vw;
-	padding: 10px;
+    width: 60vw;
 	display: grid;
-	align-content: center;
-	justify-content: center;
-	height: 89vh;
+    height: 60vh;
 }
+    .information > div {
+        height: 85vh;
+        width: 100%;
+        display: grid;
+        justify-content: center;
+        align-content: center;
+    }
+    input {
+        height: 35px;
+        font-size: 15px;
+    }
     .information h1 {
         color: var(--white);
         font-size: 25px;
@@ -591,14 +602,14 @@ h1 {
         }
 
 .payment {
-	width: 100%;
+    overflow-y: scroll;
 	display: grid;
 	grid-template-rows: 1fr 1fr 1fr;
 	justify-content: center;
 	align-items: center;
 	grid-row-gap: 40px;
-	height: 89vh;
-	margin-right: 20px;
+    height: 88vh;
+    padding-right: 20px;
 }
 .payment table tr:nth-child(2) > td:nth-child(1),
 .payment table tr:nth-child(3) > td:nth-child(1) {
