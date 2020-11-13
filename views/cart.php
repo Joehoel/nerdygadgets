@@ -3,9 +3,6 @@
 include __DIR__ . "/connect.php";
 include __DIR__ . "/header.php";
 ?>
-
-<!-- <a href='product/<?php print $productData['StockItemID']; ?>'>
-</a> -->
 <div class="cart">
     <?php
     foreach ($cart as $key => $value) {
@@ -24,12 +21,14 @@ include __DIR__ . "/header.php";
             <div class="item-info">
                 <div>
                     <h1>Artikelnummer: <?php print $productData["StockItemID"]; ?></h1>
-                    <p><?php print $productData["StockItemName"]; ?></p>
-                    <p><?php print $productData["MarketingComments"]; ?></p>
-
-                    <form action="" method="POST" class="update-count">
+                    <a href='product/<?php print $productData['StockItemID']; ?>'>
+                        <p><?php print $productData["StockItemName"]; ?></p>
+                        <p><?php print $productData["MarketingComments"]; ?></p>
+                    </a>
+                    <form action="<?php echo base_url; ?>update-cart/<?php echo $productData["StockItemID"]; ?>" method="POST" class="update-count">
                         <label for="aantal">Aantal: </label>
                         <input type="number" name="aantal" value="<?php print $value ?>">
+                        <input type="submit" value="Update">
                     </form>
                 </div>
                 <div>

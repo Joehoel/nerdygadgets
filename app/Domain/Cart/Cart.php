@@ -77,11 +77,16 @@ class Cart
      * @return void
      * @author Tim Bentum <support@adjust-it.nl>
      */
-    public function UpdateCart()
+    public function UpdateCart($artNr, $aantal)
     {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
+        $cart = isset($_SESSION['Cart']) ? $_SESSION['Cart'] : null;
+        if (isset($cart[$artNr])) {
+            $cart[$artNr] = $aantal;
+        }
+        $_SESSION['Cart'] = $cart;
         //kijken op getallen te kunnen update in de cart en dit doen
     }
 
@@ -90,12 +95,12 @@ class Cart
         mysqli_set_charset($connection, 'latin1');
 
         if ($connection != null){
-            $sql = "SELECT SI.StockItemID, SI.StockItemName, SI.MarketingComments, 
-                        ROUND(SI.TaxRate * SI.RecommendedRetailPrice / 100 + SI.RecommendedRetailPrice,2) as SellPrice, 
+            $sql = "SELECT SI.StockItemID, SI.StockItemName, SI.MarketingComments,
+                        ROUND(SI.TaxRate * SI.RecommendedRetailPrice / 100 + SI.RecommendedRetailPrice,2) as SellPrice,
                         (CASE WHEN (SIH.QuantityOnHand) >= 1000 THEN 'Ruime voorraad beschikbaar.' ELSE CONCAT('Voorraad: ',QuantityOnHand) END) AS QuantityOnHand,
                         (SELECT ImagePath FROM stockitemimages WHERE StockItemID = SI.StockItemID LIMIT 1) as ImagePath,
-                        (SELECT ImagePath FROM stockgroups JOIN stockitemstockgroups USING(StockGroupID) WHERE StockItemID = SI.StockItemID LIMIT 1) as BackupImagePath           
-                        FROM stockitems SI 
+                        (SELECT ImagePath FROM stockgroups JOIN stockitemstockgroups USING(StockGroupID) WHERE StockItemID = SI.StockItemID LIMIT 1) as BackupImagePath
+                        FROM stockitems SI
                         JOIN stockitemholdings SIH USING(stockitemid)
                         JOIN stockitemstockgroups USING(StockItemID)
                         JOIN stockgroups ON stockitemstockgroups.StockGroupID = stockgroups.StockGroupID

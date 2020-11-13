@@ -23,9 +23,11 @@ class CartController
     {
         if (isset($_POST['aantal']) && !empty($_POST['aantal'])){
             $cart = new Cart();
-            $cart->AddItemToCart($id, $_POST['aantal']);
+            // $cart->AddItemToCart($id, $_POST['aantal']);
+            $cart->UpdateCart($id, $_POST['aantal']);
         }
-        return header('Location: ' . base_url . '/product/'. $id);
+        // return header('Location: ' . base_url . '/product/'. $id);
+        return header('Location: ' . base_url . '/cart');
     }
 
     public function delete($id){
