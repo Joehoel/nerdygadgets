@@ -15,7 +15,7 @@ class Cart
     }
 
     /**
-     * Deze functie returnt alle data uit de cart
+     * Deze functie returned alle data uit de cart
      *
      * @return Cart
      * @author Tim Bentum <support@adjust-it.nl>
@@ -72,8 +72,10 @@ class Cart
     }
 
     /**
-     * Updaten van de cart
+     * Update cart
      *
+     * @param int $artNr
+     * @param int $aantal
      * @return void
      * @author Tim Bentum <support@adjust-it.nl>
      */
