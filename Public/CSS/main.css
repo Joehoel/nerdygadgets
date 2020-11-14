@@ -750,10 +750,13 @@ input {
     font-size: 20px;
 }
 
+.cart-item .item-info p:first-child {
+	font-size: 20px;
+}
+
 .cart-item .item-info p {
 	font-family: pt-sans, sans-serif;
 	color: var(--white);
-	font-size: 20px;
 	text-transform: uppercase;
 	font-weight: bold;
 }
