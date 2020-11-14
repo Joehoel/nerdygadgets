@@ -46,9 +46,18 @@ if ($R) {
     $Images = $R;
 }
 
+
+
+if (isset($_GET['aantal'])) {
+    $meer = ($_GET['aantal'] == 1) ? 'is ' . $_GET['aantal'] . 'artiekel' : 'zijn ' . $_GET['aantal'] . ' artiekelen';
+    echo '<div class="pop-up">Er ' . $meer . ' toegevoegd aan de winkelwagen</div>';
+}
 ?>
 <div id="CenteredContent">
+
     <?php
+
+
     if ($Result != null) {
     ?>
         <?php
@@ -123,7 +132,7 @@ if ($R) {
                         <?php
                         if ($Result['voorraad'] != 0) {
                         ?>
-                        <!-- TODO: Change so that this doesnt just update item count in cart but adds on to it -->
+                            <!-- TODO: Change so that this doesnt just update item count in cart but adds on to it -->
                             <form method="POST" action="<?php echo base_url; ?>add-to-cart/<?php echo $Result["StockItemID"]; ?>">
                                 <input type="number" name="aantal" required value="1" min="1" max="<?php echo $Result['voorraad'] ?>" />
                                 <input type="submit" name="voegtoe" value="In winkelwagen">

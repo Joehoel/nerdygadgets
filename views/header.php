@@ -42,7 +42,7 @@
     <div class="row" id="header">
         <div class="col-2">
             <a href="./" id="LogoA">
-                <div id="LogoImage"></div>
+                <img id="LogoImage" src="<?php echo base_url?>/Public/Img/logo.png">
             </a>
         </div>
         <div class="col-8" id="CategoriesBar">
@@ -72,12 +72,15 @@
                 ?>
                 <li>
                     <a href="<?php echo base_url; ?>categories" class="HrefDecoration">Alle categorieën</a>
-                </li>
+                </li>    
             </ul>
         </div>
         <ul id="ul-class-navigation">
             <li>
                 <a href="<?php echo base_url; ?>browse" class="HrefDecoration"><i class="fas fa-search" style="color:#676EFF;"></i> Zoeken</a>
+            </li>
+            <li>
+                <a href="<?php echo base_url; ?>cart" class="HrefDecoration"><img src="<?php echo base_url?>/Public/Img/cart.svg"></a>
             </li>
         </ul>
     </div>
