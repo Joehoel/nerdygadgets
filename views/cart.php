@@ -27,7 +27,7 @@ include __DIR__ . "/header.php";
                     </a>
                     <form action="<?php echo base_url; ?>update-cart/<?php echo $productData["StockItemID"]; ?>" method="POST" class="update-count">
                         <label for="aantal">Aantal: </label>
-                        <input type="number" name="aantal" value="<?php print $value ?>">
+                        <input type="number" name="aantal" value="<?php print $value ?>" min="0" max="<?php echo $productData['voorraad'] ?>">
                         <input type="submit" value="Update">
                     </form>
                 </div>

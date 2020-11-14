@@ -6,6 +6,11 @@ use NerdyGadgests\Classes\CartDatabase;
 
 class Cart
 {
+    /**
+     * Deze functie geeft een bool die als info geeft of er een winkelwagen bestaat
+     *
+     * @return void
+     */
     public function emptyCart()
     {
         if(!isset($_SESSION['Cart'])) {
@@ -98,6 +103,7 @@ class Cart
             $sql = "SELECT SI.StockItemID, SI.StockItemName, SI.MarketingComments,
                         ROUND(SI.TaxRate * SI.RecommendedRetailPrice / 100 + SI.RecommendedRetailPrice,2) as SellPrice,
                         (CASE WHEN (SIH.QuantityOnHand) >= 1000 THEN 'Ruime voorraad beschikbaar.' ELSE CONCAT('Voorraad: ',QuantityOnHand) END) AS QuantityOnHand,
+                        QuantityOnHand as voorraad,
                         (SELECT ImagePath FROM stockitemimages WHERE StockItemID = SI.StockItemID LIMIT 1) as ImagePath,
                         (SELECT ImagePath FROM stockgroups JOIN stockitemstockgroups USING(StockGroupID) WHERE StockItemID = SI.StockItemID LIMIT 1) as BackupImagePath
                         FROM stockitems SI
