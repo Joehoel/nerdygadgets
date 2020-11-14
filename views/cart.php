@@ -2,6 +2,11 @@
 
 include __DIR__ . "/connect.php";
 include __DIR__ . "/header.php";
+
+if (isset($_GET['update']) && $_GET['update'] === "true") {
+    echo '<div class="pop-up">De winkelwagen is geüpdate</div>';
+}
+
 ?>
 <div class="cart">
     <?php

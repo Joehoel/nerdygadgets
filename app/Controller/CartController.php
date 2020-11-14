@@ -25,21 +25,20 @@ class CartController
             $cart = new Cart();
             $cart->AddItemToCart($id, $_POST['aantal']);
         }
-        return header('Location: ' . base_url . 'product/' . $id);
+        return header('Location: ' . base_url . 'product/' . $id . '?aantal=' . $_POST['aantal']);
     }
 
     public function update($id)
     {
         if (isset($_POST['aantal']) && !empty($_POST['aantal'])) {
             $cart = new Cart();
-
             $cart->UpdateCart($id, $_POST['aantal']);
         } else if (isset($_POST['aantal']) && $_POST['aantal'] === "0") {
             $cart = new Cart();
             $cart->RemoveFromCart($id);
         }
         // return header('Location: ' . base_url . '/product/'. $id);
-        return header('Location: ' . base_url . 'cart');
+        return header('Location: ' . base_url . 'cart?update=true');
     }
 
     public function delete($id)
