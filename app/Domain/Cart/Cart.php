@@ -24,7 +24,7 @@ class Cart
      * Deze functie returned alle data uit de cart
      *
      * @return Cart
-     * @author Tim Bentum <support@adjust-it.nl>
+     * @author Tim Bentum
      */
     public function GetCartArray()
     {
@@ -43,7 +43,7 @@ class Cart
      * @param int $artNr
      * @param int $aantal
      * @return void
-     * @author Tim Bentum <support@adjust-it.nl>
+     * @author Tim Bentum
      */
     public function AddItemToCart($artNr, $aantal)
     {
@@ -65,7 +65,7 @@ class Cart
      *
      * @param int $artNr
      * @return void
-     * @author Tim Bentum <support@adjust-it.nl>
+     * @author Tim Bentum
      */
     public function RemoveFromCart($artNr)
     {
@@ -83,7 +83,7 @@ class Cart
      * @param int $artNr
      * @param int $aantal
      * @return void
-     * @author Tim Bentum <support@adjust-it.nl>
+     * @author Tim Bentum
      */
     public function UpdateCart($artNr, $aantal)
     {
