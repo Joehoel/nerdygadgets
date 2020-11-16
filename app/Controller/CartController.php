@@ -21,7 +21,7 @@ class CartController
 
     public function add($id)
     {
-        if (isset($_POST['aantal']) && !empty($_POST['aantal'])) {
+        if (isset($_POST['aantal']) && !empty($_POST['aantal']) && $_POST['aantal'] > 0) {
             $cart = new Cart();
             $cart->AddItemToCart($id, $_POST['aantal']);
         }
@@ -30,7 +30,7 @@ class CartController
 
     public function update($id)
     {
-        if (isset($_POST['aantal']) && !empty($_POST['aantal'])) {
+        if (isset($_POST['aantal']) && !empty($_POST['aantal']) && $_POST['aantal'] > 0) {
             $cart = new Cart();
             $cart->UpdateCart($id, $_POST['aantal']);
         } else if (isset($_POST['aantal']) && $_POST['aantal'] === "0") {
