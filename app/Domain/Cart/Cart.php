@@ -2,6 +2,7 @@
 
 namespace App\Domain\Cart;
 
+use App\Domain\Database\DatabaseInstance;
 use NerdyGadgests\Classes\CartDatabase;
 
 class Cart
@@ -20,7 +21,7 @@ class Cart
     }
 
     /**
-     * Deze functie returnt alle data uit de cart
+     * Deze functie returned alle data uit de cart
      *
      * @return Cart
      * @author Tim Bentum <support@adjust-it.nl>
@@ -77,8 +78,10 @@ class Cart
     }
 
     /**
-     * Updaten van de cart
+     * Update cart
      *
+     * @param int $artNr
+     * @param int $aantal
      * @return void
      * @author Tim Bentum <support@adjust-it.nl>
      */
@@ -98,7 +101,6 @@ class Cart
     public function GetProductData($artNr) {
         $connection = mysqli_connect("localhost", "root", "", "nerdygadgets");
         mysqli_set_charset($connection, 'latin1');
-
         if ($connection != null){
             $sql = "SELECT SI.StockItemID, SI.StockItemName, SI.MarketingComments,
                         ROUND(SI.TaxRate * SI.RecommendedRetailPrice / 100 + SI.RecommendedRetailPrice,2) as SellPrice,
@@ -122,5 +124,4 @@ class Cart
             return $result;
         }
     }
-
 }
