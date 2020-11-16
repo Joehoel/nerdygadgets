@@ -693,32 +693,30 @@ input {
   position: relative;
 }
 
-/* Cart */
-.cart {
+/* Cart & Browse */
+.list {
   /* background-color: orange; */
   display: flex;
   flex-direction: column;
 }
 
-.cart h1 {
+.list h1 {
   margin: 0;
 }
 
-.cart .delete-form {
+.list .delete-form {
   display: flex;
   flex-direction: column;
 }
 
-.cart-item {
+.list-item {
   position: relative;
-  margin-bottom: 1rem;
   padding: 1rem;
-  border-top: 2px solid var(--page_unselected);
   border-bottom: 2px solid var(--page_unselected);
   /* background-color: #b4d455; */
 }
 
-.cart-item .delete-button {
+.list-item .delete-button {
   background-color: var(--red);
   color: var(--white);
   outline: none;
@@ -728,37 +726,31 @@ input {
   align-self: flex-end;
 }
 
-.cart-item .item-info {
+.list-item .item-info {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
 }
 
-/* .cart-item .item-info .right {
-    display: flex;
-    flex-direction: column;
-} */
-
-.cart-item .item-info h1 {
+.list-item .item-info h1 {
   font-family: vortice-concept, sans-serif;
   text-transform: uppercase;
   color: var(--font_pop);
   font-size: 10px;
 }
 
-.cart-item .item-info h2 {
+.list-item .item-info h2 {
   font-family: vortice-concept, sans-serif;
   text-transform: uppercase;
   color: var(--font_pop);
   font-size: 20px;
 }
 
-.cart-item .item-info p:first-child {
+.list-item .item-info p:first-child {
 	font-size: 20px;
 }
 
-.cart-item .item-info p {
-<<<<<<< HEAD
+.list-item .item-info p {
 	font-family: pt-sans, sans-serif;
 	color: var(--white);
 	text-transform: uppercase;
@@ -770,19 +762,6 @@ input {
 	right: 2rem;
 	bottom: 2rem;
 	line-height: 1.5;
-=======
-  font-family: pt-sans, sans-serif;
-  color: var(--white);
-  font-size: 20px;
-  text-transform: uppercase;
-  font-weight: bold;
-}
-
-.price {
-  position: absolute;
-  right: 2rem;
-  bottom: 2rem;
->>>>>>> 1741e37b3f0c4f2c1e929dfb010fb02562f53683
 }
 
 .update-count {
@@ -806,4 +785,8 @@ input {
   background-color: #399c39a6;
   padding: 10px;
   padding-left: 15%;
+}
+
+.browse {
+  margin-left: 21%;
 }

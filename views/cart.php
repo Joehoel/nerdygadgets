@@ -8,13 +8,13 @@ if (isset($_GET['update']) && $_GET['update'] === "true") {
 }
 
 ?>
-<div class="cart">
+<div class="list">
     <?php
     foreach ($cart as $key => $value) {
         $productData = $cartClass->GetProductData($key);
     ?>
 
-        <div class="cart-item">
+        <div class="list-item">
 
             <?php
             if (isset($productData['ImagePath'])) { ?>
