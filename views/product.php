@@ -49,7 +49,7 @@ if ($R) {
 
 
 if (isset($_GET['aantal'])) {
-    $meer = ($_GET['aantal'] == 1) ? 'is ' . $_GET['aantal'] . 'artiekel' : 'zijn ' . $_GET['aantal'] . ' artiekelen';
+    $meer = ($_GET['aantal'] == 1) ? 'is ' . $_GET['aantal'] . ' artikel' : 'zijn ' . $_GET['aantal'] . ' artiekelen';
     echo '<div class="pop-up">Er ' . $meer . ' toegevoegd aan de winkelwagen</div>';
 }
 ?>
