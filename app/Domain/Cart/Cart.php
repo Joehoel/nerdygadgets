@@ -51,10 +51,10 @@ class Cart
             session_start();
         }
         $cart = isset($_SESSION['Cart']) ? $_SESSION['Cart'] : null;
-        if (isset($cart[$artNr])) {
+        if (isset($cart[$artNr]) && $aantal > 0) {
             $cart[$artNr] += $aantal;
         }
-        else {
+        else if ($aantal > 0){
             $cart[$artNr] = $aantal;
         }
         $_SESSION['Cart'] = $cart;

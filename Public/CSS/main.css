@@ -790,3 +790,7 @@ input {
 .browse {
   margin-left: 21%;
 }
+
+.empty-cart-link{
+  color: #629eff;
+}

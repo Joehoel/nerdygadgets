@@ -10,6 +10,9 @@ if (isset($_GET['update']) && $_GET['update'] === "true") {
 ?>
 <div class="list">
     <?php
+    if (count($cart) == 0){
+        echo "<h4>De winkelwagen is leeg, klik <a class='empty-cart-link' href='" . base_url . "categories'>hier</a> om iets aan de winkelwagen toetevoegen</h4>";
+    }
     foreach ($cart as $key => $value) {
         $productData = $cartClass->GetProductData($key);
     ?>
