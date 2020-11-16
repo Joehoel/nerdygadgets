@@ -794,3 +794,21 @@ input {
 .empty-cart-link{
   color: #629eff;
 }
+.next {
+  display: block;
+  text-align: right;
+}
+.to-payments {
+  border: 1px solid white;
+  padding: 5px;
+  border-radius: 4px;
+  display: inline-block;
+  text-align: right;
+  color: white;
+  margin-right: 30px;
+  margin-top: 20px;
+}
+
+.to-payments:hover {
+  color: white;
+}

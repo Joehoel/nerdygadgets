@@ -56,9 +56,11 @@ if (isset($_GET['update']) && $_GET['update'] === "true") {
                 </div>
             </div>
         </div>
-    <?php
-    }
-    ?>
+    <?php } ?>
+    <div class="next">
+        <a class="to-payments" href="/payment">Verder naar checkout</a>
+    </div>
+
 </div>
 
 <?php
