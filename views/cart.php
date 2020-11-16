@@ -57,10 +57,12 @@ if (isset($_GET['update']) && $_GET['update'] === "true") {
             </div>
         </div>
     <?php } ?>
-    <div class="next">
-        <a class="to-payments" href="/payment">Verder naar checkout</a>
-    </div>
 
+    <?php if(count($cart) > 0) { ?>
+    <div class="next">
+        <a class="to-payments" href="<?php echo base_url ?>payment">Verder naar checkout</a>
+    </div>
+    <?php } ?>
 </div>
 
 <?php
