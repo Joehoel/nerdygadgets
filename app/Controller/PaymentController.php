@@ -22,7 +22,7 @@ class PaymentController
         $db = new DatabaseInstance();
         $stm = $db->create()->prepare($sql);
         $stm->execute($stockItemID);
-        $result = $stm->fetchAll();      
+        $result = $stm->fetchAll();    
         echo view('payment',[
             "stockitem"=>$result
         ]);

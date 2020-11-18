@@ -32,29 +32,42 @@ include __DIR__ . "/header.php";
 
         <div class="payment">
             <table>
-            <?php foreach($stockitem as $item) { ?>
+            <?php $totaalPrijs = 0; foreach($stockitem as $item) { ?>
                 <tr>
                     <td><?php echo($item['StockItemName'])?></td>
-                    <td><?php echo($item['UnitPrice'] * $_SESSION['Cart'][$item['StockItemID']])?></td>
+                    <td><?php echo(number_format($item['UnitPrice'] * $_SESSION['Cart'][$item['StockItemID']],2));
+                        $totaalPrijs = $totaalPrijs + $item['UnitPrice']; ?></td>
                 </tr>
             <?php } ?>
             </table>
             <table>
                 <tr>
                     <td>Subtotaal (excl. BTW)</td>
-                    <td>€79,30</td>
+                    <td><?php
+                        echo(number_format($totaalPrijs, 2)); 
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>BTW</td>
-                    <td>€16,65</td>
+                    <td><?php 
+                        $btw = $totaalPrijs / 100 * 9;
+                        echo(number_format($btw, 2));?></td>
                 </tr>
                 <tr>
                     <td>Verzendkosten</td>
-                    <td>Gratis</td>
+                    <td><?php 
+                        if($totaalPrijs < 50) {
+                            echo("6.95");
+                            $totaalPrijs = $totaalPrijs + 6.95;
+                        } else {
+                            echo("Gratis");
+                        }?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Totaal</td>
-                    <td>€95,95</td>
+                    <td><?php echo(number_format($totaalPrijs, 2));?></td>
                 </tr>
             </table>
             <div class="pay-container">
