@@ -10,7 +10,7 @@ if (isset($_GET['update']) && $_GET['update'] === "true") {
 ?>
 <div class="list">
     <?php
-    if (count($cart) == 0){
+    if (count($cart) == 0) {
         echo "<div class='empty'>
             <h4>De winkelwagen is leeg, klik <a class='empty-cart-link' href='" . base_url . "categories'>hier</a> om iets aan de winkelwagen toetevoegen</h4>
         </div>";
@@ -60,10 +60,10 @@ if (isset($_GET['update']) && $_GET['update'] === "true") {
         </div>
     <?php } ?>
 
-    <?php if(count($cart) > 0) { ?>
-    <div class="next">
-        <a class="to-payments" href="<?php echo base_url ?>payment">Verder naar checkout</a>
-    </div>
+    <?php if (count($cart) > 0) { ?>
+        <div class="next">
+            <a class="to-payments" href="<?php echo base_url ?>payment">Verder naar checkout</a>
+        </div>
     <?php } ?>
 </div>
 
