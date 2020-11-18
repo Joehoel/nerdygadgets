@@ -818,3 +818,9 @@ input {
   font-weight: 500;
   color: var(--white);
 }
+
+.empty {
+  display: grid;
+  place-items: center;
+  height: 90vh;
+}
