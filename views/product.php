@@ -46,8 +46,6 @@ if ($R) {
     $Images = $R;
 }
 
-
-
 if (isset($_GET['aantal'])) {
     $meer = ($_GET['aantal'] == 1) ? 'is ' . $_GET['aantal'] . ' artikel' : 'zijn ' . $_GET['aantal'] . ' artiekelen';
     echo '<div class="pop-up">Er ' . $meer . ' toegevoegd aan de winkelwagen</div>';

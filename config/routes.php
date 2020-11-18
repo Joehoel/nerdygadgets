@@ -1,9 +1,9 @@
 <?php
 
 use App\Controller\BrowseController;
+use App\Controller\CheckoutController;
 use App\Controller\CategoryController;
 use App\Controller\HomeController;
-use App\Controller\PaymentController;
 use App\Controller\ProductController;
 use App\Domain\Cart\CartController;
 
@@ -43,8 +43,10 @@ return [
             "type" => "GET",
         ]],
         "payment" => [PaymentController::class, 'index', [
+        ],
+        "checkout" => [ CheckoutController::class, 'index', [
             "type" => "GET",
-        ]],
+        ],
         "cart" => [CartController::class, 'index', [
             "type" => "GET",
         ]],

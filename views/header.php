@@ -39,17 +39,17 @@
 </head>
 
 <body>
-    <div class="background">
-        <div class="row" id="header">
-            <div class="col-2">
-                <a href="./" id="LogoA">
-                    <img id="LogoImage" src="<?php echo base_url ?>/Public/Img/logo.png">
-                </a>
-            </div>
-            <div class="col-8" id="CategoriesBar">
-                <ul id="ul-class">
-                    <?php
-                    $Query = "
+<div class="background">
+    <div class="row" id="header">
+        <div class="col-2">
+            <a href="<?php echo base_url ?>" id="LogoA">
+                <img id="LogoImage" src="<?php echo base_url?>Public/Img/logo.png">
+            </a>
+        </div>
+        <div class="col-8" id="CategoriesBar">
+            <ul id="ul-class">
+                <?php
+                $Query = "
                 SELECT StockGroupID, StockGroupName, ImagePath
                 FROM stockgroups
                 WHERE StockGroupID IN (

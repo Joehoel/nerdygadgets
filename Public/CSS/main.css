@@ -851,3 +851,19 @@ input {
 .to-payments:hover {
   color: white;
 }
+
+.btw {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--white);
+}
+
+.empty {
+  display: grid;
+  place-items: center;
+  height: 90vh;
+}
+
+.description {
+  color: var(--grey);
+}
