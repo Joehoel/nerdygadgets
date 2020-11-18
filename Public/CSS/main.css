@@ -824,3 +824,7 @@ input {
   place-items: center;
   height: 90vh;
 }
+
+.description {
+  color: var(--grey);
+}
