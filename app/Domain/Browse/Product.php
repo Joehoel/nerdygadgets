@@ -7,7 +7,6 @@ class Product
 
     public function SortProducts($ReturnableResult)
     {
-
         if (isset($_GET['sort'])) {
             $SortOnPage = $_GET['sort'];
             $_SESSION["sort"] = $_GET['sort'];
@@ -71,7 +70,14 @@ class Product
         $CategoryID = $_GET['category_id'] ?? "";
         $SearchString = $_GET['search_string'] ?? "";
         $searchValues = explode(" ", $SearchString);
-        $ProductsOnPage = $_SESSION["products_on_page"];
+        if (isset($_GET["products_on_page"])) {
+            $ProductsOnPage = $_GET["products_on_page"];
+        } else {
+            $ProductsOnPage = 50;
+            $_GET["products_on_page"] = $ProductsOnPage;
+        }
+
+        $ProductsOnPage = $_GET["products_on_page"];
         if (isset($_GET['page_number'])) {
             $PageNumber = $_GET['page_number'];
         } else {

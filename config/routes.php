@@ -18,31 +18,34 @@ return [
     |
     */
     "routes" => [
-        "" => [ HomeController::class, 'show', [
+        "" => [HomeController::class, 'show', [
             "type" => "GET",
         ]],
-        "product/{id}" => [ ProductController::class, 'show', [
+        "product/{id}" => [ProductController::class, 'show', [
             "type" => "GET",
         ]],
-        "update-cart/{id}" => [ CartController::class, 'update', [
+        "update-cart/{id}" => [CartController::class, 'update', [
             "type" => "POST",
         ]],
-        "add-to-cart/{id}" => [ CartController::class, 'add', [
+        "add-to-cart-product/{id}" => [CartController::class, 'add_product', [
             "type" => "POST",
         ]],
-        "delete-from-cart/{id}" => [ CartController::class, 'delete', [
+        "add-to-cart-browse/{id}" => [CartController::class, 'add_browse', [
+            "type" => "POST",
+        ]],
+        "delete-from-cart/{id}" => [CartController::class, 'delete', [
             "type" => "GET",
         ]],
-        "browse" => [ BrowseController::class, 'show', [
+        "browse" => [BrowseController::class, 'show', [
             "type" => "GET",
         ]],
-        "categories" => [ CategoryController::class, 'index', [
+        "categories" => [CategoryController::class, 'index', [
             "type" => "GET",
         ]],
-        "payment" => [ PaymentController::class, 'index', [
+        "payment" => [PaymentController::class, 'index', [
             "type" => "GET",
         ]],
-        "cart" => [ CartController::class, 'index', [
+        "cart" => [CartController::class, 'index', [
             "type" => "GET",
         ]],
     ]

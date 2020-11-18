@@ -25,6 +25,16 @@ class CartController
             $cart = new Cart();
             $cart->AddItemToCart($id, $_POST['aantal']);
         }
+    }
+
+    public function add_browse($id)
+    {
+        $this->add($id);
+        return header('Location: ' . base_url . 'browse' . '?category_id=' . $_POST["category_id"]  . '&aantal=' . $_POST['aantal']);
+    }
+    public function add_product($id)
+    {
+        $this->add($id);
         return header('Location: ' . base_url . 'product/' . $id . '?aantal=' . $_POST['aantal']);
     }
 

@@ -24,27 +24,32 @@ if (isset($_GET['page_number'])) {
 $AmountOfPages = 0;
 $Offset = $PageNumber * $ProductsOnPage;
 $ShowStockLevel = 1000;
-$ReturnableResult = $products;
+$ReturnableResult = $sortproducts;
 $amount = $_SESSION["results"];
 
 if (isset($amount)) {
     $AmountOfPages = ceil($amount / $ProductsOnPage);
 }
 
-
+if (isset($_GET['aantal'])) {
+    $meer = ($_GET['aantal'] == 1) ? 'is ' . $_GET['aantal'] . ' artikel' : 'zijn ' . $_GET['aantal'] . ' artiekelen';
+    echo '<div class="pop-up">Er ' . $meer . ' toegevoegd aan de winkelwagen</div>';
+}
 ?>
 <div id="FilterFrame">
     <h2 class="FilterText"><i class="fas fa-filter"></i> Filteren </h2>
     <form>
         <div id="FilterOptions">
+
             <h4 class="FilterTopMargin"><i class="fas fa-search"></i> Zoeken</h4>
+
             <input type="text" name="search_string" id="search_string" value="<?php print (isset($_GET['search_string'])) ? $_GET['search_string'] : ""; ?>" class="form-submit" autofocus>
-            <h4 class="FilterTopMargin">
-                <i class="fas fa-list-ol"></i>
-                Aantal producten op pagina
-            </h4>
+
+            <h4 class="FilterTopMargin"><i class="fas fa-list-ol"></i>Aantal producten op pagina</h4>
+
             <input type="hidden" name="category_id" id="category_id" value="<?php print (isset($_GET['category_id'])) ? $_GET['category_id'] : ""; ?>">
 
+            <!-- select 1 -->
             <select name="products_on_page" id="products_on_page" onchange="this.form.submit()">>
                 <option value="25" <?php if ($_SESSION['products_on_page'] == 25) {
                                         print "selected";
@@ -59,7 +64,10 @@ if (isset($amount)) {
                                     } ?>>75
                 </option>
             </select>
+
             <h4 class="FilterTopMargin"><i class="fas fa-sort"></i> Sorteren</h4>
+
+            <!-- select 2 -->
             <select name="sort" id="sort" onchange="this.form.submit()">>
                 <option value="price_low_high" <?php if ($_SESSION['sort'] == "price_low_high") {
                                                     print "selected";
@@ -78,6 +86,7 @@ if (isset($amount)) {
                                                 } ?>>Naam aflopend
                 </option>
             </select>
+        </div>
     </form>
 </div>
 </div>
@@ -102,18 +111,27 @@ if (isset($amount)) {
                             <p><?php print $row["MarketingComments"]; ?></p>
                         </a>
                     </div>
+                    <div class="voorraad">
+                        <h6><span>Voorraad:</span> <?php print $row["voorraad"]; ?></h6>
+                    </div>
                     <div>
-                        <div class="price">
-                            <!-- Weet niet zeker of de prijs klopt -->
-                            <h2><?php print sprintf("€%0.2f", $row["SellPrice"]); ?></h2>
-                            <h6>Inclusief BTW </h6>
+                        <div class="item-right">
                             <?php
                             if ($row['voorraad'] != 0) {
                             ?>
-                                <form method="POST" action="<?php echo base_url; ?>add-to-cart/<?php echo $row["StockItemID"]; ?>">
-                                    <input type="number" name="aantal" required value="1" min="1" max="<?php echo $row['voorraad'] ?>" />
-                                    <input type="submit" name="voegtoe" value="In winkelwagen">
-                                </form>
+                                <div class="addcard">
+                                    <h3>add to card</h3>
+                                    <form method="POST" action="<?php echo base_url; ?>add-to-cart-browse/<?php echo $row["StockItemID"]; ?>">
+                                        <input type="hidden" value="<?php echo $_GET["category_id"]; ?>" name="category_id">
+                                        <input type="hidden" value="1" name="aantal">
+                                        <input type="submit" value="">
+                                    </form>
+                                </div>
+                                <div class="price">
+                                    <h2><?php print sprintf("€%0.2f", $row["SellPrice"]); ?></h2>
+                                    <h6>Inclusief BTW </h6>
+                                </div>
+
                             <?php
                             }
                             ?>

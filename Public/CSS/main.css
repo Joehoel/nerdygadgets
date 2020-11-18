@@ -12,7 +12,7 @@
   --white: #fff;
   --black: #000000;
   --grey: #cccccc;
-  --blue: #24298f;
+  --blue: #3C64B1;
   --red: rgb(197, 44, 44);
   --filter_background: #23282fcc;
   --page_selected: #629eff;
@@ -32,7 +32,7 @@ select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background: url(../Img/mouse-hover-icon-22.jpg) 96% / 30px no-repeat;
+  /* background: url(../Img/mouse-hover-icon-22.jpg) 96% / 30px no-repeat; */
   background-color: var(--white);
 }
 a {
@@ -220,7 +220,7 @@ ul#ul-class-price li {
   /* product filter */
   position: fixed;
   width: 19%;
-  background-color: var(--filter_background);
+  background-color: var(--background);
   float: left;
   top: 216px;
   border: 1px solid var(--white);
@@ -228,6 +228,7 @@ ul#ul-class-price li {
   margin-top: 10px;
   padding: 20px;
 }
+
 #ProductFrame {
   /* container for every single product */
   width: 100%;
@@ -712,8 +713,8 @@ input {
 .list-item {
   position: relative;
   padding: 1rem;
-  border-bottom: 2px solid var(--page_unselected);
-  /* background-color: #b4d455; */
+  border-bottom: 2px solid var(--blue);
+  width: 98%;
 }
 
 .list-item .delete-button {
@@ -727,11 +728,11 @@ input {
 }
 
 .list-item .item-info {
+  height: 100%;
   display: flex;
   justify-content: space-between;
   padding: 1rem;
 }
-
 .list-item .item-info h1 {
   font-family: vortice-concept, sans-serif;
   text-transform: uppercase;
@@ -745,6 +746,11 @@ input {
   color: var(--font_pop);
   font-size: 20px;
 }
+.list-item .item-info > h6 {
+  font-family: vortice-concept, sans-serif;
+  color: var(--white);
+  font-size: 10px;
+}
 
 .list-item .item-info p:first-child {
 	font-size: 20px;
@@ -757,12 +763,45 @@ input {
 	font-weight: bold;
 }
 
+.voorraad {
+  position: absolute;
+  float: left;
+  display: block;
+  bottom: 1rem;
+}
+
+.addcard {
+  position: absolute;
+  right:-3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: start;
+  text-align: end;
+}
+  .addcard * {
+    display: inline-block;
+  }
+  .addcard input{
+    background-image: url(../Img/add_to_card.svg);
+    background-color: transparent;
+    background-size: contain;
+    height: 30px;
+    width: 30px;
+    border: none;
+  }
+  .addcard > h3 {
+    margin-right: 10px;
+    font-size: 20px;
+  }
+
 .price {
+  text-align: end;
 	position: absolute;
 	right: 2rem;
-	bottom: 2rem;
+  bottom: 2rem;
 	line-height: 1.5;
 }
+
 
 .update-count {
   display: flex;
