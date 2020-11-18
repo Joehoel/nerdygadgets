@@ -2,10 +2,18 @@
 
 namespace App\Controller;
 
+use App\Domain\Browse\Product;
+
 class BrowseController
 {
     public function show()
     {
-        echo view('browse');
+        $product = new Product();
+        $products = $product->GetProducts();
+        $sortproducts = $product->SortProducts($products);
+        echo view('browse', [
+            "products" => $products,
+            "sortproducts" => $sortproducts
+        ]);
     }
 }
