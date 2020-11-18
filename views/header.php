@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" style="background-color: rgb(35, 35, 47);">
+
 <head>
     <script src="<?php echo base_url ?>/Public/JS/fontawesome.js" crossorigin="anonymous"></script>
     <script src="<?php echo base_url ?>/Public/JS/jquery.min.js"></script>
@@ -38,17 +39,17 @@
 </head>
 
 <body>
-<div class="background">
-    <div class="row" id="header">
-        <div class="col-2">
-            <a href="./" id="LogoA">
-                <img id="LogoImage" src="<?php echo base_url?>/Public/Img/logo.png">
-            </a>
-        </div>
-        <div class="col-8" id="CategoriesBar">
-            <ul id="ul-class">
-                <?php
-                $Query = "
+    <div class="background">
+        <div class="row" id="header">
+            <div class="col-2">
+                <a href="./" id="LogoA">
+                    <img id="LogoImage" src="<?php echo base_url ?>/Public/Img/logo.png">
+                </a>
+            </div>
+            <div class="col-8" id="CategoriesBar">
+                <ul id="ul-class">
+                    <?php
+                    $Query = "
                 SELECT StockGroupID, StockGroupName, ImagePath
                 FROM stockgroups
                 WHERE StockGroupID IN (
@@ -56,34 +57,34 @@
                                         FROM stockitemstockgroups
                                         ) AND ImagePath IS NOT NULL
                 ORDER BY StockGroupID ASC";
-                $Statement = mysqli_prepare($Connection, $Query);
-                mysqli_stmt_execute($Statement);
-                $HeaderStockGroups = mysqli_stmt_get_result($Statement);
+                    $Statement = mysqli_prepare($Connection, $Query);
+                    mysqli_stmt_execute($Statement);
+                    $HeaderStockGroups = mysqli_stmt_get_result($Statement);
 
-                foreach ($HeaderStockGroups as $HeaderStockGroup) {
+                    foreach ($HeaderStockGroups as $HeaderStockGroup) {
+                    ?>
+                        <li>
+                            <a href="<?php echo base_url; ?>browse?category_id=<?php print $HeaderStockGroup['StockGroupID']; ?>" class="HrefDecoration">
+                                <?php print $HeaderStockGroup['StockGroupName']; ?>
+                            </a>
+                        </li>
+                    <?php
+                    }
                     ?>
                     <li>
-                        <a href="<?php echo base_url; ?>browse?category_id=<?php print $HeaderStockGroup['StockGroupID']; ?>" class="HrefDecoration">
-                            <?php print $HeaderStockGroup['StockGroupName']; ?>
-                        </a>
+                        <a href="<?php echo base_url; ?>categories" class="HrefDecoration">Alle categorieën</a>
                     </li>
-                    <?php
-                }
-                ?>
+                </ul>
+            </div>
+            <ul id="ul-class-navigation">
                 <li>
-                    <a href="<?php echo base_url; ?>categories" class="HrefDecoration">Alle categorieën</a>
-                </li>    
+                    <a href="<?php echo base_url; ?>browse" class="HrefDecoration"><i class="fas fa-search" style="color:#676EFF;"></i> Zoeken</a>
+                </li>
+                <li>
+                    <a href="<?php echo base_url; ?>cart" class="HrefDecoration"><img src="<?php echo base_url ?>/Public/Img/cart.svg"></a>
+                </li>
             </ul>
         </div>
-        <ul id="ul-class-navigation">
-            <li>
-                <a href="<?php echo base_url; ?>browse" class="HrefDecoration"><i class="fas fa-search" style="color:#676EFF;"></i> Zoeken</a>
-            </li>
-            <li>
-                <a href="<?php echo base_url; ?>cart" class="HrefDecoration"><img src="<?php echo base_url?>/Public/Img/cart.svg"></a>
-            </li>
-        </ul>
-    </div>
-    <div class="row" id="Content">
-        <div class="col-12">
-            <div id="SubContent">
+        <div class="row" id="Content">
+            <div class="col-12">
+                <div id="SubContent">

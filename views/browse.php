@@ -1,26 +1,9 @@
 <?php
+
+use App\Domain\Browse\Product;
+
 include __DIR__ . "/connect.php";
 include __DIR__ . "/header.php";
-
-$SearchString = "";
-$ReturnableResult = null;
-if (isset($_GET['search_string'])) {
-    $SearchString = $_GET['search_string'];
-}
-if (isset($_GET['category_id'])) {
-    $CategoryID = $_GET['category_id'];
-} else {
-    $CategoryID = "";
-}
-if (isset($_GET['sort'])) {
-    $SortOnPage = $_GET['sort'];
-    $_SESSION["sort"] = $_GET['sort'];
-} else if (isset($_SESSION["sort"])) {
-    $SortOnPage = $_SESSION["sort"];
-} else {
-    $SortOnPage = "price_low_high";
-    $_SESSION["sort"] = "price_low_high";
-}
 
 if (isset($_GET['products_on_page'])) {
     $ProductsOnPage = $_GET['products_on_page'];
@@ -31,6 +14,7 @@ if (isset($_GET['products_on_page'])) {
     $ProductsOnPage = 25;
     $_SESSION['products_on_page'] = 25;
 }
+
 if (isset($_GET['page_number'])) {
     $PageNumber = $_GET['page_number'];
 } else {
@@ -38,124 +22,16 @@ if (isset($_GET['page_number'])) {
 }
 
 $AmountOfPages = 0;
-$queryBuildResult = "";
-switch ($SortOnPage) {
-    case "price_high_low": {
-            $Sort = "SellPrice DESC";
-            break;
-        }
-    case "name_low_high": {
-            $Sort = "StockItemName";
-            break;
-        }
-    case "name_high_low";
-        $Sort = "StockItemName DESC";
-        break;
-    case "price_low_high": {
-            $Sort = "SellPrice";
-            break;
-        }
-    default: {
-            $Sort = "SellPrice";
-            $SortName = "price_low_high";
-        }
-}
-$searchValues = explode(" ", $SearchString);
-
-$queryBuildResult = "";
-if ($SearchString != "") {
-    for ($i = 0; $i < count($searchValues); $i++) {
-        if ($i != 0) {
-            $queryBuildResult .= "AND ";
-        }
-        $queryBuildResult .= "SI.SearchDetails LIKE '%$searchValues[$i]%' ";
-    }
-    if ($queryBuildResult != "") {
-        $queryBuildResult .= " OR ";
-    }
-    if ($SearchString != "" || $SearchString != null) {
-        $queryBuildResult .= "SI.StockItemID ='$SearchString'";
-    }
-}
-
 $Offset = $PageNumber * $ProductsOnPage;
-
 $ShowStockLevel = 1000;
-if ($CategoryID == "") {
-    if ($queryBuildResult != "") {
-        $queryBuildResult = "WHERE " . $queryBuildResult;
-    }
+$ReturnableResult = $products;
+$amount = $_SESSION["results"];
 
-    $Query = "
-                SELECT SI.StockItemID, SI.StockItemName, SI.MarketingComments, ROUND(TaxRate * RecommendedRetailPrice / 100 + RecommendedRetailPrice,2) as SellPrice,
-                (CASE WHEN (SIH.QuantityOnHand) >= ? THEN 'Ruime voorraad beschikbaar.' ELSE CONCAT('Voorraad: ',QuantityOnHand) END) AS QuantityOnHand,
-                (SELECT ImagePath
-                FROM stockitemimages
-                WHERE StockItemID = SI.StockItemID LIMIT 1) as ImagePath,
-                (SELECT ImagePath FROM stockgroups JOIN stockitemstockgroups USING(StockGroupID) WHERE StockItemID = SI.StockItemID LIMIT 1) as BackupImagePath
-                FROM stockitems SI
-                JOIN stockitemholdings SIH USING(stockitemid)
-                " . $queryBuildResult . "
-                GROUP BY StockItemID
-                ORDER BY " . $Sort . "
-                LIMIT ?  OFFSET ?";
-
-
-    $Statement = mysqli_prepare($Connection, $Query);
-    mysqli_stmt_bind_param($Statement, "iii", $ShowStockLevel, $ProductsOnPage, $Offset);
-    mysqli_stmt_execute($Statement);
-    $ReturnableResult = mysqli_stmt_get_result($Statement);
-    $ReturnableResult = mysqli_fetch_all($ReturnableResult, MYSQLI_ASSOC);
-
-    $Query = "
-            SELECT count(*)
-            FROM stockitems SI
-            $queryBuildResult";
-    $Statement = mysqli_prepare($Connection, $Query);
-    mysqli_stmt_execute($Statement);
-    $Result = mysqli_stmt_get_result($Statement);
-    $Result = mysqli_fetch_all($Result, MYSQLI_ASSOC);
-} else {
-
-    if ($queryBuildResult != "") {
-        $queryBuildResult .= " AND ";
-    }
-
-    $Query = "
-                SELECT SI.StockItemID, SI.StockItemName, SI.MarketingComments, QuantityOnHand as voorraad,
-                ROUND(SI.TaxRate * SI.RecommendedRetailPrice / 100 + SI.RecommendedRetailPrice,2) as SellPrice,
-                (CASE WHEN (SIH.QuantityOnHand) >= ? THEN 'Ruime voorraad beschikbaar.' ELSE CONCAT('Voorraad: ',QuantityOnHand) END) AS QuantityOnHand,
-                (SELECT ImagePath FROM stockitemimages WHERE StockItemID = SI.StockItemID LIMIT 1) as ImagePath,
-                (SELECT ImagePath FROM stockgroups JOIN stockitemstockgroups USING(StockGroupID) WHERE StockItemID = SI.StockItemID LIMIT 1) as BackupImagePath
-                FROM stockitems SI
-                JOIN stockitemholdings SIH USING(stockitemid)
-                JOIN stockitemstockgroups USING(StockItemID)
-                JOIN stockgroups ON stockitemstockgroups.StockGroupID = stockgroups.StockGroupID
-                WHERE " . $queryBuildResult . " ? IN (SELECT StockGroupID from stockitemstockgroups WHERE StockItemID = SI.StockItemID)
-                GROUP BY StockItemID
-                ORDER BY " . $Sort . "
-                LIMIT ? OFFSET ?";
-
-    $Statement = mysqli_prepare($Connection, $Query);
-    mysqli_stmt_bind_param($Statement, "iiii", $ShowStockLevel, $CategoryID, $ProductsOnPage, $Offset);
-    mysqli_stmt_execute($Statement);
-    $ReturnableResult = mysqli_stmt_get_result($Statement);
-    $ReturnableResult = mysqli_fetch_all($ReturnableResult, MYSQLI_ASSOC);
-
-    $Query = "
-                SELECT count(*)
-                FROM stockitems SI
-                WHERE " . $queryBuildResult . " ? IN (SELECT SS.StockGroupID from stockitemstockgroups SS WHERE SS.StockItemID = SI.StockItemID)";
-    $Statement = mysqli_prepare($Connection, $Query);
-    mysqli_stmt_bind_param($Statement, "i", $CategoryID);
-    mysqli_stmt_execute($Statement);
-    $Result = mysqli_stmt_get_result($Statement);
-    $Result = mysqli_fetch_all($Result, MYSQLI_ASSOC);
-}
-$amount = $Result[0];
 if (isset($amount)) {
-    $AmountOfPages = ceil($amount["count(*)"] / $ProductsOnPage);
+    $AmountOfPages = ceil($amount / $ProductsOnPage);
 }
+
+
 ?>
 <div id="FilterFrame">
     <h2 class="FilterText"><i class="fas fa-filter"></i> Filteren </h2>
@@ -211,7 +87,6 @@ if (isset($amount)) {
         foreach ($ReturnableResult as $row) {
     ?>
             <div class="list-item">
-
                 <?php
                 if (isset($row['ImagePath'])) { ?>
                     <div class="ImgFrame" style="background-image: url('<?php print "Public/StockItemIMG/" . $row['ImagePath']; ?>'); background-size: 230px; background-repeat: no-repeat; background-position: center;"></div>
