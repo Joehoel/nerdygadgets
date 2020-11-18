@@ -60,7 +60,7 @@ if (isset($_GET['update']) && $_GET['update'] === "true") {
 
     <?php if(count($cart) > 0) { ?>
     <div class="next">
-        <a class="to-payments" href="<?php echo base_url ?>payment">Verder naar checkout</a>
+        <a class="to-payments" href="<?php echo base_url ?>checkout">Verder naar checkout</a>
     </div>
     <?php } ?>
 </div>
