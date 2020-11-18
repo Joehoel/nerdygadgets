@@ -2,21 +2,14 @@
 
 namespace App\Controller;
 
-use App\Domain\Database\DatabaseInstance;
+use App\Domain\Product\Product;
 
 class HomeController
 {
     public function show()
     {
-        $result = array();
-
-        $db = new DatabaseInstance();
-        $conn = $db->create();
-
-        $stmt = $conn->prepare("SELECT StockItemID, StockItemName, SearchDetails, (RecommendedRetailPrice*(1+(TaxRate/100))) AS SellPrice FROM stockitems WHERE StockItemID = 93");
-        $stmt->execute();
-
-        $result = $stmt->fetchAll()[0];
+        $ProductHandler = new Product();
+        $result = $ProductHandler->getProduct(93);
 
         echo view('home', [
             "item" => $result,
