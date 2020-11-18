@@ -42,11 +42,10 @@ return [
         "categories" => [CategoryController::class, 'index', [
             "type" => "GET",
         ]],
-        "payment" => [PaymentController::class, 'index', [
-        ],
-        "checkout" => [ CheckoutController::class, 'index', [
+        "payment" => [PaymentController::class, 'index', []],
+        "checkout" => [CheckoutController::class, 'index', [
             "type" => "GET",
-        ],
+        ]],
         "cart" => [CartController::class, 'index', [
             "type" => "GET",
         ]],
