@@ -1,6 +1,40 @@
 <?php
 include __DIR__ . "/connect.php";
 include __DIR__ . "/header.php";
+
+
+function berekenSubtotaal($stockitem) 
+{
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    $subTotaalprijs = 0;
+    foreach ($stockitem as $key => $values) {
+        $subTotaalprijs += ($values[1] * $_SESSION['Cart'][$values[0]]);
+    }
+    return $subTotaalprijs;
+}
+
+function berekenBtw($subTotaalprijs)
+{
+    $btw = $subTotaalprijs / 100 * 9;
+    return $btw;
+}
+
+function berekenVerzendkosten($subTotaalprijs)
+{
+    if ($subTotaalprijs < 5) {
+        return 6.95;
+    } else {
+        return 0;
+    }
+}
+
+function berekenTotaal($subTotaalprijs, $verzendKosten)
+{
+    $totaalPrijs = $subTotaalprijs + $verzendKosten;
+    return $totaalPrijs;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,42 +66,32 @@ include __DIR__ . "/header.php";
 
         <div class="payment">
             <table>
-            <?php $totaalPrijs = 0; foreach($stockitem as $item) { ?>
+                <?php ?>
                 <tr>
-                    <td><?php echo($item['StockItemName'])?></td>
-                    <td><?php echo(number_format($item['UnitPrice'] * $_SESSION['Cart'][$item['StockItemID']],2));
-                        $totaalPrijs = $totaalPrijs + $item['UnitPrice']; ?></td>
+                    <td><?php ?></td>
+                    <td><?php ?></td>
                 </tr>
-            <?php } ?>
             </table>
             <table>
                 <tr>
                     <td>Subtotaal (excl. BTW)</td>
-                    <td><?php
-                        echo(number_format($totaalPrijs, 2)); 
-                        ?>
+                    <td><?php echo (berekenSubtotaal($stockitem)); ?>
                     </td>
                 </tr>
                 <tr>
                     <td>BTW</td>
-                    <td><?php 
-                        $btw = $totaalPrijs / 100 * 9;
-                        echo(number_format($btw, 2));?></td>
+                    <td><?php $subTotaalprijs = berekenSubtotaal($stockitem);
+                        echo (berekenBtw($subTotaalprijs)) ?></td>
                 </tr>
                 <tr>
                     <td>Verzendkosten</td>
-                    <td><?php 
-                        if($totaalPrijs < 50) {
-                            echo("6.95");
-                            $totaalPrijs = $totaalPrijs + 6.95;
-                        } else {
-                            echo("Gratis");
-                        }?>
+                    <td><?php echo (berekenVerzendkosten($subTotaalprijs)) ?>
                     </td>
                 </tr>
                 <tr>
                     <td>Totaal</td>
-                    <td><?php echo(number_format($totaalPrijs, 2));?></td>
+                    <td><?php $verzendKosten = berekenVerzendkosten($subTotaalprijs);
+                        echo (berekenTotaal($subTotaalprijs, $verzendKosten)); ?></td>
                 </tr>
             </table>
             <div class="pay-container">
