@@ -29,7 +29,25 @@ class Product
     return $result;
   }
 
-  public function getProducts() {
-    // Nog maken
+  /**
+   * Get all products
+   *
+   * @return array products
+   */
+  public function getProducts()
+  {
+    // ! Werkt nog niet
+    $result = array();
+
+    $db = new DatabaseInstance();
+    $conn = $db->create();
+
+    $stmt = $conn->prepare("SELECT StockItemID, StockItemName, SearchDetails, CONCAT('Voorraad: ',QuantityOnHand)
+                          AS QuantityOnHand(RecommendedRetailPrice*(1+(TaxRate/100))) AS SellPrice FROM stockitems");
+    $stmt->execute();
+
+    $result = $stmt->fetchAll();
+
+    return $result;
   }
 }
