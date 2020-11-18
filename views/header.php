@@ -41,7 +41,7 @@
 <div class="background">
     <div class="row" id="header">
         <div class="col-2">
-            <a href="./" id="LogoA">
+            <a href="<?php echo base_url ?>" id="LogoA">
                 <img id="LogoImage" src="<?php echo base_url?>Public/Img/logo.png">
             </a>
         </div>
