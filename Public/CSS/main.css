@@ -812,3 +812,9 @@ input {
 .to-payments:hover {
   color: white;
 }
+
+.btw {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--white);
+}
