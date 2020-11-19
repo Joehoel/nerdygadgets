@@ -2,7 +2,12 @@
 include __DIR__ . "/connect.php";
 include __DIR__ . "/header.php";
 
-
+/**
+ * Deze functie geeft het subtotaal terug
+ *
+ * @param arr $stockitem
+ * @return int
+ */
 function berekenSubtotaal($stockitem) 
 {
     if (session_status() == PHP_SESSION_NONE) {
