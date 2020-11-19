@@ -79,9 +79,8 @@ class Product
         $queryBuildResult = "";
 
 
-
         if ($SearchString !== "") {
-            if (strpos(".", $SearchString) !== false) {
+            if (strpos("\\", $SearchString) === FALSE) {
                 for ($i = 0; $i < count($searchValues); $i++) {
                     if ($i != 0) {
                         $queryBuildResult .= "AND ";
