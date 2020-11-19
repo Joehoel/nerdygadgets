@@ -2,10 +2,16 @@
 
 namespace App\Domain\Cart;
 
+use App\Domain\Database\DatabaseInstance;
 use NerdyGadgests\Classes\CartDatabase;
 
 class Cart
 {
+    /**
+     * Deze functie geeft een bool die als info geeft of er een winkelwagen bestaat
+     *
+     * @return void
+     */
     public function emptyCart()
     {
         if(!isset($_SESSION['Cart'])) {
@@ -15,10 +21,10 @@ class Cart
     }
 
     /**
-     * Deze functie returnt alle data uit de cart
+     * Deze functie returned alle data uit de cart
      *
      * @return Cart
-     * @author Tim Bentum <support@adjust-it.nl>
+     * @author Tim Bentum
      */
     public function GetCartArray()
     {
@@ -37,7 +43,7 @@ class Cart
      * @param int $artNr
      * @param int $aantal
      * @return void
-     * @author Tim Bentum <support@adjust-it.nl>
+     * @author Tim Bentum
      */
     public function AddItemToCart($artNr, $aantal)
     {
@@ -45,10 +51,10 @@ class Cart
             session_start();
         }
         $cart = isset($_SESSION['Cart']) ? $_SESSION['Cart'] : null;
-        if (isset($cart[$artNr])) {
+        if (isset($cart[$artNr]) && $aantal > 0) {
             $cart[$artNr] += $aantal;
         }
-        else {
+        else if ($aantal > 0){
             $cart[$artNr] = $aantal;
         }
         $_SESSION['Cart'] = $cart;
@@ -59,42 +65,50 @@ class Cart
      *
      * @param int $artNr
      * @return void
-     * @author Tim Bentum <support@adjust-it.nl>
+     * @author Tim Bentum
      */
     public function RemoveFromCart($artNr)
     {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        $cart = isset($_SESSION['Cart'])? $_SESSION['Cart'] : null;
-        unset($cart[$artNr]);
+        if (isset($_SESSION['Cart']) && !empty($_SESSION['Cart'])){
+            unset($_SESSION['Cart'][$artNr]);
+        }
     }
 
     /**
-     * Updaten van de cart
+     * Update cart
      *
+     * @param int $artNr
+     * @param int $aantal
      * @return void
-     * @author Tim Bentum <support@adjust-it.nl>
+     * @author Tim Bentum
      */
-    public function UpdateCart()
+    public function UpdateCart($artNr, $aantal)
     {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
+        $cart = isset($_SESSION['Cart']) ? $_SESSION['Cart'] : null;
+        if (isset($cart[$artNr])) {
+            $cart[$artNr] = $aantal;
+        }
+        $_SESSION['Cart'] = $cart;
         //kijken op getallen te kunnen update in de cart en dit doen
     }
 
     public function GetProductData($artNr) {
         $connection = mysqli_connect("localhost", "root", "", "nerdygadgets");
         mysqli_set_charset($connection, 'latin1');
-
         if ($connection != null){
-            $sql = "SELECT SI.StockItemID, SI.StockItemName, SI.MarketingComments, 
-                        ROUND(SI.TaxRate * SI.RecommendedRetailPrice / 100 + SI.RecommendedRetailPrice,2) as SellPrice, 
+            $sql = "SELECT SI.StockItemID, SI.StockItemName, SI.MarketingComments,
+                        ROUND(SI.TaxRate * SI.RecommendedRetailPrice / 100 + SI.RecommendedRetailPrice,2) as SellPrice,
                         (CASE WHEN (SIH.QuantityOnHand) >= 1000 THEN 'Ruime voorraad beschikbaar.' ELSE CONCAT('Voorraad: ',QuantityOnHand) END) AS QuantityOnHand,
+                        QuantityOnHand as voorraad,
                         (SELECT ImagePath FROM stockitemimages WHERE StockItemID = SI.StockItemID LIMIT 1) as ImagePath,
-                        (SELECT ImagePath FROM stockgroups JOIN stockitemstockgroups USING(StockGroupID) WHERE StockItemID = SI.StockItemID LIMIT 1) as BackupImagePath           
-                        FROM stockitems SI 
+                        (SELECT ImagePath FROM stockgroups JOIN stockitemstockgroups USING(StockGroupID) WHERE StockItemID = SI.StockItemID LIMIT 1) as BackupImagePath
+                        FROM stockitems SI
                         JOIN stockitemholdings SIH USING(stockitemid)
                         JOIN stockitemstockgroups USING(StockItemID)
                         JOIN stockgroups ON stockitemstockgroups.StockGroupID = stockgroups.StockGroupID
@@ -110,5 +124,4 @@ class Cart
             return $result;
         }
     }
-
 }

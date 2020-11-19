@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Domain\Database\DatabaseInstance;
 
-class PaymentController
+class CheckoutController
 {
     public function index()
     {
@@ -30,9 +30,8 @@ class PaymentController
         $stm = $db->create()->prepare($sql);
         $stm->execute($stockItemID);
         $result = $stm->fetchAll();
-
-        echo view('payment', [
-            "stockitem" => $result
+        echo view('checkout',[
+            "stockitem"=>$result
         ]);
     }
 }

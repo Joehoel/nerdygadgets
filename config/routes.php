@@ -1,9 +1,9 @@
 <?php
 
 use App\Controller\BrowseController;
+use App\Controller\CheckoutController;
 use App\Controller\CategoryController;
 use App\Controller\HomeController;
-use App\Controller\PaymentController;
 use App\Controller\ProductController;
 use App\Domain\Cart\CartController;
 
@@ -18,25 +18,35 @@ return [
     |
     */
     "routes" => [
-        "" => [ HomeController::class, 'show', [
+        "" => [HomeController::class, 'show', [
             "type" => "GET",
         ]],
-        "product/{id}" => [ ProductController::class, 'show', [
+        "product/{id}" => [ProductController::class, 'show', [
             "type" => "GET",
         ]],
-        "update-cart/{id}" => [ CartController::class, 'update', [
+        "update-cart/{id}" => [CartController::class, 'update', [
             "type" => "POST",
         ]],
-            "browse" => [ BrowseController::class, 'show', [
+        "add-to-cart-product/{id}" => [CartController::class, 'add_product', [
+            "type" => "POST",
+        ]],
+        "add-to-cart-browse/{id}" => [CartController::class, 'add_browse', [
+            "type" => "POST",
+        ]],
+        "delete-from-cart/{id}" => [CartController::class, 'delete', [
             "type" => "GET",
         ]],
-        "categories" => [ CategoryController::class, 'index', [
+        "browse" => [BrowseController::class, 'show', [
             "type" => "GET",
         ]],
-        "payment" => [ PaymentController::class, 'index', [
+        "categories" => [CategoryController::class, 'index', [
             "type" => "GET",
         ]],
-        "cart" => [ CartController::class, 'index', [
+        "payment" => [PaymentController::class, 'index', []],
+        "checkout" => [CheckoutController::class, 'index', [
+            "type" => "GET",
+        ]],
+        "cart" => [CartController::class, 'index', [
             "type" => "GET",
         ]],
     ]

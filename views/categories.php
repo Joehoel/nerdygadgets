@@ -5,9 +5,9 @@ include __DIR__ . "/header.php";
 
 $Query = "
             SELECT StockGroupID, StockGroupName, ImagePath
-            FROM stockgroups 
+            FROM stockgroups
             WHERE StockGroupID IN (
-                                    SELECT StockGroupID 
+                                    SELECT StockGroupID
                                     FROM stockitemstockgroups
                                     ) AND ImagePath IS NOT NULL
             ORDER BY StockGroupID ASC";
@@ -22,16 +22,13 @@ $StockGroups = mysqli_fetch_all($Result, MYSQLI_ASSOC);
         $i = 0;
         foreach ($StockGroups as $StockGroup) {
             if ($i < 6) {
-                ?>
-                <a href="<?php print "/browse?category_id=";
-                print $StockGroup["StockGroupID"]; ?>">
-                    <div id="StockGroup<?php print $i + 1; ?>"
-                         style="background-image: url('Public/StockGroupIMG/<?php print $StockGroup["ImagePath"]; ?>')"
-                         class="StockGroups">
+    ?>
+                <a href="<?php echo base_url . "browse?category_id=" . $StockGroup["StockGroupID"] ?>">
+                    <div id="StockGroup<?php print $i + 1; ?>" style="background-image: url('Public/StockGroupIMG/<?php print $StockGroup["ImagePath"]; ?>')" class="StockGroups">
                         <h1><?php print $StockGroup["StockGroupName"]; ?></h1>
                     </div>
                 </a>
-                <?php
+    <?php
             }
             $i++;
         }

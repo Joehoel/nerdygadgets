@@ -4,16 +4,16 @@ include __DIR__ . '/header.php';
 
 $_GET['id'] = $id;
 
-$Query = " 
-           SELECT SI.StockItemID, 
-            (RecommendedRetailPrice*(1+(TaxRate/100))) AS SellPrice, 
+$Query = "
+           SELECT SI.StockItemID,
+            (RecommendedRetailPrice*(1+(TaxRate/100))) AS SellPrice,
             StockItemName,
             CONCAT('Voorraad: ',QuantityOnHand)AS QuantityOnHand,
             QuantityOnHand as voorraad,
-            SearchDetails, 
+            SearchDetails,
             (CASE WHEN (RecommendedRetailPrice*(1+(TaxRate/100))) > 50 THEN 0 ELSE 6.95 END) AS SendCosts, MarketingComments, CustomFields, SI.Video,
-            (SELECT ImagePath FROM stockgroups JOIN stockitemstockgroups USING(StockGroupID) WHERE StockItemID = SI.StockItemID LIMIT 1) as BackupImagePath   
-            FROM stockitems SI 
+            (SELECT ImagePath FROM stockgroups JOIN stockitemstockgroups USING(StockGroupID) WHERE StockItemID = SI.StockItemID LIMIT 1) as BackupImagePath
+            FROM stockitems SI
             JOIN stockitemholdings SIH USING(stockitemid)
             JOIN stockitemstockgroups ON SI.StockItemID = stockitemstockgroups.StockItemID
             JOIN stockgroups USING(StockGroupID)
@@ -33,7 +33,7 @@ if ($ReturnableResult && mysqli_num_rows($ReturnableResult) == 1) {
 //Get Images
 $Query = "
                 SELECT ImagePath
-                FROM stockitemimages 
+                FROM stockitemimages
                 WHERE StockItemID = ?";
 
 $Statement = mysqli_prepare($Connection, $Query);
@@ -46,9 +46,16 @@ if ($R) {
     $Images = $R;
 }
 
+if (isset($_GET['aantal'])) {
+    $meer = ($_GET['aantal'] == 1) ? 'is ' . $_GET['aantal'] . ' artikel' : 'zijn ' . $_GET['aantal'] . ' artiekelen';
+    echo '<div class="pop-up">Er ' . $meer . ' toegevoegd aan de winkelwagen</div>';
+}
 ?>
 <div id="CenteredContent">
+
     <?php
+
+
     if ($Result != null) {
     ?>
         <?php
@@ -123,7 +130,8 @@ if ($R) {
                         <?php
                         if ($Result['voorraad'] != 0) {
                         ?>
-                            <form method="POST" action="<?php echo base_url; ?>update-cart/<?php echo $Result["StockItemID"]; ?>">
+                            <!-- TODO: Change so that this doesnt just update item count in cart but adds on to it -->
+                            <form method="POST" action="<?php echo base_url; ?>add-to-cart-product/<?php echo $Result["StockItemID"]; ?>">
                                 <input type="number" name="aantal" required value="1" min="1" max="<?php echo $Result['voorraad'] ?>" />
                                 <input type="submit" name="voegtoe" value="In winkelwagen">
                             </form>

@@ -2,10 +2,17 @@
 
 namespace App\Controller;
 
+use App\Domain\Product\Product;
+
 class HomeController
 {
     public function show()
     {
-        echo view('home');
+        $ProductHandler = new Product();
+        $result = $ProductHandler->getProduct(93);
+
+        echo view('home', [
+            "item" => $result,
+        ]);
     }
 }

@@ -1,15 +1,19 @@
-<?php include __DIR__ . '/connect.php '; ?>
-<?php include __DIR__ . '/header.php '; ?>
+<?php
+include __DIR__ . '/connect.php ';
+include __DIR__ . '/header.php ';
+?>
+
 <div class="IndexStyle">
     <div class="col-11">
         <div class="TextPrice">
-            <a href="view.php?id=93">
+            <a href="<?php echo base_url ?>product/<?php print($item['StockItemID']); ?>">
                 <div class="TextMain">
-                    "The Gu" red shirt XML tag t-shirt (Black) M
+                    <?php echo $item["StockItemName"]; ?>
+                    <h6 class="description"><?php echo $item['SearchDetails']; ?></h6>
                 </div>
                 <ul id="ul-class-price">
-
-                    <li class="HomePagePrice">€30.95</li>
+                    <li class="HomePagePrice"><?php print sprintf("€ %.2f", $item['SellPrice']); ?></li>
+                    <li class="btw">Inclusief BTW</li>
                 </ul>
             </a>
         </div>
