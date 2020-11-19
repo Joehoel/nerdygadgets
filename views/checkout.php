@@ -18,13 +18,13 @@ function berekenSubtotaal($stockitem)
     foreach ($stockitem as $key => $values) {
         $subTotaalprijs += ($values[1] * $_SESSION['Cart'][$values[0]]);
     }
-    return round($subTotaalprijs,2);
+    return $subTotaalprijs;
 }
 
 function berekenBtw($subTotaalprijs)
 {
     $btw = $subTotaalprijs / 100 * 9;
-    return round($btw,2);
+    return $btw;
 }
 
 function berekenVerzendkosten($subTotaalprijs)
@@ -32,7 +32,7 @@ function berekenVerzendkosten($subTotaalprijs)
     if ($subTotaalprijs < 5) {
         return 6.95;
     } else {
-        return round(0,2);
+        return 0;
     }
 }
 
@@ -49,7 +49,7 @@ function berekenTotaallijst($stockitem)
         echo('<tr>');
         echo('<td>'.$item['StockItemName'].'</td>');
         echo('<td>'.$_SESSION['Cart'][$item['StockItemID']].'</td>');
-        echo('<td>€'.round($totaalPerproduct,2).'</td>');
+        echo('<td>€'.number_format($totaalPerproduct,2,",",".").'</td>');
         echo('</tr>');
     }    
 }
@@ -86,26 +86,26 @@ function berekenTotaallijst($stockitem)
             <tr>
                 <td>Subtotaal (excl. BTW)</td>
                 <td></td>
-                <td><?php echo ('€'.berekenSubtotaal($stockitem)); ?>
+                <td><?php echo ('€'.number_format(berekenSubtotaal($stockitem),2,",",".")); ?>
                 </td>
             </tr>
             <tr>
                 <td>BTW</td>
                 <td></td>
                 <td><?php $subTotaalprijs = berekenSubtotaal($stockitem);
-                    echo ('€'.berekenBtw($subTotaalprijs)) ?></td>
+                    echo ('€'.number_format(berekenBtw($subTotaalprijs),2,",",".")) ?></td>
             </tr>
             <tr>
                 <td>Verzendkosten</td>
                 <td></td>
-                <td><?php echo ('€'.berekenVerzendkosten($subTotaalprijs)) ?>
+                <td><?php echo ('€'.number_format(berekenVerzendkosten($subTotaalprijs),2,",",".")) ?>
                 </td>
             </tr>
             <tr>
                 <td>Totaal</td>
                 <td></td>
                 <td><?php $verzendKosten = berekenVerzendkosten($subTotaalprijs);
-                    echo ('€'.berekenTotaal($subTotaalprijs, $verzendKosten)); ?></td>
+                    echo ('€'.number_format(berekenTotaal($subTotaalprijs, $verzendKosten),2,",",".")); ?></td>
             </tr>
         </table>
         <div class="pay-container">
