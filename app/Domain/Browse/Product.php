@@ -62,44 +62,42 @@ class Product
         return $ReturnableResult;
     }
 
+
     public function getProducts()
     {
+        // set the connection to the database
         $Connection = mysqli_connect("localhost", "root", "", "nerdygadgets", 3306);
         mysqli_set_charset($Connection, 'latin1');
 
+        // set all the variables
         $CategoryID = $_GET['category_id'] ?? "";
         $SearchString = $_GET['search_string'] ?? "";
         $searchValues = explode(" ", $SearchString);
-        if (isset($_GET["products_on_page"])) {
-            $ProductsOnPage = $_GET["products_on_page"];
-        } else {
-            $ProductsOnPage = 50;
-            $_GET["products_on_page"] = $ProductsOnPage;
-        }
-
-        $ProductsOnPage = $_GET["products_on_page"];
-        if (isset($_GET['page_number'])) {
-            $PageNumber = $_GET['page_number'];
-        } else {
-            $PageNumber = 0;
-        }
+        $ProductsOnPage = $_GET["products_on_page"] ?? 50;
+        $PageNumber = $_GET["page_number"] ?? 0;
         $Offset = $PageNumber * $ProductsOnPage;
         $queryBuildResult = "";
-        if ($SearchString != "") {
-            for ($i = 0; $i < count($searchValues); $i++) {
-                if ($i != 0) {
-                    $queryBuildResult .= "AND ";
+
+
+
+        if ($SearchString !== "") {
+            if (strpos(".", $SearchString) !== false) {
+                for ($i = 0; $i < count($searchValues); $i++) {
+                    if ($i != 0) {
+                        $queryBuildResult .= "AND ";
+                    }
+                    $queryBuildResult .= "SI.SearchDetails LIKE '%$searchValues[$i]%' ";
                 }
-                $queryBuildResult .= "SI.SearchDetails LIKE '%$searchValues[$i]%' ";
-            }
-            if ($queryBuildResult != "") {
-                $queryBuildResult .= " OR ";
-            }
-            if ($SearchString != "" || $SearchString != null) {
-                $queryBuildResult .= "SI.StockItemID ='$SearchString'";
+                if ($queryBuildResult != "") {
+                    $queryBuildResult .= " OR ";
+                }
+                if ($SearchString != "" || $SearchString != null) {
+                    $queryBuildResult .= "SI.StockItemID ='$SearchString'";
+                }
+            } else {
+                $SearchString = "";
             }
         }
-
         if ($CategoryID == "") {
             if ($queryBuildResult != "") {
                 $queryBuildResult = "WHERE " . $queryBuildResult;
@@ -115,13 +113,10 @@ class Product
                         FROM stockitems SI
                         JOIN stockitemholdings SIH USING(stockitemid)
                         " . $queryBuildResult . "
-                        GROUP BY StockItemID
-                        LIMIT ?  OFFSET ?";
-            // ORDER BY " . $Sort . "
-
+                        GROUP BY StockItemID";
 
             $Statement = mysqli_prepare($Connection, $Query);
-            mysqli_stmt_bind_param($Statement, "iii", $ShowStockLevel, $ProductsOnPage, $Offset);
+            mysqli_stmt_bind_param($Statement, "iii", $ShowStockLevel, $ProductsOnPage);
             mysqli_stmt_execute($Statement);
             $ReturnableResult = mysqli_stmt_get_result($Statement);
             $ReturnableResult = mysqli_fetch_all($ReturnableResult, MYSQLI_ASSOC);
@@ -151,15 +146,14 @@ class Product
                         JOIN stockitemstockgroups USING(StockItemID)
                         JOIN stockgroups ON stockitemstockgroups.StockGroupID = stockgroups.StockGroupID
                         WHERE " . $queryBuildResult . " ? IN (SELECT StockGroupID from stockitemstockgroups WHERE StockItemID = SI.StockItemID)
-                        GROUP BY StockItemID
-                        LIMIT ? OFFSET ?";
-            //  ORDER BY " . $Sort . "
+                        GROUP BY StockItemID";
 
             $Statement = mysqli_prepare($Connection, $Query);
-            mysqli_stmt_bind_param($Statement, "iiii", $ShowStockLevel, $CategoryID, $ProductsOnPage, $Offset);
+            mysqli_stmt_bind_param($Statement, "ii", $ShowStockLevel, $CategoryID);
             mysqli_stmt_execute($Statement);
             $ReturnableResult = mysqli_stmt_get_result($Statement);
             $ReturnableResult = mysqli_fetch_all($ReturnableResult, MYSQLI_ASSOC);
+
 
             $Query = "
                         SELECT count(*)
@@ -176,6 +170,14 @@ class Product
         foreach ($ReturnableResult as $key => $StockName) {
             $ReturnableResult[$key]["StockItemName"] = str_replace('"', "", $StockName["StockItemName"]);
         }
-        return $ReturnableResult;
+
+        $SortedArray = $this->SortProducts($ReturnableResult);
+
+        $ReturnThisArray = [];
+        $min = min((count($SortedArray) - $Offset), $ProductsOnPage);
+        for ($i = 0; $i < $min; $i++) {
+            array_push($ReturnThisArray, $SortedArray[$i + $Offset]);
+        }
+        return  $ReturnThisArray;
     }
 }
