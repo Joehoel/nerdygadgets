@@ -23,7 +23,8 @@ class CheckoutController
         $in  = str_repeat('?,', count($stockItemID) - 1) . '?';
 
         $sql = "SELECT SI.StockItemID, 
-                ROUND(SI.TaxRate * SI.RecommendedRetailPrice / 100 + SI.RecommendedRetailPrice,2) as SellPrice       
+                ROUND(SI.TaxRate * SI.RecommendedRetailPrice / 100 + SI.RecommendedRetailPrice,2) as SellPrice,
+                SI.StockItemName       
                 FROM stockitems SI 
                 where StockItemID IN ($ids);";
         $db = new DatabaseInstance();
