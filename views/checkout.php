@@ -41,12 +41,9 @@ function berekenTotaal($subTotaalprijs, $verzendKosten)
     return $totaalPrijs;
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<body>
-    <div class="content">
-        <div class="information">
+<div class="payments-container">
+    <div class="information">
+        <div>
             <h1>Customer information</h1>
             <form class="form-1">
                 <input type="text" placeholder="Email" name="email">
@@ -68,66 +65,58 @@ function berekenTotaal($subTotaalprijs, $verzendKosten)
                 <input type="text" placeholder="Phone" name="tel">
             </form>
         </div>
-
-        <div class="payment">
-            <table>
-                <?php ?>
-                <tr>
-                    <td><?php ?></td>
-                    <td><?php ?></td>
-                </tr>
-            </table>
-            <table>
-                <tr>
-                    <td>Subtotaal (excl. BTW)</td>
-                    <td><?php echo (berekenSubtotaal($stockitem)); ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td>BTW</td>
-                    <td><?php $subTotaalprijs = berekenSubtotaal($stockitem);
-                        echo (berekenBtw($subTotaalprijs)) ?></td>
-                </tr>
-                <tr>
-                    <td>Verzendkosten</td>
-                    <td><?php echo (berekenVerzendkosten($subTotaalprijs)) ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Totaal</td>
-                    <td><?php $verzendKosten = berekenVerzendkosten($subTotaalprijs);
-                        echo (berekenTotaal($subTotaalprijs, $verzendKosten)); ?></td>
-                </tr>
-            </table>
-            <div class="pay-container">
-                <form>
-                    <div class="inline-radio">
-                        <input type="radio" name="method" value="Credit">
-                        <p>Credit card</p>
-                    </div>
-                    <div class="credit-card">
-                        <input type="text" placeholder="Card number" name="card-number">
-                        <input type="text" placeholder="Name on card" name="card-name">
-                        <input class="start-column" type="text" placeholder="Expiration date (MM / YY)" name="card-number">
-                        <input class="end-column" type="text" placeholder="Security code" name="card-name">
-                    </div>
-                    <div class="inline-radio">
-                        <input type="radio" name="method" value="PayPal">
-                        <p>PayPal</p>
-                    </div>
-                    <div class="inline-radio">
-                        <input type="radio" name="method" value="IDEAL">
-                        <p>IDEAL</p>
-                    </div>
-                    <div class="IDEAL">
-                        <input type="text" placeholder="Bank name" name="method">
-                    </div>
-                </form>
-
-            </div>
-            <button>Continue to shipping</button>
-        </div>
     </div>
-</body>
 
-</html>
+    <div class="payment">
+        <table>
+            <tr>
+                <td>Subtotaal (excl. BTW)</td>
+                <td><?php echo (berekenSubtotaal($stockitem)); ?>
+                </td>
+            </tr>
+            <tr>
+                <td>BTW</td>
+                <td><?php $subTotaalprijs = berekenSubtotaal($stockitem);
+                    echo (berekenBtw($subTotaalprijs)) ?></td>
+            </tr>
+            <tr>
+                <td>Verzendkosten</td>
+                <td><?php echo (berekenVerzendkosten($subTotaalprijs)) ?>
+                </td>
+            </tr>
+            <tr>
+                <td>Totaal</td>
+                <td><?php $verzendKosten = berekenVerzendkosten($subTotaalprijs);
+                    echo (berekenTotaal($subTotaalprijs, $verzendKosten)); ?></td>
+            </tr>
+        </table>
+        <div class="pay-container">
+            <form>
+                <div class="inline-radio">
+                    <input type="radio" name="method" value="Credit">
+                    <p>Credit card</p>
+                </div>
+                <div class="credit-card">
+                    <input type="text" placeholder="Card number" name="card-number">
+                    <input type="text" placeholder="Name on card" name="card-name">
+                    <input class="start-column" type="text" placeholder="Expiration date (MM / YY)" name="card-number">
+                    <input class="end-column" type="text" placeholder="Security code" name="card-name">
+                </div>
+                <div class="inline-radio">
+                    <input type="radio" name="method" value="PayPal">
+                    <p>PayPal</p>
+                </div>
+                <div class="inline-radio">
+                    <input type="radio" name="method" value="IDEAL">
+                    <p>IDEAL</p>
+                </div>
+                <div class="IDEAL">
+                    <input type="text" placeholder="Bank name" name="method">
+                </div>
+            </form>
+
+        </div>
+        <button>Continue to shipping</button>
+    </div>
+</div>
+
