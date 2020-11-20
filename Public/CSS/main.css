@@ -699,6 +699,11 @@ input {
 	/* background-color: orange; */
 	display: flex;
 	flex-direction: column;
+	overflow-y: scroll;
+}
+
+.list::-webkit-scrollbar {
+	display: none;
 }
 
 .list h1 {
@@ -869,6 +874,8 @@ input {
 .cart {
 	display: grid;
 	grid-template-columns: 75% 25%;
+	height: 87vh;
+	overflow: hidden;
 }
 .cart .total {
 	margin-top: 1.5rem;
