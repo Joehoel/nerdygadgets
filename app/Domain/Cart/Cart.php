@@ -14,7 +14,7 @@ class Cart
      */
     public function emptyCart()
     {
-        if(!isset($_SESSION['Cart'])) {
+        if (!isset($_SESSION['Cart'])) {
             return true;
         }
         return false;
@@ -31,7 +31,7 @@ class Cart
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        if($this->emptyCart()) {
+        if ($this->emptyCart()) {
             return [];
         };
         return $_SESSION['Cart'];
@@ -53,8 +53,7 @@ class Cart
         $cart = isset($_SESSION['Cart']) ? $_SESSION['Cart'] : null;
         if (isset($cart[$artNr]) && $aantal > 0) {
             $cart[$artNr] += $aantal;
-        }
-        else if ($aantal > 0){
+        } else if ($aantal > 0) {
             $cart[$artNr] = $aantal;
         }
         $_SESSION['Cart'] = $cart;
@@ -72,7 +71,7 @@ class Cart
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        if (isset($_SESSION['Cart']) && !empty($_SESSION['Cart'])){
+        if (isset($_SESSION['Cart']) && !empty($_SESSION['Cart'])) {
             unset($_SESSION['Cart'][$artNr]);
         }
     }
@@ -98,10 +97,11 @@ class Cart
         //kijken op getallen te kunnen update in de cart en dit doen
     }
 
-    public function GetProductData($artNr) {
+    public function GetProductData($artNr)
+    {
         $connection = mysqli_connect("localhost", "root", "", "nerdygadgets");
         mysqli_set_charset($connection, 'latin1');
-        if ($connection != null){
+        if ($connection != null) {
             $sql = "SELECT SI.StockItemID, SI.StockItemName, SI.MarketingComments,
                         ROUND(SI.TaxRate * SI.RecommendedRetailPrice / 100 + SI.RecommendedRetailPrice,2) as SellPrice,
                         (CASE WHEN (SIH.QuantityOnHand) >= 1000 THEN 'Ruime voorraad beschikbaar.' ELSE CONCAT('Voorraad: ',QuantityOnHand) END) AS QuantityOnHand,
@@ -123,5 +123,11 @@ class Cart
 
             return $result;
         }
+    }
+
+    public function GetTotalCartPrice()
+    {
+        $total = "140.00";
+        return sprintf("€%0.2f", $total);
     }
 }
