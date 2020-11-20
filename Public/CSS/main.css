@@ -882,6 +882,13 @@ input {
 	justify-content: space-between;
 }
 
+.cart .list input[type="submit"] {
+	border: none;
+	background: var(--blue);
+	color: var(--white);
+	margin-left: 0.5rem;
+}
+
 .to-checkout {
 	color: var(--white);
 	background-color: var(--blue);
