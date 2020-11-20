@@ -45,10 +45,7 @@ if (isset($_GET['update']) && $_GET['update'] === "true") {
                     <div>
                         <form class="delete-form" action="<?php echo base_url ?>delete-from-cart/<?php echo $productData["StockItemID"] ?>">
                             <button type="submit" class="delete-button">
-
-                                <svg style="width: 25px; height: 25px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                </svg>
+                                <img src="<?php echo base_url ?>Public/Img/delete.svg" alt="delete">
                             </button>
                         </form>
                         <div class="price">
