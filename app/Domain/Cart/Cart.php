@@ -127,7 +127,30 @@ class Cart
 
     public function GetTotalCartPrice()
     {
-        $total = "140.00";
-        return sprintf("€%0.2f", $total);
+        $cartItems = $this->GetCartArray();
+
+        $articleTotal = null;
+
+        foreach ($cartItems as $id => $amount) {
+            $price = $this->GetProductData($id)["SellPrice"];
+            $articleTotal += $price * $amount;
+        }
+
+        $prices = [
+            'articleTotal' => $articleTotal,
+            'discount' => 0.00, // Verander zodat het berekent wordt
+            'shipping' => 2.00, // Verander zodat het berekent wordt
+        ];
+
+        $total = 0;
+
+        foreach ($prices as $key => $value) {
+            $total += $value;
+            $prices[$key] = sprintf("€%0.2f", $value);
+        }
+
+        $prices['total'] = sprintf("€%0.2f", $total);
+
+        return $prices;
     }
 }

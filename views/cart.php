@@ -7,6 +7,8 @@ if (isset($_GET['update']) && $_GET['update'] === "true") {
     echo '<div class="pop-up">De winkelwagen is geüpdate</div>';
 }
 
+$prices = $cartClass->GetTotalCartPrice()
+
 ?>
 <div class="cart">
     <div class="list">
@@ -62,17 +64,17 @@ if (isset($_GET['update']) && $_GET['update'] === "true") {
     <?php if (count($cart) > 0) { ?>
         <div class="total">
             <div class="item">
-                <h3>Totaal artikelen:</h3><span>20,00</span>
+                <h3>Totaal artikelen:</h3><span><?php echo $prices['articleTotal']; ?></span>
             </div>
             <div class="item">
-                <h5>Korting:</h5><span>-9,00</span>
+                <h5>Korting:</h5><span><?php echo $prices['discount']; ?></span>
             </div>
             <div class="item">
-                <h5>Verzendkosten:</h5><span>2,00</span>
+                <h5>Verzendkosten:</h5><span><?php echo $prices['shipping']; ?></span>
             </div>
             <hr>
             <div class="item">
-                <h3>Totaal:</h3><span><?php echo $cartClass->GetTotalCartPrice(); ?></span>
+                <h3>Totaal:</h3><span><?php echo $prices['total']; ?></span>
             </div>
             <a class="to-checkout" href="<?php echo base_url ?>checkout">Verder naar checkout</a>
         </div>
