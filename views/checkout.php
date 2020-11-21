@@ -2,6 +2,57 @@
 include __DIR__ . "/connect.php";
 include __DIR__ . "/header.php";
 
+/**
+ * Deze functie geeft het subtotaal terug
+ *
+ * @param arr $stockitem
+ * @return int
+ */
+
+function berekenSubtotaal($stockitem) 
+{
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    $subTotaalprijs = 0;
+    foreach ($stockitem as $key => $values) {
+        $subTotaalprijs += ($values[1] * $_SESSION['Cart'][$values[0]]);
+    }
+    return $subTotaalprijs;
+}
+
+function berekenBtw($subTotaalprijs)
+{
+    $btw = $subTotaalprijs / 100 * 9;
+    return $btw;
+}
+
+function berekenVerzendkosten($subTotaalprijs)
+{
+    if ($subTotaalprijs < 5) {
+        return 6.95;
+    } else {
+        return 0;
+    }
+}
+
+function berekenTotaal($subTotaalprijs, $verzendKosten)
+{
+    $totaalPrijs = $subTotaalprijs + $verzendKosten;
+    return $totaalPrijs;
+}
+
+function berekenTotaallijst($stockitem)
+{
+    foreach($stockitem as $item) {
+        $totaalPerproduct = $item['SellPrice'] * $_SESSION['Cart'][$item['StockItemID']];
+        echo('<tr>');
+        echo('<td>'.$item['StockItemName'].'</td>');
+        echo('<td>'.$_SESSION['Cart'][$item['StockItemID']].'</td>');
+        echo('<td>€'.number_format($totaalPerproduct,2,",",".").'</td>');
+        echo('</tr>');
+    }    
+}
 ?>
 <div class="payments-container">
     <div class="information">
@@ -31,29 +82,30 @@ include __DIR__ . "/header.php";
 
     <div class="payment">
         <table>
-            <?php foreach($stockitem as $item) { ?>
-                <tr>
-                    <td><?php echo($item['StockItemName'])?></td>
-                    <td><?php echo($item['UnitPrice'] * $_SESSION['Cart'][$item['StockItemID']])?></td>
-                </tr>
-            <?php } ?>
-        </table>
-        <table>
+            <?php berekenTotaallijst($stockitem); ?>
             <tr>
                 <td>Subtotaal (excl. BTW)</td>
-                <td>€79,30</td>
+                <td></td>
+                <td><?php echo ('€'.number_format(berekenSubtotaal($stockitem),2,",",".")); ?>
+                </td>
             </tr>
             <tr>
                 <td>BTW</td>
-                <td>€16,65</td>
+                <td></td>
+                <td><?php $subTotaalprijs = berekenSubtotaal($stockitem);
+                    echo ('€'.number_format(berekenBtw($subTotaalprijs),2,",",".")) ?></td>
             </tr>
             <tr>
                 <td>Verzendkosten</td>
-                <td>Gratis</td>
+                <td></td>
+                <td><?php echo ('€'.number_format(berekenVerzendkosten($subTotaalprijs),2,",",".")) ?>
+                </td>
             </tr>
             <tr>
                 <td>Totaal</td>
-                <td>€95,95</td>
+                <td></td>
+                <td><?php $verzendKosten = berekenVerzendkosten($subTotaalprijs);
+                    echo ('€'.number_format(berekenTotaal($subTotaalprijs, $verzendKosten),2,",",".")); ?></td>
             </tr>
         </table>
         <div class="pay-container">
@@ -85,3 +137,4 @@ include __DIR__ . "/header.php";
         <button>Continue to shipping</button>
     </div>
 </div>
+
