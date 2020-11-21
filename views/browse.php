@@ -24,30 +24,28 @@ if (isset($_GET['page_number'])) {
 $AmountOfPages = 0;
 $Offset = $PageNumber * $ProductsOnPage;
 $ShowStockLevel = 1000;
-$ReturnableResult = $products;
+$ReturnableResult = $sortproducts;
 $amount = $_SESSION["results"];
 
 if (isset($amount)) {
     $AmountOfPages = ceil($amount / $ProductsOnPage);
 }
 
-
-?>
-<div class="pop-up" id="pop-up"></div>
-<?php if (isset($_GET['aantal'])) {
+if (isset($_GET['aantal'])) {
     $meer = ($_GET['aantal'] == 1) ? 'is ' . $_GET['aantal'] . ' artikel' : 'zijn ' . $_GET['aantal'] . ' artiekelen';
-    echo '<script> popup("Er is een product toegevoegd aan je winkelwagen"); </script>';
-} ?>
+    echo '<div class="pop-up">Er ' . $meer . ' toegevoegd aan de winkelwagen</div>';
+}
+?>
 <div id="FilterFrame">
-    <h2 class="FilterText">Filteren </h2>
+    <h2 class="FilterText"><i class="fas fa-filter"></i> Filteren </h2>
     <form>
         <div id="FilterOptions">
 
-            <h4 class="FilterTopMargin">Zoeken:</h4>
+            <h4 class="FilterTopMargin"><i class="fas fa-search"></i> Zoeken</h4>
 
-            <input type="text" name="search_string" id="search_string" placeholder="..." value="<?php print (isset($_GET['search_string'])) ? $_GET['search_string'] : ""; ?>" class="form-submit" autofocus>
+            <input type="text" name="search_string" id="search_string" value="<?php print (isset($_GET['search_string'])) ? $_GET['search_string'] : ""; ?>" class="form-submit" autofocus>
 
-            <h4 class="FilterTopMargin">Aantal resultaten:</h4>
+            <h4 class="FilterTopMargin"><i class="fas fa-list-ol"></i>Aantal producten op pagina</h4>
 
             <input type="hidden" name="category_id" id="category_id" value="<?php print (isset($_GET['category_id'])) ? $_GET['category_id'] : ""; ?>">
 
@@ -67,7 +65,7 @@ if (isset($amount)) {
                 </option>
             </select>
 
-            <h4 class="FilterTopMargin">Sorteren op:</h4>
+            <h4 class="FilterTopMargin"><i class="fas fa-sort"></i> Sorteren</h4>
 
             <!-- select 2 -->
             <select name="sort" id="sort" onchange="this.form.submit()">>
@@ -114,21 +112,17 @@ if (isset($amount)) {
                         </a>
                     </div>
                     <div class="voorraad">
-                        <h6> <?php
-
-                                echo ($row["QuantityOnHand"] > $ShowStockLevel) ? "<span>Voorraad: </span>Ruime voorraad beschikbaar" : "<span>Voorraad:</span>" . $row["QuantityOnHand"];
-                                ?>
-                        </h6>
+                        <h6><span>Voorraad:</span> <?php print $row["voorraad"]; ?></h6>
                     </div>
                     <div>
                         <div class="item-right">
                             <?php
-                            if ($row['QuantityOnHand'] != 0) {
+                            if ($row['voorraad'] != 0) {
                             ?>
                                 <div class="addcard">
                                     <h3>add to card</h3>
                                     <form method="POST" action="<?php echo base_url; ?>add-to-cart-browse/<?php echo $row["StockItemID"]; ?>">
-                                        <input type="hidden" value="<?php echo $row["CategoryID"]; ?>" name="category_id">
+                                        <input type="hidden" value="<?php echo $_GET["category_id"]; ?>" name="category_id">
                                         <input type="hidden" value="1" name="aantal">
                                         <input type="submit" value="">
                                     </form>

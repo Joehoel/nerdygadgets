@@ -24,15 +24,16 @@ body {
 	color: var(--white) !important;
 }
 select {
-  width: 100%;
-  padding: 5px 35px 5px 5px;
-  font-size: 16px;
-  border: 1px solid var(--grey);
-  height: 50px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background-color: var(--white);
+	width: 100%;
+	padding: 5px 35px 5px 5px;
+	font-size: 16px;
+	border: 1px solid var(--grey);
+	height: 50px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	/* background: url(../Img/mouse-hover-icon-22.jpg) 96% / 30px no-repeat; */
+	background-color: var(--white);
 }
 a {
 	text-decoration: none;
@@ -95,13 +96,13 @@ table tr td {
 
 /* header */
 #header {
-  position: fixed;
-  top: 0;
-  width: 100vw;
-  height: 90px;
-  z-index: 2;
-  border-bottom: 1px solid var(--blue);
-  background-color: var(--background);
+	position: fixed;
+	top: 0;
+	width: 100vw;
+	height: 90px;
+	z-index: 1;
+	border-bottom: 1px solid var(--blue);
+	background-color: var(--background);
 }
 #LogoA {
 	/* nerdygadgets logo container*/
@@ -216,31 +217,17 @@ ul#ul-class-price li {
 	position: sticky;
 }
 #FilterFrame {
-  /* product filter */
-  position: fixed;
-  width: 19%;
-  background-color: var(--background);
-  float: left;
-  /* top: 216px; */
-  margin-left: 5px;
-  margin-top: 10px;
-  padding: 20px;
-  height: 88%;
-  border-right: 2px solid var(--blue) ;
+	/* product filter */
+	position: fixed;
+	width: 19%;
+	background-color: var(--background);
+	float: left;
+	top: 216px;
+	border: 1px solid var(--white);
+	margin-left: 5px;
+	margin-top: 10px;
+	padding: 20px;
 }
-
-#FilterOptions > h4 {
-  margin-top: 30px;
-}
-#FilterOptions > input {
-  border-radius: 0;
-}
-#FilterOptions > select {
-  height: 40px;
-  padding: 0 10px;
-
-}
-
 
 #ProductFrame {
 	/* container for every single product */
@@ -836,45 +823,12 @@ input {
 	margin-right: 1rem;
 }
 
+.pop-up {
+	background-color: #399c39a6;
+	padding: 10px;
+	padding-left: 15%;
+}
 
-.pop-up{
-  display: none;
-  position: fixed;
-  z-index: 1;
-  width: 100%;
-  background-color: #399c39;
-  padding: 10px;
-  padding-left: 15%;
-}
-.pop-up-show {
-  display: block;
-  animation: slide-in 0.7s ease-in-out;
-}
-.pop-up-hidden {
-  display: block;
-  animation: slide-out 0.7s ease-out;
-}
-@keyframes slide-in {
-  0%{
-    top: 0;
-    opacity: 0; 
-  } 99% {
-  }
-  100% {
-    top: 90px;
-    opacity: 1;
-    display: none;
-  }
-}
-@keyframes slide-out {
-  0%{
-    top: 90px;
-    opacity: 1; 
-  } 100% {
-    top: 0px;
-    opacity: 0;
-  }
-}
 .browse {
 	margin-left: 21%;
 }

@@ -4,19 +4,18 @@ include __DIR__ . "/connect.php";
 include __DIR__ . "/header.php";
 
 if (isset($_GET['update']) && $_GET['update'] === "true") {
-    echo '<script> popup("De winkelwagen is geüpdate") </script>';
+    echo '<div class="pop-up">De winkelwagen is geüpdate</div>';
 }
 
 $prices = $cartClass->GetTotalCartPrice()
 
 ?>
-
-<div class="pop-up" id="pop-up"></div>
-<div class="list">
-    <?php
-    if (count($cart) == 0) {
-        echo "<div class='empty'>
-            <h4>De winkelwagen is leeg, klik <a class='empty-cart-link' href='" . base_url . "categories'>hier</a> om iets aan de winkelwagen toetevoegen</h4>
+<div class="cart">
+    <div class="list">
+        <?php
+        if (count($cart) == 0) {
+            echo "<div class='empty'>
+        <h4>De winkelwagen is leeg, klik <a class='empty-cart-link' href='" . base_url . "categories'>hier</a> om iets aan de winkelwagen toetevoegen</h4>
         </div>";
         }
         foreach ($cart as $key => $value) {
@@ -61,7 +60,6 @@ $prices = $cartClass->GetTotalCartPrice()
             </div>
         <?php } ?>
 
-
     </div>
     <?php if (count($cart) > 0) { ?>
         <div class="total">
@@ -78,7 +76,8 @@ $prices = $cartClass->GetTotalCartPrice()
             <div class="item">
                 <h3>Totaal:</h3><span><?php echo $prices['total']; ?></span>
             </div>
-            <a class="to-checkout" href="<?php echo base_url ?>checkout">Verder naar checkout</a>   
+            <a class="to-checkout" href="<?php echo base_url ?>checkout">Verder naar checkout</a>
+        </div>
     <?php } ?>
 </div>
 
