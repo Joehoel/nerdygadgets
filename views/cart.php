@@ -4,10 +4,11 @@ include __DIR__ . "/connect.php";
 include __DIR__ . "/header.php";
 
 if (isset($_GET['update']) && $_GET['update'] === "true") {
-    echo '<div class="pop-up">De winkelwagen is geüpdate</div>';
+    echo '<script> popup("De winkelwagen is geüpdate") </script>';
 }
 
 ?>
+<div class="pop-up" id="pop-up"></div>
 <div class="list">
     <?php
     if (count($cart) == 0) {
@@ -60,10 +61,10 @@ if (isset($_GET['update']) && $_GET['update'] === "true") {
         </div>
     <?php } ?>
 
-    <?php if(count($cart) > 0) { ?>
-    <div class="next">
-        <a class="to-payments" href="<?php echo base_url ?>checkout">Verder naar checkout</a>
-    </div>
+    <?php if (count($cart) > 0) { ?>
+        <div class="next">
+            <a class="to-payments" href="<?php echo base_url ?>checkout">Verder naar checkout</a>
+        </div>
     <?php } ?>
 </div>
 

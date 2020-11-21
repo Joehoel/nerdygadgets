@@ -31,11 +31,13 @@ if (isset($amount)) {
     $AmountOfPages = ceil($amount / $ProductsOnPage);
 }
 
-if (isset($_GET['aantal'])) {
-    $meer = ($_GET['aantal'] == 1) ? 'is ' . $_GET['aantal'] . ' artikel' : 'zijn ' . $_GET['aantal'] . ' artiekelen';
-    echo '<div class="pop-up">Er ' . $meer . ' toegevoegd aan de winkelwagen</div>';
-}
+
 ?>
+<div class="pop-up" id="pop-up"></div>
+<?php if (isset($_GET['aantal'])) {
+    $meer = ($_GET['aantal'] == 1) ? 'is ' . $_GET['aantal'] . ' artikel' : 'zijn ' . $_GET['aantal'] . ' artiekelen';
+    echo '<script> popup("Er is een product toegevoegd aan je winkelwagen"); </script>';
+} ?>
 <div id="FilterFrame">
     <h2 class="FilterText">Filteren </h2>
     <form>
@@ -112,17 +114,21 @@ if (isset($_GET['aantal'])) {
                         </a>
                     </div>
                     <div class="voorraad">
-                        <h6><span>Voorraad:</span> <?php print $row["voorraad"]; ?></h6>
+                        <h6> <?php
+
+                                echo ($row["QuantityOnHand"] > $ShowStockLevel) ? "<span>Voorraad: </span>Ruime voorraad beschikbaar" : "<span>Voorraad:</span>" . $row["QuantityOnHand"];
+                                ?>
+                        </h6>
                     </div>
                     <div>
                         <div class="item-right">
                             <?php
-                            if ($row['voorraad'] != 0) {
+                            if ($row['QuantityOnHand'] != 0) {
                             ?>
                                 <div class="addcard">
                                     <h3>add to card</h3>
                                     <form method="POST" action="<?php echo base_url; ?>add-to-cart-browse/<?php echo $row["StockItemID"]; ?>">
-                                        <input type="hidden" value="<?php echo $_GET["category_id"]; ?>" name="category_id">
+                                        <input type="hidden" value="<?php echo $row["CategoryID"]; ?>" name="category_id">
                                         <input type="hidden" value="1" name="aantal">
                                         <input type="submit" value="">
                                     </form>
