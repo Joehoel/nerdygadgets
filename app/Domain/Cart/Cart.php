@@ -139,7 +139,7 @@ class Cart
         $prices = [
             'articleTotal' => $articleTotal,
             'discount' => 0.00, // Verander zodat het berekent wordt
-            'shipping' => 5.00, // Verander zodat het berekent wordt
+            'shipping' => 6.95, // Verander zodat het berekent wordt
         ];
 
         $total = 0;
