@@ -139,10 +139,14 @@ class Cart
         $prices = [
             'articleTotal' => $articleTotal,
             'discount' => 0.00, // Verander zodat het berekent wordt
-            'shipping' => 2.00, // Verander zodat het berekent wordt
+            'shipping' => 5.00, // Verander zodat het berekent wordt
         ];
 
         $total = 0;
+
+        if ($articleTotal > 80.00) {
+            $prices['shipping'] = 0.00;
+        }
 
         foreach ($prices as $key => $value) {
             $total += $value;
