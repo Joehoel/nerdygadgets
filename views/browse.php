@@ -24,7 +24,7 @@ if (isset($_GET['page_number'])) {
 $AmountOfPages = 0;
 $Offset = $PageNumber * $ProductsOnPage;
 $ShowStockLevel = 1000;
-$ReturnableResult = $products;
+$ReturnableResult = $sortproducts;
 $amount = $_SESSION["results"];
 
 if (isset($amount)) {
@@ -37,15 +37,15 @@ if (isset($_GET['aantal'])) {
 }
 ?>
 <div id="FilterFrame">
-    <h2 class="FilterText">Filteren </h2>
+    <h2 class="FilterText"><i class="fas fa-filter"></i> Filteren </h2>
     <form>
         <div id="FilterOptions">
 
-            <h4 class="FilterTopMargin">Zoeken:</h4>
+            <h4 class="FilterTopMargin"><i class="fas fa-search"></i> Zoeken</h4>
 
-            <input type="text" name="search_string" id="search_string" placeholder="..." value="<?php print (isset($_GET['search_string'])) ? $_GET['search_string'] : ""; ?>" class="form-submit" autofocus>
+            <input type="text" name="search_string" id="search_string" value="<?php print (isset($_GET['search_string'])) ? $_GET['search_string'] : ""; ?>" class="form-submit" autofocus>
 
-            <h4 class="FilterTopMargin">Aantal resultaten:</h4>
+            <h4 class="FilterTopMargin"><i class="fas fa-list-ol"></i>Aantal producten op pagina</h4>
 
             <input type="hidden" name="category_id" id="category_id" value="<?php print (isset($_GET['category_id'])) ? $_GET['category_id'] : ""; ?>">
 
@@ -65,7 +65,7 @@ if (isset($_GET['aantal'])) {
                 </option>
             </select>
 
-            <h4 class="FilterTopMargin">Sorteren op:</h4>
+            <h4 class="FilterTopMargin"><i class="fas fa-sort"></i> Sorteren</h4>
 
             <!-- select 2 -->
             <select name="sort" id="sort" onchange="this.form.submit()">>

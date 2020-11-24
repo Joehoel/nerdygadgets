@@ -62,12 +62,11 @@ class Product
         return $ReturnableResult;
     }
 
-
     public function getProducts()
     {
-        // set the connection to the database
         $Connection = mysqli_connect("localhost", "root", "", "nerdygadgets", 3306);
         mysqli_set_charset($Connection, 'latin1');
+
 
         // set all the variables
         $CategoryID = $_GET['category_id'] ?? "";
@@ -75,8 +74,22 @@ class Product
         $searchValues = explode(" ", $SearchString);
         $ProductsOnPage = $_GET["products_on_page"] ?? 50;
         $PageNumber = $_GET["page_number"] ?? 0;
-        $Offset = $PageNumber * $ProductsOnPage;
+        $Offset = $PageNumber * $ProductsOnPage;   
         $queryBuildResult = "";
+        if ($SearchString != "") {
+            for ($i = 0; $i < count($searchValues); $i++) {
+                if ($i != 0) {
+                    $queryBuildResult .= "AND ";
+                }
+                $queryBuildResult .= "SI.SearchDetails LIKE '%$searchValues[$i]%' ";
+            }
+            if ($queryBuildResult != "") {
+                $queryBuildResult .= " OR ";
+            }
+            if ($SearchString != "" || $SearchString != null) {
+                $queryBuildResult .= "SI.StockItemID ='$SearchString'";
+            }
+        }
 
 
         if ($SearchString !== "") {
@@ -116,6 +129,7 @@ class Product
 
             $Statement = mysqli_prepare($Connection, $Query);
             mysqli_stmt_bind_param($Statement, "iii", $ShowStockLevel, $ProductsOnPage);
+
             mysqli_stmt_execute($Statement);
             $ReturnableResult = mysqli_stmt_get_result($Statement);
             $ReturnableResult = mysqli_fetch_all($ReturnableResult, MYSQLI_ASSOC);
@@ -149,10 +163,10 @@ class Product
 
             $Statement = mysqli_prepare($Connection, $Query);
             mysqli_stmt_bind_param($Statement, "ii", $ShowStockLevel, $CategoryID);
+
             mysqli_stmt_execute($Statement);
             $ReturnableResult = mysqli_stmt_get_result($Statement);
             $ReturnableResult = mysqli_fetch_all($ReturnableResult, MYSQLI_ASSOC);
-
 
             $Query = "
                         SELECT count(*)
@@ -169,7 +183,6 @@ class Product
         foreach ($ReturnableResult as $key => $StockName) {
             $ReturnableResult[$key]["StockItemName"] = str_replace('"', "", $StockName["StockItemName"]);
         }
-
         $SortedArray = $this->SortProducts($ReturnableResult);
 
         $ReturnThisArray = [];
