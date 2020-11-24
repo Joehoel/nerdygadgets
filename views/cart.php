@@ -7,24 +7,9 @@ if (isset($_GET['update']) && $_GET['update'] === "true") {
     echo '<div class="pop-up">De winkelwagen is geüpdate</div>';
 }
 
-<<<<<<< HEAD
-$prices = $cartClass->GetTotalCartPrice()
-=======
-?>
-<div class="list">
-    <?php
-    if (count($cart) == 0) {
-        echo "<div class='empty'>
-            <h4>De winkelwagen is leeg, klik <a class='empty-cart-link' href='" . base_url . "categories'>hier</a> om iets aan de winkelwagen toetevoegen</h4>
-        </div>";
-    }
-    foreach ($cart as $key => $value) {
-        $productData = $cartClass->GetProductData($key);
-    ?>
->>>>>>> parent of 5474821... Error verholpen
+$prices = $cartClass->GetTotalCartPrice();
 
 ?>
-
 <div class="cart">
     <?php if (count($cart) == 0) {
         echo "<div class='empty'>
@@ -75,8 +60,8 @@ $prices = $cartClass->GetTotalCartPrice()
                 </div>
             <?php } ?>
         <?php } ?>
+
         </div>
-<<<<<<< HEAD
         <?php if (count($cart) > 0) { ?>
             <div class="total">
                 <div class="item">
@@ -95,15 +80,6 @@ $prices = $cartClass->GetTotalCartPrice()
                 <a class="to-checkout" href="<?php echo base_url ?>checkout">Verder naar checkout</a>
             </div>
         <?php } ?>
-=======
-    <?php } ?>
-
-    <?php if(count($cart) > 0) { ?>
-    <div class="next">
-        <a class="to-payments" href="<?php echo base_url ?>checkout">Verder naar checkout</a>
-    </div>
-    <?php } ?>
->>>>>>> parent of 5474821... Error verholpen
 </div>
 
 <?php

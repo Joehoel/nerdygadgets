@@ -100,7 +100,7 @@ table tr td {
   top: 0;
   width: 100vw;
   height: 90px;
-  z-index: 1;
+  z-index: 2;
   border-bottom: 1px solid var(--blue);
   background-color: var(--background);
 }
@@ -834,13 +834,43 @@ input {
   font-weight: 500;
   margin-right: 1rem;
 }
-.pop-up {
-  background-color: #399c39a6;
+.pop-up{
+  display: none;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  background-color: #399c39;
   padding: 10px;
   padding-left: 15%;
-  font-size: 1.2rem;
-  font-weight: 500;
-  margin-right: 1rem;
+}
+.pop-up-show {
+  display: block;
+  animation: slide-in 0.7s ease-in-out;
+}
+.pop-up-hidden {
+  display: block;
+  animation: slide-out 0.7s ease-out;
+}
+@keyframes slide-in {
+  0%{
+    top: 0;
+    opacity: 0; 
+  } 99% {
+  }
+  100% {
+    top: 90px;
+    opacity: 1;
+    display: none;
+  }
+}
+@keyframes slide-out {
+  0%{
+    top: 90px;
+    opacity: 1; 
+  } 100% {
+    top: 0px;
+    opacity: 0;
+  }
 }
 
 .browse {
