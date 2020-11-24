@@ -145,74 +145,80 @@ if (isset($_GET['aantal'])) {
                 </div>
             </div>
         </div>
-
-        <div id="StockItemDescription">
-            <h3>Artikel beschrijving</h3>
-            <p><?php print $Result['SearchDetails']; ?></p>
-        </div>
-        <div id="StockItemSpecifications">
-            <h3>Artikel specificaties</h3>
-            <?php
-            $CustomFields = json_decode($Result['CustomFields'], true);
-            if (is_array($CustomFields)) { ?>
-                <table>
-                    <thead>
-                        <th>Naam</th>
-                        <th>Data</th>
-                    </thead>
-                    <?php
-                    foreach ($CustomFields as $SpecName => $SpecText) { ?>
-                        <tr>
-                            <td>
-                                <?php print $SpecName; ?>
-                            </td>
-                            <td>
-                                <?php
-                                if (is_array($SpecText)) {
-                                    foreach ($SpecText as $SubText) {
-                                        print $SubText . " ";
+        <div class="item-information">
+            <div id="StockItemDescription">
+                <h3>Artikel beschrijving</h3>
+                <p><?php print $Result['SearchDetails']; ?></p>
+            </div>
+            <div id="StockItemSpecifications">
+                <h3>Artikel specificaties</h3>
+                <?php
+                $CustomFields = json_decode($Result['CustomFields'], true);
+                if (is_array($CustomFields)) { ?>
+                    <table>
+                        <thead>
+                            <th>Naam</th>
+                            <th>Data</th>
+                        </thead>
+                        <?php
+                        foreach ($CustomFields as $SpecName => $SpecText) { ?>
+                            <tr>
+                                <td>
+                                    <?php print $SpecName; ?>
+                                </td>
+                                <td>
+                                    <?php
+                                    if (is_array($SpecText)) {
+                                        foreach ($SpecText as $SubText) {
+                                            print $SubText . " ";
+                                        }
+                                    } else {
+                                        print $SpecText;
                                     }
-                                } else {
-                                    print $SpecText;
-                                }
-                                ?>
-                            </td>
-                        </tr>
-                    <?php } ?>
-                </table><?php
-                    } else { ?>
+                                    ?>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </table><?php
+                        } else { ?>
 
-                <p><?php print $Result['CustomFields']; ?>.</p>
-            <?php
-                    }
-            ?>
+                    <p><?php print $Result['CustomFields']; ?>.</p>
+                <?php
+                        }
+                ?>
+            </div>
         </div>
 
     <?php } else { ?>
         <h2 id="ProductNotFound">Het opgevraagde product is niet gevonden.</h2>
     <?php } ?>
-</div>
-<div class="reviews">
-    <?php
+    <div class="reviews">
+        <?php
 
-    $db = new DatabaseInstance();
-    $conn = $db->create();
+        $db = new DatabaseInstance();
+        $conn = $db->create();
 
-    $stmt = $conn->prepare("SELECT * FROM Reviews WHERE ProductID = :id");
+        $stmt = $conn->prepare("SELECT R.Text, R.Rating, U.FirstName, U.LastName
+                                FROM Reviews AS R
+                                JOIN Users AS U ON U.UserID = R.UserID
+                                WHERE R.ProductID = :id");
 
-    $id = 1;
-    $stmt->bindParam(':id', $id);
-    $stmt->execute();
+        $id = $_GET['id'];
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
 
-    $review = $stmt->fetch();
-    // print_r($review);
+        $reviews = $stmt->fetchAll();
+        // print_r($review);
 
-    ?>
-    <div class="review">
-        <img src="" alt="" class="user_image">
-        <h3 class="username"><?php echo $review['UserID'] ?></h3>
-        <!-- <span class="date"><?php echo $review['Text'] ?></span> -->
-        <span class="rating"><?php echo $review['Rating'] ?></span>
-        <p class="text"><?php echo $review['Text'] ?></p>
+        foreach ($reviews as $review) {
+        ?>
+            <div class="review">
+                <img src="" alt="" class="user_image">
+                <h3 class="username"><?php echo $review['FirstName'] ?></h3>
+                <!-- <span class="date"><?php echo $review['Text'] ?></span> -->
+                <span class="rating"><?php echo $review['Rating'] ?></span>
+                <span class="text"><?php echo $review['Text'] ?></span>
+            </div>
+        <?php } ?>
     </div>
 </div>

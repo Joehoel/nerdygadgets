@@ -345,6 +345,8 @@ ul#ul-class-price li {
 	margin: 0 auto;
 	width: 70%;
 	padding-top: 10px;
+	display: flex;
+	flex-direction: column;
 }
 #ArticleHeader {
 	/* container for the header of the product */
@@ -921,15 +923,19 @@ hr {
 
 /* Review */
 .reviews {
+	margin-top: 2rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	width: 50%;
 }
 
 .review {
+	padding: 1rem;
 	background: white;
 	color: #000000;
-	height: 100px;
-	width: 100px;
 	display: flex;
+	flex-direction: column;
+	border-radius: 0.25rem;
+	margin-bottom: 1rem;
 }
