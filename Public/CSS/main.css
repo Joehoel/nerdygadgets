@@ -711,7 +711,6 @@ input {
   /* background-color: orange; */
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
 }
 
 .list::-webkit-scrollbar {
