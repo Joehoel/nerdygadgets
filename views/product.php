@@ -57,7 +57,37 @@ if (isset($_GET['aantal'])) {
 
 // Get reviews
 $reviewsHandler = new Reviews();
-$reviews = $reviewsHandler->getReviews($_GET['id'])
+// $reviews = $reviewsHandler->getReviews($_GET['id'], "Rating", true);
+$reviews = array();
+
+if (isset($_GET['review-sort'])) {
+    $_SESSION['review-sort'] = $_GET['review-sort'];
+} else if(!isset($_GET['review-sort'])){
+    $_SESSION['review-sort'] = 'stars-desc';
+}
+
+switch ($_SESSION['review-sort']) {
+    case 'stars-asc':
+        $reviews = $reviewsHandler->getReviews($_GET['id'], "Rating", true);
+    break;
+    case 'stars-desc':
+        $reviews = $reviewsHandler->getReviews($_GET['id'], "Rating", false);
+    break;
+    case 'name-asc':
+        $reviews = $reviewsHandler->getReviews($_GET['id'], "U.FirstName", true);
+    break;
+    case 'name-desc':
+        $reviews = $reviewsHandler->getReviews($_GET['id'], "U.FirstName", false);
+    break;
+    case 'date':
+        $reviews = $reviewsHandler->getReviews($_GET['id'], "R.created_at", true);
+    break;
+
+    default:
+        // $reviews = $reviewsHandler->getReviews($_GET['id'], "Rating", true);
+break;
+}
+// print_r($reviews);
 ?>
 <div id="CenteredContent">
 
@@ -198,7 +228,37 @@ $reviews = $reviewsHandler->getReviews($_GET['id'])
         <h2 id="ProductNotFound">Het opgevraagde product is niet gevonden.</h2>
     <?php } ?>
     <div class="reviews">
-        <h1>Reviews</h1>
+        <div class="reviews-sort">
+            <h3>Filteren</h3>
+            <form method="get">
+                <select name="review-sort" onchange="this.form.submit()">
+                    <option <?php if ($_SESSION['review-sort'] == "name-asc") {
+                                print "selected";
+                            } ?> value="name-asc">Naam oplopend</option>
+                    <option <?php if ($_SESSION['review-sort'] == "name-desc") {
+                                print "selected";
+                            } ?> value="name-desc">Naam aflopend</option>
+                    <option <?php if ($_SESSION['review-sort'] == "stars-asc") {
+                                print "selected";
+                            } ?> value="stars-asc">Minste sterren</option>
+                    <option <?php if ($_SESSION['review-sort'] == "stars-desc") {
+                                print "selected";
+                            } ?> value="stars-desc">Meeste sterren</option>
+                    <option <?php if ($_SESSION['review-sort'] == "date") {
+                                print "selected";
+                            } ?> value="date">Nieuwste</option>
+                </select>
+                <!-- <input type="submit" value="Submit"> -->
+            </form>
+        </div>
+
+        <div class="reviews-header">
+            <h1>Reviews</h1>
+            <span class="reviews-count">Aantal reviews: <?php if($reviews) echo count($reviews); else echo "0" ?></span>
+        </div>
+        <?php if (count($reviews) === 0) { ?>
+            <h4>Er zijn nog geen reviews voor dit product...</h4>
+        <?php } ?>
         <?php foreach ($reviews as $review) { ?>
             <div class="review">
                 <div class="review-header">

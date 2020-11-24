@@ -930,9 +930,19 @@ hr {
 	width: 50%;
 }
 
-.reviews h1 {
+.reviews .reviews-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.reviews .reviews-header h1 {
 	margin: 0;
 	margin-bottom: 1rem;
+}
+
+.reviews-sort {
+	margin-bottom: 2rem;
 }
 
 .review {
