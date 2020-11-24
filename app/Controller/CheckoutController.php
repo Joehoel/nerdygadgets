@@ -10,15 +10,23 @@ class CheckoutController
     {
 
         $stockItemID = array();
+        $ids = "";
 
-        foreach($_SESSION['Cart'] as $key => $value) {
-                $stockItemID[] = $key;
+
+        foreach ($_SESSION['Cart'] as $key => $value) {
+            $stockItemID[] = $key;
+            $ids .= $key . ',';
         }
 
+        $ids = substr($ids, 0, -1);
+
         $in  = str_repeat('?,', count($stockItemID) - 1) . '?';
-        $sql = "SELECT StockItemID, StockItemName, UnitPrice
-                FROM stockitems
-                WHERE StockItemID IN ($in)";
+
+        $sql = "SELECT SI.StockItemID, 
+                ROUND(SI.TaxRate * SI.RecommendedRetailPrice / 100 + SI.RecommendedRetailPrice,2) as SellPrice,
+                SI.StockItemName       
+                FROM stockitems SI 
+                where StockItemID IN ($ids);";
         $db = new DatabaseInstance();
         $stm = $db->create()->prepare($sql);
         $stm->execute($stockItemID);

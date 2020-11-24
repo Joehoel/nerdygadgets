@@ -55,6 +55,6 @@ class CartController
     {
         $cart = new Cart();
         $cart->RemoveFromCart($id);
-        return header('Location: ' . base_url . 'cart');
+        return header('Location: ' . base_url . 'cart?update=true');
     }
 }
