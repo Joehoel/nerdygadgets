@@ -63,6 +63,10 @@ class Product
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 5474821... Error verholpen
 =======
 
 >>>>>>> parent of 5474821... Error verholpen
@@ -80,6 +84,7 @@ class Product
         $Offset = $PageNumber * $ProductsOnPage;
         $queryBuildResult = "";
 
+<<<<<<< HEAD
 
 <<<<<<< HEAD
         // set all the variables
@@ -107,6 +112,9 @@ class Product
 
 
 =======
+>>>>>>> parent of 5474821... Error verholpen
+=======
+
 >>>>>>> parent of 5474821... Error verholpen
         if ($SearchString !== "") {
             if (strpos("\\", $SearchString) === FALSE) {
@@ -146,7 +154,10 @@ class Product
             $Statement = mysqli_prepare($Connection, $Query);
             mysqli_stmt_bind_param($Statement, "iii", $ShowStockLevel, $ProductsOnPage);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 5474821... Error verholpen
 =======
 >>>>>>> parent of 5474821... Error verholpen
             mysqli_stmt_execute($Statement);
@@ -183,7 +194,10 @@ class Product
             $Statement = mysqli_prepare($Connection, $Query);
             mysqli_stmt_bind_param($Statement, "ii", $ShowStockLevel, $CategoryID);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 5474821... Error verholpen
 =======
 >>>>>>> parent of 5474821... Error verholpen
             mysqli_stmt_execute($Statement);
@@ -206,6 +220,10 @@ class Product
             $ReturnableResult[$key]["StockItemName"] = str_replace('"', "", $StockName["StockItemName"]);
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 5474821... Error verholpen
 =======
 
 >>>>>>> parent of 5474821... Error verholpen
