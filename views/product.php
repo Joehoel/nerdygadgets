@@ -66,6 +66,7 @@ if (isset($_GET['review-sort'])) {
     $_SESSION['review-sort'] = 'stars-desc';
 }
 
+// TODO: Fix zodat bijv 3.5 ook werkt
 $avg = ceil($reviewsHandler->getRating($_GET['id']));
 
 switch ($_SESSION['review-sort']) {
