@@ -10,6 +10,7 @@ if (isset($_GET['update']) && $_GET['update'] === "true") {
 $prices = $cartClass->GetTotalCartPrice()
 
 ?>
+
 <div class="cart">
     <?php if (count($cart) == 0) {
         echo "<div class='empty'>
@@ -60,7 +61,6 @@ $prices = $cartClass->GetTotalCartPrice()
                 </div>
             <?php } ?>
         <?php } ?>
-
         </div>
         <?php if (count($cart) > 0) { ?>
             <div class="total">

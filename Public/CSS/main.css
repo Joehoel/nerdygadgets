@@ -818,17 +818,19 @@ input {
 }
 
 .update-count label {
+
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-right: 1rem;
+}
+.pop-up{
+  background-color: #399c39a6;
+  padding: 10px;
+  padding-left: 15%;
 	font-size: 1.2rem;
 	font-weight: 500;
 	margin-right: 1rem;
 }
-
-.pop-up {
-	background-color: #399c39a6;
-	padding: 10px;
-	padding-left: 15%;
-}
-
 .browse {
 	margin-left: 21%;
 }
