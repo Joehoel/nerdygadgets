@@ -1,6 +1,5 @@
 CREATE TABLE IF NOT EXISTS Users (
 	UserID int NOT NULL,
-    Username varchar(45) NOT NULL,
     Email varchar(45) NOT NULL,
     Password varchar(45) NOT NULL, # Hashed
     PhoneNumber int NOT NULL,
@@ -10,3 +9,4 @@ CREATE TABLE IF NOT EXISTS Users (
     Company varchar(45),
     PRIMARY KEY (UserID)
 );
+
