@@ -1,6 +1,7 @@
 <?php
 
 use App\Domain\Database\DatabaseInstance;
+use App\Domain\Reviews\Reviews;
 
 include __DIR__ . '/connect.php';
 include __DIR__ . '/header.php';
@@ -53,6 +54,10 @@ if (isset($_GET['aantal'])) {
     $meer = ($_GET['aantal'] == 1) ? 'is ' . $_GET['aantal'] . ' artikel' : 'zijn ' . $_GET['aantal'] . ' artiekelen';
     echo '<div class="pop-up">Er ' . $meer . ' toegevoegd aan de winkelwagen</div>';
 }
+
+// Get reviews
+$reviewsHandler = new Reviews();
+$reviews = $reviewsHandler->getReviews($_GET['id'])
 ?>
 <div id="CenteredContent">
 
@@ -193,25 +198,7 @@ if (isset($_GET['aantal'])) {
         <h2 id="ProductNotFound">Het opgevraagde product is niet gevonden.</h2>
     <?php } ?>
     <div class="reviews">
-        <?php
-
-        $db = new DatabaseInstance();
-        $conn = $db->create();
-
-        $stmt = $conn->prepare("SELECT R.Text, R.Rating, U.FirstName, U.LastName
-                                FROM Reviews AS R
-                                JOIN Users AS U ON U.UserID = R.UserID
-                                WHERE R.ProductID = :id");
-
-        $id = $_GET['id'];
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
-
-        $reviews = $stmt->fetchAll();
-        // print_r($review);
-
-        foreach ($reviews as $review) {
-        ?>
+        <?php foreach ($reviews as $review) { ?>
             <div class="review">
                 <img src="" alt="" class="user_image">
                 <h3 class="username"><?php echo $review['FirstName'] ?></h3>
