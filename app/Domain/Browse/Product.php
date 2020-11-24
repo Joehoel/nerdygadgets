@@ -63,19 +63,13 @@ class Product
     }
 
 <<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> parent of 5474821... Error verholpen
-=======
-
->>>>>>> parent of 5474821... Error verholpen
     public function getProducts()
     {
         $Connection = mysqli_connect("localhost", "root", "", "nerdygadgets", 3306);
         mysqli_set_charset($Connection, 'latin1');
 
         // set all the variables
+
         $CategoryID = $_GET['category_id'] ?? "";
         $SearchString = $_GET['search_string'] ?? "";
         $searchValues = explode(" ", $SearchString);
@@ -84,16 +78,13 @@ class Product
         $Offset = $PageNumber * $ProductsOnPage;
         $queryBuildResult = "";
 
-<<<<<<< HEAD
-
-<<<<<<< HEAD
         // set all the variables
         $CategoryID = $_GET['category_id'] ?? "";
         $SearchString = $_GET['search_string'] ?? "";
         $searchValues = explode(" ", $SearchString);
         $ProductsOnPage = $_GET["products_on_page"] ?? 50;
         $PageNumber = $_GET["page_number"] ?? 0;
-        $Offset = $PageNumber * $ProductsOnPage;   
+        $Offset = $PageNumber * $ProductsOnPage;
         $queryBuildResult = "";
         if ($SearchString != "") {
             for ($i = 0; $i < count($searchValues); $i++) {
@@ -110,12 +101,6 @@ class Product
             }
         }
 
-
-=======
->>>>>>> parent of 5474821... Error verholpen
-=======
-
->>>>>>> parent of 5474821... Error verholpen
         if ($SearchString !== "") {
             if (strpos("\\", $SearchString) === FALSE) {
                 for ($i = 0; $i < count($searchValues); $i++) {
@@ -153,13 +138,8 @@ class Product
 
             $Statement = mysqli_prepare($Connection, $Query);
             mysqli_stmt_bind_param($Statement, "iii", $ShowStockLevel, $ProductsOnPage);
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> parent of 5474821... Error verholpen
-=======
->>>>>>> parent of 5474821... Error verholpen
+
             mysqli_stmt_execute($Statement);
             $ReturnableResult = mysqli_stmt_get_result($Statement);
             $ReturnableResult = mysqli_fetch_all($ReturnableResult, MYSQLI_ASSOC);
@@ -193,13 +173,7 @@ class Product
 
             $Statement = mysqli_prepare($Connection, $Query);
             mysqli_stmt_bind_param($Statement, "ii", $ShowStockLevel, $CategoryID);
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> parent of 5474821... Error verholpen
-=======
->>>>>>> parent of 5474821... Error verholpen
             mysqli_stmt_execute($Statement);
             $ReturnableResult = mysqli_stmt_get_result($Statement);
             $ReturnableResult = mysqli_fetch_all($ReturnableResult, MYSQLI_ASSOC);
@@ -219,14 +193,7 @@ class Product
         foreach ($ReturnableResult as $key => $StockName) {
             $ReturnableResult[$key]["StockItemName"] = str_replace('"', "", $StockName["StockItemName"]);
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> parent of 5474821... Error verholpen
-=======
-
->>>>>>> parent of 5474821... Error verholpen
         $SortedArray = $this->SortProducts($ReturnableResult);
 
         $ReturnThisArray = [];
