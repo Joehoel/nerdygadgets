@@ -80,7 +80,7 @@ switch ($_SESSION['review-sort']) {
         $reviews = $reviewsHandler->getReviews($_GET['id'], "U.FirstName", false);
     break;
     case 'date':
-        $reviews = $reviewsHandler->getReviews($_GET['id'], "R.created_at", true);
+        $reviews = $reviewsHandler->getReviews($_GET['id'], "R.created_at", false);
     break;
 
     default:
@@ -228,10 +228,11 @@ break;
         <h2 id="ProductNotFound">Het opgevraagde product is niet gevonden.</h2>
     <?php } ?>
     <div class="reviews">
+           <?php if (count($reviews) !== 0) { ?>
         <div class="reviews-sort">
             <h3>Filteren</h3>
             <form method="get">
-                <select name="review-sort" onchange="this.form.submit()">
+                <select name="review-sort" class="review-sort" onchange="this.form.submit()">
                     <option <?php if ($_SESSION['review-sort'] == "name-asc") {
                                 print "selected";
                             } ?> value="name-asc">Naam oplopend</option>
@@ -251,6 +252,7 @@ break;
                 <!-- <input type="submit" value="Submit"> -->
             </form>
         </div>
+        <?php } ?>
 
         <div class="reviews-header">
             <h1>Reviews</h1>
