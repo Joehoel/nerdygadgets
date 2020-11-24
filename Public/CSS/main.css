@@ -930,6 +930,11 @@ hr {
 	width: 50%;
 }
 
+.reviews h1 {
+	margin: 0;
+	margin-bottom: 1rem;
+}
+
 .review {
 	padding: 1rem;
 	background: var(--white);

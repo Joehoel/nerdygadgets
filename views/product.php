@@ -198,6 +198,7 @@ $reviews = $reviewsHandler->getReviews($_GET['id'])
         <h2 id="ProductNotFound">Het opgevraagde product is niet gevonden.</h2>
     <?php } ?>
     <div class="reviews">
+        <h1>Reviews</h1>
         <?php foreach ($reviews as $review) { ?>
             <div class="review">
                 <div class="review-header">
