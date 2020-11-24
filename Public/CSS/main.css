@@ -932,10 +932,23 @@ hr {
 
 .review {
 	padding: 1rem;
-	background: white;
-	color: #000000;
+	background: var(--white);
+	color: var(--black);
 	display: flex;
 	flex-direction: column;
 	border-radius: 0.25rem;
 	margin-bottom: 1rem;
+}
+
+.review-header {
+	display: flex;
+}
+
+.review .rating {
+	margin-left: auto;
+}
+
+.review .rating img {
+	width: 2rem;
+	height: auto;
 }

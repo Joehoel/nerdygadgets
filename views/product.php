@@ -200,11 +200,22 @@ $reviews = $reviewsHandler->getReviews($_GET['id'])
     <div class="reviews">
         <?php foreach ($reviews as $review) { ?>
             <div class="review">
-                <img src="" alt="" class="user_image">
-                <h3 class="username"><?php echo $review['FirstName'] ?></h3>
-                <!-- <span class="date"><?php echo $review['Text'] ?></span> -->
-                <span class="rating"><?php echo $review['Rating'] ?></span>
-                <span class="text"><?php echo $review['Text'] ?></span>
+                <div class="review-header">
+                    <img src="" alt="" class="user_image">
+                    <h3 class="username"><?php echo $review['FirstName'] ?></h3>
+                    <!-- <span class="date"><?php echo $review['Text'] ?></span> -->
+                    <span class="rating">
+                        <?php for ($i = 0; $i < $review['Rating']; $i++) { ?>
+                            <img src="<?php echo base_url ?>Public/Img/star_full.svg" alt="star">
+                        <?php } ?>
+                        <?php for ($i = 5; $i > $review['Rating']; $i--) { ?>
+                            <img src="<?php echo base_url ?>Public/Img/star_empty.svg" alt="star">
+                        <?php } ?>
+                    </span>
+                </div>
+                <div class="review-body">
+                    <span class="text"><?php echo $review['Text'] ?></span>
+                </div>
             </div>
         <?php } ?>
     </div>
