@@ -12,8 +12,7 @@ class BrowseController
         $products = $product->GetProducts();
         $sortproducts = $product->SortProducts($products);
         echo view('browse', [
-            "products" => $products,
-            "sortproducts" => $sortproducts
+            "products" => $products
         ]);
     }
 }
