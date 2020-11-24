@@ -1,4 +1,7 @@
 <?php
+
+use App\Domain\Database\DatabaseInstance;
+
 include __DIR__ . '/connect.php';
 include __DIR__ . '/header.php';
 
@@ -184,7 +187,32 @@ if (isset($_GET['aantal'])) {
                     }
             ?>
         </div>
+
     <?php } else { ?>
         <h2 id="ProductNotFound">Het opgevraagde product is niet gevonden.</h2>
     <?php } ?>
+</div>
+<div class="reviews">
+    <?php
+
+    $db = new DatabaseInstance();
+    $conn = $db->create();
+
+    $stmt = $conn->prepare("SELECT * FROM Reviews WHERE ProductID = :id");
+
+    $id = 1;
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+
+    $review = $stmt->fetch();
+    // print_r($review);
+
+    ?>
+    <div class="review">
+        <img src="" alt="" class="user_image">
+        <h3 class="username"><?php echo $review['UserID'] ?></h3>
+        <!-- <span class="date"><?php echo $review['Text'] ?></span> -->
+        <span class="rating"><?php echo $review['Rating'] ?></span>
+        <p class="text"><?php echo $review['Text'] ?></p>
+    </div>
 </div>

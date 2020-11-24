@@ -918,3 +918,18 @@ hr {
 	background: var(--white);
 	border: 1px solid var(--white);
 }
+
+/* Review */
+.reviews {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.review {
+	background: white;
+	color: #000000;
+	height: 100px;
+	width: 100px;
+	display: flex;
+}
