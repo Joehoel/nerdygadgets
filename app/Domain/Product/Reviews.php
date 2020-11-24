@@ -10,6 +10,8 @@ class Reviews
    * Returns an array of reviews from a specific product
    *
    * @param int $id
+   * @param string $order table column to order by
+   * @param string $order asc | desc
    * @return array $reviews
    */
   public function getReviews($id, $order, $dir)
@@ -32,5 +34,24 @@ class Reviews
 
     $reviews = $stmt->fetchAll();
     return $reviews;
+  }
+
+  /**
+   * Return average rating of a product
+   *
+   * @param int $id
+   * @return array $rating
+   */
+  public function getRating($id) {
+    $db = new DatabaseInstance();
+    $conn = $db->create();
+
+    $stmt = $conn->prepare("SELECT avg(Rating) as 'AvgRating' FROM Reviews WHERE ProductID = :id");
+    $stmt->bindParam(':id', $id);
+
+    $stmt->execute();
+
+    $rating = $stmt->fetch();
+    return $rating['AvgRating'];
   }
 }
