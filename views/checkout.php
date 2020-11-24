@@ -9,7 +9,7 @@ include __DIR__ . "/header.php";
  * @return int
  */
 
-function berekenSubtotaal($stockitem) 
+function berekenSubtotaal($stockitem)
 {
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
@@ -29,7 +29,7 @@ function berekenBtw($subTotaalprijs)
 
 function berekenVerzendkosten($subTotaalprijs)
 {
-    if ($subTotaalprijs < 5) {
+    if ($subTotaalprijs < 80) {
         return 6.95;
     } else {
         return 0;
@@ -51,7 +51,7 @@ function berekenTotaallijst($stockitem)
         echo('<td>'.$_SESSION['Cart'][$item['StockItemID']].'</td>');
         echo('<td>€'.number_format($totaalPerproduct,2,",",".").'</td>');
         echo('</tr>');
-    }    
+    }
 }
 ?>
 <div class="payments-container">
