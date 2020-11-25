@@ -1,6 +1,5 @@
 <?php
 
-use App\Domain\Database\DatabaseInstance;
 use App\Domain\Reviews\Reviews;
 
 include __DIR__ . '/connect.php';
@@ -57,8 +56,9 @@ if (isset($_GET['aantal'])) {
 
 // Get reviews
 $reviewsHandler = new Reviews();
-// $reviews = $reviewsHandler->getReviews($_GET['id'], "Rating", true);
 $reviews = array();
+$reviews = $reviewsHandler->getReviews($_GET['id'], "Rating", true);
+$ratings = array();
 
 if (isset($_GET['review-sort'])) {
     $_SESSION['review-sort'] = $_GET['review-sort'];
@@ -67,7 +67,8 @@ if (isset($_GET['review-sort'])) {
 }
 
 // TODO: Fix zodat bijv 3.5 ook werkt
-$avg = ceil($reviewsHandler->getRating($_GET['id']));
+$avg = ceil($reviewsHandler->getRating($_GET['id'])['AvgRating']);
+// $rating = $reviewsHandler->getRating($_GET['id'])['Rating'];
 
 switch ($_SESSION['review-sort']) {
     case 'stars-asc':
@@ -90,7 +91,15 @@ switch ($_SESSION['review-sort']) {
         // $reviews = $reviewsHandler->getReviews($_GET['id'], "Rating", true);
         break;
 }
-// print_r($reviews);
+foreach ($reviews as $review) {
+    array_push(
+        $ratings,
+        $review['Rating']
+    );
+}
+
+$starsCount = array_count_values($ratings);
+
 ?>
 <div id="CenteredContent">
 
@@ -241,27 +250,77 @@ switch ($_SESSION['review-sort']) {
     <div class="reviews">
         <?php if (count($reviews) !== 0) { ?>
             <div class="reviews-sort">
-                <h3>Filteren</h3>
-                <form method="get">
-                    <select name="review-sort" class="review-sort" onchange="this.form.submit()">
-                        <option <?php if ($_SESSION['review-sort'] == "name-asc") {
-                                    print "selected";
-                                } ?> value="name-asc">Naam oplopend</option>
-                        <option <?php if ($_SESSION['review-sort'] == "name-desc") {
-                                    print "selected";
-                                } ?> value="name-desc">Naam aflopend</option>
-                        <option <?php if ($_SESSION['review-sort'] == "stars-asc") {
-                                    print "selected";
-                                } ?> value="stars-asc">Minste sterren</option>
-                        <option <?php if ($_SESSION['review-sort'] == "stars-desc") {
-                                    print "selected";
-                                } ?> value="stars-desc">Meeste sterren</option>
-                        <option <?php if ($_SESSION['review-sort'] == "date") {
-                                    print "selected";
-                                } ?> value="date">Nieuwste</option>
-                    </select>
-                    <!-- <input type="submit" value="Submit"> -->
-                </form>
+                <div class="filter">
+                    <div class="filter-header">
+                        <h3>Filteren</h3>
+                        <span>Aantal reviews</span>
+                    </div>
+                    <span class="rating">
+                        <div class="filter-row">
+                            <span class="stars">
+                                <?php for ($i = 0; $i < 5; $i++) { ?>
+                                    <img src="<?php echo base_url ?>Public/Img/star_full.svg" alt="star">
+                                <?php } ?>
+                            </span><span class="starts-amount"><?php if (isset($starsCount[5])) echo $starsCount[5];
+                                                                else echo 0 ?></span>
+                        </div>
+                        <div class="filter-row">
+                            <span class="stars">
+                                <?php for ($i = 0; $i < 4; $i++) { ?>
+                                    <img src="<?php echo base_url ?>Public/Img/star_full.svg" alt="star">
+                                <?php } ?>
+                            </span><span class="starts-amount"><?php if (isset($starsCount[4])) echo $starsCount[4];
+                                                                else echo 0  ?></span>
+                        </div>
+                        <div class="filter-row">
+                            <span class="stars">
+                                <?php for ($i = 0; $i < 3; $i++) { ?>
+                                    <img src="<?php echo base_url ?>Public/Img/star_full.svg" alt="star">
+                                <?php } ?>
+                            </span><span class="starts-amount"><?php if (isset($starsCount[3])) echo $starsCount[3];
+                                                                else echo 0 ?></span>
+                        </div>
+                        <div class="filter-row">
+                            <span class="stars">
+                                <?php for ($i = 0; $i < 2; $i++) { ?>
+                                    <img src="<?php echo base_url ?>Public/Img/star_full.svg" alt="star">
+                                <?php } ?>
+                            </span><span class="starts-amount"><?php if (isset($starsCount[2])) echo $starsCount[2];
+                                                                else echo 0 ?></span>
+                        </div>
+                        <div class="filter-row">
+                            <span class="stars">
+                                <?php for ($i = 0; $i < 1; $i++) { ?>
+                                    <img src="<?php echo base_url ?>Public/Img/star_full.svg" alt="star">
+                                <?php } ?>
+                            </span><span class="starts-amount"><?php if (isset($starsCount[1])) echo $starsCount[1];
+                                                                else echo 0 ?></span>
+                        </div>
+                    </span>
+                </div>
+                <div class="sort">
+                    <h3>Sorteren</h3>
+                    <form method="get">
+                        <select name="review-sort" class="review-sort" onchange="this.form.submit()">
+                            <option <?php if ($_SESSION['review-sort'] == "name-asc") {
+                                        print "selected";
+                                    } ?> value="name-asc">Naam oplopend</option>
+                            <option <?php if ($_SESSION['review-sort'] == "name-desc") {
+                                        print "selected";
+                                    } ?> value="name-desc">Naam aflopend</option>
+                            <option <?php if ($_SESSION['review-sort'] == "stars-asc") {
+                                        print "selected";
+                                    } ?> value="stars-asc">Minste sterren</option>
+                            <option <?php if ($_SESSION['review-sort'] == "stars-desc") {
+                                        print "selected";
+                                    } ?> value="stars-desc">Meeste sterren</option>
+                            <option <?php if ($_SESSION['review-sort'] == "date") {
+                                        print "selected";
+                                    } ?> value="date">Nieuwste</option>
+                        </select>
+                        <!-- <input type="submit" value="Submit"> -->
+                    </form>
+                </div>
             </div>
         <?php } ?>
 
@@ -276,8 +335,10 @@ switch ($_SESSION['review-sort']) {
             <?php foreach ($reviews as $review) { ?>
                 <div class="review">
                     <div class="review-header">
-                        <img src="" alt="" class="user_image">
-                        <h3 class="username"><?php echo $review['FirstName'] ?></h3>
+                        <div class="left">
+                            <h3 class="username"><?php echo $review['FirstName'] ?></h3>
+                            <span class="date"><?php echo $review['created_at'] ?></span>
+                        </div>
                         <span class="rating">
                             <?php for ($i = 0; $i < $review['Rating']; $i++) { ?>
                                 <img src="<?php echo base_url ?>Public/Img/star_full.svg" alt="star">

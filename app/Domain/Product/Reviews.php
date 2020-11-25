@@ -46,12 +46,12 @@ class Reviews
     $db = new DatabaseInstance();
     $conn = $db->create();
 
-    $stmt = $conn->prepare("SELECT avg(Rating) as 'AvgRating' FROM Reviews WHERE ProductID = :id");
+    $stmt = $conn->prepare("SELECT avg(Rating) as 'AvgRating', Rating FROM Reviews WHERE ProductID = :id");
     $stmt->bindParam(':id', $id);
 
     $stmt->execute();
 
     $rating = $stmt->fetch();
-    return $rating['AvgRating'];
+    return $rating;
   }
 }
