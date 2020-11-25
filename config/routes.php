@@ -5,7 +5,9 @@ use App\Controller\CheckoutController;
 use App\Controller\CategoryController;
 use App\Controller\HomeController;
 use App\Controller\ProductController;
+use App\Controller\RegistrerenController;
 use App\Domain\Cart\CartController;
+
 
 return [
     /*
@@ -47,6 +49,9 @@ return [
             "type" => "GET",
         ]],
         "cart" => [CartController::class, 'index', [
+            "type" => "GET",
+        ]],
+        "registreren" => [RegistrerenController::class, 'show', [
             "type" => "GET",
         ]],
     ]
