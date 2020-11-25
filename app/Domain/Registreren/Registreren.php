@@ -3,6 +3,8 @@
 namespace App\Domain\Registreren;
 
 use App\Domain\Database\DatabaseInstance;
+use mysqli;
+use mysqli_stmt;
 
 Class Registreren {
 
@@ -17,15 +19,22 @@ Class Registreren {
         $telefoonNummer = $_POST['telefoonNummer']??'';
         $bedrijf = $_POST['bedrijf']??'';
         $wachtwoord1 = $_POST['wachtwoord1']??'';
-        $wachtwoord2 = $_POST['wachtwoord2']??'';        
+        $wachtwoord2 = $_POST['wachtwoord2']??''; 
+        $stad = $_POST['city']??'';        
     }
 
     public function InsertGegevens() {
         $connection = mysqli_connect("localhost", "root", "", "nerdygadgets");
         mysqli_set_charset($connection, 'latin1');
 
-        $sql = "INSERT INTO users U (Email, FirstName, LastName, Password, PhoneNumber, Adress, City, PostalCode, Company)"
-        VALUES ($email, );
+        $sql = "INSERT INTO users U (Email, FirstName, LastName, Password, PhoneNumber, Adress, City, PostalCode, Company)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+
+        $stm = mysqli_prepare($connection, $sql);
+        mysqli_stmt_bind_param($stm,"iiiiiiiii",$email,$voornaam,$achternaam,$wachtwoord,$telefoonNummer,$straat,$stad,$postcode,$bedrijf);
+        mysqli_stmt_execute($stm);
+        $result = mysqli_stmt_get_result($stm);
+        $result = mysqli_fetch_all($result, MYSQLI_ASSOC); 
     }
 }
 ?>
