@@ -41,7 +41,7 @@
 
 <body>
     <div class="background">
-        <div class="row" id="header">
+        <div id="header">
             <div class="col-2">
                 <a href="<?php echo base_url ?>" id="LogoA">
                     <img id="LogoImage" src="<?php echo base_url ?>Public/Img/logo.png">
@@ -79,13 +79,13 @@
             </div>
             <ul id="ul-class-navigation">
                 <li>
-                    <a href="<?php echo base_url; ?>browse" class="HrefDecoration"><i class="fas fa-search" style="color:#676EFF;"></i> Zoeken</a>
+                    <a href="<?php echo base_url; ?>browse" class="HrefDecoration"><img src="<?php echo base_url ?>/Public/Img/search.svg"></a>
                 </li>
                 <li>
                     <a href="<?php echo base_url; ?>cart" class="HrefDecoration"><img src="<?php echo base_url ?>/Public/Img/cart.svg"></a>
                 </li>
                 <li>
-                    <a href="<?php echo base_url; ?>registreren" class="HrefDecoration"><img src="<?php echo base_url ?>/Public/Img/cart.svg"></a>
+                    <a href="<?php echo base_url; ?>registreren" class="HrefDecoration"><img src="<?php echo base_url ?>/Public/Img/profile.svg"></a>
                 </li>
             </ul>
         </div>

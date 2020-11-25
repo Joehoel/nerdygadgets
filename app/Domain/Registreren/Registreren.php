@@ -22,15 +22,13 @@ class Registreren
             "wachtwoord" => $_POST['password-1'] ?? ""
         ];
         foreach ($user as $key => $value) {
-            switch ($value) {
-                case '':
-                    return "missende " . $key;
-                    break;
-                case 'wachtwoord':
-                    if ($value != $_POST['password-2']) {
-                        return "Password do not match";
-                    }
-                    break;
+            if ($key === 'wachtwoord') {
+                if ($value != $_POST['password-2']) {
+                    return "Password do not match";
+                }
+            }
+            if ($value === '') {
+                return "missende " . $key;
             }
         }
         $this->InsertGegevens($user);

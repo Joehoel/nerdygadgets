@@ -3,15 +3,19 @@ function popup(text, isError) {
         const pop_up = document.getElementById("pop-up");
         pop_up.innerText = text;
         if (isError) {
-
+            pop_up.classList = "pop-up pop-up-show error";
         } else {
             pop_up.classList = "pop-up pop-up-show";
-            setTimeout(() => {
-                pop_up.classList = "pop-up pop-up-hidden";
-                setTimeout(() => {
-                    pop_up.classList = "pop-up";
-                }, 200);
-            }, 3000);
         }
+        setTimeout(() => {
+            if (isError) {
+                pop_up.classList = "pop-up pop-up-hidden error";
+            } else {
+                pop_up.classList = "pop-up pop-up-hidden";
+            }
+            setTimeout(() => {
+                pop_up.classList = "pop-up";
+            }, 200);
+        }, 3000);
     })
 }

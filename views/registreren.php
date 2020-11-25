@@ -3,6 +3,10 @@ include __DIR__ . "/connect.php";
 include __DIR__ . "/header.php";
 
 ?>
+<div class="pop-up" id="pop-up"></div>
+<?php if (isset($_GET['error'])) {
+    echo '<script> popup("' . $_GET['error'] . '", true); </script>';
+} ?>
 <div class="registreren-container">
     <div class="information">
         <div>
