@@ -8,7 +8,6 @@ use App\Controller\ProductController;
 use App\Controller\RegistrerenController;
 use App\Domain\Cart\CartController;
 
-
 return [
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +53,7 @@ return [
         "registreren" => [RegistrerenController::class, 'show', [
             "type" => "GET",
         ]],
-        "add-new-user" => [RegistrerenController::class, 'addNewUser', [
+        "addNewUser" => [RegistrerenController::class, 'addNewUser', [
             "type" => "POST",
         ]],
     ]
