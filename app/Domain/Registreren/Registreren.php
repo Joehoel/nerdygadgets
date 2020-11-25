@@ -23,6 +23,7 @@ Class Registreren {
         $stad = $_POST['city']??'';        
     }
 
+
     public function InsertGegevens() {
         $connection = mysqli_connect("localhost", "root", "", "nerdygadgets");
         mysqli_set_charset($connection, 'latin1');
@@ -35,6 +36,18 @@ Class Registreren {
         mysqli_stmt_execute($stm);
         $result = mysqli_stmt_get_result($stm);
         $result = mysqli_fetch_all($result, MYSQLI_ASSOC); 
+    }
+
+    public function EmailCheck() {
+        $connection = mysqli_connect("localhost", "root", "", "nerdygadgets");
+        mysqli_set_charset($connection, 'latin1');
+
+        $sql = "SELECT Email
+                FROM users U
+                WHERE Email IN ?";
+
+        $stm = mysqli_prepare($connection, $sql);
+        mysqli_stmt_bind_param($stm,"i",$email);
     }
 }
 ?>
