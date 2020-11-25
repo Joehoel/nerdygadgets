@@ -11,7 +11,18 @@ require __DIR__ . '/autoload.php';
 require __DIR__ . '/helper.php';
 
 define("base_dir", __DIR__);
-define("base_url", 'http://localhost/nerdygadgets/');
+define("base_url", 'http://localhost:8000/');
+
+$locale = 'en_US';
+if (defined('LC_MESSAGES')) {
+    setlocale(LC_MESSAGES, $locale); // Linux
+    bindtextdomain("messages", "locale");
+} else {
+    setlocale(LC_ALL, $locale); // Linux
+    putenv("LC_ALL={$locale}"); // Windows
+    bindtextdomain("messages", "locale");
+}
+textdomain("messages");
 
 /*
  *

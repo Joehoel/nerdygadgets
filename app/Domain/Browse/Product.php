@@ -151,7 +151,7 @@ class Product
             $Query = "
                         SELECT SI.StockItemID, SI.StockItemName, SI.MarketingComments, QuantityOnHand as voorraad,
                         ROUND(SI.TaxRate * SI.RecommendedRetailPrice / 100 + SI.RecommendedRetailPrice,2) as SellPrice,
-                        (CASE WHEN (SIH.QuantityOnHand) >= ? THEN 'Ruime voorraad beschikbaar.' ELSE CONCAT('Voorraad: ',QuantityOnHand) END) AS QuantityOnHand,
+                        SIH.QuantityOnHand AS QuantityOnHand,
                         (SELECT ImagePath FROM stockitemimages WHERE StockItemID = SI.StockItemID LIMIT 1) as ImagePath,
                         (SELECT ImagePath FROM stockgroups JOIN stockitemstockgroups USING(StockGroupID) WHERE StockItemID = SI.StockItemID LIMIT 1) as BackupImagePath
                         FROM stockitems SI
@@ -162,7 +162,7 @@ class Product
                         GROUP BY StockItemID";
 
             $Statement = mysqli_prepare($Connection, $Query);
-            mysqli_stmt_bind_param($Statement, "ii", $ShowStockLevel, $CategoryID);
+            mysqli_stmt_bind_param($Statement, "i", $CategoryID);
 
             mysqli_stmt_execute($Statement);
             $ReturnableResult = mysqli_stmt_get_result($Statement);

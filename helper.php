@@ -34,3 +34,11 @@ if(!function_exists('view')) {
         }
     }
 }
+/**
+ * Helper function that returns full proper URL
+ */
+if(!function_exists('url')) {
+    function url($path) {
+        return base_dir . $path;
+    }
+}

@@ -72,13 +72,13 @@
                     }
                     ?>
                     <li>
-                        <a href="<?php echo base_url; ?>categories" class="HrefDecoration">Alle categorieën</a>
+                        <a href="<?php echo base_url; ?>categories" class="HrefDecoration"><?=gettext("Alle categorieën")?></a>
                     </li>
                 </ul>
             </div>
             <ul id="ul-class-navigation">
                 <li>
-                    <a href="<?php echo base_url; ?>browse" class="HrefDecoration"><i class="fas fa-search" style="color:#676EFF;"></i> Zoeken</a>
+                    <a href="<?php echo base_url; ?>browse" class="HrefDecoration"><i class="fas fa-search" style="color:#676EFF;"></i> <?=gettext("Zoeken")?></a>
                 </li>
                 <li>
                     <a href="<?php echo base_url; ?>cart" class="HrefDecoration"><img src="<?php echo base_url ?>/Public/Img/cart.svg"></a>

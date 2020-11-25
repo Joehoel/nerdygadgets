@@ -1,0 +1,238 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-11-25 14:29+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: browse.php:38
+msgid "artikel"
+msgstr "product"
+
+#: browse.php:39
+msgid "artikelen"
+msgstr "products"
+
+#: browse.php:41
+msgid "Er is een product toegevoegd aan je winkelwagen"
+msgstr "A product has been added to your cart"
+
+#: browse.php:44
+msgid "Filteren"
+msgstr "Filter"
+
+#: browse.php:48
+msgid "Zoeken:"
+msgstr "Search:"
+
+#: browse.php:52
+msgid "Aantal resultaten:"
+msgstr "Number of results:"
+
+#: browse.php:72
+msgid "Sorteren op:"
+msgstr "Order by:"
+
+#: browse.php:77
+msgid "Prijs oplopend"
+msgstr "Price ascending"
+
+#: browse.php:80
+msgid "Prijs aflopend"
+msgstr "Price descending"
+
+#: browse.php:83
+msgid "Naam oplopend"
+msgstr "Name ascending"
+
+#: browse.php:86
+msgid "Naam aflopend"
+msgstr "Name descending"
+
+#: browse.php:117 browse.php:119
+msgid "Voorraad"
+msgstr "Stock"
+
+#: browse.php:117
+msgid "Ruime voorraad beschikbaar"
+msgstr "Ample stock available"
+
+#: browse.php:127
+msgid "Toevoegen aan winkelmandje"
+msgstr "Add to cart"
+
+#: browse.php:136 cart.php:61 home.php:16 product.php:136
+msgid "Inclusief BTW"
+msgstr "Including VAT"
+
+#: browse.php:169
+msgid "Yarr, er zijn geen resultaten gevonden."
+msgstr "Yarr, no results found."
+
+#: cart.php:7
+msgid "De winkelwagen is geüpdate"
+msgstr "The cart has been updated"
+
+#: cart.php:18
+msgid "De winkelwagen is leeg, klik"
+msgstr "The cart is empty, click"
+
+#: cart.php:20
+msgid "hier"
+msgstr "here"
+
+#: cart.php:22
+msgid "om iets aan de winkelwagen toe te voegen"
+msgstr "to add something to the cart"
+
+#: cart.php:41
+msgid "Artikelnummer"
+msgstr "Product number"
+
+#: cart.php:47
+msgid "Aantal"
+msgstr "Amount"
+
+#: cart.php:72
+msgid "Totaal artikelen"
+msgstr "Total products"
+
+#: cart.php:75
+msgid "Korting"
+msgstr "Discount"
+
+#: cart.php:78 checkout.php:99
+msgid "Verzendkosten"
+msgstr "Shipping costs"
+
+#: cart.php:82 checkout.php:105
+msgid "Totaal"
+msgstr "Total"
+
+#: cart.php:85
+msgid "Verder naar checkout"
+msgstr "Continue to checkout"
+
+#: checkout.php:65
+msgid "Hou me op de hoogte van nieuws en exclusieve aanbiedingen"
+msgstr "Keep me up to date on news and exclusive offers"
+
+#: checkout.php:70
+msgid "Voornaam"
+msgstr "First name"
+
+#: checkout.php:71
+msgid "Achternaam"
+msgstr "Last name"
+
+#: checkout.php:72
+msgid "Bedrijf (optioneel)"
+msgstr "Company (optional)"
+
+#: checkout.php:73
+msgid "Adres"
+msgstr "Address"
+
+#: checkout.php:75
+msgid "Stad"
+msgstr "City"
+
+#: checkout.php:76
+msgid "Land"
+msgstr "Country"
+
+#: checkout.php:77
+msgid "Postcode"
+msgstr "Postal code"
+
+#: checkout.php:78
+msgid "Telefoonnummer"
+msgstr "Phone number"
+
+#: checkout.php:87
+msgid "Subtotaal (excl. BTW)"
+msgstr "Subtotal (ex VAT)"
+
+#: checkout.php:93
+msgid "BTW"
+msgstr "VAT"
+
+#: checkout.php:118
+msgid "Card number"
+msgstr "Card number"
+
+#: checkout.php:119
+msgid "Naam op kaart"
+msgstr "Name on card"
+
+#: checkout.php:120
+msgid "Vervaldatum (mm/yy)"
+msgstr "Expiration date (mm/yy)"
+
+#: checkout.php:121
+msgid "CVC"
+msgstr "CVC"
+
+#: checkout.php:132
+msgid "Bank naam"
+msgstr "Bank name"
+
+#: checkout.php:137
+msgid "Verder naar verzenden"
+msgstr "Continue to shipping"
+
+#: header.php:75
+msgid "Alle categorieën"
+msgstr "All categories"
+
+#: header.php:81
+msgid "Zoeken"
+msgstr "Search"
+
+#: product.php:53
+msgid "Er is 1 artikel toegevoegd aan de winkelwagen"
+msgstr "1 product has been added to the cart"
+
+#: product.php:57
+msgid "Er zijn"
+msgstr "There are"
+
+#: product.php:57
+msgid "artikelen toegevoegd aan de winkelwagen"
+msgstr "Products added to cart"
+
+#: product.php:143
+msgid "In winkelwagen"
+msgstr "Add to cart"
+
+#: product.php:154
+msgid "Artikel beschrijving"
+msgstr "Product description"
+
+#: product.php:158
+msgid "Artikel specificaties"
+msgstr "Product specifications"
+
+#: product.php:164
+msgid "Naam"
+msgstr "Name"
+
+#: product.php:165
+msgid "Data"
+msgstr "Data"
+
+#: product.php:195
+msgid "Het opgevraagde product is niet gevonden."
+msgstr "Request product could not be found"
