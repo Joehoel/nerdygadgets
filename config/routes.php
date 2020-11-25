@@ -54,5 +54,8 @@ return [
         "registreren" => [RegistrerenController::class, 'show', [
             "type" => "GET",
         ]],
+        "add-new-user" => [RegistrerenController::class, 'addNewUser', [
+            "type" => "POST",
+        ]],
     ]
 ];

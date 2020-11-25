@@ -44,13 +44,13 @@ function berekenTotaal($subTotaalprijs, $verzendKosten)
 
 function berekenTotaallijst($stockitem)
 {
-    foreach($stockitem as $item) {
+    foreach ($stockitem as $item) {
         $totaalPerproduct = $item['SellPrice'] * $_SESSION['Cart'][$item['StockItemID']];
-        echo('<tr>');
-        echo('<td>'.$item['StockItemName'].'</td>');
-        echo('<td>'.$_SESSION['Cart'][$item['StockItemID']].'</td>');
-        echo('<td>€'.number_format($totaalPerproduct,2,",",".").'</td>');
-        echo('</tr>');
+        echo ('<tr>');
+        echo ('<td>' . $item['StockItemName'] . '</td>');
+        echo ('<td>' . $_SESSION['Cart'][$item['StockItemID']] . '</td>');
+        echo ('<td>€' . number_format($totaalPerproduct, 2, ",", ".") . '</td>');
+        echo ('</tr>');
     }
 }
 ?>
@@ -58,15 +58,9 @@ function berekenTotaallijst($stockitem)
     <div class="information">
         <div>
             <h1>Customer information</h1>
-            <form class="form-1">
-                <input type="text" placeholder="Email" name="email">
-                <div>
-                    <input type="checkbox" value="1" name="informed">
-                    <p>Keep me up to date on news and exlusive offers.</p>
-                </div>
-            </form>
-            <h1>shipping address</h1>
             <form class="form-2">
+                <input type="text" placeholder="Email" name="email">
+                <h1>shipping address</h1>
                 <input type="text" placeholder="First name" name="f-name">
                 <input type="text" placeholder="Last name" name="l-name">
                 <input type="text" placeholder="Company (optional)" name="c-name">
@@ -86,26 +80,26 @@ function berekenTotaallijst($stockitem)
             <tr>
                 <td>Subtotaal (excl. BTW)</td>
                 <td></td>
-                <td><?php echo ('€'.number_format(berekenSubtotaal($stockitem),2,",",".")); ?>
+                <td><?php echo ('€' . number_format(berekenSubtotaal($stockitem), 2, ",", ".")); ?>
                 </td>
             </tr>
             <tr>
                 <td>BTW</td>
                 <td></td>
                 <td><?php $subTotaalprijs = berekenSubtotaal($stockitem);
-                    echo ('€'.number_format(berekenBtw($subTotaalprijs),2,",",".")) ?></td>
+                    echo ('€' . number_format(berekenBtw($subTotaalprijs), 2, ",", ".")) ?></td>
             </tr>
             <tr>
                 <td>Verzendkosten</td>
                 <td></td>
-                <td><?php echo ('€'.number_format(berekenVerzendkosten($subTotaalprijs),2,",",".")) ?>
+                <td><?php echo ('€' . number_format(berekenVerzendkosten($subTotaalprijs), 2, ",", ".")) ?>
                 </td>
             </tr>
             <tr>
                 <td>Totaal</td>
                 <td></td>
                 <td><?php $verzendKosten = berekenVerzendkosten($subTotaalprijs);
-                    echo ('€'.number_format(berekenTotaal($subTotaalprijs, $verzendKosten),2,",",".")); ?></td>
+                    echo ('€' . number_format(berekenTotaal($subTotaalprijs, $verzendKosten), 2, ",", ".")); ?></td>
             </tr>
         </table>
         <div class="pay-container">
@@ -137,4 +131,3 @@ function berekenTotaallijst($stockitem)
         <button>Continue to shipping</button>
     </div>
 </div>
-

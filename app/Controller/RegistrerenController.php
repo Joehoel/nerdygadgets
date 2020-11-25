@@ -9,4 +9,9 @@ class RegistrerenController
     {
         echo view('registreren');
     }
+
+    public function addNewUser()
+    {
+        return header('Location: ' . base_url . 'registreren');
+    }
 }
