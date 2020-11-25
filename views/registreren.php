@@ -7,7 +7,7 @@ include __DIR__ . "/header.php";
     <div class="information">
         <div>
             <h1>Customer information</h1>
-            <form class="form-1" method="post" action="<?php echo base_url; ?>add-new-user">
+            <form class="form-1" method="post" action="<?php echo base_url; ?>addNewUser">
                 <input type="text" placeholder="Email" name="email">
                 <input type="password" placeholder="Password" name="password-1">
                 <input type="password" placeholder="Confirm password" name="password-2">

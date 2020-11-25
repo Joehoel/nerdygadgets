@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Domain\Registreren\Registreren;
 
 class RegistrerenController
 {
@@ -12,6 +13,11 @@ class RegistrerenController
 
     public function addNewUser()
     {
+        $user = new Registreren();
+        $checkInfo = $user->checkGegevens();
+        if ($checkInfo != "") {
+            return header('Location: ' . base_url . 'registreren?error=' . $checkInfo);
+        }
         return header('Location: ' . base_url . 'registreren');
     }
 }
