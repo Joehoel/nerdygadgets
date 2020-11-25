@@ -34,7 +34,7 @@ if (isset($amount)) {
 
 ?>
 <?php if (isset($_GET['aantal'])) { ?>
-<div class="pop-up" id="pop-up"></div>
+    <div class="pop-up" id="pop-up"></div>
 <?php
     $meer = ($_GET['aantal'] == 1) ? 'is ' . $_GET['aantal'] . ' artikel' : 'zijn ' . $_GET['aantal'] . ' artiekelen';
     echo '<script> popup("Er is een product toegevoegd aan je winkelwagen"); </script>';
