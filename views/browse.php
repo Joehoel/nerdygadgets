@@ -35,7 +35,11 @@ if (isset($amount)) {
 <div class="pop-up" id="pop-up"></div>
 <?php if (isset($_GET['aantal'])) {
     echo '<script> popup("Er is een product toegevoegd aan je winkelwagen", false); </script>';
-} ?>
+}
+if (isset($_GET["newuser"])) {
+    echo '<script> popup("Je bent geregistreerd", false); </script>';
+}
+?>
 <div id="FilterFrame">
 
     <h2 class="FilterText">Filteren </h2>

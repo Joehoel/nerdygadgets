@@ -43,8 +43,8 @@ class AutoLoader
          * */
         $files = $this->files;
         spl_autoload_register(function () use ($files) {
-            foreach($files as $file) {
-                if(is_file($file)) {
+            foreach ($files as $file) {
+                if (is_file($file)) {
                     require_once $file;
                 }
             }
@@ -61,7 +61,7 @@ class AutoLoader
     public function get(&$path)
     {
         // First we check if $files is an array as we cannot loop through a string, int etc.
-        if(is_array($path)) {
+        if (is_array($path)) {
             /**
              * $path is a string to the path of the directory or file we want
              * to examen. Here we look through each item in the array.
@@ -69,13 +69,13 @@ class AutoLoader
             foreach ($path as $key => $value) {
                 // we get the fullpath so we can check if it's a file or directory.
                 $fullPath = realpath($this->base . DIRECTORY_SEPARATOR . $value);
-                if(is_dir($fullPath)) {
+                if (is_dir($fullPath)) {
                     // Since this is a directory, we must loop through this as well.
                     $baseDirectories = array_slice(scandir($fullPath), 2);
                     $edited = [];
                     //Anything that comes out of scandir above will be added to $edited array.
                     //Array slice is only used to remove '.' and '..' from the scandir result.
-                    foreach($baseDirectories as $base) {
+                    foreach ($baseDirectories as $base) {
                         $edited[] = $value . DIRECTORY_SEPARATOR . $base;
                     }
                     //we call this function agian, now with a different directory/file array (depends on
@@ -83,7 +83,7 @@ class AutoLoader
                     $this->get($edited);
                 }
                 // If it's a file we add it to the files array so we can autoload it.
-                if(is_file($fullPath)) {
+                if (is_file($fullPath)) {
                     $this->files[] = $fullPath;
                 }
             }

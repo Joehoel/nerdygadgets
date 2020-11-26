@@ -85,7 +85,7 @@
                     <a href="<?php echo base_url; ?>cart" class="HrefDecoration"><img src="<?php echo base_url ?>/Public/Img/cart.svg"></a>
                 </li>
                 <li>
-                    <a href="<?php echo base_url; ?>registreren" class="HrefDecoration"><img src="<?php echo base_url ?>/Public/Img/profile.svg"></a>
+                    <a href="<?php echo base_url; ?>inloggen" class="HrefDecoration"><img src="<?php echo base_url ?>/Public/Img/profile.svg"></a>
                 </li>
             </ul>
         </div>

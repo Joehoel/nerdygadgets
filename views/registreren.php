@@ -20,7 +20,6 @@ include __DIR__ . "/header.php";
                 <input type="text" placeholder="Last name" name="l-name">
                 <input type="text" placeholder="Company (optional)" name="c-name">
                 <input type="text" placeholder="Address" name="address">
-                <input type="text" placeholder="Apt, suite, etc (optional)" name="apt">
                 <input type="text" placeholder="City" name="city">
                 <input type="text" placeholder="Country" name="country">
                 <input type="text" placeholder="Postal code" name="p-c">

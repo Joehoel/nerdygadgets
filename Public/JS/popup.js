@@ -16,6 +16,6 @@ function popup(text, isError) {
             setTimeout(() => {
                 pop_up.classList = "pop-up";
             }, 200);
-        }, 3000);
+        }, 4000);
     })
 }

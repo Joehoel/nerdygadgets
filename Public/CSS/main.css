@@ -608,10 +608,7 @@ input {
   height: 88vh;
   padding-right: 20px;
 }
-.payment table tr:nth-child(2) > td:nth-child(1),
-.payment table tr:nth-child(3) > td:nth-child(1) {
-  /*padding-left: 50px;*/
-}
+
 .payment table tr:nth-child(4) {
   border-bottom: 1px solid lightgray;
 }
@@ -659,7 +656,7 @@ input {
   align-content: center;
 }
 
-.registreren-container .information .form-1 input:nth-child(14) {
+.registreren-container .information .form-1 input:nth-child(13) {
   margin-top: 20px;
   grid-column-start: 2;
   grid-column-end: 4;
@@ -708,8 +705,37 @@ input {
 }
 
 
+/* form in the log in page */
+.inloggen-container {
+  display: grid;
+  height: 80vh;
+  width: 100vw;
+  justify-content: center;
+  align-content: center;
+  text-align: start;
+}
+.inloggen-container h1 {
+  margin-left: 0;
+}
 
+.inloggen-container a {
+  color: var(--blue);
+  font-size: 15px;
+}
 
+.inloggen-container form input {
+  margin-top: 10px;
+}
+
+.inloggen-container #button {
+  margin-top: 20px;
+  grid-column-start: 2;
+  grid-column-end: 4;
+  background-color: var(--blue);
+  color: var(--white);
+  font-size: 20px;
+  font-weight:500;
+}
 /* i have no idea where this css belongs */
 .StockItemNameViewSize {
   font-size: 35px !important;

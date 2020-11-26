@@ -6,7 +6,9 @@ use App\Controller\CategoryController;
 use App\Controller\HomeController;
 use App\Controller\ProductController;
 use App\Controller\RegistrerenController;
+use App\Controller\InloggenController;
 use App\Domain\Cart\CartController;
+
 
 return [
     /*
@@ -54,6 +56,12 @@ return [
             "type" => "GET",
         ]],
         "addNewUser" => [RegistrerenController::class, 'addNewUser', [
+            "type" => "POST",
+        ]],
+        "inloggen" => [InloggenController::class, 'show', [
+            "type" => "GET",
+        ]],
+        "login" => [InloggenController::class, 'login', [
             "type" => "POST",
         ]],
     ]
