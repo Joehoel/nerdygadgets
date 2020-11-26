@@ -14,7 +14,7 @@ class InloggenController
     {
         $inloggen = new Inloggen();
         $error = $inloggen->checkGegevens();
-        if ($inloggen !== "") {
+        if ($error !== null) {
             return header('Location: ' . base_url . 'inloggen?error=' . $error);
         }
         return header('Location: ' . base_url . 'browse?ingelogd=true');

@@ -39,6 +39,9 @@ if (isset($amount)) {
 if (isset($_GET["newuser"])) {
     echo '<script> popup("Je bent geregistreerd", false); </script>';
 }
+if (isset($_GET["ingelogd"])) {
+    echo '<script> popup("Je bent ingelogd", false); </script>';
+}
 ?>
 <div id="FilterFrame">
 

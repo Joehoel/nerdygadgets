@@ -29,10 +29,7 @@ class Inloggen
         $result = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
         if (count($result) !== 0) {
-            $test = password_verify($wachtwoord, $result[0]["Password"]);
             if (password_verify($wachtwoord, $result[0]["Password"])) {
-                $_SESSION['voornaam'] = $result[0]["Voornaam"];
-                $_SESSION['achternaam'] = $result[0]["Achternaam"];
             } else {
                 return "combinatie email en wachtwoord klopt niet";
             }
