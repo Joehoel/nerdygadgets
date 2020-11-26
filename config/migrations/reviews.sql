@@ -1,5 +1,5 @@
-CREATE TABLE IF NOT EXISTS Reviews  (
-	ReviewID int NOT NULL,
+CREATE TABLE IF NOT EXISTS Reviews (
+    ReviewID int NOT NULL AUTO_INCREMENT,
     ProductID int NOT NULL,
     UserID int NOT NULL,
     Rating int NOT NULL,
