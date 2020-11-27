@@ -1,6 +1,8 @@
 <?php
 
-use App\Domain\Reviews\Reviews;
+// use App\Domain\Product\Reviews;
+
+use App\Domain\Product\Reviews;
 
 include __DIR__ . '/connect.php';
 include __DIR__ . '/header.php';
@@ -336,7 +338,7 @@ $starsCount = array_count_values($ratings);
                                                         else echo "0" ?></span>
         </div>
         <div class="write-review">
-            <form method="POST" action="<?= base_url ?>add-review">
+            <form method="POST" action="<?= base_url ?>create-review/<?= $_GET['id'] ?>">
                 <div class="form-group">
                     <label for="rating"><?= _("Beoordeling") ?></label>
                     <select name="rating" required>
@@ -348,8 +350,8 @@ $starsCount = array_count_values($ratings);
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="review"><?= _("Review") ?></label>
-                    <textarea name="review" required></textarea>
+                    <label for="review-text"><?= _("Review") ?></label>
+                    <textarea name="review-text" required></textarea>
                 </div>
                 <div class="form-group">
                     <button type="submit"><?= _("Verzenden") ?></button>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Reviews;
+namespace App\Domain\Product;
 
 use App\Domain\Database\DatabaseInstance;
 
