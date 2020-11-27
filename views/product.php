@@ -49,6 +49,7 @@ if ($R) {
     $Images = $R;
 }
 
+
 if (isset($_GET['aantal'])) {
     $meer = ($_GET['aantal'] == 1) ? 'is ' . $_GET['aantal'] . ' artikel' : 'zijn ' . $_GET['aantal'] . ' artiekelen';
     echo '<div class="pop-up">Er ' . $meer . ' toegevoegd aan de winkelwagen</div>';
@@ -100,7 +101,19 @@ foreach ($reviews as $review) {
 
 $starsCount = array_count_values($ratings);
 
+
 ?>
+
+<?php if (isset($aantal) && $aantal === 1): ?>
+    <div class="pop-up">
+        <?= gettext("Er is 1 artikel toegevoegd aan de winkelwagen") ?>
+    </div>
+<?php else: ?>
+    <div class="pop-up">
+        <?= gettext("Er zijn") . ' ' . $aantal . ' '; ?><?= gettext("artikelen toegevoegd aan de winkelwagen") ?>
+    </div>
+<?php endif; ?>
+
 <div id="CenteredContent">
 
     <?php
@@ -176,14 +189,14 @@ $starsCount = array_count_values($ratings);
                 <div class="CenterPriceLeft">
                     <div class="CenterPriceLeftChild">
                         <p class="StockItemPriceText"><b><?php print sprintf("€ %.2f", $Result['SellPrice']); ?></b></p>
-                        <h6> Inclusief BTW </h6>
+                        <h6> <?= gettext("Inclusief BTW") ?> </h6>
                         <?php
                         if ($Result['voorraad'] != 0) {
                         ?>
                             <!-- TODO: Change so that this doesnt just update item count in cart but adds on to it -->
                             <form method="POST" action="<?php echo base_url; ?>add-to-cart-product/<?php echo $Result["StockItemID"]; ?>">
                                 <input type="number" name="aantal" required value="1" min="1" max="<?php echo $Result['voorraad'] ?>" />
-                                <input type="submit" name="voegtoe" value="In winkelwagen">
+                                <input type="submit" name="voegtoe" value="<?= gettext("In winkelwagen") ?>">
                             </form>
                         <?php
                         }
@@ -200,20 +213,21 @@ $starsCount = array_count_values($ratings);
                 <?php } ?>
             </span>
         </div>
+
         <div class="item-information">
             <div id="StockItemDescription">
-                <h3>Artikel beschrijving</h3>
+                <h3><?= gettext("Artikel beschrijving") ?></h3>
                 <p><?php print $Result['SearchDetails']; ?></p>
             </div>
             <div id="StockItemSpecifications">
-                <h3>Artikel specificaties</h3>
+                <h3><?= gettext("Artikel specificaties") ?></h3>
                 <?php
                 $CustomFields = json_decode($Result['CustomFields'], true);
                 if (is_array($CustomFields)) { ?>
                     <table>
                         <thead>
-                            <th>Naam</th>
-                            <th>Data</th>
+                            <th><?= gettext("Naam") ?></th>
+                            <th><?= gettext("Data") ?></th>
                         </thead>
                         <?php
                         foreach ($CustomFields as $SpecName => $SpecText) { ?>
@@ -229,6 +243,7 @@ $starsCount = array_count_values($ratings);
                                         }
                                     } else {
                                         print $SpecText;
+
                                     }
                                     ?>
                                 </td>
@@ -245,7 +260,7 @@ $starsCount = array_count_values($ratings);
         </div>
 
     <?php } else { ?>
-        <h2 id="ProductNotFound">Het opgevraagde product is niet gevonden.</h2>
+        <h2 id="ProductNotFound"><?= gettext("Het opgevraagde product is niet gevonden.") ?></h2>
     <?php } ?>
     <div class="reviews">
         <?php if (count($reviews) !== 0) { ?>
