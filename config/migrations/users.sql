@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS Users (
     Email varchar(45) NOT NULL,
     FirstName varchar(45) NOT NULL,
     LastName varchar(45) NOT NULL,
-    Password varchar(45) NOT NULL,
+    Password char(60) NOT NULL,
     /* Hashed */
     PhoneNumber int NOT NULL,
     Adress varchar(45) NOT NULL,
