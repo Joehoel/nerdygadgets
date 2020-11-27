@@ -50,8 +50,5 @@ return [
         "cart" => [CartController::class, 'index', [
             "type" => "GET",
         ]],
-        "add-review" => [ReviewController::class, 'addReview', [
-            "type" => "POST"
-        ]],
     ]
 ];

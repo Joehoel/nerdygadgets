@@ -67,7 +67,7 @@ class Reviews
      * @param sting $msg
      * @return void
      */
-    public function addReview($id, $ratting, $msg)
+    public function addReview($id, $rating, $msg)
     {
         if (!$this->usersHasReviewed($id)) {
 
