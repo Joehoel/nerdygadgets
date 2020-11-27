@@ -329,6 +329,31 @@ $starsCount = array_count_values($ratings);
             <span class="reviews-count">Aantal reviews: <?php if ($reviews) echo count($reviews);
                                                         else echo "0" ?></span>
         </div>
+        <div class="write-review">
+            <form method="POST">
+                <div class="form-group">
+                    <label for="name"><?= _("Naam") ?></label>
+                    <input type="text" name="name" disabled value="<?= $_SESSION['user'] ?? "Bob" ?>">
+                </div>
+                <div class="form-group">
+                    <label for="rating"><?= _("Beoordeling") ?></label>
+                    <select name="rating">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="review"><?= _("Review") ?></label>
+                    <textarea name="review"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit"><?= _("Verzenden") ?></button>
+                </div>
+            </form>
+        </div>
         <?php if (!$reviews) { ?>
             <h4>Er zijn nog geen reviews voor dit product...</h4>
         <?php } else if ($reviews) { ?>
