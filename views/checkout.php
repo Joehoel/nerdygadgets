@@ -60,15 +60,15 @@ function berekenTotaallijst($stockitem)
             <h1>Customer information</h1>
             <form class="form-2">
                 <input type="text" placeholder="Email" name="email">
-                <h1>shipping address</h1>
-                <input type="text" placeholder="First name" name="f-name">
-                <input type="text" placeholder="Last name" name="l-name">
-                <input type="text" placeholder="Company (optional)" name="c-name">
-                <input type="text" placeholder="Address" name="address">
-                <input type="text" placeholder="City" name="city">
-                <input type="text" placeholder="Country" name="country">
-                <input type="text" placeholder="Postal code" name="p-c">
-                <input type="text" placeholder="Phone" name="tel">
+                <h1><?= _("Verzendadres") ?></h1>
+                <input type="text" placeholder="<?= _("Voornaam") ?>" name="f-name">
+                <input type="text" placeholder="<?= _("Achternaam") ?>" name="l-name">
+                <input type="text" placeholder="<?= _("Bedrijf (optioneel)") ?>" name="c-name">
+                <input type="text" placeholder="<?= _("Adres")?>" name="address">
+                <input type="text" placeholder="<?= _("Stad") ?>" name="city">
+                <input type="text" placeholder="<?= _("Land") ?>" name="country">
+                <input type="text" placeholder="<?= _("Postcode") ?>" name="p-c">
+                <input type="text" placeholder="<?= _("Telefoonnummer")?> >" name="tel">
             </form>
         </div>
     </div>
@@ -77,25 +77,25 @@ function berekenTotaallijst($stockitem)
         <table>
             <?php berekenTotaallijst($stockitem); ?>
             <tr>
-                <td>Subtotaal (excl. BTW)</td>
+                <td><?= _("Subtotaal (excl. BTW)") ?></td>
                 <td></td>
                 <td><?php echo ('€' . number_format(berekenSubtotaal($stockitem), 2, ",", ".")); ?>
                 </td>
             </tr>
             <tr>
-                <td>BTW</td>
+                <td><?= _("BTW") ?></td>
                 <td></td>
                 <td><?php $subTotaalprijs = berekenSubtotaal($stockitem);
                     echo ('€' . number_format(berekenBtw($subTotaalprijs), 2, ",", ".")) ?></td>
             </tr>
             <tr>
-                <td>Verzendkosten</td>
+                <td><?= _("Verzendkosten") ?></td>
                 <td></td>
                 <td><?php echo ('€' . number_format(berekenVerzendkosten($subTotaalprijs), 2, ",", ".")) ?>
                 </td>
             </tr>
             <tr>
-                <td>Totaal</td>
+                <td><?= _("Totaal") ?></td>
                 <td></td>
                 <td><?php $verzendKosten = berekenVerzendkosten($subTotaalprijs);
                     echo ('€' . number_format(berekenTotaal($subTotaalprijs, $verzendKosten), 2, ",", ".")); ?></td>
@@ -108,10 +108,10 @@ function berekenTotaallijst($stockitem)
                     <p>Credit card</p>
                 </div>
                 <div class="credit-card">
-                    <input type="text" placeholder="Card number" name="card-number">
-                    <input type="text" placeholder="Name on card" name="card-name">
-                    <input class="start-column" type="text" placeholder="Expiration date (MM / YY)" name="card-number">
-                    <input class="end-column" type="text" placeholder="Security code" name="card-name">
+                    <input type="text" placeholder="<?= _("Card number") ?>" name="card-number">
+                    <input type="text" placeholder="<?= _("Naam op kaart") ?>" name="card-name">
+                    <input class="start-column" type="text" placeholder="<?= _("Vervaldatum (mm/yy)") ?>" name="card-number">
+                    <input class="end-column" type="text" placeholder="<?= _("CVC") ?>" name="card-name">
                 </div>
                 <div class="inline-radio">
                     <input type="radio" name="method" value="PayPal">
@@ -127,6 +127,6 @@ function berekenTotaallijst($stockitem)
             </form>
 
         </div>
-        <button>Continue to shipping</button>
+        <button><?= _("Verder naar verzenden") ?></button>
     </div>
 </div>

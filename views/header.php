@@ -71,7 +71,7 @@
                     <?php } ?>
                     <li>
                         <a href="<?php echo base_url; ?>categories" class="HrefDecoration">
-                            <?= gettext("Alle categorieën") ?>
+                            <?= _("Alle categorieën") ?>
                         </a>
                     </li>
                 </ul>
@@ -81,7 +81,7 @@
                     <a href="<?php echo base_url; ?>browse" class="HrefDecoration"><img src="<?php echo base_url ?>/Public/Img/search.svg"></a>
                 </li>
                 <li class="drop-down">
-                    <span><?= gettext("Talen") ?></span>
+                    <span><?= _("Talen") ?></span>
                     <ul class="items">
                         <li>
                             <a href="<?= base_url ?>taal/nederlands">Nederlands</a>
