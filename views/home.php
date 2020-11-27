@@ -3,6 +3,7 @@ include __DIR__ . '/connect.php ';
 include __DIR__ . '/header.php ';
 ?>
 
+
 <div class="IndexStyle">
     <div class="col-11">
         <div class="TextPrice">

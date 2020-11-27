@@ -1,5 +1,7 @@
 <?php
 
+use App\Domain\Route\Header;
+
 if(!function_exists('view')) {
     function view($name, $variables = []) {
         $filePath = base_dir . DIRECTORY_SEPARATOR
@@ -40,5 +42,13 @@ if(!function_exists('view')) {
 if(!function_exists('url')) {
     function url($path) {
         return base_dir . $path;
+    }
+}
+
+if(!function_exists('back')) {
+    function back() {
+        $header = new Header();
+        $header->back();
+        exit;
     }
 }

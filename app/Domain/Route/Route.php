@@ -3,6 +3,7 @@
 namespace App\Domain\Route;
 
 use App\Domain\Config\Config;
+use App\Domain\Locale\Locale;
 
 class Route
 {
@@ -142,10 +143,20 @@ class Route
                 $class = new $data[0]();
 
                 $parameters = $this->getParameters($route, $url);
+                $this->loadCorrectLocale();
                 call_user_func_array([
                     $class, $data[1]
                 ], $parameters);
             }
+        }
+    }
+
+    public function loadCorrectLocale()
+    {
+        $langCode = $_SESSION['language'] ?? null;
+        $locale = new Locale();
+        if($langCode) {
+            $locale->setPageLocale($langCode);
         }
     }
 }

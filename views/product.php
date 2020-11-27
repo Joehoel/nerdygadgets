@@ -45,7 +45,7 @@ $R = mysqli_fetch_all($R, MYSQLI_ASSOC);
 if ($R) {
     $Images = $R;
 }
-$aantal = $_GET['aantal'];
+$aantal = $_GET['aantal'] ?? null;
 ?>
 
 <?php if (isset($aantal) && $aantal === 1): ?>

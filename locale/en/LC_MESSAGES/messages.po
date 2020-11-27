@@ -201,6 +201,10 @@ msgstr "All categories"
 msgid "Zoeken"
 msgstr "Search"
 
+#: header.php:84
+msgid "Talen"
+msgstr "Languages"
+
 #: product.php:53
 msgid "Er is 1 artikel toegevoegd aan de winkelwagen"
 msgstr "1 product has been added to the cart"

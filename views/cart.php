@@ -7,10 +7,9 @@ if (isset($_GET['update']) && $_GET['update'] === "true") {
     echo '<div class="pop-up">'. gettext('De winkelwagen is geüpdate') .'</div>';
 }
 
-$prices = $cartClass->GetTotalCartPrice()
+$prices = $cartClass->GetTotalCartPrice();
 
 ?>
-
 <div class="cart">
     <?php if (count($cart) == 0) { ?>
         <div class='empty'>
@@ -65,6 +64,7 @@ $prices = $cartClass->GetTotalCartPrice()
                 </div>
             <?php } ?>
         <?php } ?>
+
         </div>
         <?php if (count($cart) > 0) { ?>
             <div class="total">
