@@ -21,50 +21,80 @@ return [
     |
     */
     "routes" => [
-        "" => [HomeController::class, 'show', [
-            "type" => "GET",
-        ]],
-        "product/{id}" => [ProductController::class, 'show', [
-            "type" => "GET",
-        ]],
-        "update-cart/{id}" => [CartController::class, 'update', [
-            "type" => "POST",
-        ]],
-        "add-to-cart-product/{id}" => [CartController::class, 'add_product', [
-            "type" => "POST",
-        ]],
-        "add-to-cart-browse/{id}" => [CartController::class, 'add_browse', [
-            "type" => "POST",
-        ]],
-        "delete-from-cart/{id}" => [CartController::class, 'delete', [
-            "type" => "GET",
-        ]],
-        "browse" => [BrowseController::class, 'show', [
-            "type" => "GET",
-        ]],
-        "categories" => [CategoryController::class, 'index', [
-            "type" => "GET",
-        ]],
-        "checkout" => [CheckoutController::class, 'index', [
-            "type" => "GET",
-        ]],
-        "cart" => [CartController::class, 'index', [
-            "type" => "GET",
-        ]],
-        "taal/{language}" => [LocaleController::class, 'set', [
-            "type" => "GET",
-        ]],
-        "registreren" => [RegistrerenController::class, 'show', [
-            "type" => "GET",
-        ]],
-        "addNewUser" => [RegistrerenController::class, 'addNewUser', [
-            "type" => "POST",
-        ]],
-        "inloggen" => [InloggenController::class, 'show', [
-            "type" => "GET",
-        ]],
-        "login" => [InloggenController::class, 'login', [
-            "type" => "POST",
-        ]],
+        "" => [
+            HomeController::class, 'show', [
+                "type" => "GET",
+            ]
+        ],
+        "product/{id}" => [
+            ProductController::class, 'show', [
+                "type" => "GET",
+            ]
+        ],
+        "update-cart/{id}" => [
+            CartController::class, 'update', [
+                "type" => "POST",
+            ]
+        ],
+        "add-to-cart-product/{id}" => [
+            CartController::class, 'add_product', [
+                "type" => "POST",
+            ]
+        ],
+        "add-to-cart-browse/{id}" => [
+            CartController::class, 'add_browse', [
+                "type" => "POST",
+            ]
+        ],
+        "delete-from-cart/{id}" => [
+            CartController::class, 'delete', [
+                "type" => "GET",
+            ]
+        ],
+        "browse" => [
+            BrowseController::class, 'show', [
+                "type" => "GET",
+            ]
+        ],
+        "categories" => [
+            CategoryController::class, 'index', [
+                "type" => "GET",
+            ]
+        ],
+        "checkout" => [
+            CheckoutController::class, 'index', [
+                "type" => "GET",
+            ]
+        ],
+        "cart" => [
+            CartController::class, 'index', [
+                "type" => "GET",
+            ]
+        ],
+        "taal/{language}" => [
+            LocaleController::class, 'set', [
+                "type" => "GET",
+            ]
+        ],
+        "registreren" => [
+            RegistrerenController::class, 'show', [
+                "type" => "GET",
+            ]
+        ],
+        "addNewUser" => [
+            RegistrerenController::class, 'addNewUser', [
+                "type" => "POST",
+            ]
+        ],
+        "inloggen" => [
+            InloggenController::class, 'show', [
+                "type" => "GET",
+            ]
+        ],
+        "login" => [
+            InloggenController::class, 'login', [
+                "type" => "POST",
+            ]
+        ],
     ]
 ];
