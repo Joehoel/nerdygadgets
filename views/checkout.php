@@ -44,13 +44,13 @@ function berekenTotaal($subTotaalprijs, $verzendKosten)
 
 function berekenTotaallijst($stockitem)
 {
-    foreach($stockitem as $item) {
+    foreach ($stockitem as $item) {
         $totaalPerproduct = $item['SellPrice'] * $_SESSION['Cart'][$item['StockItemID']];
-        echo('<tr>');
-        echo('<td>'.$item['StockItemName'].'</td>');
-        echo('<td>'.$_SESSION['Cart'][$item['StockItemID']].'</td>');
-        echo('<td>€'.number_format($totaalPerproduct,2,",",".").'</td>');
-        echo('</tr>');
+        echo ('<tr>');
+        echo ('<td>' . $item['StockItemName'] . '</td>');
+        echo ('<td>' . $_SESSION['Cart'][$item['StockItemID']] . '</td>');
+        echo ('<td>€' . number_format($totaalPerproduct, 2, ",", ".") . '</td>');
+        echo ('</tr>');
     }
 }
 ?>
@@ -58,24 +58,17 @@ function berekenTotaallijst($stockitem)
     <div class="information">
         <div>
             <h1>Customer information</h1>
-            <form class="form-1">
-                <input type="text" placeholder="Email" name="email">
-                <div>
-                    <input type="checkbox" value="1" name="informed">
-                    <p><?= gettext("Hou me op de hoogte van nieuws en exclusieve aanbiedingen"); ?></p>
-                </div>
-            </form>
-            <h1>shipping address</h1>
             <form class="form-2">
-                <input type="text" placeholder="<?= gettext("Voornaam") ?>" name="f-name">
-                <input type="text" placeholder="<?= gettext("Achternaam") ?>" name="l-name">
-                <input type="text" placeholder="<?= gettext("Bedrijf (optioneel)") ?>" name="c-name">
-                <input type="text" placeholder="<?= gettext("Adres") ?>" name="address">
-                <input type="text" placeholder="Apt, suite, etc (optional)" name="apt">
-                <input type="text" placeholder="<?= gettext("Stad") ?>" name="city">
-                <input type="text" placeholder="<?= gettext("Land") ?>" name="country">
-                <input type="text" placeholder="<?= gettext("Postcode") ?>" name="p-c">
-                <input type="text" placeholder="<?= gettext("Telefoonnummer") ?>" name="tel">
+                <input type="text" placeholder="Email" name="email">
+                <h1>shipping address</h1>
+                <input type="text" placeholder="First name" name="f-name">
+                <input type="text" placeholder="Last name" name="l-name">
+                <input type="text" placeholder="Company (optional)" name="c-name">
+                <input type="text" placeholder="Address" name="address">
+                <input type="text" placeholder="City" name="city">
+                <input type="text" placeholder="Country" name="country">
+                <input type="text" placeholder="Postal code" name="p-c">
+                <input type="text" placeholder="Phone" name="tel">
             </form>
         </div>
     </div>
@@ -84,28 +77,28 @@ function berekenTotaallijst($stockitem)
         <table>
             <?php berekenTotaallijst($stockitem); ?>
             <tr>
-                <td><?= gettext("Subtotaal (excl. BTW)") ?></td>
+                <td>Subtotaal (excl. BTW)</td>
                 <td></td>
-                <td><?php echo ('€'.number_format(berekenSubtotaal($stockitem),2,",",".")); ?>
+                <td><?php echo ('€' . number_format(berekenSubtotaal($stockitem), 2, ",", ".")); ?>
                 </td>
             </tr>
             <tr>
-                <td><?= gettext("BTW") ?></td>
+                <td>BTW</td>
                 <td></td>
                 <td><?php $subTotaalprijs = berekenSubtotaal($stockitem);
-                    echo ('€'.number_format(berekenBtw($subTotaalprijs),2,",",".")) ?></td>
+                    echo ('€' . number_format(berekenBtw($subTotaalprijs), 2, ",", ".")) ?></td>
             </tr>
             <tr>
-                <td><?= gettext("Verzendkosten") ?></td>
+                <td>Verzendkosten</td>
                 <td></td>
-                <td><?php echo ('€'.number_format(berekenVerzendkosten($subTotaalprijs),2,",",".")) ?>
+                <td><?php echo ('€' . number_format(berekenVerzendkosten($subTotaalprijs), 2, ",", ".")) ?>
                 </td>
             </tr>
             <tr>
-                <td><?= gettext("Totaal") ?>></td>
+                <td>Totaal</td>
                 <td></td>
                 <td><?php $verzendKosten = berekenVerzendkosten($subTotaalprijs);
-                    echo ('€'.number_format(berekenTotaal($subTotaalprijs, $verzendKosten),2,",",".")); ?></td>
+                    echo ('€' . number_format(berekenTotaal($subTotaalprijs, $verzendKosten), 2, ",", ".")); ?></td>
             </tr>
         </table>
         <div class="pay-container">
@@ -115,10 +108,10 @@ function berekenTotaallijst($stockitem)
                     <p>Credit card</p>
                 </div>
                 <div class="credit-card">
-                    <input type="text" placeholder="<?=gettext("Card number")?>>" name="card-number">
-                    <input type="text" placeholder="<?=gettext("Naam op kaart")?>" name="card-name">
-                    <input class="start-column" type="text" placeholder="<?=gettext("Vervaldatum (mm/yy)")?>" name="card-number">
-                    <input class="end-column" type="text" placeholder="<?=gettext("CVC")?>" name="card-name">
+                    <input type="text" placeholder="Card number" name="card-number">
+                    <input type="text" placeholder="Name on card" name="card-name">
+                    <input class="start-column" type="text" placeholder="Expiration date (MM / YY)" name="card-number">
+                    <input class="end-column" type="text" placeholder="Security code" name="card-name">
                 </div>
                 <div class="inline-radio">
                     <input type="radio" name="method" value="PayPal">
@@ -129,12 +122,11 @@ function berekenTotaallijst($stockitem)
                     <p>IDEAL</p>
                 </div>
                 <div class="IDEAL">
-                    <input type="text" placeholder="<?=gettext("Bank naam")?>" name="method">
+                    <input type="text" placeholder="Bank name" name="method">
                 </div>
             </form>
 
         </div>
-        <button><?=gettext("Verder naar verzenden")?></button>
+        <button>Continue to shipping</button>
     </div>
 </div>
-

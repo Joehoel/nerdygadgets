@@ -4,7 +4,10 @@ use App\Controller\BrowseController;
 use App\Controller\CheckoutController;
 use App\Controller\CategoryController;
 use App\Controller\HomeController;
+use App\Controller\LocaleController;
 use App\Controller\ProductController;
+use App\Controller\RegistrerenController;
+use App\Controller\InloggenController;
 use App\Domain\Cart\CartController;
 
 return [
@@ -42,12 +45,26 @@ return [
         "categories" => [CategoryController::class, 'index', [
             "type" => "GET",
         ]],
-        "payment" => [PaymentController::class, 'index', []],
         "checkout" => [CheckoutController::class, 'index', [
             "type" => "GET",
         ]],
         "cart" => [CartController::class, 'index', [
             "type" => "GET",
+        ]],
+        "taal/{language}" => [LocaleController::class, 'set', [
+            "type" => "GET",
+        ]],
+        "registreren" => [RegistrerenController::class, 'show', [
+            "type" => "GET",
+        ]],
+        "addNewUser" => [RegistrerenController::class, 'addNewUser', [
+            "type" => "POST",
+        ]],
+        "inloggen" => [InloggenController::class, 'show', [
+            "type" => "GET",
+        ]],
+        "login" => [InloggenController::class, 'login', [
+            "type" => "POST",
         ]],
     ]
 ];
