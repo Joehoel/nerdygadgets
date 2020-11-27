@@ -70,6 +70,10 @@ if (isset($_GET['review-sort'])) {
 $avg = ceil($reviewsHandler->getRating($_GET['id'])['AvgRating']);
 // $rating = $reviewsHandler->getRating($_GET['id'])['Rating'];
 
+$_SESSION['User']['UserID'] = 1;
+
+$reviewsHandler->addReview($_GET['id'], 4, "Test");
+
 switch ($_SESSION['review-sort']) {
     case 'stars-asc':
         $reviews = $reviewsHandler->getReviews($_GET['id'], "Rating", true);
@@ -97,6 +101,8 @@ foreach ($reviews as $review) {
         $review['Rating']
     );
 }
+
+
 
 $starsCount = array_count_values($ratings);
 

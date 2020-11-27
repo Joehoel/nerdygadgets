@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS Users (
-	UserID int NOT NULL,
+	UserID int NOT NULL AUTO_INCREMENT,
     Email varchar(45) NOT NULL,
     FirstName varchar(45) NOT NULL,
     LastName varchar(45) NOT NULL,

@@ -63,25 +63,28 @@ class Reviews
      * Toevoegen van revieuw
      *
      * @param int $id
-     * @param int $ratting
+     * @param int $rating
      * @param sting $msg
      * @return void
      */
-    public function addReview($id, $ratting, $msg)
+    public function addReview($id, $rating, $msg)
     {
-        if (!$this->usersHasReviewed($id)) {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        if (isset($_SESSION['User']) && !empty($_SESSION['User'])) {
+            if (!$this->usersHasReviewed($id)) {
 
 
-            $db = new DatabaseInstance();
-            $conn = $db->create();
+                $db = new DatabaseInstance();
+                $conn = $db->create();
 
-            $stmt = $conn->prepare("");
+                $stmt = $conn->prepare("INSERT INTO `reviews`(`ProductID`,`UserID`,`Rating`,`Text`) VALUES( ? , ? , ? , ? )");
 
-            //Bind
+                $stmt->execute([$id, $_SESSION['User']['UserID'], $rating, $msg]);
 
-            $stmt->execute();
-
-            $suc = $stmt->fetchAll();
+                $stmt->fetchAll();
+            }
         }
     }
 
@@ -93,20 +96,20 @@ class Reviews
      */
     private function usersHasReviewed($id)
     {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         if (isset($_SESSION['User']) && !empty($_SESSION['User'])) {
             $db = new DatabaseInstance();
             $conn = $db->create();
 
-            $stmt = $conn->prepare("SELECT count(*) as Aantal FROM Reviews WHERE UserID = :UserId AND ProductID = :ProductId");
+            $stmt = $conn->prepare("SELECT count(*) as Aantal FROM Reviews WHERE UserID = ? AND ProductID = ?");
 
-            $stmt->bindParam(':UserId', $_SESSION['User']['ID']);
-            $stmt->bindParam(':ProductId', $id);
+            $stmt->execute([$_SESSION['User']['UserID'], $id]);
 
-            $stmt->execute();
+            $all = $stmt->fetch();
 
-            $all = $stmt->fetchAll();
-
-            if (count($all) >= 1) {
+            if (isset($all['Aantal']) && ($all['Aantal'] * 1) >= 1) {
                 return true;
             }
             return false;
