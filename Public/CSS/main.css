@@ -1012,3 +1012,29 @@ hr {
 	width: 2rem;
 	height: auto;
 }
+
+.write-review textarea {
+	width: 100%;
+	border-radius: 0.25rem;
+	height: 100px;
+	padding: 0.5rem;
+}
+
+.write-review label {
+	font-size: 1.2rem;
+}
+
+.write-review button {
+	width: 100%;
+	border-radius: 0.25rem;
+	background-color: var(--blue);
+	border: none;
+	color: var(--white);
+	padding: 0.5rem 1rem;
+}
+
+input:disabled,
+input:read-only {
+	background-color: rgb(202, 202, 202);
+	color: gray;
+}
