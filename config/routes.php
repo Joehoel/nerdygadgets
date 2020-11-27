@@ -5,6 +5,7 @@ use App\Controller\CheckoutController;
 use App\Controller\CategoryController;
 use App\Controller\HomeController;
 use App\Controller\ProductController;
+use App\Controller\ReviewController;
 use App\Domain\Cart\CartController;
 
 return [
@@ -48,6 +49,9 @@ return [
         ]],
         "cart" => [CartController::class, 'index', [
             "type" => "GET",
+        ]],
+        "add-review" => [ReviewController::class, 'addReview', [
+            "type" => "POST"
         ]],
     ]
 ];

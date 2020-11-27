@@ -330,14 +330,10 @@ $starsCount = array_count_values($ratings);
                                                         else echo "0" ?></span>
         </div>
         <div class="write-review">
-            <form method="POST">
-                <div class="form-group">
-                    <label for="name"><?= _("Naam") ?></label>
-                    <input type="text" name="name" disabled value="<?= $_SESSION['user'] ?? "Bob" ?>">
-                </div>
+            <form method="POST" action="<?= base_url ?>add-review">
                 <div class="form-group">
                     <label for="rating"><?= _("Beoordeling") ?></label>
-                    <select name="rating">
+                    <select name="rating" required>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -347,7 +343,7 @@ $starsCount = array_count_values($ratings);
                 </div>
                 <div class="form-group">
                     <label for="review"><?= _("Review") ?></label>
-                    <textarea name="review"></textarea>
+                    <textarea name="review" required></textarea>
                 </div>
                 <div class="form-group">
                     <button type="submit"><?= _("Verzenden") ?></button>

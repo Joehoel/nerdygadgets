@@ -1017,7 +1017,7 @@ hr {
 	width: 100%;
 	border-radius: 0.25rem;
 	height: 100px;
-	padding: 0.5rem 1rem;
+	padding: 0.5rem;
 }
 
 .write-review label {
@@ -1033,7 +1033,8 @@ hr {
 	padding: 0.5rem 1rem;
 }
 
-input:disabled {
+input:disabled,
+input:read-only {
 	background-color: rgb(202, 202, 202);
 	color: gray;
 }
