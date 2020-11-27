@@ -32,6 +32,7 @@ if (isset($amount)) {
 }
 
 ?>
+
 <div class="pop-up" id="pop-up"></div>
 <?php if (isset($_GET['aantal'])) {
     echo '<script> popup("Er is een product toegevoegd aan je winkelwagen", false); </script>';
