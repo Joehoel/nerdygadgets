@@ -9,7 +9,7 @@ class ReviewController
   public function create($id)
   {
     if(isset($_POST['rating']) && isset($_POST['review-text'])) {
-      // print_r($_POST);
+      print_r($_POST);
       // $_SESSION['User']['UserID'] = 1;
 
       // $reviews = new Reviews();

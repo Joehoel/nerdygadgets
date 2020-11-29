@@ -31,15 +31,24 @@ if (isset($amount)) {
     $AmountOfPages = ceil($amount / $ProductsOnPage);
 }
 
+?>
+<div class="pop-up" id="pop-up"></div>
+<?php if (isset($_GET['aantal'])) {
+    echo '<script> popup("Er is een product toegevoegd aan je winkelwagen", false); </script>';
+}
+if (isset($_GET["ingelogd"])) {
+    echo '<script> popup("Je bent ingelogd", false); </script>';
+}
+if (isset($_GET["uitgelogd"])) {
+    echo '<script> popup("Je bent uitgelogd", false); </script>';
+}
+// if (isset($_SESSION["User"])) {
+//     echo '<script> console.log("'.$_SESSION["User"]["FirstName"].'") </script>';
+// }
 
 ?>
-<?php if (isset($_GET['aantal'])) { ?>
-    <div class="pop-up" id="pop-up"></div>
-<?php
-    $meer = ($_GET['aantal'] == 1) ? 'is ' . $_GET['aantal'] . ' artikel' : 'zijn ' . $_GET['aantal'] . ' artiekelen';
-    echo '<script> popup("Er is een product toegevoegd aan je winkelwagen"); </script>';
-} ?>
 <div id="FilterFrame">
+
     <h2 class="FilterText">Filteren </h2>
     <form>
         <div id="FilterOptions">

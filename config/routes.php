@@ -6,7 +6,11 @@ use App\Controller\CategoryController;
 use App\Controller\HomeController;
 use App\Controller\ProductController;
 use App\Controller\ReviewController;
+use App\Controller\RegistrerenController;
+use App\Controller\ProfileController;
+use App\Controller\InloggenController;
 use App\Domain\Cart\CartController;
+
 
 return [
     /*
@@ -52,6 +56,24 @@ return [
         ]],
         "create-review/{id}" => [ReviewController::class, 'create', [
             "type" => "POST",
+        ]],
+        "registreren" => [RegistrerenController::class, 'show', [
+            "type" => "GET",
+        ]],
+        "addNewUser" => [RegistrerenController::class, 'addNewUser', [
+            "type" => "POST",
+        ]],
+        "inloggen" => [InloggenController::class, 'show', [
+            "type" => "GET",
+        ]],
+        "login" => [InloggenController::class, 'login', [
+            "type" => "POST",
+        ]],
+        "profile" => [ProfileController::class, 'show', [
+            "type" => "GET",
+        ]],
+        "uitloggen" => [ProfileController::class, 'uitloggen', [
+            "type" => "GET",
         ]],
     ]
 ];

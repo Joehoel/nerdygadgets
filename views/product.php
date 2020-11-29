@@ -60,7 +60,6 @@ if (isset($_GET['aantal'])) {
 $reviewsHandler = new Reviews();
 $reviews = array();
 $reviews = $reviewsHandler->getReviews($_GET['id'], "Rating", true);
-$ratings = array();
 
 if (isset($_GET['review-sort'])) {
     $_SESSION['review-sort'] = $_GET['review-sort'];
@@ -97,14 +96,14 @@ switch ($_SESSION['review-sort']) {
         // $reviews = $reviewsHandler->getReviews($_GET['id'], "Rating", true);
         break;
 }
+
+$ratings = array();
 foreach ($reviews as $review) {
     array_push(
         $ratings,
         $review['Rating']
     );
 }
-
-
 
 $starsCount = array_count_values($ratings);
 

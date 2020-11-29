@@ -8,6 +8,7 @@
     <script src="<?php echo base_url ?>/Public/JS/popper.min.js"></script>
     <script src="<?php echo base_url ?>/Public/JS/Resizer.js"></script>
     <script src="<?php echo base_url ?>/Public/JS/jquery-3.4.1.js"></script>
+    <script src="<?php echo base_url ?>/Public/JS/popup.js"></script>
     <style>
         @font-face {
             font-family: MmrText;
@@ -39,17 +40,17 @@
 </head>
 
 <body>
-<div class="background">
-    <div class="row" id="header">
-        <div class="col-2">
-            <a href="<?php echo base_url ?>" id="LogoA">
-                <img id="LogoImage" src="<?php echo base_url?>Public/Img/logo.png">
-            </a>
-        </div>
-        <div class="col-8" id="CategoriesBar">
-            <ul id="ul-class">
-                <?php
-                $Query = "
+    <div class="background">
+        <div id="header">
+            <div class="col-2">
+                <a href="<?php echo base_url ?>" id="LogoA">
+                    <img id="LogoImage" src="<?php echo base_url ?>Public/Img/logo.png">
+                </a>
+            </div>
+            <div class="col-8" id="CategoriesBar">
+                <ul id="ul-class">
+                    <?php
+                    $Query = "
                 SELECT StockGroupID, StockGroupName, ImagePath
                 FROM stockgroups
                 WHERE StockGroupID IN (
@@ -78,10 +79,19 @@
             </div>
             <ul id="ul-class-navigation">
                 <li>
-                    <a href="<?php echo base_url; ?>browse" class="HrefDecoration"><i class="fas fa-search" style="color:#676EFF;"></i> Zoeken</a>
+                    <a href="<?php echo base_url; ?>browse" class="HrefDecoration"><img src="<?php echo base_url ?>/Public/Img/search.svg"></a>
                 </li>
                 <li>
                     <a href="<?php echo base_url; ?>cart" class="HrefDecoration"><img src="<?php echo base_url ?>/Public/Img/cart.svg"></a>
+                </li>
+                <li>
+                    <a href="<?php 
+                    if(isset($_SESSION["User"])) {
+                        echo base_url.'profile'; 
+                    } else {
+                        echo base_url.'inloggen'; 
+                    } 
+                    ?>" class="HrefDecoration"><img src="<?php echo base_url ?>/Public/Img/profile.svg"></a>
                 </li>
             </ul>
         </div>
