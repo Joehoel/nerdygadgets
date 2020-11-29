@@ -94,14 +94,27 @@
                 <li>
                     <a href="<?php echo base_url; ?>cart" class="HrefDecoration"><img src="<?php echo base_url ?>/Public/Img/cart.svg"></a>
                 </li>
-                <li>
-                    <a href="<?php 
-                    if(isset($_SESSION["User"])) {
-                        echo base_url.'profile'; 
-                    } else {
-                        echo base_url.'inloggen'; 
-                    } 
-                    ?>" class="HrefDecoration"><img src="<?php echo base_url ?>/Public/Img/profile.svg"></a>
+                <li id="user_profile_icon">
+
+                    <?php
+                    if (isset($_SESSION["User"])) {
+                        $FirstName = $_SESSION["User"]["FirstName"];
+                        if (strlen($FirstName) > 6) {
+                            $FirstName = substr($FirstName, 0, 6) . '...';
+                        }
+                        echo '<p id="user_name">' . $FirstName . '</p>';
+                    }
+                    ?>
+                    <a href="<?php
+                                if (isset($_SESSION["User"])) {
+                                    echo base_url . 'profile';
+                                } else {
+                                    echo base_url . 'inloggen';
+                                }
+                                ?>" class="HrefDecoration">
+
+                        <img src="<?php echo base_url ?>/Public/Img/profile.svg"></a>
+
                 </li>
             </ul>
         </div>

@@ -71,7 +71,7 @@ if (isset($_GET['review-sort'])) {
 // TODO: Fix zodat bijv 3.5 ook werkt
 $avg = ceil($reviewsHandler->getRating($_GET['id'])['AvgRating']);
 // $rating = $reviewsHandler->getRating($_GET['id'])['Rating'];
-$_SESSION['User']['UserID'] = 1;
+// $_SESSION['User']['UserID'] = 1;
 // $reviewsHandler->addReview($_GET['id'], 2, "Yow");
 
 switch ($_SESSION['review-sort']) {

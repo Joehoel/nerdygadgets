@@ -140,12 +140,15 @@ ul#ul-class li {
 	line-height: 90px;
 }
 ul#ul-class-navigation {
-
-  right: 35px;
+  right: 40px;
   line-height: 90px;
   position: absolute;
 
 }
+ul#ul-class-navigation #user_profile_icon * {
+  display: inline;
+}
+
 ul#ul-class-navigation li {
 	color: var(--white);
 	display: inline;
