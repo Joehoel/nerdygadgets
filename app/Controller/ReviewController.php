@@ -10,6 +10,8 @@ class ReviewController
   {
     if(isset($_POST['rating']) && isset($_POST['review-text'])) {
       print_r($_POST);
+      print("\n");
+      print_r($_SESSION);
       // $_SESSION['User']['UserID'] = 1;
 
       // $reviews = new Reviews();
