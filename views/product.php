@@ -51,6 +51,7 @@ if ($R) {
     $Images = $R;
 }
 
+
 if (isset($_GET['aantal'])) {
     $meer = ($_GET['aantal'] == 1) ? 'is ' . $_GET['aantal'] . ' artikel' : 'zijn ' . $_GET['aantal'] . ' artiekelen';
     echo '<div class="pop-up">Er ' . $meer . ' toegevoegd aan de winkelwagen</div>';
@@ -109,10 +110,10 @@ $starsCount = array_count_values($ratings);
 ?>
 <div class="pop-up" id="pop-up"></div>
 <?php if (isset($_GET['error'])) {
-    echo '<script> popup("' . $_GET["error"] . '", true); </script>';
+    echo '<script> popup("' . _($_GET["error"]) . '", true); </script>';
 } ?>
 <?php if (isset($_GET['success'])) {
-    echo '<script> popup("Je review is aangemaakt", false); </script>';
+    echo '<script> popup(' . _("Je review is aangemaakt") . ', false); </script>';
 } ?>
 <div id="CenteredContent">
 
@@ -189,14 +190,14 @@ $starsCount = array_count_values($ratings);
                 <div class="CenterPriceLeft">
                     <div class="CenterPriceLeftChild">
                         <p class="StockItemPriceText"><b><?php print sprintf("€ %.2f", $Result['SellPrice']); ?></b></p>
-                        <h6> Inclusief BTW </h6>
+                        <h6> <?= gettext("Inclusief BTW") ?> </h6>
                         <?php
                         if ($Result['voorraad'] != 0) {
                         ?>
                             <!-- TODO: Change so that this doesnt just update item count in cart but adds on to it -->
                             <form method="POST" action="<?php echo base_url; ?>add-to-cart-product/<?php echo $Result["StockItemID"]; ?>">
                                 <input type="number" name="aantal" required value="1" min="1" max="<?php echo $Result['voorraad'] ?>" />
-                                <input type="submit" name="voegtoe" value="In winkelwagen">
+                                <input type="submit" name="voegtoe" value="<?= gettext("In winkelwagen") ?>">
                             </form>
                         <?php
                         }
@@ -213,20 +214,21 @@ $starsCount = array_count_values($ratings);
                 <?php } ?>
             </span>
         </div>
+
         <div class="item-information">
             <div id="StockItemDescription">
-                <h3>Artikel beschrijving</h3>
+                <h3><?= gettext("Artikel beschrijving") ?></h3>
                 <p><?php print $Result['SearchDetails']; ?></p>
             </div>
             <div id="StockItemSpecifications">
-                <h3>Artikel specificaties</h3>
+                <h3><?= gettext("Artikel specificaties") ?></h3>
                 <?php
                 $CustomFields = json_decode($Result['CustomFields'], true);
                 if (is_array($CustomFields)) { ?>
                     <table>
                         <thead>
-                            <th>Naam</th>
-                            <th>Data</th>
+                            <th><?= gettext("Naam") ?></th>
+                            <th><?= gettext("Data") ?></th>
                         </thead>
                         <?php
                         foreach ($CustomFields as $SpecName => $SpecText) { ?>

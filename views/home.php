@@ -14,7 +14,7 @@ include __DIR__ . '/header.php ';
                 </div>
                 <ul id="ul-class-price">
                     <li class="HomePagePrice"><?php print sprintf("€ %.2f", $item['SellPrice']); ?></li>
-                    <li class="btw">Inclusief BTW</li>
+                    <li class="btw"><?= gettext("Inclusief BTW") ?></li>
                 </ul>
             </a>
         </div>

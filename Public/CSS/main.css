@@ -140,9 +140,11 @@ ul#ul-class li {
 	line-height: 90px;
 }
 ul#ul-class-navigation {
+
   right: 35px;
   line-height: 90px;
   position: absolute;
+
 }
 ul#ul-class-navigation li {
 	color: var(--white);
@@ -153,9 +155,11 @@ ul#ul-class-navigation li {
 	text-decoration-color: currentcolor;
 }
 ul#ul-class-navigation li img {
+
   height: 30px;
   width: 30px;
   margin: 0 20px;
+
 }
 #Content {
 	margin-top: 90px;
@@ -565,7 +569,6 @@ input {
 	font-size: 25px;
 }
 
-
 /* form in the payment page */
 .information .form-2 {
   margin-bottom: 20px;
@@ -599,8 +602,10 @@ input {
 .information .form-2 input:nth-child(7) {
   grid-column-start: 4;
   grid-column-end: 5;
+
 }
 .payment {
+
   overflow-y: scroll;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
@@ -777,9 +782,11 @@ input {
 
 /* Cart & Browse */
 .list {
-  /* background-color: orange; */
-  display: flex;
-  flex-direction: column;
+	/* background-color: orange; */
+	display: flex;
+	flex-direction: column;
+	overflow-y: scroll;
+
 }
 
 .list::-webkit-scrollbar {
@@ -1137,4 +1144,31 @@ input:disabled,
 input:read-only {
 	background-color: rgb(202, 202, 202);
 	color: gray;
+}
+
+.drop-down {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  margin: 0 30px;
+}
+
+.drop-down:hover .items {
+  display: block;
+}
+
+.drop-down .items {
+  display: none;
+  list-style-type: none;
+  line-height: normal;
+  background: white;
+  width: 150px;
+  padding-left:0;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  position: absolute;
+  top: 25px;
+  margin-left: 60px;
+  z-index: 1;
 }

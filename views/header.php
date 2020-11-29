@@ -50,36 +50,46 @@
             <div class="col-8" id="CategoriesBar">
                 <ul id="ul-class">
                     <?php
-                    $Query = "
-                SELECT StockGroupID, StockGroupName, ImagePath
-                FROM stockgroups
-                WHERE StockGroupID IN (
-                                        SELECT StockGroupID
-                                        FROM stockitemstockgroups
-                                        ) AND ImagePath IS NOT NULL
-                ORDER BY StockGroupID ASC";
-                    $Statement = mysqli_prepare($Connection, $Query);
-                    mysqli_stmt_execute($Statement);
-                    $HeaderStockGroups = mysqli_stmt_get_result($Statement);
-
-                    foreach ($HeaderStockGroups as $HeaderStockGroup) {
+                        $Query = "
+                            SELECT StockGroupID, StockGroupName, ImagePath
+                            FROM stockgroups
+                            WHERE StockGroupID IN (
+                                                    SELECT StockGroupID
+                                                    FROM stockitemstockgroups
+                                                    ) AND ImagePath IS NOT NULL
+                            ORDER BY StockGroupID ASC";
+                        $Statement = mysqli_prepare($Connection, $Query);
+                        mysqli_stmt_execute($Statement);
+                        $HeaderStockGroups = mysqli_stmt_get_result($Statement);
                     ?>
+                    <?php foreach ($HeaderStockGroups as $HeaderStockGroup) { ?>
                         <li>
                             <a href="<?php echo base_url; ?>browse?category_id=<?php print $HeaderStockGroup['StockGroupID']; ?>" class="HrefDecoration">
                                 <?php print $HeaderStockGroup['StockGroupName']; ?>
                             </a>
                         </li>
-                    <?php
-                    }
-                    ?>
+                    <?php } ?>
                     <li>
-                        <a href="<?php echo base_url; ?>categories" class="HrefDecoration">Alle categorieën</a>
+                        <a href="<?php echo base_url; ?>categories" class="HrefDecoration">
+                            <?= gettext("Alle categorieën") ?>
+                        </a>
                     </li>
                 </ul>
             </div>
             <ul id="ul-class-navigation">
                 <li>
                     <a href="<?php echo base_url; ?>browse" class="HrefDecoration"><img src="<?php echo base_url ?>/Public/Img/search.svg"></a>
+                </li>
+                <li class="drop-down">
+                    <span><?= gettext("Talen") ?></span>
+                    <ul class="items">
+                        <li>
+                            <a href="<?= base_url ?>taal/nederlands">Nederlands</a>
+                        </li>
+                        <li>
+                            <a href="<?= base_url ?>taal/english">Engels</a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="<?php echo base_url; ?>cart" class="HrefDecoration"><img src="<?php echo base_url ?>/Public/Img/cart.svg"></a>
