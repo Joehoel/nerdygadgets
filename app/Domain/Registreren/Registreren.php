@@ -15,7 +15,7 @@ class Registreren
             "achternaam" => $_POST['l-name'] ?? "",
             "adres" => $_POST['address'] ?? "",
             "postcode" => $_POST['p-c'] ?? "",
-            "email" => $_POST['email'] ?? "",
+            "email" => trim($_POST['email']) ?? "",
             "telefoonNummer" => $_POST['tel'],
             "bedrijf" => $_POST['c-name'] ?? "",
             "city" => $_POST['city'] ?? "",
