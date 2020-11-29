@@ -113,7 +113,7 @@ $starsCount = array_count_values($ratings);
     echo '<script> popup("' . _($_GET["error"]) . '", true); </script>';
 } ?>
 <?php if (isset($_GET['success'])) {
-    echo '<script> popup(' . _("Je review is aangemaakt") . ', false); </script>';
+    echo '<script> popup("' . _("Je review is aangemaakt") . '", false); </script>';
 } ?>
 <div id="CenteredContent">
 
