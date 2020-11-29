@@ -59,7 +59,7 @@ class Registreren
                 }
             }
 
-            if ($value === '') {
+            if ($value === '' && $key != 'bedrijf') {
                 return "missende " . $key;
             }
         }
@@ -78,7 +78,7 @@ class Registreren
         INSERT INTO users (Email, FirstName, LastName, Password, PhoneNumber, Adress, City, PostalCode, Company)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
         $stm = mysqli_prepare($connection, $sql);
-        mysqli_stmt_bind_param($stm, "ssssissss", $user["email"], $user["voornaam"], $user["achternaam"], $user["wachtwoord"], $user["telefoonNummer"], $user["adres"], $user["city"], $user["postcode"], $user["company"]);
+        mysqli_stmt_bind_param($stm, "ssssissss", $user["email"], $user["voornaam"], $user["achternaam"], $user["wachtwoord"], $user["telefoonNummer"], $user["adres"], $user["city"], $user["postcode"], $user["bedrijf"]);
         mysqli_stmt_execute($stm);
     }
 

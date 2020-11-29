@@ -6,6 +6,7 @@ use App\Controller\CategoryController;
 use App\Controller\HomeController;
 use App\Controller\ProductController;
 use App\Controller\RegistrerenController;
+use App\Controller\ProfileController;
 use App\Controller\InloggenController;
 use App\Domain\Cart\CartController;
 
@@ -63,6 +64,12 @@ return [
         ]],
         "login" => [InloggenController::class, 'login', [
             "type" => "POST",
+        ]],
+        "profile" => [ProfileController::class, 'show', [
+            "type" => "GET",
+        ]],
+        "uitloggen" => [ProfileController::class, 'uitloggen', [
+            "type" => "GET",
         ]],
     ]
 ];

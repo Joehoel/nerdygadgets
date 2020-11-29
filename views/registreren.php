@@ -1,7 +1,9 @@
 <?php
 include __DIR__ . "/connect.php";
 include __DIR__ . "/header.php";
-
+if (isset($_SESSION["User"])) {
+    echo '<script>window.location.href = "'.base_url.'browse"</script>';
+}
 ?>
 <div class="pop-up" id="pop-up"></div>
 <?php if (isset($_GET['error'])) {

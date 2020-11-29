@@ -22,6 +22,6 @@ class RegistrerenController
         }
 
         // the page we go to when the user is registered
-        return header('Location: ' . base_url . 'browse?newuser=true');
+        return header('Location: ' . base_url . 'inloggen?newuser=true');
     }
 }
