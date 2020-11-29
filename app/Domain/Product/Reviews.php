@@ -64,7 +64,7 @@ class Reviews
      *
      * @param int $id
      * @param int $rating
-     * @param sting $msg
+     * @param string $msg
      * @return void
      */
     public function addReview($id, $rating, $msg)
@@ -74,8 +74,6 @@ class Reviews
         }
         if (isset($_SESSION['User']) && !empty($_SESSION['User'])) {
             if (!$this->usersHasReviewed($id)) {
-
-
                 $db = new DatabaseInstance();
                 $conn = $db->create();
 
@@ -94,7 +92,7 @@ class Reviews
      * @param int $id
      * @return bool
      */
-    private function usersHasReviewed($id)
+    public function usersHasReviewed($id)
     {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();

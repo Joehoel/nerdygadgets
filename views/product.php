@@ -70,10 +70,8 @@ if (isset($_GET['review-sort'])) {
 // TODO: Fix zodat bijv 3.5 ook werkt
 $avg = ceil($reviewsHandler->getRating($_GET['id'])['AvgRating']);
 // $rating = $reviewsHandler->getRating($_GET['id'])['Rating'];
-
-// $_SESSION['User']['UserID'] = 1;
-
-// $reviewsHandler->addReview($_GET['id'], 4, "Test");
+$_SESSION['User']['UserID'] = 1;
+// $reviewsHandler->addReview($_GET['id'], 2, "Yow");
 
 switch ($_SESSION['review-sort']) {
     case 'stars-asc':
@@ -107,7 +105,15 @@ foreach ($reviews as $review) {
 
 $starsCount = array_count_values($ratings);
 
+
 ?>
+<div class="pop-up" id="pop-up"></div>
+<?php if (isset($_GET['error'])) {
+    echo '<script> popup("' . $_GET["error"] . '", true); </script>';
+} ?>
+<?php if (isset($_GET['success'])) {
+    echo '<script> popup("Je review is aangemaakt", false); </script>';
+} ?>
 <div id="CenteredContent">
 
     <?php
@@ -259,7 +265,7 @@ $starsCount = array_count_values($ratings);
             <div class="reviews-sort">
                 <div class="filter">
                     <div class="filter-header">
-                        <h3>Filteren</h3>
+                        <h3>Sterren</h3>
                         <span>Aantal reviews</span>
                     </div>
                     <span class="rating">
