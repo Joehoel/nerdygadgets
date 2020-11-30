@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS Users (
     LastName varchar(45) NOT NULL,
     Password char(60) NOT NULL,
     /* Hashed */
-    PhoneNumber int NOT NULL,
+    PhoneNumber varchar(45) NOT NULL,
     Adress varchar(45) NOT NULL,
     /* Format->"<street>, <huisnummer>" */
     City varchar(45) NOT NULL,
