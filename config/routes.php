@@ -101,5 +101,11 @@ return [
         "create-review/{id}" => [ReviewController::class, 'create', [
             "type" => "POST",
         ]],
+        "profile" => [ProfileController::class, 'show', [
+            "type" => "GET",
+        ]],
+        "uitloggen" => [ProfileController::class, 'uitloggen', [
+            "type" => "GET",
+        ]],
     ]
 ];
