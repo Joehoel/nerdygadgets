@@ -48,12 +48,7 @@ if (isset($_GET["uitgelogd"])) {
 
 ?>
 <div id="FilterFrame">
-<<<<<<< HEAD
-
     <h2 class="FilterText"><?= _("Filteren") ?></h2>
-=======
-    <h2 class="FilterText">Filteren </h2>
->>>>>>> c3efad03fe5aa12ad70d7f2251979f2c3f8762dd
     <form>
         <div id="FilterOptions">
 
@@ -183,11 +178,7 @@ if (isset($_GET["uitgelogd"])) {
         </form>
     <?php } else { ?>
         <h2 id="NoSearchResults">
-<<<<<<< HEAD
-            <?= _("Er zijn geen resultaten gevonden.") ?>
-=======
             <?= _("Yarr, er zijn geen resultaten gevonden.") ?>
->>>>>>> c3efad03fe5aa12ad70d7f2251979f2c3f8762dd
         </h2>
     <?php } ?>
 </div>
