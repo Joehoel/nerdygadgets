@@ -28,7 +28,7 @@ class Inloggen
             $result = mysqli_stmt_get_result($stm);
             $result = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-            if (count($result) !== 0) {
+            if (!empty($result)) {
                 if (password_verify($wachtwoord, $result[0]["Password"])) {
                     $_SESSION["User"] = array(
                         "UserID" => $result[0]['UserID'],
@@ -36,11 +36,12 @@ class Inloggen
                         "FirstName" => $result[0]['FirstName'],
                         "LastName" => $result[0]['LastName'],
                         "PhoneNumber" => $result[0]['PhoneNumber'],
-                        "Address" => $result[0]['Address'],
+                        "Adress" => $result[0]['Adress'],
                         "City" => $result[0]['City'],
                         "PostalCode" => $result[0]['PostalCode'],
                         "Company" => $result[0]['Company']
                     );
+                    return true;
                 } else {
                     return "combinatie email en wachtwoord klopt niet";
                 }

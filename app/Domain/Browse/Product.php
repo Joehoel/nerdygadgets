@@ -155,6 +155,7 @@ class Product
             mysqli_stmt_execute($Statement);
             $Result = mysqli_stmt_get_result($Statement);
             $Result = mysqli_fetch_all($Result, MYSQLI_ASSOC);
+            $_SESSION["results"] = $Result[0]["count(*)"];
         } else {
 
             if ($queryBuildResult != "") {

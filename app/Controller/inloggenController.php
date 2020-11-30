@@ -14,9 +14,13 @@ class InloggenController
     {
         $inloggen = new Inloggen();
         $error = $inloggen->checkGegevens();
-        if ($error !== null) {
+        if ($error !== null && $error !== true) {
             return header('Location: ' . base_url . 'inloggen?error=' . $error);
         }
-        return header('Location: ' . base_url . 'browse?ingelogd=true');
+        if ($error === true) {
+            return header('Location: ' . base_url . 'browse?ingelogd=true');
+        } else {
+            return header('Location: ' . base_url . 'inloggen?error=' . "combinatie email en wachtwoord klopt niet");
+        }
     }
 }
