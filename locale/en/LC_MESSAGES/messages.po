@@ -350,12 +350,12 @@ msgstr "Log in"
 
 #: registreren.php:19
 msgid "Wachtwoord bevestigen"
-msgstr ""
+msgstr "Confirm password"
 
 #: registreren.php:20
 msgid "Verzend adres"
-msgstr ""
+msgstr "Shipping address"
 
 #: registreren.php:29
 msgid "Registreren"
-msgstr ""
+msgstr "Register"
