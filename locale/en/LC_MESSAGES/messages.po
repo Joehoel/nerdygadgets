@@ -29,15 +29,6 @@ msgstr "products"
 msgid "Er is een product toegevoegd aan je winkelwagen"
 msgstr "A product has been added to your cart"
 
-#. if (isset($_SESSION["User"])) {
-#. echo '<script> console.log("'.$_SESSION["User"]["FirstName"].'") </script>';
-#. }
-#. if (isset($_SESSION["User"])) {
-#. echo '<script> console.log("'.$_SESSION["User"]["FirstName"].'") </script>';
-#. }
-#. if (isset($_SESSION["User"])) {
-#. echo '<script> console.log("'.$_SESSION["User"]["FirstName"].'") </script>';
-#. }
 #: browse.php:44 browse.php:52 browse.php:51 browse.php:51
 msgid "Filteren"
 msgstr "Filter"
@@ -54,7 +45,7 @@ msgstr "Number of results:"
 msgid "Sorteren op:"
 msgstr "Order by:"
 
-#: browse.php:77 browse.php:86 browse.php:85 browse.php:85
+#: browse.php:77 browse.php:86 browse.php:85
 msgid "Prijs oplopend"
 msgstr "Price ascending"
 
