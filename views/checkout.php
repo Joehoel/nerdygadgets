@@ -77,7 +77,7 @@ function berekenTotaallijst($stockitem)
         <table>
             <?php berekenTotaallijst($stockitem); ?>
             <tr>
-                <td>Subtotaal (excl. BTW)</td>
+                <td><?= _("Subtotaal (excl. BTW)") ?></td>
                 <td></td>
                 <td><?php echo ('€' . number_format(berekenSubtotaal($stockitem), 2, ",", ".")); ?>
                 </td>
@@ -127,6 +127,6 @@ function berekenTotaallijst($stockitem)
             </form>
 
         </div>
-        <button>Continue to shipping</button>
+        <button><?= _("Doorgaan naar versturen") ?></button>
     </div>
 </div>
