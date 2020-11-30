@@ -868,7 +868,7 @@ input {
 	position: absolute;
 	right: -3rem;
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 1fr auto;
 	justify-items: start;
 	text-align: end;
 }
