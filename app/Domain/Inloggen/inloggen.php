@@ -37,6 +37,7 @@ class Inloggen
                         "PhoneNumber" => $result[0]['PhoneNumber'],
                         "Adress" => $result[0]['Adress'],
                         "City" => $result[0]['City'],
+                        "Country" => $result[0]['Country'],
                         "PostalCode" => $result[0]['PostalCode'],
                         "Company" => $result[0]['Company']
                     );

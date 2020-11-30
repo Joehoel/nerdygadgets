@@ -59,16 +59,48 @@ function berekenTotaallijst($stockitem)
         <div>
             <h1><?= _("Klant informatie") ?></h1>
             <form class="form-2">
-                <input type="text" placeholder="Email" name="email">
+                <input type="text" placeholder="Email" name="email" value="<?php if (isset($_SESSION["User"])) {
+                                                                                echo $_SESSION["User"]["Email"];
+                                                                            }
+                                                                            ?>">
                 <h1><?= _("Verzendingsadres") ?></h1>
-                <input type="text" placeholder="<?= _("Voornaam") ?>" name="f-name">
-                <input type="text" placeholder="<?= _("Achternaam") ?>" name="l-name">
-                <input type="text" placeholder="<?= _("Bedrijf (Optioneel)") ?>" name="c-name">
-                <input type="text" placeholder="<?= _("Adres") ?>" name="address">
-                <input type="text" placeholder="<?= _("Bedrijf") ?>" name="city">
-                <input type="text" placeholder="<?= _("Land") ?>" name="country">
-                <input type="text" placeholder="<?= _("Postcode") ?>" name="p-c">
-                <input type="text" placeholder="<?= _("Telefoonnummer") ?>" name="tel">
+                <input type="text" placeholder="<?= _("Voornaam") ?>" name="f-name" value="<?php if (isset($_SESSION["User"])) {
+                                                                                                echo $_SESSION["User"]["FirstName"];
+                                                                                            }
+                                                                                            ?>">
+                <input type="text" placeholder="<?= _("Achternaam") ?>" name="l-name" value="<?php if (isset($_SESSION["User"])) {
+                                                                                                    echo $_SESSION["User"]["LastName"];
+                                                                                                }
+                                                                                                ?>">
+                <input type="text" placeholder="<?= _("Bedrijf (Optioneel)") ?>" name="c-name" value="<?php if (isset($_SESSION["User"])) {
+                                                                                                            if ($_SESSION["User"]["Company"] !== '') {
+                                                                                                                echo $_SESSION["User"]["Company"];
+                                                                                                            }
+                                                                                                        }
+                                                                                                        ?>">
+                <input type="text" placeholder="<?= _("Adres") ?>" name="address" value="<?php if (isset($_SESSION["User"])) {
+                                                                                                echo $_SESSION["User"]["Adress"];
+                                                                                            }
+                                                                                            ?>">
+                <input type="text" placeholder="<?= _("Stad") ?>" name="city" value="<?php if (isset($_SESSION["User"])) {
+                                                                                            echo $_SESSION["User"]["City"];
+                                                                                        }
+                                                                                        ?>">
+                <input type="text" placeholder="<?= _("Land") ?>" name="country" value="<?php if (isset($_SESSION["User"])) {
+                                                                                            echo $_SESSION["User"]["Country"];
+                                                                                        }
+                                                                                        ?>" value="<?php if (isset($_SESSION["User"])) {
+                                                                                                        echo $_SESSION["User"]["Email"];
+                                                                                                    }
+                                                                                                    ?>">
+                <input type="text" placeholder="<?= _("Postcode") ?>" name="p-c" value="<?php if (isset($_SESSION["User"])) {
+                                                                                            echo $_SESSION["User"]["PostalCode"];
+                                                                                        }
+                                                                                        ?>">
+                <input type="text" placeholder="<?= _("Telefoonnummer") ?>" name="tel" value="<?php if (isset($_SESSION["User"])) {
+                                                                                                    echo $_SESSION["User"]["PhoneNumber"];
+                                                                                                }
+                                                                                                ?>">
             </form>
         </div>
     </div>

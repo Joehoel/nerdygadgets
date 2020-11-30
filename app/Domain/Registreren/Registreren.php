@@ -19,6 +19,7 @@ class Registreren
             "telefoonNummer" => $_POST['tel'],
             "bedrijf" => $_POST['c-name'] ?? "",
             "city" => $_POST['city'] ?? "",
+            "country" => $_POST["country"] ?? "",
             "wachtwoord" => $_POST['password-1'] ?? ""
         ];
         foreach ($user as $key => $value) {
@@ -74,10 +75,10 @@ class Registreren
         mysqli_set_charset($connection, 'latin1');
 
         $sql = "
-        INSERT INTO users (Email, FirstName, LastName, Password, PhoneNumber, Adress, City, PostalCode, Company)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        INSERT INTO users (Email, FirstName, LastName, Password, PhoneNumber, Adress, City, Country, PostalCode, Company)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
         $stm = mysqli_prepare($connection, $sql);
-        mysqli_stmt_bind_param($stm, "ssssissss", $user["email"], $user["voornaam"], $user["achternaam"], $user["wachtwoord"], $user["telefoonNummer"], $user["adres"], $user["city"], $user["postcode"], $user["bedrijf"]);
+        mysqli_stmt_bind_param($stm, "ssssisssss", $user["email"], $user["voornaam"], $user["achternaam"], $user["wachtwoord"], $user["telefoonNummer"], $user["adres"], $user["city"], $user["country"], $user["postcode"], $user["bedrijf"]);
         mysqli_stmt_execute($stm);
     }
 
