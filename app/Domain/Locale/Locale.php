@@ -48,10 +48,13 @@ class Locale
     {
         if (defined('LC_MESSAGES')) {
             setlocale(LC_MESSAGES, $langCode);
+            putenv("LC_ALL={$langCode}");
+            putenv("LANGUAGE={$langCode}.UTF-8");
             bindtextdomain("messages", "locale");
         } else {
             setlocale(LC_ALL, $langCode);
             putenv("LC_ALL={$langCode}");
+            putenv("LANGUAGE={$langCode}.UTF-8");
             bindtextdomain("messages", "locale");
         }
         textdomain("messages");
