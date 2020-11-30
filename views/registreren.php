@@ -15,8 +15,8 @@ if (isset($_SESSION["User"])) {
             <h1><?= _("Klant informatie") ?></h1>
             <form class="form-1" method="post" action="<?php echo base_url; ?>addNewUser">
                 <input type="text" placeholder="Email" name="email">
-                <input type="password" placeholder="Password" name="password-1">
-                <input type="password" placeholder="<?= _("Wachtwoord bevestigen") ?>" name="password-2">
+                <input type="password" oninvalid="this.setCustomValidity('Password should be at least 8 characters in length and should include at least one upper case letter and one number.')" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"  placeholder="Password" name="password-1">
+                <input type="password" oninvalid="this.setCustomValidity('Password should be at least 8 characters in length and should include at least one upper case letter and one number.')" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$" placeholder="<?= _("Wachtwoord bevestigen") ?>" name="password-2">
                 <h1><?= _("Verzend adres") ?></h1>
                 <input type="text" placeholder="<?= _("Voornaam") ?>" name="f-name">
                 <input type="text" placeholder="<?= _("Achternaam") ?>" name="l-name">
