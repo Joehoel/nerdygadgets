@@ -141,7 +141,6 @@ class Route
                 // described here: https://www.php.net/manual/en/function.call-user-func.php
                 // it calls, class + function + parameters
                 $class = new $data[0]();
-
                 $parameters = $this->getParameters($route, $url);
                 $this->loadCorrectLocale();
                 call_user_func_array([
@@ -155,7 +154,7 @@ class Route
     {
         $langCode = $_SESSION['language'] ?? null;
         $locale = new Locale();
-        if($langCode) {
+        if($langCode && $langCode !== 'nl') {
             $locale->setPageLocale($langCode);
         }
     }

@@ -5,7 +5,7 @@ namespace App\Domain\Locale;
 class Locale
 {
     private $friendlyLocale, $locale;
-    private $default = 'nl_NL';
+    private $default = 'nl';
     /**
      * @var string[]
      *
@@ -47,11 +47,11 @@ class Locale
     public function setPageLocale($langCode)
     {
         if (defined('LC_MESSAGES')) {
-            setlocale(LC_MESSAGES, $langCode); // Linux
+            setlocale(LC_MESSAGES, $langCode);
             bindtextdomain("messages", "locale");
         } else {
-            setlocale(LC_ALL, $langCode); // Linux
-            putenv("LC_ALL={$langCode}"); // Windows
+            setlocale(LC_ALL, $langCode);
+            putenv("LC_ALL={$langCode}");
             bindtextdomain("messages", "locale");
         }
         textdomain("messages");
