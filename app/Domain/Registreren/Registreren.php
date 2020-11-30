@@ -15,7 +15,7 @@ class Registreren
             "achternaam" => $_POST['l-name'] ?? "",
             "adres" => $_POST['address'] ?? "",
             "postcode" => $_POST['p-c'] ?? "",
-            "email" => $_POST['email'] ?? "",
+            "email" => trim($_POST['email']) ?? "",
             "telefoonNummer" => $_POST['tel'],
             "bedrijf" => $_POST['c-name'] ?? "",
             "city" => $_POST['city'] ?? "",
@@ -30,10 +30,9 @@ class Registreren
                     $uppercase = preg_match('@[A-Z]@', $value);
                     $lowercase = preg_match('@[a-z]@', $value);
                     $number    = preg_match('@[0-9]@', $value);
-                    $specialChars = preg_match('@[^\w]@', $value);
 
-                    if (!$uppercase || !$lowercase || !$number || !$specialChars || strlen($value) < 8) {
-                        return 'Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.';
+                    if (!$uppercase || !$lowercase || !$number  || strlen($value) < 8) {
+                        return 'Password should be at least 8 characters in length and should include at least one upper case letter and one number.';
                     } else {
                         // hash the password
                         $user[$key] = password_hash($value, PASSWORD_DEFAULT);
@@ -49,18 +48,18 @@ class Registreren
 
             if ($key === "voornaam" || $key === "achternaam" || $key === "city") {
                 if (preg_match('/[^A-Za-z]/', $value)) {
-                    return "fouten gegevens";
+                    return "Foute gegevens";
                 }
             }
 
             if ($key === "telefoonNummer") {
                 if (preg_match('/[^0-9]/', $value)) {
-                    return "fouten gegevens";
+                    return "Foute gegevens";
                 }
             }
 
-            if ($value === '') {
-                return "missende " . $key;
+            if ($value === '' && $key != 'bedrijf') {
+                return "Missende " . $key;
             }
         }
         $error = $this->EmailCheck($user);
@@ -78,7 +77,7 @@ class Registreren
         INSERT INTO users (Email, FirstName, LastName, Password, PhoneNumber, Adress, City, PostalCode, Company)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
         $stm = mysqli_prepare($connection, $sql);
-        mysqli_stmt_bind_param($stm, "ssssissss", $user["email"], $user["voornaam"], $user["achternaam"], $user["wachtwoord"], $user["telefoonNummer"], $user["adres"], $user["city"], $user["postcode"], $user["company"]);
+        mysqli_stmt_bind_param($stm, "ssssissss", $user["email"], $user["voornaam"], $user["achternaam"], $user["wachtwoord"], $user["telefoonNummer"], $user["adres"], $user["city"], $user["postcode"], $user["bedrijf"]);
         mysqli_stmt_execute($stm);
     }
 

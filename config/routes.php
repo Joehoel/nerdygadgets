@@ -6,7 +6,9 @@ use App\Controller\CategoryController;
 use App\Controller\HomeController;
 use App\Controller\LocaleController;
 use App\Controller\ProductController;
+use App\Controller\ReviewController;
 use App\Controller\RegistrerenController;
+use App\Controller\ProfileController;
 use App\Controller\InloggenController;
 use App\Domain\Cart\CartController;
 
@@ -96,5 +98,8 @@ return [
                 "type" => "POST",
             ]
         ],
+        "create-review/{id}" => [ReviewController::class, 'create', [
+            "type" => "POST",
+        ]],
     ]
 ];

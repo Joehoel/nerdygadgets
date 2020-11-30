@@ -1,6 +1,8 @@
 <?php
 
-use App\Domain\Reviews\Reviews;
+// use App\Domain\Product\Reviews;
+
+use App\Domain\Product\Reviews;
 
 include __DIR__ . '/connect.php';
 include __DIR__ . '/header.php';
@@ -59,7 +61,6 @@ if (isset($_GET['aantal'])) {
 $reviewsHandler = new Reviews();
 $reviews = array();
 $reviews = $reviewsHandler->getReviews($_GET['id'], "Rating", true);
-$ratings = array();
 
 if (isset($_GET['review-sort'])) {
     $_SESSION['review-sort'] = $_GET['review-sort'];
@@ -70,6 +71,8 @@ if (isset($_GET['review-sort'])) {
 // TODO: Fix zodat bijv 3.5 ook werkt
 $avg = ceil($reviewsHandler->getRating($_GET['id'])['AvgRating']);
 // $rating = $reviewsHandler->getRating($_GET['id'])['Rating'];
+// $_SESSION['User']['UserID'] = 1;
+// $reviewsHandler->addReview($_GET['id'], 2, "Yow");
 
 switch ($_SESSION['review-sort']) {
     case 'stars-asc':
@@ -92,6 +95,8 @@ switch ($_SESSION['review-sort']) {
         // $reviews = $reviewsHandler->getReviews($_GET['id'], "Rating", true);
         break;
 }
+
+$ratings = array();
 foreach ($reviews as $review) {
     array_push(
         $ratings,
@@ -103,17 +108,13 @@ $starsCount = array_count_values($ratings);
 
 
 ?>
-
-<?php if (isset($aantal) && $aantal === 1): ?>
-    <div class="pop-up">
-        <?= gettext("Er is 1 artikel toegevoegd aan de winkelwagen") ?>
-    </div>
-<?php else: ?>
-    <div class="pop-up">
-        <?= gettext("Er zijn") . ' ' . $aantal . ' '; ?><?= gettext("artikelen toegevoegd aan de winkelwagen") ?>
-    </div>
-<?php endif; ?>
-
+<div class="pop-up" id="pop-up"></div>
+<?php if (isset($_GET['error'])) {
+    echo '<script> popup("' . _($_GET["error"]) . '", true); </script>';
+} ?>
+<?php if (isset($_GET['success'])) {
+    echo '<script> popup("' . _("Je review is aangemaakt") . '", false); </script>';
+} ?>
 <div id="CenteredContent">
 
     <?php
@@ -243,7 +244,6 @@ $starsCount = array_count_values($ratings);
                                         }
                                     } else {
                                         print $SpecText;
-
                                     }
                                     ?>
                                 </td>
@@ -260,15 +260,15 @@ $starsCount = array_count_values($ratings);
         </div>
 
     <?php } else { ?>
-        <h2 id="ProductNotFound"><?= gettext("Het opgevraagde product is niet gevonden.") ?></h2>
+        <h2 id="ProductNotFound"><?= _("Het opgevraagde product is niet gevonden.") ?></h2>
     <?php } ?>
     <div class="reviews">
         <?php if (count($reviews) !== 0) { ?>
             <div class="reviews-sort">
                 <div class="filter">
                     <div class="filter-header">
-                        <h3>Filteren</h3>
-                        <span>Aantal reviews</span>
+                        <h3><?= _("Sterren") ?></h3>
+                        <span><?= _("Aantal Reviews") ?></span>
                     </div>
                     <span class="rating">
                         <div class="filter-row">
@@ -319,19 +319,19 @@ $starsCount = array_count_values($ratings);
                         <select name="review-sort" class="review-sort" onchange="this.form.submit()">
                             <option <?php if ($_SESSION['review-sort'] == "name-asc") {
                                         print "selected";
-                                    } ?> value="name-asc">Naam oplopend</option>
+                                    } ?> value="name-asc"><?= _("Naam oplopend") ?></option>
                             <option <?php if ($_SESSION['review-sort'] == "name-desc") {
                                         print "selected";
-                                    } ?> value="name-desc">Naam aflopend</option>
+                                    } ?> value="name-desc"><?= _("Naam aflopend") ?></option>
                             <option <?php if ($_SESSION['review-sort'] == "stars-asc") {
                                         print "selected";
-                                    } ?> value="stars-asc">Minste sterren</option>
+                                    } ?> value="stars-asc"><?= _("Minste sterren") ?></option>
                             <option <?php if ($_SESSION['review-sort'] == "stars-desc") {
                                         print "selected";
-                                    } ?> value="stars-desc">Meeste sterren</option>
+                                    } ?> value="stars-desc"><?= _("Meeste sterren") ?></option>
                             <option <?php if ($_SESSION['review-sort'] == "date") {
                                         print "selected";
-                                    } ?> value="date">Nieuwste</option>
+                                    } ?> value="date"><?= _("Nieuwste") ?></option>
                         </select>
                         <!-- <input type="submit" value="Submit"> -->
                     </form>
@@ -340,12 +340,33 @@ $starsCount = array_count_values($ratings);
         <?php } ?>
 
         <div class="reviews-header">
-            <h1>Reviews</h1>
-            <span class="reviews-count">Aantal reviews: <?php if ($reviews) echo count($reviews);
-                                                        else echo "0" ?></span>
+            <h1><?= _("Reviews") ?></h1>
+            <span class="reviews-count"><?= _("Aantal reviews") ?>: <?php if ($reviews) echo count($reviews);
+                                                                    else echo "0" ?></span>
+        </div>
+        <div class="write-review">
+            <form method="POST" action="<?= base_url ?>create-review/<?= $_GET['id'] ?>">
+                <div class="form-group">
+                    <label for="rating"><?= _("Beoordeling") ?></label>
+                    <select name="rating" required>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="review-text"><?= _("Review") ?></label>
+                    <textarea name="review-text" required></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit"><?= _("Verzenden") ?></button>
+                </div>
+            </form>
         </div>
         <?php if (!$reviews) { ?>
-            <h4>Er zijn nog geen reviews voor dit product...</h4>
+            <h4><?= _("Er zijn nog geen reviews voor dit product") ?>...</h4>
         <?php } else if ($reviews) { ?>
             <?php foreach ($reviews as $review) { ?>
                 <div class="review">

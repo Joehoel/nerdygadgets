@@ -7,7 +7,6 @@
 
 /* colors */
 :root {
-
   --background: #23232f;
   --font_pop: #676eff;
   --white: #fff;
@@ -98,7 +97,6 @@ table tr td {
 
 /* header */
 #header {
-
   position: fixed;
   top: 0;
   width: 100vw;
@@ -142,12 +140,15 @@ ul#ul-class li {
 	line-height: 90px;
 }
 ul#ul-class-navigation {
-
-  right: 35px;
+  right: 40px;
   line-height: 90px;
   position: absolute;
 
 }
+ul#ul-class-navigation #user_profile_icon * {
+  display: inline;
+}
+
 ul#ul-class-navigation li {
 	color: var(--white);
 	display: inline;
@@ -784,7 +785,6 @@ input {
 
 /* Cart & Browse */
 .list {
-
 	/* background-color: orange; */
 	display: flex;
 	flex-direction: column;
@@ -912,7 +912,6 @@ input {
 	font-weight: 500;
 	margin-right: 1rem;
 }
-
 .pop-up{
   display: none;
   position: fixed;
@@ -921,7 +920,6 @@ input {
   background-color: #399c39;
   padding: 10px;
   padding-left: 15%;
-
 }
 .pop-up-show {
   display: block;
@@ -937,7 +935,7 @@ input {
 @keyframes slide-in {
   0%{
     top: 0;
-    opacity: 0; 
+    opacity: 0;
   } 99% {
   }
   100% {
@@ -949,7 +947,7 @@ input {
 @keyframes slide-out {
   0%{
     top: 90px;
-    opacity: 1; 
+    opacity: 1;
   } 100% {
     top: 0px;
     opacity: 0;
@@ -1123,6 +1121,32 @@ hr {
 .rating img {
 	width: 2rem;
 	height: auto;
+}
+
+.write-review textarea {
+	width: 100%;
+	border-radius: 0.25rem;
+	height: 100px;
+	padding: 0.5rem;
+}
+
+.write-review label {
+	font-size: 1.2rem;
+}
+
+.write-review button {
+	width: 100%;
+	border-radius: 0.25rem;
+	background-color: var(--blue);
+	border: none;
+	color: var(--white);
+	padding: 0.5rem 1rem;
+}
+
+input:disabled,
+input:read-only {
+	background-color: rgb(202, 202, 202);
+	color: gray;
 }
 
 .drop-down {
