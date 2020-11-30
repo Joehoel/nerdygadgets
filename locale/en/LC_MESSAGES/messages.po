@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-25 14:29+0100\n"
+"POT-Creation-Date: 2020-11-30 10:15+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,6 +30,7 @@ msgid "Er is een product toegevoegd aan je winkelwagen"
 msgstr "A product has been added to your cart"
 
 #: browse.php:44
+#: browse.php:52
 msgid "Filteren"
 msgstr "Filter"
 
@@ -46,18 +47,22 @@ msgid "Sorteren op:"
 msgstr "Order by:"
 
 #: browse.php:77
+#: browse.php:86
 msgid "Prijs oplopend"
 msgstr "Price ascending"
 
 #: browse.php:80
+#: browse.php:90
 msgid "Prijs aflopend"
 msgstr "Price descending"
 
 #: browse.php:83
+#: browse.php:94
 msgid "Naam oplopend"
 msgstr "Name ascending"
 
 #: browse.php:86
+#: browse.php:98
 msgid "Naam aflopend"
 msgstr "Name descending"
 
@@ -74,6 +79,7 @@ msgid "Toevoegen aan winkelmandje"
 msgstr "Add to cart"
 
 #: browse.php:136 cart.php:61 home.php:16 product.php:136
+#: browse.php:148
 msgid "Inclusief BTW"
 msgstr "Including VAT"
 
@@ -98,6 +104,7 @@ msgid "om iets aan de winkelwagen toe te voegen"
 msgstr "to add something to the cart"
 
 #: cart.php:41
+#: browse.php:120
 msgid "Artikelnummer"
 msgstr "Product number"
 
@@ -198,6 +205,7 @@ msgid "Alle categorieën"
 msgstr "All categories"
 
 #: header.php:81
+#: browse.php:56
 msgid "Zoeken"
 msgstr "Search"
 
@@ -240,3 +248,15 @@ msgstr "Data"
 #: product.php:195
 msgid "Het opgevraagde product is niet gevonden."
 msgstr "Request product could not be found"
+
+#: browse.php:60
+msgid "Aantal resultaten"
+msgstr "Number of results"
+
+#: browse.php:139
+msgid "Toevoegen aan winkelwagen"
+msgstr "Add to cart"
+
+#: browse.php:188
+msgid "Er zijn geen resultaten gevonden."
+msgstr "No results were found"
