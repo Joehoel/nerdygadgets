@@ -18,7 +18,6 @@ class Inloggen
             FROM users
             WHERE Email IN (?)";
 
-
             $connection = mysqli_connect("localhost", "root", "", "nerdygadgets");
             mysqli_set_charset($connection, 'latin1');
 
