@@ -79,11 +79,22 @@ class Reviews
 
                 $stmt = $conn->prepare("INSERT INTO `reviews`(`ProductID`,`UserID`,`Rating`,`Text`) VALUES( ? , ? , ? , ? )");
 
-                $stmt->execute([$id, $_SESSION['User']['UserID'], $rating, $msg]);
+                $stmt->execute([$id, $_SESSION['User']['UserID'], $rating, $this->stripAllHtml($msg)]);
 
                 $stmt->fetchAll();
             }
         }
+    }
+
+    /**
+     * functie die de html weghaalt uit de sting
+     *
+     * @param string $msg
+     * @return string
+     */
+    private function stripAllHtml($msg){
+        $msg = strip_tags($msg);
+        return $msg;
     }
 
     /**
