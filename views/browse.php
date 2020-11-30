@@ -49,15 +49,15 @@ if (isset($_GET["uitgelogd"])) {
 ?>
 <div id="FilterFrame">
 
-    <h2 class="FilterText">Filteren </h2>
+    <h2 class="FilterText"><?= _("Filteren") ?></h2>
     <form>
         <div id="FilterOptions">
 
-            <h4 class="FilterTopMargin">Zoeken:</h4>
+            <h4 class="FilterTopMargin"><?= _("Zoeken") ?>:</h4>
 
             <input type="text" name="search_string" id="search_string" placeholder="..." value="<?php print (isset($_GET['search_string'])) ? $_GET['search_string'] : ""; ?>" class="form-submit" autofocus>
 
-            <h4 class="FilterTopMargin">Aantal resultaten:</h4>
+            <h4 class="FilterTopMargin"><?= _("Aantal resultaten") ?></h4>
 
             <input type="hidden" name="category_id" id="category_id" value="<?php print (isset($_GET['category_id'])) ? $_GET['category_id'] : ""; ?>">
 
@@ -83,19 +83,19 @@ if (isset($_GET["uitgelogd"])) {
             <select name="sort" id="sort" onchange="this.form.submit()">>
                 <option value="price_low_high" <?php if ($_SESSION['sort'] == "price_low_high") {
                                                     print "selected";
-                                                } ?>>Prijs oplopend
+                                                } ?>><?= _("Prijs oplopend") ?>
                 </option>
                 <option value="price_high_low" <?php if ($_SESSION['sort'] == "price_high_low") {
                                                     print "selected";
-                                                } ?>>Prijs aflopend
+                                                } ?>><?= _("Prijs aflopend") ?>
                 </option>
                 <option value="name_low_high" <?php if ($_SESSION['sort'] == "name_low_high") {
                                                     print "selected";
-                                                } ?>>Naam oplopend
+                                                } ?>><?= _("Naam oplopend") ?>
                 </option>
                 <option value="name_high_low" <?php if ($_SESSION['sort'] == "name_high_low") {
                                                     print "selected";
-                                                } ?>>Naam aflopend
+                                                } ?>><?= _("Naam aflopend") ?>
                 </option>
             </select>
         </div>
@@ -117,7 +117,7 @@ if (isset($_GET["uitgelogd"])) {
                 ?>
                 <div class="item-info">
                     <div>
-                        <h1>Artikelnummer: <?php print $row["StockItemID"]; ?></h1>
+                        <h1><?= _("Artikelnummer") ?>: <?php print $row["StockItemID"]; ?></h1>
                         <a href='product/<?php print $row['StockItemID']; ?>'>
                             <p><?php print $row["StockItemName"]; ?></p>
                             <p><?php print $row["MarketingComments"]; ?></p>
@@ -136,7 +136,7 @@ if (isset($_GET["uitgelogd"])) {
                             if ($row['QuantityOnHand'] != 0) {
                             ?>
                                 <div class="addcard">
-                                    <h3>add to card</h3>
+                                    <h3><?= _("Toevoegen aan winkelwagen") ?></h3>
                                     <form method="POST" action="<?php echo base_url; ?>add-to-cart-browse/<?php echo $row["StockItemID"]; ?>">
                                         <input type="hidden" value="<?php echo $row["CategoryID"]; ?>" name="category_id">
                                         <input type="hidden" value="1" name="aantal">
@@ -145,7 +145,7 @@ if (isset($_GET["uitgelogd"])) {
                                 </div>
                                 <div class="price">
                                     <h2><?php print sprintf("€%0.2f", $row["SellPrice"]); ?></h2>
-                                    <h6>Inclusief BTW </h6>
+                                    <h6><?= _("Inclusief BTW") ?></h6>
                                 </div>
 
                             <?php
@@ -185,7 +185,7 @@ if (isset($_GET["uitgelogd"])) {
     } else {
     ?>
         <h2 id="NoSearchResults">
-            Yarr, er zijn geen resultaten gevonden.
+            <?= _("Er zijn geen resultaten gevonden.") ?>
         </h2>
     <?php
     }
