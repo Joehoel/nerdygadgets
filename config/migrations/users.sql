@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS Users (
     Adress varchar(45) NOT NULL,
     /* Format->"<street>, <huisnummer>" */
     City varchar(45) NOT NULL,
+    Country varchar(45) NOT NULL,
     PostalCode varchar(20) NOT NULL,
     Company varchar(45),
     PRIMARY KEY (UserID)

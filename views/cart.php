@@ -43,7 +43,7 @@ $prices = $cartClass->GetTotalCartPrice();
                                 <p><?php print $productData["MarketingComments"]; ?></p>
                             </a>
                             <form action="<?php echo base_url; ?>update-cart/<?php echo $productData["StockItemID"]; ?>" method="POST" class="update-count">
-                                <label for="aantal"><?=gettext('Aantal')?>: </label>
+                                <label for="aantal"><?= _('Aantal')?>: </label>
                                 <input type="number" name="aantal" value="<?php print $value ?>" min="0" max="<?php echo $productData['voorraad'] ?>">
                                 <input type="submit" value="Update">
                             </form>
@@ -57,7 +57,7 @@ $prices = $cartClass->GetTotalCartPrice();
                             <div class="price">
                                 <!-- Weet niet zeker of de prijs klopt -->
                                 <h2><?php print sprintf("€%0.2f", $productData["SellPrice"] * $value); ?></h2>
-                                <h6><?=gettext('Inclusief BTW')?></h6>
+                                <h6><?= _('Inclusief BTW') ?></h6>
                             </div>
                         </div>
                     </div>
@@ -69,20 +69,20 @@ $prices = $cartClass->GetTotalCartPrice();
         <?php if (count($cart) > 0) { ?>
             <div class="total">
                 <div class="item">
-                    <h3><?= gettext('Totaal artikelen') ?>:</h3><span><?php echo $prices['articleTotal']; ?></span>
+                    <h3><?= _('Totaal artikelen') ?>:</h3><span><?php echo $prices['articleTotal']; ?></span>
                 </div>
                 <div class="item">
-                    <h5><?= gettext('Korting') ?>:</h5><span><?php echo $prices['discount']; ?></span>
+                    <h5><?= _('Korting') ?>:</h5><span><?php echo $prices['discount']; ?></span>
                 </div>
                 <div class="item">
-                    <h5><?= gettext('Verzendkosten') ?>:</h5><span><?php echo $prices['shipping']; ?></span>
+                    <h5><?= _('Verzendkosten') ?>:</h5><span><?php echo $prices['shipping']; ?></span>
                 </div>
                 <hr>
                 <div class="item">
-                    <h3><?= gettext('Totaal') ?>:</h3><span><?php echo $prices['total']; ?></span>
+                    <h3><?= _('Totaal') ?>:</h3><span><?php echo $prices['total']; ?></span>
                 </div>
                 <a class="to-checkout" href="<?php echo base_url ?>checkout">
-                    <?= gettext('Verder naar checkout') ?>
+                    <?= _('Verder naar checkout') ?>
                 </a>
             </div>
         <?php } ?>

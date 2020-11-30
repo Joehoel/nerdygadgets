@@ -17,7 +17,7 @@ define("base_url", 'http://localhost/nerdygadgets/');
  *
  * This code removes everything after the / in the URL.
  * so a URL like example.com/home/test becomes /home/test
- *
+ * test
  * */
 
 $route = new Route();
