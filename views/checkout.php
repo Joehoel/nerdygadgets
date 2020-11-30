@@ -64,29 +64,29 @@ function berekenTotaallijst($stockitem)
                                                                             }
                                                                             ?>">
                 <h1><?= _("Verzendingsadres") ?></h1>
-                <input type="text" placeholder="<?= _("Voornaam") ?>" name="f-name" value="<?php if (isset($_SESSION["User"])) {
+                <input type="text" placeholder="<?= _('Voornaam') ?>" name="f-name" value="<?php if (isset($_SESSION["User"])) {
                                                                                                 echo $_SESSION["User"]["FirstName"];
                                                                                             }
                                                                                             ?>">
-                <input type="text" placeholder="<?= _("Achternaam") ?>" name="l-name" value="<?php if (isset($_SESSION["User"])) {
+                <input type="text" placeholder="<?= _('Achternaam') ?>" name="l-name" value="<?php if (isset($_SESSION["User"])) {
                                                                                                     echo $_SESSION["User"]["LastName"];
                                                                                                 }
                                                                                                 ?>">
-                <input type="text" placeholder="<?= _("Bedrijf (Optioneel)") ?>" name="c-name" value="<?php if (isset($_SESSION["User"])) {
+                <input type="text" placeholder="<?= _('Bedrijf (Optioneel)') ?>" name="c-name" value="<?php if (isset($_SESSION["User"])) {
                                                                                                             if ($_SESSION["User"]["Company"] !== '') {
                                                                                                                 echo $_SESSION["User"]["Company"];
                                                                                                             }
                                                                                                         }
                                                                                                         ?>">
-                <input type="text" placeholder="<?= _("Adres") ?>" name="address" value="<?php if (isset($_SESSION["User"])) {
+                <input type="text" placeholder="<?= _('Adres') ?>" name="address" value="<?php if (isset($_SESSION["User"])) {
                                                                                                 echo $_SESSION["User"]["Adress"];
                                                                                             }
                                                                                             ?>">
-                <input type="text" placeholder="<?= _("Stad") ?>" name="city" value="<?php if (isset($_SESSION["User"])) {
+                <input type="text" placeholder="<?= _('Stad') ?>" name="city" value="<?php if (isset($_SESSION["User"])) {
                                                                                             echo $_SESSION["User"]["City"];
                                                                                         }
                                                                                         ?>">
-                <input type="text" placeholder="<?= _("Land") ?>" name="country" value="<?php if (isset($_SESSION["User"])) {
+                <input type="text" placeholder="<?= _('Land') ?>" name="country" value="<?php if (isset($_SESSION["User"])) {
                                                                                             echo $_SESSION["User"]["Country"];
                                                                                         }
                                                                                         ?>" value="<?php if (isset($_SESSION["User"])) {

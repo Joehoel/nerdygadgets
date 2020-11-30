@@ -4,7 +4,7 @@ include __DIR__ . "/connect.php";
 include __DIR__ . "/header.php";
 
 if (isset($_GET['update']) && $_GET['update'] === "true") {
-    echo '<div class="pop-up">'. gettext('De winkelwagen is geüpdate') .'</div>';
+    echo '<div class="pop-up">'. gettext('De winkelwagen is geupdate') .'</div>';
 }
 
 $prices = $cartClass->GetTotalCartPrice();

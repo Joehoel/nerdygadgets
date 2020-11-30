@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-30 10:15+0100\n"
+"POT-Creation-Date: 2020-11-30 11:43+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,12 +25,20 @@ msgstr "product"
 msgid "artikelen"
 msgstr "products"
 
-#: browse.php:41
+#: browse.php:41 browse.php:37
 msgid "Er is een product toegevoegd aan je winkelwagen"
 msgstr "A product has been added to your cart"
 
-#: browse.php:44
-#: browse.php:52
+#. if (isset($_SESSION["User"])) {
+#. echo '<script> console.log("'.$_SESSION["User"]["FirstName"].'") </script>';
+#. }
+#. if (isset($_SESSION["User"])) {
+#. echo '<script> console.log("'.$_SESSION["User"]["FirstName"].'") </script>';
+#. }
+#. if (isset($_SESSION["User"])) {
+#. echo '<script> console.log("'.$_SESSION["User"]["FirstName"].'") </script>';
+#. }
+#: browse.php:44 browse.php:52 browse.php:51 browse.php:51
 msgid "Filteren"
 msgstr "Filter"
 
@@ -46,31 +54,30 @@ msgstr "Number of results:"
 msgid "Sorteren op:"
 msgstr "Order by:"
 
-#: browse.php:77
-#: browse.php:86
+#: browse.php:77 browse.php:86 browse.php:85 browse.php:85
 msgid "Prijs oplopend"
 msgstr "Price ascending"
 
-#: browse.php:80
-#: browse.php:90
+#: browse.php:80 browse.php:90 browse.php:89 browse.php:89
 msgid "Prijs aflopend"
 msgstr "Price descending"
 
-#: browse.php:83
-#: browse.php:94
+#: browse.php:83 browse.php:94 browse.php:93 product.php:322
+#: browse.php:93
 msgid "Naam oplopend"
 msgstr "Name ascending"
 
-#: browse.php:86
-#: browse.php:98
+#: browse.php:86 browse.php:98 browse.php:97 product.php:325
+#: browse.php:97
 msgid "Naam aflopend"
 msgstr "Name descending"
 
-#: browse.php:117 browse.php:119
+#: browse.php:117 browse.php:119 browse.php:123 browse.php:125
+#: browse.php:123 browse.php:125
 msgid "Voorraad"
 msgstr "Stock"
 
-#: browse.php:117
+#: browse.php:117 browse.php:123 browse.php:123
 msgid "Ruime voorraad beschikbaar"
 msgstr "Ample stock available"
 
@@ -78,12 +85,13 @@ msgstr "Ample stock available"
 msgid "Toevoegen aan winkelmandje"
 msgstr "Add to cart"
 
-#: browse.php:136 cart.php:61 home.php:16 product.php:136
-#: browse.php:148
+#: browse.php:136 cart.php:61 home.php:16 product.php:136 browse.php:148
+#: browse.php:142 product.php:193 cart.php:60 browse.php:142
+#: cart.php:60
 msgid "Inclusief BTW"
 msgstr "Including VAT"
 
-#: browse.php:169
+#: browse.php:169 browse.php:180 browse.php:180
 msgid "Yarr, er zijn geen resultaten gevonden."
 msgstr "Yarr, no results found."
 
@@ -91,24 +99,24 @@ msgstr "Yarr, no results found."
 msgid "De winkelwagen is geüpdate"
 msgstr "The cart has been updated"
 
-#: cart.php:18
+#: cart.php:18 cart.php:17 cart.php:17
 msgid "De winkelwagen is leeg, klik"
 msgstr "The cart is empty, click"
 
-#: cart.php:20
+#: cart.php:20 cart.php:19 cart.php:19
 msgid "hier"
 msgstr "here"
 
-#: cart.php:22
+#: cart.php:22 cart.php:21 cart.php:21
 msgid "om iets aan de winkelwagen toe te voegen"
 msgstr "to add something to the cart"
 
-#: cart.php:41
-#: browse.php:120
+#: cart.php:41 browse.php:120 browse.php:114 cart.php:40 product.php:184
+#: browse.php:114 cart.php:40
 msgid "Artikelnummer"
 msgstr "Product number"
 
-#: cart.php:47
+#: cart.php:47 cart.php:46
 msgid "Aantal"
 msgstr "Amount"
 
@@ -120,11 +128,11 @@ msgstr "Total products"
 msgid "Korting"
 msgstr "Discount"
 
-#: cart.php:78 checkout.php:99
+#: cart.php:78 checkout.php:99 checkout.php:124
 msgid "Verzendkosten"
 msgstr "Shipping costs"
 
-#: cart.php:82 checkout.php:105
+#: cart.php:82 checkout.php:105 checkout.php:130
 msgid "Totaal"
 msgstr "Total"
 
@@ -136,11 +144,11 @@ msgstr "Continue to checkout"
 msgid "Hou me op de hoogte van nieuws en exclusieve aanbiedingen"
 msgstr "Keep me up to date on news and exclusive offers"
 
-#: checkout.php:70
+#: checkout.php:70 checkout.php:67 registreren.php:21
 msgid "Voornaam"
 msgstr "First name"
 
-#: checkout.php:71
+#: checkout.php:71 registreren.php:22
 msgid "Achternaam"
 msgstr "Last name"
 
@@ -148,47 +156,47 @@ msgstr "Last name"
 msgid "Bedrijf (optioneel)"
 msgstr "Company (optional)"
 
-#: checkout.php:73
+#: checkout.php:73 checkout.php:81 registreren.php:24
 msgid "Adres"
 msgstr "Address"
 
-#: checkout.php:75
+#: checkout.php:75 checkout.php:85 registreren.php:25
 msgid "Stad"
 msgstr "City"
 
-#: checkout.php:76
+#: checkout.php:76 checkout.php:89 registreren.php:26
 msgid "Land"
 msgstr "Country"
 
-#: checkout.php:77
+#: checkout.php:77 checkout.php:96 registreren.php:27
 msgid "Postcode"
 msgstr "Postal code"
 
-#: checkout.php:78
+#: checkout.php:78 checkout.php:100 registreren.php:28
 msgid "Telefoonnummer"
 msgstr "Phone number"
 
-#: checkout.php:87
+#: checkout.php:87 checkout.php:112
 msgid "Subtotaal (excl. BTW)"
 msgstr "Subtotal (ex VAT)"
 
-#: checkout.php:93
+#: checkout.php:93 checkout.php:118
 msgid "BTW"
 msgstr "VAT"
 
-#: checkout.php:118
+#: checkout.php:118 checkout.php:143
 msgid "Card number"
 msgstr "Card number"
 
-#: checkout.php:119
+#: checkout.php:119 checkout.php:144
 msgid "Naam op kaart"
 msgstr "Name on card"
 
-#: checkout.php:120
+#: checkout.php:120 checkout.php:145
 msgid "Vervaldatum (mm/yy)"
 msgstr "Expiration date (mm/yy)"
 
-#: checkout.php:121
+#: checkout.php:121 checkout.php:146
 msgid "CVC"
 msgstr "CVC"
 
@@ -196,7 +204,7 @@ msgstr "CVC"
 msgid "Bank naam"
 msgstr "Bank name"
 
-#: checkout.php:137
+#: checkout.php:137 checkout.php:162
 msgid "Verder naar verzenden"
 msgstr "Continue to shipping"
 
@@ -204,8 +212,7 @@ msgstr "Continue to shipping"
 msgid "Alle categorieën"
 msgstr "All categories"
 
-#: header.php:81
-#: browse.php:56
+#: header.php:81 browse.php:56 browse.php:55
 msgid "Zoeken"
 msgstr "Search"
 
@@ -225,38 +232,130 @@ msgstr "There are"
 msgid "artikelen toegevoegd aan de winkelwagen"
 msgstr "Products added to cart"
 
-#: product.php:143
+#: product.php:143 product.php:200
 msgid "In winkelwagen"
 msgstr "Add to cart"
 
-#: product.php:154
+#: product.php:154 product.php:220
 msgid "Artikel beschrijving"
 msgstr "Product description"
 
-#: product.php:158
+#: product.php:158 product.php:224
 msgid "Artikel specificaties"
 msgstr "Product specifications"
 
-#: product.php:164
+#: product.php:164 product.php:230
 msgid "Naam"
 msgstr "Name"
 
-#: product.php:165
+#: product.php:165 product.php:231
 msgid "Data"
 msgstr "Data"
 
-#: product.php:195
+#: product.php:195 product.php:263
 msgid "Het opgevraagde product is niet gevonden."
 msgstr "Request product could not be found"
 
-#: browse.php:60
+#: browse.php:60 browse.php:59
 msgid "Aantal resultaten"
 msgstr "Number of results"
 
-#: browse.php:139
+#: browse.php:139 browse.php:133
 msgid "Toevoegen aan winkelwagen"
 msgstr "Add to cart"
 
 #: browse.php:188
 msgid "Er zijn geen resultaten gevonden."
 msgstr "No results were found"
+
+#: checkout.php:60 registreren.php:15
+msgid "Klant informatie"
+msgstr "Customer information"
+
+#: checkout.php:66
+msgid "Verzendingsadres"
+msgstr "Orderaddress"
+
+#: checkout.php:75 registreren.php:23
+msgid "Bedrijf (Optioneel)"
+msgstr "Company (Optional)"
+
+#: product.php:116
+msgid "Je review is aangemaakt"
+msgstr "Your review has been added"
+
+#: product.php:270
+msgid "Sterren"
+msgstr "Stars"
+
+#: product.php:271
+msgid "Aantal Reviews"
+msgstr "Amount of reviews"
+
+#: product.php:328
+msgid "Minste sterren"
+msgstr "Stars ascending"
+
+#: product.php:331
+msgid "Meeste sterren"
+msgstr "Stars descending"
+
+#: product.php:334
+msgid "Nieuwste"
+msgstr "Newest"
+
+#: product.php:343
+msgid "Reviews"
+msgstr "Reviews"
+
+#: product.php:344
+msgid "Aantal reviews"
+msgstr "Amount of reviews"
+
+#: product.php:350
+msgid "Beoordeling"
+msgstr "Review"
+
+#: product.php:360
+msgid "Review"
+msgstr "Review"
+
+#: product.php:364
+msgid "Verzenden"
+msgstr "Send"
+
+#: product.php:369
+msgid "Er zijn nog geen reviews voor dit product"
+msgstr "There are no reviews for this product yet"
+
+#: cart.php:7 cart.php:7
+msgid "De winkelwagen is geupdate"
+msgstr "Cart has been updated"
+
+#: browse.php:40
+msgid "Je bent ingelogd"
+msgstr "Logged in"
+
+#: browse.php:43
+msgid "Je bent uitgelogd"
+msgstr "Logged out"
+
+#: inloggen.php:19
+msgid "Heb je nog geen account?"
+msgstr "Don't have an account?"
+
+#: inloggen.php:23
+msgid "Inloggen"
+msgstr "Log in"
+
+#: registreren.php:19
+msgid "Wachtwoord bevestigen"
+msgstr ""
+
+#: registreren.php:20
+msgid "Verzend adres"
+msgstr ""
+
+#: registreren.php:29
+msgid "Registreren"
+msgstr ""
