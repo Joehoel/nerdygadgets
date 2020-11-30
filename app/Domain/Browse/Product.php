@@ -124,7 +124,7 @@ class Product
         mysqli_set_charset($Connection, 'latin1');
 
 
-        if ($CategoryID == "") {
+        if ($CategoryID === "") {
             if ($queryBuildResult != "") {
                 $queryBuildResult = "WHERE " . $queryBuildResult;
             }
@@ -139,10 +139,10 @@ class Product
             FROM stockitems SI
             JOIN stockitemholdings SIH USING(stockitemid)
             JOIN stockitemstockgroups USING(StockItemID)
+            " . $queryBuildResult . " 
             GROUP BY StockItemID";
 
             $Statement = mysqli_prepare($Connection, $Query);
-            // mysqli_stmt_bind_param($Statement);
             mysqli_stmt_execute($Statement);
             $ReturnableResult = mysqli_stmt_get_result($Statement);
             $ReturnableResult = mysqli_fetch_all($ReturnableResult, MYSQLI_ASSOC);

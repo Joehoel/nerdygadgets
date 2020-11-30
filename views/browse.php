@@ -119,9 +119,9 @@ if (isset($_GET["uitgelogd"])) {
                     </div>
                     <div class="voorraad">
                         <h6>
-                            <?php if($row["QuantityOnHand"] > $ShowStockLevel): ?>
+                            <?php if ($row["QuantityOnHand"] > $ShowStockLevel) : ?>
                                 <span><?= _("Voorraad") ?>: </span> <?= _("Ruime voorraad beschikbaar") ?>
-                            <?php else: ?>
+                            <?php else : ?>
                                 <span><?= _("Voorraad") ?>:</span> <?= $row["QuantityOnHand"] ?>
                             <?php endif; ?>
                         </h6>
@@ -149,26 +149,25 @@ if (isset($_GET["uitgelogd"])) {
         <?php } ?>
 
         <form id="PageSelector">
-            <input type="hidden" name="search_string" id="search_string"
-                   value="<?php if (isset($_GET['search_string'])) { print($_GET['search_string']); } ?>">
+            <input type="hidden" name="search_string" id="search_string" value="<?php if (isset($_GET['search_string'])) {
+                                                                                    print($_GET['search_string']);
+                                                                                } ?>">
 
-            <input type="hidden" name="category_id" id="category_id"
-                   value="<?php if (isset($_GET['category_id'])) { print($_GET['category_id']); } ?>">
+            <input type="hidden" name="category_id" id="category_id" value="<?php if (isset($_GET['category_id'])) {
+                                                                                print($_GET['category_id']);
+                                                                            } ?>">
 
-            <input type="hidden" name="result_page_numbers" id="result_page_numbers"
-                   value="<?php print (isset($_GET['result_page_numbers'])) ? $_GET['result_page_numbers'] : "0"; ?>">
+            <input type="hidden" name="result_page_numbers" id="result_page_numbers" value="<?php print (isset($_GET['result_page_numbers'])) ? $_GET['result_page_numbers'] : "0"; ?>">
 
-            <input type="hidden" name="products_on_page" id="products_on_page"
-                   value="<?php print($_SESSION['products_on_page']); ?>">
+            <input type="hidden" name="products_on_page" id="products_on_page" value="<?php print($_SESSION['products_on_page']); ?>">
 
-            <input type="hidden" name="sort" id="sort"
-                   value="<?php print($_SESSION['sort']); ?>">
+            <input type="hidden" name="sort" id="sort" value="<?php print($_SESSION['sort']); ?>">
 
-            <?php if ($amountOfPages > 0): ?>
-                <?php for ($i = 1; $i <= $amountOfPages; $i++): ?>
-                    <?php if ($PageNumber == ($i - 1)): ?>
+            <?php if ($amountOfPages > 0) : ?>
+                <?php for ($i = 1; $i <= $amountOfPages; $i++) : ?>
+                    <?php if ($PageNumber == ($i - 1)) : ?>
                         <div id="SelectedPage"><?= $i; ?></div>
-                    <?php else: ?>
+                    <?php else : ?>
                         <button id="page_number" class="PageNumber" value="<?= ($i - 1); ?>" type="submit" name="page_number">
                             <?php print($i); ?>
                         </button>
