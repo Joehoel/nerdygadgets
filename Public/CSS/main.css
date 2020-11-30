@@ -865,7 +865,7 @@ input {
 }
 
 .addcard {
-	position: absolute;
+	/* position: absolute; */
 	right: -3rem;
 	display: grid;
 	grid-template-columns: 1fr auto;
