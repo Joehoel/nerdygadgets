@@ -57,18 +57,18 @@ function berekenTotaallijst($stockitem)
 <div class="payments-container">
     <div class="information">
         <div>
-            <h1>Customer information</h1>
+            <h1><?= _("Klant informatie") ?></h1>
             <form class="form-2">
                 <input type="text" placeholder="Email" name="email">
-                <h1>shipping address</h1>
-                <input type="text" placeholder="First name" name="f-name">
-                <input type="text" placeholder="Last name" name="l-name">
-                <input type="text" placeholder="Company (optional)" name="c-name">
-                <input type="text" placeholder="Address" name="address">
-                <input type="text" placeholder="City" name="city">
-                <input type="text" placeholder="Country" name="country">
-                <input type="text" placeholder="Postal code" name="p-c">
-                <input type="text" placeholder="Phone" name="tel">
+                <h1><?= _("Verzendingsadres") ?></h1>
+                <input type="text" placeholder="<?= _("Voornaam") ?>" name="f-name">
+                <input type="text" placeholder="<?= _("Achternaam") ?>" name="l-name">
+                <input type="text" placeholder="<?= _("Bedrijf (Optioneel)") ?>" name="c-name">
+                <input type="text" placeholder="<?= _("Adres") ?>" name="address">
+                <input type="text" placeholder="<?= _("Bedrijf") ?>" name="city">
+                <input type="text" placeholder="<?= _("Land") ?>" name="country">
+                <input type="text" placeholder="<?= _("Postcode") ?>" name="p-c">
+                <input type="text" placeholder="<?= _("Telefoonnummer") ?>" name="tel">
             </form>
         </div>
     </div>
