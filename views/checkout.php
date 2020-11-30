@@ -59,18 +59,7 @@ function berekenTotaallijst($stockitem)
         <div>
             <h1><?= _("Klant informatie") ?></h1>
             <form class="form-2">
-                <input type="text" placeholder="Email" name="email">
-<<<<<<< HEAD
-                <h1><?= _("Verzendingsadres") ?></h1>
-                <input type="text" placeholder="<?= _("Voornaam") ?>" name="f-name">
-                <input type="text" placeholder="<?= _("Achternaam") ?>" name="l-name">
-                <input type="text" placeholder="<?= _("Bedrijf (Optioneel)") ?>" name="c-name">
-                <input type="text" placeholder="<?= _("Adres") ?>" name="address">
-                <input type="text" placeholder="<?= _("Bedrijf") ?>" name="city">
-                <input type="text" placeholder="<?= _("Land") ?>" name="country">
-                <input type="text" placeholder="<?= _("Postcode") ?>" name="p-c">
-                <input type="text" placeholder="<?= _("Telefoonnummer") ?>" name="tel">
-=======
+               <input type="text" placeholder="Email" name="email">
                 <h1><?= _("Verzendadres") ?></h1>
                 <input type="text" placeholder="<?= _("Voornaam") ?>" name="f-name">
                 <input type="text" placeholder="<?= _("Achternaam") ?>" name="l-name">
@@ -80,7 +69,6 @@ function berekenTotaallijst($stockitem)
                 <input type="text" placeholder="<?= _("Land") ?>" name="country">
                 <input type="text" placeholder="<?= _("Postcode") ?>" name="p-c">
                 <input type="text" placeholder="<?= _("Telefoonnummer")?> >" name="tel">
->>>>>>> c3efad03fe5aa12ad70d7f2251979f2c3f8762dd
             </form>
         </div>
     </div>
@@ -139,10 +127,6 @@ function berekenTotaallijst($stockitem)
             </form>
 
         </div>
-<<<<<<< HEAD
-        <button><?= _("Doorgaan naar versturen") ?></button>
-=======
         <button><?= _("Verder naar verzenden") ?></button>
->>>>>>> c3efad03fe5aa12ad70d7f2251979f2c3f8762dd
     </div>
 </div>
