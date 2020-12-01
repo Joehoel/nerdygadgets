@@ -1175,3 +1175,8 @@ input:read-only {
   margin-left: 60px;
   z-index: 1;
 }
+
+.low_stock{
+	text-align: left;
+	color: var(--red);
+}
