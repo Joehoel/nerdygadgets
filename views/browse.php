@@ -121,6 +121,8 @@ if (isset($_GET["uitgelogd"])) {
                         <h6>
                             <?php if ($row["QuantityOnHand"] > $ShowStockLevel) : ?>
                                 <span><?= _("Voorraad") ?>: </span> <?= _("Ruime voorraad beschikbaar") ?>
+                            <?php elseif ($row["QuantityOnHand"] <= 50 ): ?>
+                                <span class="low_stock"><?= _("Het product is bijna uitverkocht OP=OP!") ?></span>
                             <?php else : ?>
                                 <span><?= _("Voorraad") ?>:</span> <?= $row["QuantityOnHand"] ?>
                             <?php endif; ?>
