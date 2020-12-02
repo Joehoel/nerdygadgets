@@ -185,20 +185,35 @@ $starsCount = array_count_values($ratings);
             <h2 class="StockItemNameViewSize StockItemName">
                 <?php print $Result['StockItemName']; ?>
             </h2>
-            <div class="QuantityText"><?php print $Result['QuantityOnHand']; ?></div>
+            <?php
+            if ($Result["voorraad"] > 50) {
+            ?>
+                <div class="QuantityText"><?php print $Result['QuantityOnHand']; ?></div>
+            <?php
+            }
+            ?>
             <div id="StockItemHeaderLeft">
                 <div class="CenterPriceLeft">
                     <div class="CenterPriceLeftChild">
                         <p class="StockItemPriceText"><b><?php print sprintf("€ %.2f", $Result['SellPrice']); ?></b></p>
                         <h6> <?= gettext("Inclusief BTW") ?> </h6>
                         <?php
-                        if ($Result['voorraad'] != 0) {
+                        if ($Result['voorraad'] > 0) {
                         ?>
                             <!-- TODO: Change so that this doesnt just update item count in cart but adds on to it -->
                             <form method="POST" action="<?php echo base_url; ?>add-to-cart-product/<?php echo $Result["StockItemID"]; ?>">
                                 <input type="number" name="aantal" required value="1" min="1" max="<?php echo $Result['voorraad'] ?>" />
                                 <input type="submit" name="voegtoe" value="<?= gettext("In winkelwagen") ?>">
                             </form>
+                            <?php
+                            if ($Result["voorraad"] <= 50 && $Result["voorraad"] > 0) {
+                            ?>
+                                <div class="low_stock"><?php echo gettext("Het product is bijna uitverkocht OP=OP!") ?></div>
+                        <?php
+                            }
+                        }else {
+                            ?>
+                                <div class="low_stock"><?php echo gettext("Het product is helaas uitverkocht!") ?></div>
                         <?php
                         }
                         ?>
