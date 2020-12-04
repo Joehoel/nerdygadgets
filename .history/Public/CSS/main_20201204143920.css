@@ -7,17 +7,17 @@
 
 /* colors */
 :root {
-	--background: #23232f;
-	--font_pop: #676eff;
-	--white: #fff;
-	--black: #000000;
-	--grey: #cccccc;
-	--blue: #3c64b1;
-	--red: rgb(197, 44, 44);
-	--filter_background: #23282fcc;
-	--page_selected: #629eff;
-	--page_unselected: #24298f;
-	--error: rgb(197, 44, 44);
+  --background: #23232f;
+  --font_pop: #676eff;
+  --white: #fff;
+  --black: #000000;
+  --grey: #cccccc;
+  --blue: #3c64b1;
+  --red: rgb(197, 44, 44);
+  --filter_background: #23282fcc;
+  --page_selected: #629eff;
+  --page_unselected: #24298f;
+  --error: rgb(197, 44, 44);
 }
 
 body {
@@ -97,13 +97,13 @@ table tr td {
 
 /* header */
 #header {
-	position: fixed;
-	top: 0;
-	width: 100vw;
-	height: 90px;
-	z-index: 2;
-	border-bottom: 1px solid var(--blue);
-	background-color: var(--background);
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 90px;
+  z-index: 2;
+  border-bottom: 1px solid var(--blue);
+  background-color: var(--background);
 }
 #LogoA {
 	/* nerdygadgets logo container*/
@@ -140,12 +140,13 @@ ul#ul-class li {
 	line-height: 90px;
 }
 ul#ul-class-navigation {
-	right: 40px;
-	line-height: 90px;
-	position: absolute;
+  right: 40px;
+  line-height: 90px;
+  position: absolute;
+
 }
 ul#ul-class-navigation #user_profile_icon * {
-	display: inline;
+  display: inline;
 }
 
 ul#ul-class-navigation li {
@@ -157,9 +158,11 @@ ul#ul-class-navigation li {
 	text-decoration-color: currentcolor;
 }
 ul#ul-class-navigation li img {
-	height: 30px;
-	width: 30px;
-	margin: 0 20px;
+
+  height: 30px;
+  width: 30px;
+  margin: 0 20px;
+
 }
 #Content {
 	margin-top: 90px;
@@ -571,47 +574,49 @@ input {
 
 /* form in the payment page */
 .information .form-2 {
-	margin-bottom: 20px;
-	display: grid;
-	grid-gap: 10px;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-bottom: 20px;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
-.information .form-2 input {
-	grid-column-start: 1;
-	grid-column-end: 5;
+.information .form-2 input{
+  grid-column-start: 1;
+  grid-column-end: 5;
 }
 .information .form-2 div {
-	width: 100%;
-	grid-column-start: 1;
-	grid-column-end: 3;
+  width: 100%;
+  grid-column-start: 1;
+  grid-column-end: 3;
 }
 .information .form-2 input:nth-child(3),
 .information .form-2 input:nth-child(9) {
-	grid-column-start: 1;
-	grid-column-end: 3;
+  grid-column-start: 1;
+  grid-column-end: 3;
 }
 .information .form-2 input:nth-child(4),
 .information .form-2 input:nth-child(10) {
-	grid-column-start: 3;
-	grid-column-end: 5;
+  grid-column-start: 3;
+  grid-column-end: 5;
 }
 .information .form-2 input:nth-child(6) {
-	grid-column-start: 1;
-	grid-column-end: 4;
+  grid-column-start: 1;
+  grid-column-end: 4;
 }
 .information .form-2 input:nth-child(7) {
-	grid-column-start: 4;
-	grid-column-end: 5;
+  grid-column-start: 4;
+  grid-column-end: 5;
+
 }
 .payment {
-	overflow-y: scroll;
-	display: grid;
-	grid-template-rows: 1fr 1fr 1fr;
-	justify-content: center;
-	align-items: center;
-	grid-row-gap: 40px;
-	height: 88vh;
-	padding-right: 20px;
+
+  overflow-y: scroll;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  grid-row-gap: 40px;
+  height: 88vh;
+  padding-right: 20px;
 }
 
 .payment table tr:nth-child(4) {
@@ -656,89 +661,90 @@ input {
 
 /* registeren */
 .registreren-container {
-	display: flex;
-	justify-content: center;
-	align-content: center;
+  display:  flex;
+  justify-content: center;
+  align-content: center;
 }
 
 .registreren-container .information .form-1 input:nth-child(13) {
-	margin-top: 20px;
-	grid-column-start: 2;
-	grid-column-end: 4;
-	background-color: var(--blue);
-	color: var(--white);
-	font-size: 20px;
-	font-weight: 500;
+  margin-top: 20px;
+  grid-column-start: 2;
+  grid-column-end: 4;
+  background-color: var(--blue);
+  color: var(--white);
+  font-size: 20px;
+  font-weight:500;
 }
 
 .information .form-1 {
-	/* customer information form */
-	margin-bottom: 20px;
-	display: grid;
-	grid-gap: 10px;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
+  /* customer information form */
+  margin-bottom: 20px;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-.information .form-1 input {
-	grid-column-start: 1;
-	grid-column-end: 5;
+.information .form-1 input{
+  grid-column-start: 1;
+  grid-column-end: 5;
 }
 .information .form-1 div {
-	width: 100%;
-	grid-column-start: 1;
-	grid-column-end: 3;
+  width: 100%;
+  grid-column-start: 1;
+  grid-column-end: 3;
 }
 
 /* form in the register page */
 .information .form-1 input:nth-child(5),
 .information .form-1 input:nth-child(11) {
-	grid-column-start: 1;
-	grid-column-end: 3;
+  grid-column-start: 1;
+  grid-column-end: 3;
 }
 .information .form-1 input:nth-child(6),
 .information .form-1 input:nth-child(12) {
-	grid-column-start: 3;
-	grid-column-end: 5;
+  grid-column-start: 3;
+  grid-column-end: 5;
 }
 .information .form-1 input:nth-child(8) {
-	grid-column-start: 1;
-	grid-column-end: 4;
+  grid-column-start: 1;
+  grid-column-end: 4;
 }
 .information .form-1 input:nth-child(9) {
-	grid-column-start: 4;
-	grid-column-end: 5;
+  grid-column-start: 4;
+  grid-column-end: 5;
 }
+
 
 /* form in the log in page */
 .inloggen-container {
-	display: grid;
-	height: 80vh;
-	width: 100vw;
-	justify-content: center;
-	align-content: center;
-	text-align: start;
+  display: grid;
+  height: 80vh;
+  width: 100vw;
+  justify-content: center;
+  align-content: center;
+  text-align: start;
 }
 .inloggen-container h1 {
-	margin-left: 0;
+  margin-left: 0;
 }
 
 .inloggen-container a {
-	color: var(--blue);
-	font-size: 15px;
+  color: var(--blue);
+  font-size: 15px;
 }
 
 .inloggen-container form input {
-	margin-top: 10px;
+  margin-top: 10px;
 }
 
 .inloggen-container #button {
-	margin-top: 20px;
-	grid-column-start: 2;
-	grid-column-end: 4;
-	background-color: var(--blue);
-	color: var(--white);
-	font-size: 20px;
-	font-weight: 500;
+  margin-top: 20px;
+  grid-column-start: 2;
+  grid-column-end: 4;
+  background-color: var(--blue);
+  color: var(--white);
+  font-size: 20px;
+  font-weight:500;
 }
 /* i have no idea where this css belongs */
 .StockItemNameViewSize {
@@ -783,6 +789,7 @@ input {
 	display: flex;
 	flex-direction: column;
 	overflow-y: scroll;
+
 }
 
 .list::-webkit-scrollbar {
@@ -905,48 +912,46 @@ input {
 	font-weight: 500;
 	margin-right: 1rem;
 }
-.pop-up {
-	display: none;
-	position: fixed;
-	z-index: 1;
-	width: 100%;
-	background-color: #399c39;
-	padding: 10px;
-	padding-left: 15%;
+.pop-up{
+  display: none;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  background-color: #399c39;
+  padding: 10px;
+  padding-left: 15%;
 }
 .pop-up-show {
-	display: block;
-	animation: slide-in 0.7s ease-in-out;
+  display: block;
+  animation: slide-in 0.7s ease-in-out;
 }
 .pop-up-hidden {
-	display: block;
-	animation: slide-out 0.7s ease-out;
+  display: block;
+  animation: slide-out 0.7s ease-out;
 }
 .error {
-	background-color: var(--error);
+  background-color: var(--error);
 }
 @keyframes slide-in {
-	0% {
-		top: 0;
-		opacity: 0;
-	}
-	99% {
-	}
-	100% {
-		top: 90px;
-		opacity: 1;
-		display: none;
-	}
+  0%{
+    top: 0;
+    opacity: 0;
+  } 99% {
+  }
+  100% {
+    top: 90px;
+    opacity: 1;
+    display: none;
+  }
 }
 @keyframes slide-out {
-	0% {
-		top: 90px;
-		opacity: 1;
-	}
-	100% {
-		top: 0px;
-		opacity: 0;
-	}
+  0%{
+    top: 90px;
+    opacity: 1;
+  } 100% {
+    top: 0px;
+    opacity: 0;
+  }
 }
 
 .browse {
@@ -1145,33 +1150,33 @@ input:read-only {
 }
 
 .drop-down {
-	position: relative;
-	display: inline-block;
-	cursor: pointer;
-	margin: 0 30px;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  margin: 0 30px;
 }
 
 .drop-down:hover .items {
-	display: block;
+  display: block;
 }
 
 .drop-down .items {
-	display: none;
-	list-style-type: none;
-	line-height: normal;
-	background: white;
-	width: 150px;
-	padding-left: 0;
-	text-align: center;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	position: absolute;
-	top: 25px;
-	margin-left: 60px;
-	z-index: 1;
+  display: none;
+  list-style-type: none;
+  line-height: normal;
+  background: white;
+  width: 150px;
+  padding-left:0;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  position: absolute;
+  top: 25px;
+  margin-left: 60px;
+  z-index: 1;
 }
 
-.low_stock {
+.low_stock{
 	text-align: left;
 	color: var(--red);
 }
