@@ -3,6 +3,7 @@
 // use App\Domain\Product\Reviews;
 
 use App\Domain\Product\Reviews;
+use App\Domain\Temperatuur\Temperatuur;
 
 include __DIR__ . '/connect.php';
 include __DIR__ . '/header.php';
@@ -16,6 +17,7 @@ $Query = "
             CONCAT('Voorraad: ',QuantityOnHand)AS QuantityOnHand,
             QuantityOnHand as voorraad,
             SearchDetails,
+            IsChillerStock,
             (CASE WHEN (RecommendedRetailPrice*(1+(TaxRate/100))) > 50 THEN 0 ELSE 6.95 END) AS SendCosts, MarketingComments, CustomFields, SI.Video,
             (SELECT ImagePath FROM stockgroups JOIN stockitemstockgroups USING(StockGroupID) WHERE StockItemID = SI.StockItemID LIMIT 1) as BackupImagePath
             FROM stockitems SI
@@ -106,7 +108,7 @@ foreach ($reviews as $review) {
 
 $starsCount = array_count_values($ratings);
 
-
+$temp = new Temperatuur;
 ?>
 <div class="pop-up" id="pop-up"></div>
 <?php if (isset($_GET['error'])) {
@@ -220,6 +222,14 @@ $starsCount = array_count_values($ratings);
                     </div>
                 </div>
             </div>
+            <?php
+            if ($Result['IsChillerStock'] == 1){
+                $temp = $temp->getLastTemp();
+                ?>
+                    <div class="isChill"><?php echo gettext("De laatse temperatuur van de koeling bedraagd: ") . $temp?></div>
+                <?php
+            }
+            ?>
             <span class="rating">
                 <?php for ($i = 0; $i < $avg; $i++) { ?>
                     <img src="<?php echo base_url ?>Public/Img/star_full.svg" alt="star">
