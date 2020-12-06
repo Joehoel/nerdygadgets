@@ -109,15 +109,7 @@ class Reviews
             session_start();
         }
         if (isset($_SESSION['User']) && !empty($_SESSION['User'])) {
-            $db = new DatabaseInstance();
-            $conn = $db->create();
-
-            $stmt = $conn->prepare("SELECT count(*) as Aantal FROM Reviews WHERE UserID = ? AND ProductID = ?");
-
-            $stmt->execute([$_SESSION['User']['UserID'], $id]);
-
-            $all = $stmt->fetch();
-
+            
             if (isset($all['Aantal']) && ($all['Aantal'] * 1) >= 1) {
                 return true;
             }

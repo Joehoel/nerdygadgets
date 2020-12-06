@@ -10,6 +10,7 @@ use App\Controller\ReviewController;
 use App\Controller\RegistrerenController;
 use App\Controller\ProfileController;
 use App\Controller\InloggenController;
+use App\Controller\TempController;
 use App\Domain\Cart\CartController;
 
 return [
@@ -106,6 +107,9 @@ return [
         ]],
         "uitloggen" => [ProfileController::class, 'uitloggen', [
             "type" => "GET",
+        ]],
+        "AddTempMeting" => [TempController::class, 'voegmetingtoe', [
+            "type" => "POST",
         ]],
     ]
 ];
