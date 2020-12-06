@@ -77,6 +77,12 @@ $prices = $cartClass->GetTotalCartPrice();
                 <div class="item">
                     <h5><?= _('Verzendkosten') ?>:</h5><span><?php echo $prices['shipping']; ?></span>
                 </div>
+                <?php
+                    $prijsShoppingcart = str_replace("€", "", $prices['articleTotal']);
+                    if($prijsShoppingcart < 80) {
+                        $prijsShoppingcart = str_replace("€", "", $prices['articleTotal']);
+                        echo("<div class='item'><span class='highlight'>Geef nog ".(80-$prijsShoppingcart)." uit voor gratis verzenden</span></div>");
+                    } ?>
                 <hr>
                 <div class="item">
                     <h3><?= _('Totaal') ?>:</h3><span><?php echo $prices['total']; ?></span>

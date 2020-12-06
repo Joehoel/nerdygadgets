@@ -48,6 +48,9 @@ a {
 a:hover {
 	text-decoration: none !important;
 }
+span.highlight {
+	color: var(--red);
+}
 a span {
 	display: none;
 	position: absolute;
