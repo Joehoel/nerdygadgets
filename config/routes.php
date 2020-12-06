@@ -58,11 +58,6 @@ return [
                 "type" => "GET",
             ]
         ],
-        "categories" => [
-            CategoryController::class, 'index', [
-                "type" => "GET",
-            ]
-        ],
         "checkout" => [
             CheckoutController::class, 'index', [
                 "type" => "GET",

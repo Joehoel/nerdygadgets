@@ -50,7 +50,7 @@
             <div class="col-8" id="CategoriesBar">
                 <ul id="ul-class">
                     <?php
-                        $Query = "
+                    $Query = "
                             SELECT StockGroupID, StockGroupName, ImagePath
                             FROM stockgroups
                             WHERE StockGroupID IN (
@@ -58,9 +58,9 @@
                                                     FROM stockitemstockgroups
                                                     ) AND ImagePath IS NOT NULL
                             ORDER BY StockGroupID ASC";
-                        $Statement = mysqli_prepare($Connection, $Query);
-                        mysqli_stmt_execute($Statement);
-                        $HeaderStockGroups = mysqli_stmt_get_result($Statement);
+                    $Statement = mysqli_prepare($Connection, $Query);
+                    mysqli_stmt_execute($Statement);
+                    $HeaderStockGroups = mysqli_stmt_get_result($Statement);
                     ?>
                     <?php foreach ($HeaderStockGroups as $HeaderStockGroup) { ?>
                         <li>
@@ -69,11 +69,6 @@
                             </a>
                         </li>
                     <?php } ?>
-                    <li>
-                        <a href="<?php echo base_url; ?>categories" class="HrefDecoration">
-                            <?= _("Alle categorieën") ?>
-                        </a>
-                    </li>
                 </ul>
             </div>
             <ul id="ul-class-navigation">

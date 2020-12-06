@@ -2,17 +2,21 @@
 
 namespace App\Controller;
 
-use App\Domain\Product\Product;
+use App\Domain\Home\Home;
 
 class HomeController
 {
     public function show()
     {
-        $ProductHandler = new Product();
-        $result = $ProductHandler->getProduct(93);
+        // get all the categories
+        $HomeHandler = new Home();
+        $StockGroups = $HomeHandler->getStockGroups();
+        $MainProduct = $HomeHandler->getProduct(93);
+
 
         echo view('home', [
-            "item" => $result,
+            "item" => $MainProduct,
+            "StockGroups" => $StockGroups,
         ]);
     }
 }
