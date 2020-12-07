@@ -35,6 +35,7 @@ class Home
      * Get a single product
      *
      * @param int $id
+     * 
      * @return array product
      */
     public function getProduct($id)
