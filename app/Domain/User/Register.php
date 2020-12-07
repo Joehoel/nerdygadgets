@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Domain\Registreren;
+namespace App\Domain\User;
 
-use App\Domain\Database\DatabaseInstance;
-use mysqli;
-use mysqli_stmt;
 
-class Registreren
+class Register
 {
-    public function checkGegevens()
+    public function checkData()
     {
         $user = [
             "voornaam" => $_POST["f-name"] ?? "",
@@ -22,22 +19,22 @@ class Registreren
             "country" => $_POST["country"] ?? "",
             "wachtwoord" => $_POST['password-1'] ?? ""
         ];
-        foreach ($user as $key => $value) {
-            if ($key === 'wachtwoord') {
-                if ($value != $_POST['password-2']) {
-                    return "Password do not match";
-                } else {
-                    // password check
-                    $uppercase = preg_match('@[A-Z]@', $value);
-                    $lowercase = preg_match('@[a-z]@', $value);
-                    $number    = preg_match('@[0-9]@', $value);
 
-                    if (!$uppercase || !$lowercase || !$number  || strlen($value) < 8) {
-                        return 'Password should be at least 8 characters in length and should include at least one upper case letter and one number.';
-                    } else {
-                        // hash the password
-                        $user[$key] = password_hash($value, PASSWORD_DEFAULT);
-                    }
+        foreach ($user as $key => $value) {
+            if ($key === 'wachtwoord') if ($value != $_POST['password-2']) {
+                return "Password do not match";
+            } else {
+                // password check
+                $uppercase = preg_match('@[A-Z]@', $value);
+                $lowercase = preg_match('@[a-z]@', $value);
+                $number    = preg_match('@[0-9]@', $value);
+
+                if (!$uppercase || !$lowercase || !$number  || strlen($value) < 8) {
+                    return 'Password should be at least 8 characters in length and should include at least one upper case letter and one number.';
+                } else {
+                    // hash the password
+                    $userInstance = new User();
+                    $user[$key] = $userInstance->hashPassword($user[$key]);
                 }
             }
 
@@ -63,13 +60,13 @@ class Registreren
                 return "Missende " . $key;
             }
         }
-        $error = $this->EmailCheck($user);
+        $error = $this->emailCheck($user);
         if ($error !== '') {
             return $error;
         }
     }
 
-    public function InsertGegevens($user)
+    public function insertData($user)
     {
         $connection = mysqli_connect("localhost", "root", "", "nerdygadgets");
         mysqli_set_charset($connection, 'latin1');
@@ -82,7 +79,7 @@ class Registreren
         mysqli_stmt_execute($stm);
     }
 
-    public function EmailCheck($user)
+    public function emailCheck($user)
     {
         $connection = mysqli_connect("localhost", "root", "", "nerdygadgets");
         mysqli_set_charset($connection, 'latin1');
@@ -101,7 +98,7 @@ class Registreren
         $test = count($result);
         if (count($result) === 0) {
             // email is niet geregistreerd
-            $this->InsertGegevens($user);
+            $this->insertData($user);
         } else {
             return "E-mail is al geregistreerd";
         }

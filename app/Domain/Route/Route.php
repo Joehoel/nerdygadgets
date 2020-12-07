@@ -59,10 +59,14 @@ class Route
 
         for($i = 0; $i < count($route); $i++) {
             //Check if we need to skip it due to it being a variable.
-            if ($this->isParameter($route[$i])) {
+            if (isset($route[$i]) && $this->isParameter($route[$i])) {
                 continue;
             }
-            if ($slug[$i] !== $route[$i]) {
+            if(isset($route[$i]) && isset($slug[$i])) {
+                if ($slug[$i] !== $route[$i]) {
+                    return false;
+                }
+            } else {
                 return false;
             }
         }

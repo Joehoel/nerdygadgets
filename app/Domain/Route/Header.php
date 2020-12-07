@@ -11,6 +11,12 @@ class Header
         return header('Location: '. $referer);
     }
 
+    public function redirect($url)
+    {
+        $redirect = base_url . $url;
+        return header('Location: '. $redirect);
+    }
+
     public function abort($errorCode)
     {
         echo view('error/' . $errorCode);

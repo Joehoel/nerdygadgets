@@ -18,19 +18,17 @@ $StockGroups = mysqli_fetch_all($Result, MYSQLI_ASSOC);
 
 ?>
 <div id="Wrap">
-    <?php if (isset($StockGroups)) {
-        $i = 0;
-        foreach ($StockGroups as $StockGroup) {
-            if ($i < 6) {
-    ?>
+    <?php if (isset($StockGroups)) { ?>
+        <?php $i = 0; ?>
+        <?php foreach ($StockGroups as $StockGroup) { ?>
+            <?php if ($i < 6) { ?>
                 <a href="<?php echo base_url . "browse?category_id=" . $StockGroup["StockGroupID"] ?>">
                     <div id="StockGroup<?php print $i + 1; ?>" style="background-image: url('Public/StockGroupIMG/<?php print $StockGroup["ImagePath"]; ?>')" class="StockGroups">
                         <h1><?php print $StockGroup["StockGroupName"]; ?></h1>
                     </div>
                 </a>
-    <?php
-            }
-            $i++;
-        }
-    } ?>
+            <?php } ?>
+        <?php $i++; ?>
+        <?php } ?>
+    <?php } ?>
 </div>

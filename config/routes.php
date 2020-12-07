@@ -5,11 +5,11 @@ use App\Controller\CheckoutController;
 use App\Controller\CategoryController;
 use App\Controller\HomeController;
 use App\Controller\LocaleController;
+use App\Controller\LoginController;
 use App\Controller\ProductController;
 use App\Controller\ReviewController;
-use App\Controller\RegistrerenController;
+use App\Controller\RegisterController;
 use App\Controller\ProfileController;
-use App\Controller\InloggenController;
 use App\Domain\Cart\CartController;
 
 return [
@@ -79,33 +79,54 @@ return [
             ]
         ],
         "registreren" => [
-            RegistrerenController::class, 'show', [
+            RegisterController::class, 'show', [
                 "type" => "GET",
             ]
         ],
         "addNewUser" => [
-            RegistrerenController::class, 'addNewUser', [
+            RegisterController::class, 'addNewUser', [
                 "type" => "POST",
             ]
         ],
         "inloggen" => [
-            InloggenController::class, 'show', [
+            LoginController::class, 'show', [
                 "type" => "GET",
             ]
         ],
         "login" => [
-            InloggenController::class, 'login', [
+            LoginController::class, 'login', [
                 "type" => "POST",
             ]
         ],
-        "create-review/{id}" => [ReviewController::class, 'create', [
-            "type" => "POST",
-        ]],
-        "profile" => [ProfileController::class, 'show', [
-            "type" => "GET",
-        ]],
-        "uitloggen" => [ProfileController::class, 'uitloggen', [
-            "type" => "GET",
-        ]],
+        "create-review/{id}" => [
+            ReviewController::class, 'create', [
+                "type" => "POST",
+            ]
+        ],
+        "profile" => [
+            ProfileController::class, 'show', [
+                "type" => "GET",
+            ]
+        ],
+        "profile/address-update" => [
+            ProfileController::class, 'updateAddress', [
+                "type" => "POST",
+            ]
+        ],
+        "profile/profile-update" => [
+            ProfileController::class, 'updateProfile', [
+                "type" => "POST",
+            ]
+        ],
+        "profile/password-update" => [
+            ProfileController::class, 'updatePassword', [
+                "type" => "POST",
+            ]
+        ],
+        "uitloggen" => [
+            ProfileController::class, 'uitloggen', [
+                "type" => "GET",
+            ]
+        ],
     ]
 ];

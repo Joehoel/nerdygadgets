@@ -11,7 +11,7 @@ require __DIR__ . '/autoload.php';
 require __DIR__ . '/helper.php';
 
 define("base_dir", __DIR__);
-define("base_url", 'http://localhost/nerdygadgets/');
+define("base_url", 'http://localhost:8000/');
 
 /*
  *
@@ -27,3 +27,6 @@ $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http
 $url = str_replace(base_url, '', $url);
 $url = trim(parse_url($url, PHP_URL_PATH), '/');
 $route->match($url);
+
+// Errors refresh after they've been shown once.
+$_SESSION['errors'] = null;

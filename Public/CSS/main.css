@@ -1180,3 +1180,21 @@ input:read-only {
 	text-align: left;
 	color: var(--red);
 }
+
+.block {
+	padding: 25px 0 0 0;
+}
+
+.logout {
+	color: #ffffff;
+	text-decoration: none;
+}
+.logout a {
+	border: 1px solid white;
+	padding: 9px 21px;
+	border-radius: 50px;
+}
+
+.logout a:hover {
+	color: #ffffff;
+}
