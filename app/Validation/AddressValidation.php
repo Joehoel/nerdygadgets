@@ -7,9 +7,9 @@ class AddressValidation extends Validation
     protected $rules = [
         "PhoneNumber" => "Phone",
         "Adress" => "Required",
-        "City" => "Required",
+        "City" => "Alphabetic",
         "PostalCode" => "PostalCode",
-        "Country" => "Required",
+        "Country" => "Alphabetic",
         "Company" => "Nullable"
     ];
 }
