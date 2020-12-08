@@ -8,7 +8,11 @@ class RegistrerenController
 {
     public function show()
     {
-        echo view('registreren');
+        $user = new Registreren();
+        $countries = $user->getCountries();
+        echo view('registreren', [
+            "countries" => $countries,
+        ]);
     }
 
     public function addNewUser()
@@ -16,6 +20,7 @@ class RegistrerenController
         // add a new user
         $user = new Registreren();
         $checkInfo = $user->checkGegevens();
+
         // error's are returned from checkinfo, if there is no return then there are no error's
         if ($checkInfo != "") {
             return header('Location: ' . base_url . 'registreren?error=' . $checkInfo);
