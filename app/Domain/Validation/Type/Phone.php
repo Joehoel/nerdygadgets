@@ -6,7 +6,7 @@ class Phone
 {
     public function rule($value)
     {
-        if(filter_var($value, FILTER_SANITIZE_NUMBER_INT)) {
+        if(preg_match('/^[0-9\-\(\)\/\+\s]*$/', $value)) {
             return true;
         }
         return false;
