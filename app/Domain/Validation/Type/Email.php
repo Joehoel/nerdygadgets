@@ -12,7 +12,7 @@ class Email
         return true;
     }
 
-    public function validate($value)
+    public function validate()
     {
         return $this;
     }

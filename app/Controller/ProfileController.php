@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Domain\User\User;
 use App\Domain\Validation\AddressValidation;
+use App\Domain\Validation\ProfileValidation;
 
 class ProfileController
 {
@@ -40,7 +41,7 @@ class ProfileController
     {
         $data = $_POST;
 
-        $verify = new AddressValidation();
+        $verify = new ProfileValidation();
         $results = $verify->make($data);
 
         if(!$results->errors()) {
