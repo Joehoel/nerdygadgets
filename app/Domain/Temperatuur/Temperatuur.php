@@ -46,7 +46,11 @@ class Temperatuur{
         $stmt = $conn->prepare("SELECT * FROM `temperatuurmeting` ORDER BY meting_time DESC LIMIT 1");
         $stmt->execute();
         $result = $stmt->fetchAll();
-
-        return $result[0]['temperatuur'] . '°C ';
+        if (isset($result) && !empty($result)){
+            return $result[0]['temperatuur'] . '°C ';
+        }
+        else {
+            return "error";
+        }
     }
 }

@@ -211,11 +211,11 @@ $temp = new Temperatuur;
                             if ($Result["voorraad"] <= 50 && $Result["voorraad"] > 0) {
                             ?>
                                 <div class="low_stock"><?php echo gettext("Het product is bijna uitverkocht OP=OP!") ?></div>
-                        <?php
+                            <?php
                             }
-                        }else {
+                        } else {
                             ?>
-                                <div class="low_stock"><?php echo gettext("Het product is helaas uitverkocht!") ?></div>
+                            <div class="low_stock"><?php echo gettext("Het product is helaas uitverkocht!") ?></div>
                         <?php
                         }
                         ?>
@@ -223,11 +223,13 @@ $temp = new Temperatuur;
                 </div>
             </div>
             <?php
-            if ($Result['IsChillerStock'] == 1){
+            if ($Result['IsChillerStock'] == 1) {
                 $temp = $temp->getLastTemp();
-                ?>
-                    <div class="isChill"><?php echo gettext("De laatse temperatuur van de koeling bedraagd: ") . $temp?></div>
-                <?php
+                if ($temp != "error") {
+            ?>
+                    <div class="isChill"><?php echo gettext("De laatse temperatuur van de koeling bedraagd: ") . $temp ?></div>
+            <?php
+                }
             }
             ?>
             <span class="rating">
