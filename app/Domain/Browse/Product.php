@@ -2,32 +2,99 @@
 
 namespace App\Domain\Browse;
 
+use App\Domain\Database\DatabaseInstance;
+
 class Product
 {
+    /**
+     * Get all the products
+     *
+     * @return array products
+     */
     public function getProducts()
     {
-        // set all the variables
-        $CategoryID = $_GET['category_id'] ?? "";
-        $SearchString = $_GET['search_string'] ?? "";
-        $searchValues = explode(" ", $SearchString);
+        /**
+         * Set all the varibles
+         */
+        $categoryID = $_GET['category_id'] ?? "";
 
-        if (isset($_GET["products_on_page"])) {
-            $ProductsOnPage = $_GET["products_on_page"];
-        } elseif (isset($_SESSION["products_on_page"])) {
-            $ProductsOnPage = $_SESSION["products_on_page"];
+        $searchString = $_GET['search_string'] ?? "";
+        $queryBuildResult = $this->createSearchString($searchString);
+
+        if (isset($_GET['page_number'])) {
+            $pageNumber = $_GET['page_number'];
         } else {
-            $ProductsOnPage = 50;
-            $_SESSION["products_on_page"] = 50;
-            $_GET["products_on_page"] = 50;
+            $pageNumber = 0;
+            $_GET['page_number'] = $pageNumber;
         }
 
-        $PageNumber = $_GET["page_number"] ?? 0;
-        $Offset = $PageNumber * $ProductsOnPage;
+        if (isset($_GET["products_on_page"])) {
+            $productsOnPage = $_GET["products_on_page"];
+        } else {
+            $productsOnPage = 50;
+            $_GET['products_on_page'] = $productsOnPage;
+        }
+
+        if (isset($_GET['sort'])) {
+            $sortType = $_GET['sort'];
+        } else {
+            $sortType = "price_low_high";
+            $_GET["sort"] = "price_low_high";
+        }
+
+
+        $offset = $pageNumber * $productsOnPage;
+
+        // Fetch all the products from the database
+        $products = $this->fetchProducts($categoryID, $queryBuildResult);
+
+        // set the ammount of found products
+        $_GET["results"] = count($products);
+
+        // Sort all the products
+        $products = $this->sortProducts($products, $sortType);
+
+        // Cut the array
+        $products = $this->cutArray($products, $offset, $productsOnPage);
+
+        // return the results
+        return  $products;
+    }
+
+    /**
+     * Cut a specific ammount off the start of an array
+     * 
+     * @param int $offset
+     * @param int $amount
+     * 
+     * @return array cutArray
+     */
+    public function cutArray($arrayToCut, $offset, $amount)
+    {
+        $cutArray = array();
+        $min = min((count($arrayToCut) - $offset), $amount);
+
+        for ($i = 0; $i < $min; $i++) {
+            array_push($cutArray, $arrayToCut[$i + $offset]);
+        }
+
+        return $cutArray;
+    }
+
+    /**
+     * Create a searchString you can use in a query from searchValues
+     *
+     * @param string $searchString
+     * 
+     * @return string queryBuildResult
+     */
+    public function createSearchString($searchString)
+    {
+        $searchValues = explode(" ", $searchString);
+
         $queryBuildResult = "";
-
-
-        if ($SearchString !== "") {
-            if (strpos("\\", $SearchString) === FALSE) {
+        if ($searchString !== "") {
+            if (strpos("\\", $searchString) === FALSE) {
                 for ($i = 0; $i < count($searchValues); $i++) {
                     if ($i != 0) {
                         $queryBuildResult .= "AND ";
@@ -37,44 +104,34 @@ class Product
                 if ($queryBuildResult != "") {
                     $queryBuildResult .= " OR ";
                 }
-                if ($SearchString != "" || $SearchString != null) {
-                    $queryBuildResult .= "SI.StockItemID ='$SearchString'";
+                if ($searchString != "" || $searchString != null) {
+                    $queryBuildResult .= "SI.StockItemID ='$searchString'";
                 }
             } else {
-                $SearchString = "";
+                $searchString = "";
             }
         }
 
-        $ReturnableResult = $this->fetchProducts($CategoryID, $queryBuildResult);
-
-        foreach ($ReturnableResult as $key => $StockName) {
-            $ReturnableResult[$key]["StockItemName"] = str_replace('"', "", $StockName["StockItemName"]);
-        }
-
-        $SortedArray = $this->SortProducts($ReturnableResult);
-
-        $ReturnThisArray = [];
-        $min = min((count($SortedArray) - $Offset), $ProductsOnPage);
-        for ($i = 0; $i < $min; $i++) {
-            array_push($ReturnThisArray, $SortedArray[$i + $Offset]);
-        }
-        return  $ReturnThisArray;
+        return $queryBuildResult;
     }
-    public function SortProducts($ReturnableResult)
+
+    /**
+     * Sort a array an given way
+     *
+     * @param array $arrayToSort
+     * @param string $sortType
+     * 
+     * @return string queryBuildResult
+     */
+    public function sortProducts($arrayToSort, $sortType)
     {
-        if (isset($_GET['sort'])) {
-            $SortOnPage = $_GET['sort'];
-            $_SESSION["sort"] = $_GET['sort'];
-        } else if (isset($_SESSION["sort"])) {
-            $SortOnPage = $_SESSION["sort"];
-        } else {
-            $SortOnPage = "price_low_high";
-            $_SESSION["sort"] = "price_low_high";
+        foreach ($arrayToSort as $key => $itemName) {
+            $arrayToSort[$key]["StockItemName"] = str_replace('"', "", $itemName["StockItemName"]);
         }
 
-        switch ($SortOnPage) {
+        switch ($sortType) {
             case 'price_high_low':
-                usort($ReturnableResult, function ($a, $b) {
+                usort($arrayToSort, function ($a, $b) {
                     $a = $a["SellPrice"];
                     $b = $b["SellPrice"];
                     if ($a == $b) {
@@ -84,7 +141,7 @@ class Product
                 });
                 break;
             case 'price_low_high':
-                usort($ReturnableResult, function ($a, $b) {
+                usort($arrayToSort, function ($a, $b) {
                     $a = $a["SellPrice"];
                     $b = $b["SellPrice"];
                     if ($a == $b) {
@@ -94,7 +151,7 @@ class Product
                 });
                 break;
             case 'name_low_high':
-                usort($ReturnableResult, function ($a, $b) {
+                usort($arrayToSort, function ($a, $b) {
                     $a = $a["StockItemName"];
                     $b = $b["StockItemName"];
                     if ($a == $b) {
@@ -104,7 +161,7 @@ class Product
                 });
                 break;
             case 'name_high_low':
-                usort($ReturnableResult, function ($a, $b) {
+                usort($arrayToSort, function ($a, $b) {
                     $a = $a["StockItemName"];
                     $b = $b["StockItemName"];
                     if ($a == $b) {
@@ -114,23 +171,29 @@ class Product
                 });
                 break;
         }
-        return $ReturnableResult;
+        return $arrayToSort;
     }
 
-    public function fetchProducts($CategoryID, $queryBuildResult)
+    /**
+     * fetch from the database
+     *
+     * @param int $categoryID
+     * @param string $queryBuildResult
+     * 
+     * @return string queryBuildResult
+     */
+    public function fetchProducts($categoryID, $queryBuildResult)
     {
-        // set the connection to the database
-        $Connection = mysqli_connect("localhost", "root", "", "nerdygadgets", 3306);
-        mysqli_set_charset($Connection, 'latin1');
+        $db = new DatabaseInstance();
+        $conn = $db->create();
 
+        if ($categoryID === "") {
 
-        if ($CategoryID === "") {
             if ($queryBuildResult != "") {
                 $queryBuildResult = "WHERE " . $queryBuildResult;
             }
 
-            $Query = "
-            SELECT stockitemstockgroups.StockGroupID AS CategoryID, SI.StockItemID, SI.StockItemName, SI.MarketingComments, QuantityOnHand,
+            $stmt = $conn->prepare("SELECT stockitemstockgroups.StockGroupID AS CategoryID, SI.StockItemID, SI.StockItemName, SI.MarketingComments, QuantityOnHand,
             ROUND(TaxRate * RecommendedRetailPrice / 100 + RecommendedRetailPrice,2) as SellPrice,
             (SELECT ImagePath
             FROM stockitemimages
@@ -140,36 +203,24 @@ class Product
             JOIN stockitemholdings SIH USING(stockitemid)
             JOIN stockitemstockgroups USING(StockItemID)
             " . $queryBuildResult . " 
-            GROUP BY StockItemID";
+            GROUP BY StockItemID");
 
-            $Statement = mysqli_prepare($Connection, $Query);
-            mysqli_stmt_execute($Statement);
-            $ReturnableResult = mysqli_stmt_get_result($Statement);
-            $ReturnableResult = mysqli_fetch_all($ReturnableResult, MYSQLI_ASSOC);
+            $stmt->execute();
 
-            $Query = "
-                    SELECT count(*)
-                    FROM stockitems SI
-                    $queryBuildResult";
-            $Statement = mysqli_prepare($Connection, $Query);
-            mysqli_stmt_execute($Statement);
-            $Result = mysqli_stmt_get_result($Statement);
-            $Result = mysqli_fetch_all($Result, MYSQLI_ASSOC);
-            $_SESSION["results"] = $Result[0]["count(*)"];
+            return $stmt->fetchAll();
         } else {
 
             if ($queryBuildResult != "") {
                 $queryBuildResult .= " AND ";
             }
 
-            $Query = "
-            SELECT stockitemstockgroups.StockGroupID AS CategoryID, SI.StockItemID, SI.StockItemName, SI.MarketingComments, QuantityOnHand,
+            $stmt = $conn->prepare(" SELECT stockitemstockgroups.StockGroupID AS CategoryID, SI.StockItemID, SI.StockItemName, SI.MarketingComments, QuantityOnHand,
             ROUND(SI.TaxRate * SI.RecommendedRetailPrice / 100 + SI.RecommendedRetailPrice,2) AS SellPrice,
             (SELECT ImagePath 
-	        FROM stockitemimages 
+            FROM stockitemimages 
             WHERE StockItemID = SI.StockItemID LIMIT 1) AS ImagePath,
             (SELECT ImagePath 
-	        FROM stockgroups 
+            FROM stockgroups 
             JOIN stockitemstockgroups 
             USING(StockGroupID) 
             WHERE StockItemID = SI.StockItemID LIMIT 1) AS BackupImagePath
@@ -177,28 +228,14 @@ class Product
             JOIN stockitemholdings AS SIH USING(stockitemid)
             JOIN stockitemstockgroups USING(StockItemID)
             JOIN stockgroups ON stockitemstockgroups.StockGroupID = stockgroups.StockGroupID
-            WHERE " . $queryBuildResult . " ? IN (SELECT StockGroupID from stockitemstockgroups WHERE StockItemID = SI.StockItemID)
-            GROUP BY StockItemID;";
+            WHERE " . $queryBuildResult . " :categoryID IN (SELECT StockGroupID from stockitemstockgroups WHERE StockItemID = SI.StockItemID)
+            GROUP BY StockItemID;");
 
+            $stmt->bindParam(':categoryID', $categoryID);
 
-            $Statement = mysqli_prepare($Connection, $Query);
-            mysqli_stmt_bind_param($Statement, "i", $CategoryID);
-            mysqli_stmt_execute($Statement);
-            $ReturnableResult = mysqli_stmt_get_result($Statement);
-            $ReturnableResult = mysqli_fetch_all($ReturnableResult, MYSQLI_ASSOC);
+            $stmt->execute();
 
-
-            $Query = "
-                        SELECT count(*)
-                        FROM stockitems SI
-                        WHERE " . $queryBuildResult . " ? IN (SELECT SS.StockGroupID from stockitemstockgroups SS WHERE SS.StockItemID = SI.StockItemID)";
-            $Statement = mysqli_prepare($Connection, $Query);
-            mysqli_stmt_bind_param($Statement, "i", $CategoryID);
-            mysqli_stmt_execute($Statement);
-            $Result = mysqli_stmt_get_result($Statement);
-            $Result = mysqli_fetch_all($Result, MYSQLI_ASSOC);
-            $_SESSION["results"] = $Result[0]["count(*)"];
+            return $stmt->fetchAll();
         }
-        return $ReturnableResult;
     }
 }
