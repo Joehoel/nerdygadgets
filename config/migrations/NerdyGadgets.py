@@ -6,7 +6,7 @@ import json
 
 sense = SenseHat()
 temp_adjust = 16
-add_meting_url = "http://192.168.178.121/nerdygadgets/AddTempMeting"
+add_meting_url = "http://IP/nerdygadgets/AddTempMeting"
 meting_time = 10
 
 def saveGUID(guid_to_save):
