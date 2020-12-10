@@ -16,6 +16,7 @@ class TempController
     {
         $temp = new Temperatuur();
         if (!isset($_GET['guid']) || empty($_GET['guid'])) {
+            echo '{"Error" : "Er is een fout opgetreden"}';
             exit;
         }
         if (isset($_GET['meting']) && !empty($_GET['meting']) && $temp->guidIsCorrect($_GET['guid'])) {
@@ -32,6 +33,7 @@ class TempController
 
             echo '{"guid" : "' . $guid . '"}';
         } else {
+            echo '{"Error" : "Er is een fout opgetreden"}';
             exit;
         }
     }
