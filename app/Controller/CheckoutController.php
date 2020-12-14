@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Domain\Database\DatabaseInstance;
+use App\Domain\User\Register;
 
 class CheckoutController
 {
@@ -22,17 +23,21 @@ class CheckoutController
 
         $in  = str_repeat('?,', count($stockItemID) - 1) . '?';
 
-        $sql = "SELECT SI.StockItemID, 
+        $sql = "SELECT SI.StockItemID,
                 ROUND(SI.TaxRate * SI.RecommendedRetailPrice / 100 + SI.RecommendedRetailPrice,2) as SellPrice,
-                SI.StockItemName       
-                FROM stockitems SI 
+                SI.StockItemName
+                FROM stockitems SI
                 where StockItemID IN ($ids);";
         $db = new DatabaseInstance();
         $stm = $db->create()->prepare($sql);
         $stm->execute($stockItemID);
         $result = $stm->fetchAll();
-        echo view('checkout',[
-            "stockitem"=>$result
+
+        $user = new Register();
+        $countries = $user->getCountries();
+        echo view('checkout', [
+            "stockitem" => $result,
+            "countries" => $countries
         ]);
     }
 }

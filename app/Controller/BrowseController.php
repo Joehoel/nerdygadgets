@@ -10,10 +10,8 @@ class BrowseController
     {
         $product = new Product();
         $products = $product->GetProducts();
-        $sortproducts = $product->SortProducts($products);
         echo view('browse', [
             "products" => $products,
-            "sortproducts" => $sortproducts
         ]);
     }
 }

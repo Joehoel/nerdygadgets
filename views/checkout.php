@@ -86,13 +86,21 @@ function berekenTotaallijst($stockitem)
                                                                                             echo $_SESSION["User"]["City"];
                                                                                         }
                                                                                         ?>">
-                <input type="text" placeholder="<?= _('Land') ?>" name="country" value="<?php if (isset($_SESSION["User"])) {
-                                                                                            echo $_SESSION["User"]["Country"];
-                                                                                        }
-                                                                                        ?>" value="<?php if (isset($_SESSION["User"])) {
-                                                                                                        echo $_SESSION["User"]["Email"];
-                                                                                                    }
-                                                                                                    ?>">
+                <select type="text" placeholder="<?= _("Land") ?>" name="country" id="input">
+                    <?php
+                    foreach ($countries as $country) {
+                        if (isset($_SESSION["User"])) {
+                            if ((int)$country["CountryID"] === $_SESSION["User"]["Country"]) {
+                                echo '<option selected="selected" value="' . $country["CountryID"] . '">' . $country["CountryName"] . '</option>';
+                            } else {
+                                echo '<option value="' . $country["CountryID"] . '">' . $country["CountryName"] . '</option>';
+                            }
+                        } else {
+                            echo '<option value="' . $country["CountryID"] . '">' . $country["CountryName"] . '</option>';
+                        }
+                    }
+                    ?>
+                </select>
                 <input type="text" placeholder="<?= _("Postcode") ?>" name="p-c" value="<?php if (isset($_SESSION["User"])) {
                                                                                             echo $_SESSION["User"]["PostalCode"];
                                                                                         }

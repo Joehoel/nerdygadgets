@@ -5,33 +5,18 @@ use App\Domain\Browse\Product;
 include __DIR__ . "/connect.php";
 include __DIR__ . "/header.php";
 
-if (isset($_GET['products_on_page'])) {
-    $ProductsOnPage = $_GET['products_on_page'];
-    $_SESSION['products_on_page'] = $_GET['products_on_page'];
-} else if (isset($_SESSION['products_on_page'])) {
-    $ProductsOnPage = $_SESSION['products_on_page'];
-} else {
-    $ProductsOnPage = 25;
-    $_SESSION['products_on_page'] = 25;
-}
 
-if (isset($_GET['page_number'])) {
-    $PageNumber = $_GET['page_number'];
-} else {
-    $PageNumber = 0;
-}
-
-$amountOfPages = 0;
-$Offset = $PageNumber * $ProductsOnPage;
 $ShowStockLevel = 1000;
-$ReturnableResult = $products;
-$amount = $_SESSION["results"];
 
-if (isset($amount)) {
-    $amountOfPages = ceil($amount / $ProductsOnPage);
+if (isset($_GET["results"])) {
+    $amountOfPages = ceil($_GET["results"] / $_GET["products_on_page"]);
+} else {
+    $amountOfPages = 0;
 }
 
 ?>
+
+<!-- all the pop-ups -->
 <div class="pop-up" id="pop-up"></div>
 <?php if (isset($_GET['aantal'])) {
     echo '<script> popup("' . _("Er is een product toegevoegd aan je winkelwagen") . '", false); </script>';
@@ -40,13 +25,11 @@ if (isset($_GET["ingelogd"])) {
     echo '<script> popup("' . _("Je bent ingelogd") . '", false); </script>';
 }
 if (isset($_GET["uitgelogd"])) {
-    echo '<script> popup("' . _( "Je bent uitgelogd") . '", false); </script>';
+    echo '<script> popup("' . _("Je bent uitgelogd") . '", false); </script>';
 }
-// if (isset($_SESSION["User"])) {
-//     echo '<script> console.log("'.$_SESSION["User"]["FirstName"].'") </script>';
-// }
-
 ?>
+
+<!-- the main content -->
 <div id="FilterFrame">
     <h2 class="FilterText"><?= _("Filteren") ?></h2>
     <form>
@@ -62,15 +45,15 @@ if (isset($_GET["uitgelogd"])) {
 
             <!-- select 1 -->
             <select name="products_on_page" id="products_on_page" onchange="this.form.submit()">>
-                <option value="25" <?php if ($_SESSION['products_on_page'] == 25) {
+                <option value="25" <?php if ($_GET['products_on_page'] == 25) {
                                         print "selected";
                                     } ?>>25
                 </option>
-                <option value="50" <?php if ($_SESSION['products_on_page'] == 50) {
+                <option value="50" <?php if ($_GET['products_on_page'] == 50) {
                                         print "selected";
                                     } ?>>50
                 </option>
-                <option value="75" <?php if ($_SESSION['products_on_page'] == 75) {
+                <option value="75" <?php if ($_GET['products_on_page'] == 75) {
                                         print "selected";
                                     } ?>>75
                 </option>
@@ -80,19 +63,19 @@ if (isset($_GET["uitgelogd"])) {
 
             <!-- select 2 -->
             <select name="sort" id="sort" onchange="this.form.submit()">>
-                <option value="price_low_high" <?php if ($_SESSION['sort'] == "price_low_high") {
+                <option value="price_low_high" <?php if ($_GET['sort'] == "price_low_high") {
                                                     print "selected";
                                                 } ?>><?= _("Prijs oplopend") ?>
                 </option>
-                <option value="price_high_low" <?php if ($_SESSION['sort'] == "price_high_low") {
+                <option value="price_high_low" <?php if ($_GET['sort'] == "price_high_low") {
                                                     print "selected";
                                                 } ?>><?= _("Prijs aflopend") ?>
                 </option>
-                <option value="name_low_high" <?php if ($_SESSION['sort'] == "name_low_high") {
+                <option value="name_low_high" <?php if ($_GET['sort'] == "name_low_high") {
                                                     print "selected";
                                                 } ?>><?= _("Naam oplopend") ?>
                 </option>
-                <option value="name_high_low" <?php if ($_SESSION['sort'] == "name_high_low") {
+                <option value="name_high_low" <?php if ($_GET['sort'] == "name_high_low") {
                                                     print "selected";
                                                 } ?>><?= _("Naam aflopend") ?>
                 </option>
@@ -101,8 +84,8 @@ if (isset($_GET["uitgelogd"])) {
     </form>
 </div>
 <div class="list browse">
-    <?php if (isset($ReturnableResult) && count($ReturnableResult) > 0) { ?>
-        <?php foreach ($ReturnableResult as $row) { ?>
+    <?php if (isset($products) && count($products) > 0) { ?>
+        <?php foreach ($products as $row) { ?>
             <div class="list-item">
                 <?php if (isset($row['ImagePath'])) { ?>
                     <div class="ImgFrame" style="background-image: url('<?php print "Public/StockItemIMG/" . $row['ImagePath']; ?>'); background-size: 230px; background-repeat: no-repeat; background-position: center;"></div>
@@ -121,7 +104,7 @@ if (isset($_GET["uitgelogd"])) {
                         <h6>
                             <?php if ($row["QuantityOnHand"] > $ShowStockLevel) : ?>
                                 <span><?= _("Voorraad") ?>: </span> <?= _("Ruime voorraad beschikbaar") ?>
-                            <?php elseif ($row["QuantityOnHand"] <= 50 ): ?>
+                            <?php elseif ($row["QuantityOnHand"] <= 50) : ?>
                                 <span class="low_stock"><?= _("Het product is bijna uitverkocht OP=OP!") ?></span>
                             <?php else : ?>
                                 <span><?= _("Voorraad") ?>:</span> <?= $row["QuantityOnHand"] ?>
@@ -161,13 +144,13 @@ if (isset($_GET["uitgelogd"])) {
 
             <input type="hidden" name="result_page_numbers" id="result_page_numbers" value="<?php print (isset($_GET['result_page_numbers'])) ? $_GET['result_page_numbers'] : "0"; ?>">
 
-            <input type="hidden" name="products_on_page" id="products_on_page" value="<?php print($_SESSION['products_on_page']); ?>">
+            <input type="hidden" name="products_on_page" id="products_on_page" value="<?php print($_GET['products_on_page']); ?>">
 
-            <input type="hidden" name="sort" id="sort" value="<?php print($_SESSION['sort']); ?>">
+            <input type="hidden" name="sort" id="sort" value="<?php print($_GET['sort']); ?>">
 
             <?php if ($amountOfPages > 0) : ?>
                 <?php for ($i = 1; $i <= $amountOfPages; $i++) : ?>
-                    <?php if ($PageNumber == ($i - 1)) : ?>
+                    <?php if ($_GET['page_number'] == ($i - 1)) : ?>
                         <div id="SelectedPage"><?= $i; ?></div>
                     <?php else : ?>
                         <button id="page_number" class="PageNumber" value="<?= ($i - 1); ?>" type="submit" name="page_number">

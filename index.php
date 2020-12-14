@@ -27,3 +27,6 @@ $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http
 $url = str_replace(base_url, '', $url);
 $url = trim(parse_url($url, PHP_URL_PATH), '/');
 $route->match($url);
+
+// Errors refresh after they've been shown once.
+$_SESSION['errors'] = null;

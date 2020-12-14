@@ -2,23 +2,28 @@
 
 namespace App\Controller;
 
-use App\Domain\Registreren\Registreren;
+use App\Domain\User\Register;
 
-class RegistrerenController
+class RegisterController
 {
     public function show()
     {
-        echo view('registreren');
+        $user = new Register();
+        $countries = $user->getCountries();
+        view('register', [
+            "countries" => $countries,
+        ]);
+        // return view('register');
     }
 
     public function addNewUser()
     {
         // add a new user
-        $user = new Registreren();
-        $checkInfo = $user->checkGegevens();
+        $user = new Register();
+        $checkInfo = $user->checkData();
         // error's are returned from checkinfo, if there is no return then there are no error's
         if ($checkInfo != "") {
-            return header('Location: ' . base_url . 'registreren?error=' . $checkInfo);
+            return header('Location: ' . base_url . 'register?error=' . $checkInfo);
         }
 
         // the page we go to when the user is registered
