@@ -2,6 +2,7 @@
 
 namespace App\Domain\User;
 
+use App\Domain\Database\DatabaseInstance;
 
 class Register
 {
