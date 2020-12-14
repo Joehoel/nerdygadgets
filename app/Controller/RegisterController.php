@@ -23,7 +23,7 @@ class RegisterController
         $checkInfo = $user->checkData();
         // error's are returned from checkinfo, if there is no return then there are no error's
         if ($checkInfo != "") {
-            return header('Location: ' . base_url . 'registreren?error=' . $checkInfo);
+            return header('Location: ' . base_url . 'register?error=' . $checkInfo);
         }
 
         // the page we go to when the user is registered

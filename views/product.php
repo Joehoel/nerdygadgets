@@ -360,20 +360,20 @@ $starsCount = array_count_values($ratings);
                                                                     else echo "0" ?></span>
         </div>
         <div class="write-review">
-            <form method="POST" action="<?= base_url ?>create-review/<?= $_GET['id'] ?>">
+            <form id="review-form" method="POST" action="<?= base_url ?>create-review/<?= $_GET['id'] ?>">
                 <div class="form-group">
                     <label for="rating"><?= _("Beoordeling") ?></label>
                     <select name="rating" required>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
                         <option value="5">5</option>
+                        <option value="4">4</option>
+                        <option value="3">3</option>
+                        <option value="2">2</option>
+                        <option value="1">1</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="review-text"><?= _("Review") ?></label>
-                    <textarea name="review-text" required></textarea>
+                    <textarea name="review-text" id="review-text" required></textarea>
                 </div>
                 <div class="form-group">
                     <button type="submit"><?= _("Verzenden") ?></button>

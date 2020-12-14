@@ -73,7 +73,7 @@ return [
                 "type" => "GET",
             ]
         ],
-        "registreren" => [
+        "register" => [
             RegisterController::class, 'show', [
                 "type" => "GET",
             ]

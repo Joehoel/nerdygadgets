@@ -9,6 +9,7 @@
     <script src="<?php echo base_url ?>/Public/JS/Resizer.js"></script>
     <script src="<?php echo base_url ?>/Public/JS/jquery-3.4.1.js"></script>
     <script src="<?php echo base_url ?>/Public/JS/popup.js"></script>
+    <script defer src="<?php echo base_url ?>/Public/JS/form.js"></script>
     <style>
         @font-face {
             font-family: MmrText;
