@@ -50,7 +50,7 @@ class Register
                 }
             }
 
-            if ($key === "telefoonNummer") {
+            if ($key === "telefoonNummer" || $key === "country") {
                 if (preg_match('/[^0-9]/', $value)) {
                     return "Foute gegevens";
                 }
@@ -102,5 +102,19 @@ class Register
         } else {
             return "E-mail is al geregistreerd";
         }
+    }
+
+    public function getCountries()
+    {
+        $db = new DatabaseInstance();
+        $conn = $db->create();
+
+        $stmt = $conn->prepare("SELECT CountryName, CountryID FROM countries;");
+
+        $stmt->execute();
+
+        $result = $stmt->fetchAll();
+
+        return $result;
     }
 }

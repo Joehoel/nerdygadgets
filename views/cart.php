@@ -4,7 +4,7 @@ include __DIR__ . "/connect.php";
 include __DIR__ . "/header.php";
 
 if (isset($_GET['update']) && $_GET['update'] === "true") {
-    echo '<div class="pop-up">'. gettext('De winkelwagen is geupdate') .'</div>';
+    echo '<div class="pop-up">' . gettext('De winkelwagen is geupdate') . '</div>';
 }
 
 $prices = $cartClass->GetTotalCartPrice();
@@ -15,7 +15,7 @@ $prices = $cartClass->GetTotalCartPrice();
         <div class='empty'>
             <h4>
                 <?= gettext("De winkelwagen is leeg, klik") ?>
-                <a class='empty-cart-link' href='<?=base_url?>categories'>
+                <a class='empty-cart-link' href='<?= base_url ?>'>
                     <?= gettext('hier') ?>
                 </a>
                 <?= gettext("om iets aan de winkelwagen toe te voegen") ?>
@@ -37,13 +37,13 @@ $prices = $cartClass->GetTotalCartPrice();
                     ?>
                     <div class="item-info">
                         <div>
-                            <h1><?=gettext('Artikelnummer')?>: <?php print $productData["StockItemID"]; ?></h1>
+                            <h1><?= gettext('Artikelnummer') ?>: <?php print $productData["StockItemID"]; ?></h1>
                             <a href='product/<?php print $productData['StockItemID']; ?>'>
                                 <p><?php print $productData["StockItemName"]; ?></p>
                                 <p><?php print $productData["MarketingComments"]; ?></p>
                             </a>
                             <form action="<?php echo base_url; ?>update-cart/<?php echo $productData["StockItemID"]; ?>" method="POST" class="update-count">
-                                <label for="aantal"><?= _('Aantal')?>: </label>
+                                <label for="aantal"><?= _('Aantal') ?>: </label>
                                 <input type="number" name="aantal" value="<?php print $value ?>" min="0" max="<?php echo $productData['voorraad'] ?>">
                                 <input type="submit" value="Update">
                             </form>
@@ -77,6 +77,12 @@ $prices = $cartClass->GetTotalCartPrice();
                 <div class="item">
                     <h5><?= _('Verzendkosten') ?>:</h5><span><?php echo $prices['shipping']; ?></span>
                 </div>
+                <?php
+                $prijsShoppingcart = str_replace("€", "", $prices['articleTotal']);
+                if ($prijsShoppingcart < 80) {
+                    $prijsShoppingcart = str_replace("€", "", $prices['articleTotal']);
+                    echo ("<div class='item'><span class='highlight'>Geef nog €" . (80 - $prijsShoppingcart) . " uit voor gratis verzenden</span></div>");
+                } ?>
                 <hr>
                 <div class="item">
                     <h3><?= _('Totaal') ?>:</h3><span><?php echo $prices['total']; ?></span>

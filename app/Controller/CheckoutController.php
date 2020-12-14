@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Domain\Database\DatabaseInstance;
+use App\Domain\Registreren\Registreren;
+
 
 class CheckoutController
 {
@@ -31,8 +33,12 @@ class CheckoutController
         $stm = $db->create()->prepare($sql);
         $stm->execute($stockItemID);
         $result = $stm->fetchAll();
-        echo view('checkout',[
-            "stockitem"=>$result
+
+        $user = new Registreren();
+        $countries = $user->getCountries();
+        echo view('checkout', [
+            "stockitem" => $result,
+            "countries" => $countries
         ]);
     }
 }
