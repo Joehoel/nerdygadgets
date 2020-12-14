@@ -16,7 +16,7 @@ if (isset($_GET["newuser"])) {
 ?>
 <div class="inloggen-container">
     <h1>Inloggen</h1>
-    <a href="<?php echo base_url ?>registreren"><?= _("Heb je nog geen account?") ?></a>
+    <a href="<?php echo base_url ?>register"><?= _("Heb je nog geen account?") ?></a>
     <form method="POST" action="<?php echo base_url; ?>login">
         <input type=" text" name="email" placeholder="Email">
         <input type="password" name="password" placeholder="Password">
