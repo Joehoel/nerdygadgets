@@ -1,7 +1,6 @@
 const textarea = document.querySelector("#review-text");
 const reviewForm = document.querySelector("#review-form")
 
-textarea.addEventListener("keydown", handleChange);
 let prevKey;
 
 function handleChange(e) {
@@ -10,6 +9,8 @@ function handleChange(e) {
 	}
 
 	if (prevKey === "Control" && e.key === "Enter") {
-        reviewForm.requestSubmit();
+		reviewForm.requestSubmit();
 	}
 }
+
+textarea.addEventListener("keydown", handleChange);
