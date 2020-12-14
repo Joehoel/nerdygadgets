@@ -4,12 +4,13 @@ namespace App\Controller;
 
 use App\Domain\Inloggen\Inloggen;
 
-class InloggenController
+class LoginController
 {
     public function show()
     {
-        echo view('inloggen');
+        return view('inloggen');
     }
+
     public  function login()
     {
         $inloggen = new Inloggen();

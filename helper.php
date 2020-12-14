@@ -41,7 +41,7 @@ if(!function_exists('view')) {
  */
 if(!function_exists('url')) {
     function url($path) {
-        return base_dir . $path;
+        return base_url . $path;
     }
 }
 
@@ -49,6 +49,14 @@ if(!function_exists('back')) {
     function back() {
         $header = new Header();
         $header->back();
+        exit;
+    }
+}
+
+if(!function_exists('redirect')) {
+    function redirect($url) {
+        $header = new Header();
+        $header->redirect($url);
         exit;
     }
 }

@@ -63,7 +63,10 @@ class Product
 
     /**
      * Cut a specific ammount off the start of an array
-     *
+     * 
+     * @param int $offset
+     * @param int $amount
+     * 
      * @return array cutArray
      */
     public function cutArray($arrayToCut, $offset, $amount)
@@ -81,6 +84,8 @@ class Product
     /**
      * Create a searchString you can use in a query from searchValues
      *
+     * @param string $searchString
+     * 
      * @return string queryBuildResult
      */
     public function createSearchString($searchString)
@@ -113,6 +118,9 @@ class Product
     /**
      * Sort a array an given way
      *
+     * @param array $arrayToSort
+     * @param string $sortType
+     * 
      * @return string queryBuildResult
      */
     public function sortProducts($arrayToSort, $sortType)
@@ -169,6 +177,9 @@ class Product
     /**
      * fetch from the database
      *
+     * @param int $categoryID
+     * @param string $queryBuildResult
+     * 
      * @return string queryBuildResult
      */
     public function fetchProducts($categoryID, $queryBuildResult)
