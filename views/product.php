@@ -286,136 +286,136 @@ $temp = new Temperatuur;
             </div>
         </div>
 
-    <?php } else { ?>
-        <h2 id="ProductNotFound"><?= _("Het opgevraagde product is niet gevonden.") ?></h2>
-    <?php } ?>
-    <div class="reviews">
-        <?php if (count($reviews) !== 0) { ?>
-            <div class="reviews-sort">
-                <div class="filter">
-                    <div class="filter-header">
-                        <h3><?= _("Sterren") ?></h3>
-                        <span><?= _("Aantal Reviews") ?></span>
-                    </div>
-                    <span class="rating">
-                        <div class="filter-row">
-                            <span class="stars">
-                                <?php for ($i = 0; $i < 5; $i++) { ?>
-                                    <img src="<?php echo base_url ?>Public/Img/star_full.svg" alt="star">
-                                <?php } ?>
-                            </span><span class="starts-amount"><?php if (isset($starsCount[5])) echo $starsCount[5];
-                                                                else echo 0 ?></span>
-                        </div>
-                        <div class="filter-row">
-                            <span class="stars">
-                                <?php for ($i = 0; $i < 4; $i++) { ?>
-                                    <img src="<?php echo base_url ?>Public/Img/star_full.svg" alt="star">
-                                <?php } ?>
-                            </span><span class="starts-amount"><?php if (isset($starsCount[4])) echo $starsCount[4];
-                                                                else echo 0  ?></span>
-                        </div>
-                        <div class="filter-row">
-                            <span class="stars">
-                                <?php for ($i = 0; $i < 3; $i++) { ?>
-                                    <img src="<?php echo base_url ?>Public/Img/star_full.svg" alt="star">
-                                <?php } ?>
-                            </span><span class="starts-amount"><?php if (isset($starsCount[3])) echo $starsCount[3];
-                                                                else echo 0 ?></span>
-                        </div>
-                        <div class="filter-row">
-                            <span class="stars">
-                                <?php for ($i = 0; $i < 2; $i++) { ?>
-                                    <img src="<?php echo base_url ?>Public/Img/star_full.svg" alt="star">
-                                <?php } ?>
-                            </span><span class="starts-amount"><?php if (isset($starsCount[2])) echo $starsCount[2];
-                                                                else echo 0 ?></span>
-                        </div>
-                        <div class="filter-row">
-                            <span class="stars">
-                                <?php for ($i = 0; $i < 1; $i++) { ?>
-                                    <img src="<?php echo base_url ?>Public/Img/star_full.svg" alt="star">
-                                <?php } ?>
-                            </span><span class="starts-amount"><?php if (isset($starsCount[1])) echo $starsCount[1];
-                                                                else echo 0 ?></span>
-                        </div>
-                    </span>
-                </div>
-                <div class="sort">
-                    <h3>Sorteren</h3>
-                    <form method="get">
-                        <select name="review-sort" class="review-sort" onchange="this.form.submit()">
-                            <option <?php if ($_SESSION['review-sort'] == "name-asc") {
-                                        print "selected";
-                                    } ?> value="name-asc"><?= _("Naam oplopend") ?></option>
-                            <option <?php if ($_SESSION['review-sort'] == "name-desc") {
-                                        print "selected";
-                                    } ?> value="name-desc"><?= _("Naam aflopend") ?></option>
-                            <option <?php if ($_SESSION['review-sort'] == "stars-asc") {
-                                        print "selected";
-                                    } ?> value="stars-asc"><?= _("Minste sterren") ?></option>
-                            <option <?php if ($_SESSION['review-sort'] == "stars-desc") {
-                                        print "selected";
-                                    } ?> value="stars-desc"><?= _("Meeste sterren") ?></option>
-                            <option <?php if ($_SESSION['review-sort'] == "date") {
-                                        print "selected";
-                                    } ?> value="date"><?= _("Nieuwste") ?></option>
-                        </select>
-                        <!-- <input type="submit" value="Submit"> -->
-                    </form>
-                </div>
-            </div>
-        <?php } ?>
-
-        <div class="reviews-header">
-            <h1><?= _("Reviews") ?></h1>
-            <span class="reviews-count"><?= _("Aantal reviews") ?>: <?php if ($reviews) echo count($reviews);
-                                                                    else echo "0" ?></span>
-        </div>
-        <div class="write-review">
-            <form id="review-form" method="POST" action="<?= base_url ?>create-review/<?= $_GET['id'] ?>">
-                <div class="form-group">
-                    <label for="rating"><?= _("Beoordeling") ?></label>
-                    <select name="rating" required>
-                        <option value="5">5</option>
-                        <option value="4">4</option>
-                        <option value="3">3</option>
-                        <option value="2">2</option>
-                        <option value="1">1</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="review-text"><?= _("Review") ?></label>
-                    <textarea name="review-text" id="review-text" required></textarea>
-                </div>
-                <div class="form-group">
-                    <button type="submit"><?= _("Verzenden") ?></button>
-                </div>
-            </form>
-        </div>
-        <?php if (!$reviews) { ?>
-            <h4><?= _("Er zijn nog geen reviews voor dit product") ?>...</h4>
-        <?php } else if ($reviews) { ?>
-            <?php foreach ($reviews as $review) { ?>
-                <div class="review">
-                    <div class="review-header">
-                        <div class="left">
-                            <h3 class="username"><?php echo $review['FirstName'] ?></h3>
-                            <span class="date"><?php echo $review['created_at'] ?></span>
+        <div class="reviews">
+            <?php if (count($reviews) !== 0) { ?>
+                <div class="reviews-sort">
+                    <div class="filter">
+                        <div class="filter-header">
+                            <h3><?= _("Sterren") ?></h3>
+                            <span><?= _("Aantal Reviews") ?></span>
                         </div>
                         <span class="rating">
-                            <?php for ($i = 0; $i < $review['Rating']; $i++) { ?>
-                                <img src="<?php echo base_url ?>Public/Img/star_full.svg" alt="star">
-                            <?php } ?>
-                            <?php for ($i = 5; $i > $review['Rating']; $i--) { ?>
-                                <img src="<?php echo base_url ?>Public/Img/star_empty.svg" alt="star">
-                            <?php } ?>
+                            <div class="filter-row">
+                                <span class="stars">
+                                    <?php for ($i = 0; $i < 5; $i++) { ?>
+                                        <img src="<?php echo base_url ?>Public/Img/star_full.svg" alt="star">
+                                    <?php } ?>
+                                </span><span class="starts-amount"><?php if (isset($starsCount[5])) echo $starsCount[5];
+                                                                    else echo 0 ?></span>
+                            </div>
+                            <div class="filter-row">
+                                <span class="stars">
+                                    <?php for ($i = 0; $i < 4; $i++) { ?>
+                                        <img src="<?php echo base_url ?>Public/Img/star_full.svg" alt="star">
+                                    <?php } ?>
+                                </span><span class="starts-amount"><?php if (isset($starsCount[4])) echo $starsCount[4];
+                                                                    else echo 0  ?></span>
+                            </div>
+                            <div class="filter-row">
+                                <span class="stars">
+                                    <?php for ($i = 0; $i < 3; $i++) { ?>
+                                        <img src="<?php echo base_url ?>Public/Img/star_full.svg" alt="star">
+                                    <?php } ?>
+                                </span><span class="starts-amount"><?php if (isset($starsCount[3])) echo $starsCount[3];
+                                                                    else echo 0 ?></span>
+                            </div>
+                            <div class="filter-row">
+                                <span class="stars">
+                                    <?php for ($i = 0; $i < 2; $i++) { ?>
+                                        <img src="<?php echo base_url ?>Public/Img/star_full.svg" alt="star">
+                                    <?php } ?>
+                                </span><span class="starts-amount"><?php if (isset($starsCount[2])) echo $starsCount[2];
+                                                                    else echo 0 ?></span>
+                            </div>
+                            <div class="filter-row">
+                                <span class="stars">
+                                    <?php for ($i = 0; $i < 1; $i++) { ?>
+                                        <img src="<?php echo base_url ?>Public/Img/star_full.svg" alt="star">
+                                    <?php } ?>
+                                </span><span class="starts-amount"><?php if (isset($starsCount[1])) echo $starsCount[1];
+                                                                    else echo 0 ?></span>
+                            </div>
                         </span>
                     </div>
-                    <div class="review-body">
-                        <span class="text"><?php echo $review['Text'] ?></span>
+                    <div class="sort">
+                        <h3>Sorteren</h3>
+                        <form method="get">
+                            <select name="review-sort" class="review-sort" onchange="this.form.submit()">
+                                <option <?php if ($_SESSION['review-sort'] == "name-asc") {
+                                            print "selected";
+                                        } ?> value="name-asc"><?= _("Naam oplopend") ?></option>
+                                <option <?php if ($_SESSION['review-sort'] == "name-desc") {
+                                            print "selected";
+                                        } ?> value="name-desc"><?= _("Naam aflopend") ?></option>
+                                <option <?php if ($_SESSION['review-sort'] == "stars-asc") {
+                                            print "selected";
+                                        } ?> value="stars-asc"><?= _("Minste sterren") ?></option>
+                                <option <?php if ($_SESSION['review-sort'] == "stars-desc") {
+                                            print "selected";
+                                        } ?> value="stars-desc"><?= _("Meeste sterren") ?></option>
+                                <option <?php if ($_SESSION['review-sort'] == "date") {
+                                            print "selected";
+                                        } ?> value="date"><?= _("Nieuwste") ?></option>
+                            </select>
+                            <!-- <input type="submit" value="Submit"> -->
+                        </form>
                     </div>
                 </div>
             <?php } ?>
-        <?php } ?>
-    </div>
+
+            <div class="reviews-header">
+                <h1><?= _("Reviews") ?></h1>
+                <span class="reviews-count"><?= _("Aantal reviews") ?>: <?php if ($reviews) echo count($reviews);
+                                                                        else echo "0" ?></span>
+            </div>
+            <div class="write-review">
+                <form id="review-form" method="POST" action="<?= base_url ?>create-review/<?= $_GET['id'] ?>">
+                    <div class="form-group">
+                        <label for="rating"><?= _("Beoordeling") ?></label>
+                        <select name="rating" required>
+                            <option value="5">5</option>
+                            <option value="4">4</option>
+                            <option value="3">3</option>
+                            <option value="2">2</option>
+                            <option value="1">1</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="review-text"><?= _("Review") ?></label>
+                        <textarea name="review-text" id="review-text" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit"><?= _("Verzenden") ?></button>
+                    </div>
+                </form>
+            </div>
+            <?php if (!$reviews) { ?>
+                <h4><?= _("Er zijn nog geen reviews voor dit product") ?>...</h4>
+            <?php } else if ($reviews) { ?>
+                <?php foreach ($reviews as $review) { ?>
+                    <div class="review">
+                        <div class="review-header">
+                            <div class="left">
+                                <h3 class="username"><?php echo $review['FirstName'] ?></h3>
+                                <span class="date"><?php echo $review['created_at'] ?></span>
+                            </div>
+                            <span class="rating">
+                                <?php for ($i = 0; $i < $review['Rating']; $i++) { ?>
+                                    <img src="<?php echo base_url ?>Public/Img/star_full.svg" alt="star">
+                                <?php } ?>
+                                <?php for ($i = 5; $i > $review['Rating']; $i--) { ?>
+                                    <img src="<?php echo base_url ?>Public/Img/star_empty.svg" alt="star">
+                                <?php } ?>
+                            </span>
+                        </div>
+                        <div class="review-body">
+                            <span class="text"><?php echo $review['Text'] ?></span>
+                        </div>
+                    </div>
+                <?php } ?>
+            <?php } ?>
+        </div>
+    <?php } else { ?>
+        <h2 id="ProductNotFound"><?= _("Het opgevraagde product is niet gevonden.") ?></h2>
+    <?php } ?>
 </div>
