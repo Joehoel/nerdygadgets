@@ -22,9 +22,9 @@ class ReviewController
       return header("Location: " . base_url . "product/" . $id . "?error= " . _("Review mag maximaal 1000 tekens zijn"));
     }
 
-    if (isset($_POST['review-text']) || strlen($_POST['review-text']) < 1) {
-      return header("Location: " . base_url . "product/" . $id . "?error= " . _("Je moet alle velden invullen"));
-    }
+    // if (isset($_POST['review-text']) || strlen($_POST['review-text']) < 1) {
+    //   return header("Location: " . base_url . "product/" . $id . "?error= " . _("Je moet alle velden invullen"));
+    // }
 
     if (isset($_POST['rating']) && isset($_POST['review-text']) && !empty($_POST['review-text'])) {
       $rating = (int) $_POST['rating'];
