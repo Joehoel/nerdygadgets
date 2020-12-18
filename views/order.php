@@ -16,6 +16,14 @@ foreach ($_SESSION['Cart'] as $key => $value) {
 
 $total = $controller->GetTotalCartPrice()['total'];
 
+$methods = [
+    'paypal' => "PayPal",
+    'credit' => "Credit Card",
+    'ideal' => "iDeal",
+];
+$method = $methods[$_POST['method']];
+
+
 print_r($_POST);
 ?>
 
@@ -23,7 +31,6 @@ print_r($_POST);
     <h1 class="title">Bestelling</h1>
     <p>Bedankt voor uw bestelling!</p>
     <div class="container-grid">
-
         <div class="order-products">
             <h3>Bestelde producten</h3>
             <ul>
@@ -31,6 +38,7 @@ print_r($_POST);
                     <li><?= $value['StockItemName'] ?></li>
                 <?php endforeach; ?>
             </ul>
+            <hr>
             <div class="order-info">
                 <h3>Totaal</h3>
                 <h3><?= $total ?></h3>
@@ -46,6 +54,18 @@ print_r($_POST);
             <p><strong>Straat:</strong> <?= $user['Adress'] ?></p>
             <p><strong>Postcode:</strong> <?= $user['PostalCode'] ?></p>
             <p><strong>Bedrijf:</strong> <?= $user['Company'] ?></p>
+            <hr>
+            <h3>Betaalinformatie</h3>
+            <p><strong>Methode:</strong> <?= $method ?></p>
+            <?php if ($_POST['method'] === 'credit') : ?>
+                <p><strong>Kaart Nummer:</strong> <?= $_POST['card-number'] ?></p>
+                <p><strong>Kaart Verloopdatum:</strong> <?= $_POST['card-date'] ?></p>
+                <p><strong>Kaart Naamhouder:</strong> <?= $_POST['card-name'] ?></p>
+                <p><strong>CVC:</strong> <?= $_POST['card-cvc'] ?></p>
+                <?php endif ?>
+                <?php if ($_POST['method'] === 'ideal') : ?>
+                    <p><strong>Bank naam: </strong> <?= $_POST['bank-name'] ?></p>
+                <?php endif ?>
         </div>
     </div>
 </div>

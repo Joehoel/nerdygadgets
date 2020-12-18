@@ -511,6 +511,10 @@ ul#ul-class-price li {
 	justify-items: end;
 	height: 86vh;
 }
+
+.pay-container select{
+	margin-bottom: 1rem;
+}
 /* h1 {
 	margin-left: 10px;
 } */
@@ -590,11 +594,11 @@ select {
 	padding: 1rem;
 }
 
-.pay-container input[type=text] {
+.pay-container input[type="text"] {
 	margin-bottom: 1rem;
 }
 
-.pay-container input[type=radio] {
+.pay-container input[type="radio"] {
 	display: inline-block;
 	width: 1rem;
 	height: 1rem;
@@ -602,7 +606,7 @@ select {
 }
 
 .pay-container button {
-		width: 100%;
+	width: 100%;
 	border-radius: 0.25rem;
 	background-color: var(--blue);
 	border: none;

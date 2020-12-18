@@ -172,7 +172,35 @@ function berekenTotaallijst($stockitem)
                     </label>
                 </div>
                 <div class="IDEAL">
-                    <input type="text" placeholder="Bank name" name="bank-name">
+                    <select name="bank-name">
+                        <option value="ABN AMRO">
+                            ABN AMRO
+                        </option>
+                        <option value="ASN Bank">
+                            ASN Bank
+                        </option>
+                        <option value="Friesland Bank">
+                            Friesland Bank
+                        </option>
+                        <option value="ING">
+                            ING
+                        </option>
+                        <option value="Rabobank">
+                            Rabobank
+                        </option>
+                        <option value="RegioBank">
+                            RegioBank
+                        </option>
+                        <option value="SNS Bank">
+                            SNS Bank
+                        </option>
+                        <option value="Triodos Bank">
+                            Triodos Bank
+                        </option>
+                        <option value="Van Lanschot Bankiers">
+                            Van Lanschot Bankiers
+                        </option>
+                    </select>
                 </div>
                 <button type="submit"><?= _("Bestel") ?></button>
             </form>
