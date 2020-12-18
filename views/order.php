@@ -1,18 +1,11 @@
 <?php
-
 use App\Domain\Cart\Cart;
 
 include __DIR__ . "/connect.php";
 include __DIR__ . "./header.php";
-
 $controller = new Cart;
 
 $user = $_SESSION['User'];
-$cart = null;
-
-foreach ($_SESSION['Cart'] as $key => $value) {
-    $cart[$key] = $controller->GetProductData($key);
-}
 
 $total = $controller->GetTotalCartPrice()['total'];
 
@@ -22,9 +15,6 @@ $methods = [
     'ideal' => "iDeal",
 ];
 $method = $methods[$_POST['method']];
-
-
-print_r($_POST);
 ?>
 
 <div class="order-container">
@@ -62,10 +52,10 @@ print_r($_POST);
                 <p><strong>Kaart Verloopdatum:</strong> <?= $_POST['card-date'] ?></p>
                 <p><strong>Kaart Naamhouder:</strong> <?= $_POST['card-name'] ?></p>
                 <p><strong>CVC:</strong> <?= $_POST['card-cvc'] ?></p>
-                <?php endif ?>
-                <?php if ($_POST['method'] === 'ideal') : ?>
-                    <p><strong>Bank naam: </strong> <?= $_POST['bank-name'] ?></p>
-                <?php endif ?>
+            <?php endif ?>
+            <?php if ($_POST['method'] === 'ideal') : ?>
+                <p><strong>Bank naam: </strong> <?= $_POST['bank-name'] ?></p>
+            <?php endif ?>
         </div>
     </div>
 </div>
