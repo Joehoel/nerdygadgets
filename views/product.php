@@ -111,6 +111,9 @@ $starsCount = array_count_values($ratings);
 $temp = new Temperatuur;
 ?>
 <div class="pop-up" id="pop-up"></div>
+<?php if (isset($_GET['aantal'])) {
+    echo '<script> popup("' . _("Er is een product toegevoegd aan je winkelwagen") . '", false); </script>';
+}?>
 <?php if (isset($_GET['error'])) {
     echo '<script> popup("' . _($_GET["error"]) . '", true); </script>';
 } ?>
@@ -120,7 +123,6 @@ $temp = new Temperatuur;
 <div id="CenteredContent">
 
     <?php
-
 
     if ($Result != null) {
     ?>

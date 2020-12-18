@@ -85,6 +85,7 @@ if (isset($_GET["uitgelogd"])) {
 </div>
 <div class="list browse">
     <?php if (isset($products) && count($products) > 0) { ?>
+
         <?php foreach ($products as $row) { ?>
             <div class="list-item">
                 <?php if (isset($row['ImagePath'])) { ?>
@@ -117,7 +118,7 @@ if (isset($_GET["uitgelogd"])) {
                                 <div class="addcard">
                                     <h3><?= _("Toevoegen aan winkelwagen") ?></h3>
                                     <form method="POST" action="<?php echo base_url; ?>add-to-cart-browse/<?php echo $row["StockItemID"]; ?>">
-                                        <input type="hidden" value="<?php echo $row["CategoryID"]; ?>" name="category_id" />
+                                        <input type="hidden" value="<?php echo $_GET["category_id"]; ?>" name="category_id" />
                                         <input type="hidden" value="1" name="aantal" />
                                         <input type="submit" value="" />
                                     </form>
