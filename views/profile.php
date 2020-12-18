@@ -108,12 +108,12 @@ include __DIR__ . "/header.php";
 
                     <div class="form-group">
                         <label><?= _("Nieuwe wachtwoord") ?></label>
-                        <input type="text" name="NewPassword" placeholder="<?= _("Nieuwe wachtwoord")?>"/>
+                        <input type="password" name="NewPassword" placeholder="<?= _("Nieuwe wachtwoord")?>"/>
                     </div>
 
                     <div class="form-group">
                         <label><?= _("Nieuwe wachtwoord (herhaling)") ?></label>
-                        <input type="text" name="ConfirmPassword" placeholder="<?= _("Nieuwe wachtwoord (herhaling)")?>"/>
+                        <input type="password" name="ConfirmPassword" placeholder="<?= _("Nieuwe wachtwoord (herhaling)")?>"/>
                     </div>
 
                     <button class="btn btn-outline-primary">
