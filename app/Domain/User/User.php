@@ -82,7 +82,7 @@ class User
                     $sth->bindValue(':UserID', $user['UserID']);
                 } else {
                     $_SESSION['errors'] = ['Make sure your password is at least 7 characters, has a uppercase, 
-                                            lowercase and a number inside.'];
+                                            lowercase, 1 number and a special character inside.'];
                 }
             } else {
                 $_SESSION['errors'] = ['Mismatch between the new passwords'];

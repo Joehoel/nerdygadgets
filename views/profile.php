@@ -3,15 +3,16 @@ include __DIR__ . "/connect.php";
 include __DIR__ . "/header.php";
 ?>
 
+<div class="pop-up" id="pop-up"></div>
 <div class="container">
     <?php if(isset($_SESSION['errors'])): ?>
-        <div class="alert alert-danger mt-3 pl-0 ml-0" role="alert">
-            <ul class="mt-0 ml-0 pt-0">
-            <?php foreach($_SESSION['errors'] as $error): ?>
-                <li><?= $error ?></li>
-            <?php endforeach; ?>
-            </ul>
-        </div>
+        <?php $errors = ''; ?>
+        <?php foreach($_SESSION['errors'] as $error): ?>
+            <?php $errors .= "<li>$error</li>"; ?>
+        <?php endforeach; ?>
+        <script>
+            popup('<ul class="mt-0 ml-0 pt-0">' + '<?= $errors ?>' + '</ul>', false);
+        </script>
     <?php endif; ?>
     <div class="row">
         <div class="block col-12">

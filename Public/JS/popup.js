@@ -1,7 +1,7 @@
 function popup(text, isError) {
     window.addEventListener("load", () => {
         const pop_up = document.getElementById("pop-up");
-        pop_up.innerText = text;
+        pop_up.innerHTML = text;
         if (isError) {
             pop_up.classList = "pop-up pop-up-show error";
         } else {

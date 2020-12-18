@@ -6,7 +6,7 @@ class ProfileValidation extends Validation
 {
     protected $rules = [
         "Email" => "Email",
-        "FirstName" => "Required",
-        "LastName" => "Required",
+        "FirstName" => "Alphabetic",
+        "LastName" => "Alphabetic",
     ];
 }

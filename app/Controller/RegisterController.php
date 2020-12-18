@@ -10,10 +10,10 @@ class RegisterController
     {
         $user = new Register();
         $countries = $user->getCountries();
-        view('register', [
+
+        return view('register', [
             "countries" => $countries,
         ]);
-        // return view('register');
     }
 
     public function addNewUser()
