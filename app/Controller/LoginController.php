@@ -19,7 +19,7 @@ class LoginController
             return header('Location: ' . base_url . 'inloggen?error=' . $error);
         }
         if ($error === true) {
-            return header('Location: ' . base_url . 'browse?ingelogd=true');
+            return header('Location: ' . base_url . 'browse?ingelogd=true&category_id=1');
         } else {
             return header('Location: ' . base_url . 'inloggen?error=' . "combinatie email en wachtwoord klopt niet");
         }
