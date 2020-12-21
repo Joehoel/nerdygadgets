@@ -154,10 +154,10 @@ function berekenTotaallijst($stockitem)
                     </label>
                 </div>
                 <div class="credit-card">
-                    <input type="text" placeholder="<?= _("Card number") ?>" name="card-number">
+                    <input type="text" placeholder="<?= _("Kaart nummer (3700 0000 0000 002)") ?>" name="card-number">
                     <input type="text" placeholder="<?= _("Naam op kaart") ?>" name="card-name">
                     <input class="start-column" type="text" placeholder="<?= _("Vervaldatum (mm/yy)") ?>" name="card-date">
-                    <input class="end-column" type="text" placeholder="<?= _("CVC") ?>" name="card-cvc">
+                    <input class="end-column" type="text" placeholder="<?= _("CVC (7373)") ?>" name="card-cvc">
                 </div>
                 <div class="inline-radio">
                     <input type="radio" name="method" value="paypal">
