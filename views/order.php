@@ -20,7 +20,7 @@ $method = $methods[$_POST['method']];
 
 <div class="order-container">
     <h1 class="title">Bestelling</h1>
-    <p>Bedankt voor uw bestelling!</p>
+    <p>Bedankt voor uw bestelling! <a href="<?= base_url ?>">Ga terug naar de homepagina.</a></p>
     <div class="container-grid">
         <div class="order-products">
             <h3>Bestelde producten</h3>
