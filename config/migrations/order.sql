@@ -6,6 +6,8 @@ CREATE TABLE `weborders` (
     CartCVC varchar(45),
     CartHolder varchar(45),
     ExpDate varchar(45),
+    TotalPrice FLOAT NOT NULL,
+    OrderDate datetime DEFAULT CURRENT_TIMESTAMP,
 
     FOREIGN KEY (UserID) REFERENCES users(UserID)
 );

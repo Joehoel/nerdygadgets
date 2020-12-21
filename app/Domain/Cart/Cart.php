@@ -8,6 +8,20 @@ use NerdyGadgests\Classes\CartDatabase;
 class Cart
 {
     /**
+     * Clears the cart
+     *
+     * @return boolean
+     */
+    public function clearCart() {
+        if (isset($_SESSION['Cart'])) {
+            $_SESSION['Cart'] = [];
+            return true;
+        }
+        return false;
+    }
+
+
+    /**
      * Deze functie geeft een bool die als info geeft of er een winkelwagen bestaat
      *
      * @return void

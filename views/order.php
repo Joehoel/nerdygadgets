@@ -1,4 +1,5 @@
 <?php
+
 use App\Domain\Cart\Cart;
 
 include __DIR__ . "/connect.php";
@@ -24,7 +25,7 @@ $method = $methods[$_POST['method']];
         <div class="order-products">
             <h3>Bestelde producten</h3>
             <ul>
-                <?php foreach ($cart as $key => $value) : ?>
+                <?php foreach ($products as $key => $value) : ?>
                     <li><?= $value['StockItemName'] ?></li>
                 <?php endforeach; ?>
             </ul>
@@ -46,6 +47,7 @@ $method = $methods[$_POST['method']];
             <p><strong>Bedrijf:</strong> <?= $user['Company'] ?></p>
             <hr>
             <h3>Betaalinformatie</h3>
+            <p><strong>ID:</strong> <?= $order['OrderID'] ?></p>
             <p><strong>Methode:</strong> <?= $method ?></p>
             <?php if ($_POST['method'] === 'credit') : ?>
                 <p><strong>Kaart Nummer:</strong> <?= $_POST['card-number'] ?></p>
