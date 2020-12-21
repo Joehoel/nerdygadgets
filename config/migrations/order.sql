@@ -1,3 +1,4 @@
+DROP TABLE `weborders`;
 CREATE TABLE `weborders` (
 	OrderID INT(11) PRIMARY KEY AUTO_INCREMENT,
     UserID INT(11),
@@ -12,6 +13,7 @@ CREATE TABLE `weborders` (
     FOREIGN KEY (UserID) REFERENCES users(UserID)
 );
 
+DROP TABLE `weborderlines`;
 CREATE TABLE `weborderlines` (
 	OrderlineID INT(11) AUTO_INCREMENT,
 	OrderID INT(11) NOT NULL,
