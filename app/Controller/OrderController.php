@@ -134,39 +134,4 @@ class OrderController
         }
         return false;
     }
-
-    // private function createOrder($userId, $method, $bank_name, $card_cvc, $card_holder, $card_date)
-    // {
-    //     $controller = new Cart;
-    //     $cart = null;
-
-    //     foreach ($_SESSION['Cart'] as $key => $value) {
-    //         $cart[$key] = $controller->GetProductData($key);
-    //     }
-
-    //     $db = new DatabaseInstance;
-    //     $conn = $db->create();
-
-    //     $stmt = $conn->prepare("INSERT INTO `weborders`(`UserID`,`PaymentMethod`, `BankName`, `CartCVC`,`CartHolder`, `ExpDate`) VALUES( ? , ? , ? , ? , ?, ?)");
-
-    //     $stmt->execute([$userId, $method, $bank_name, $card_cvc, $card_holder, $card_date]);
-
-    //     $stmt->fetchAll();
-
-    //     $id = $conn->lastInsertId();
-
-    //     foreach ($cart as $item) {
-    //         $stmt = $conn->prepare("INSERT INTO weborderlines(OrderID,ProductID) VALUES (?, ?)");
-    //         $stmt->execute([$id, $item['StockItemID']]);
-    //         $stmt->fetch();
-    //     }
-
-
-    //     $stmt = $conn->prepare("SELECT * FROM weborders WHERE OrderID = ?");
-    //     $stmt->execute([$id]);
-
-    //     $order = $stmt->fetch();
-
-    //     return $order;
-    // }
 }
