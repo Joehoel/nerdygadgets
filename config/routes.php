@@ -11,6 +11,7 @@ use App\Controller\ReviewController;
 use App\Controller\RegisterController;
 use App\Controller\ProfileController;
 use App\Controller\InloggenController;
+use App\Controller\OrderController;
 use App\Controller\TempController;
 use App\Domain\Cart\CartController;
 
@@ -128,5 +129,10 @@ return [
         "AddTempMeting" => [TempController::class, 'voegmetingtoe', [
             "type" => "POST",
         ]],
+        "order" => [
+            OrderController::class, 'show', [
+                "type" => "POST",
+            ]
+        ],
     ]
 ];

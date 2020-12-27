@@ -54,6 +54,10 @@ function berekenTotaallijst($stockitem)
     }
 }
 ?>
+<div class="pop-up" id="pop-up"></div>
+<?php if (isset($_GET['error'])) {
+    echo '<script> popup("' . $_GET['error'] . '", true); </script>';
+} ?>
 <div class="payments-container">
     <div class="information">
         <div>
@@ -142,31 +146,64 @@ function berekenTotaallijst($stockitem)
             </tr>
         </table>
         <div class="pay-container">
-            <form>
+            <form action="<?= base_url ?>order" method="POST" name="order-info">
                 <div class="inline-radio">
-                    <input type="radio" name="method" value="Credit">
-                    <p>Credit card</p>
+                    <input type="radio" name="method" value="credit">
+                    <label>
+                        <h4>Credit card</h4>
+                    </label>
                 </div>
                 <div class="credit-card">
-                    <input type="text" placeholder="<?= _("Card number") ?>" name="card-number">
+                    <input type="text" placeholder="<?= _("Kaart nummer (3700 0000 0000 002)") ?>" name="card-number">
                     <input type="text" placeholder="<?= _("Naam op kaart") ?>" name="card-name">
-                    <input class="start-column" type="text" placeholder="<?= _("Vervaldatum (mm/yy)") ?>" name="card-number">
-                    <input class="end-column" type="text" placeholder="<?= _("CVC") ?>" name="card-name">
+                    <input class="start-column" type="text" placeholder="<?= _("Vervaldatum (mm/yy)") ?>" name="card-date">
+                    <input class="end-column" type="text" placeholder="<?= _("CVC (7373)") ?>" name="card-cvc">
                 </div>
                 <div class="inline-radio">
-                    <input type="radio" name="method" value="PayPal">
-                    <p>PayPal</p>
+                    <input type="radio" name="method" value="paypal">
+                    <label>
+                        <h4>PayPal</h4>
+                    </label>
                 </div>
                 <div class="inline-radio">
-                    <input type="radio" name="method" value="IDEAL">
-                    <p>IDEAL</p>
+                    <input type="radio" name="method" value="ideal">
+                    <label>
+                        <h4>iDeal</h4>
+                    </label>
                 </div>
                 <div class="IDEAL">
-                    <input type="text" placeholder="Bank name" name="method">
+                    <select name="bank-name">
+                        <option value="ABN AMRO">
+                            ABN AMRO
+                        </option>
+                        <option value="ASN Bank">
+                            ASN Bank
+                        </option>
+                        <option value="Friesland Bank">
+                            Friesland Bank
+                        </option>
+                        <option value="ING">
+                            ING
+                        </option>
+                        <option value="Rabobank">
+                            Rabobank
+                        </option>
+                        <option value="RegioBank">
+                            RegioBank
+                        </option>
+                        <option value="SNS Bank">
+                            SNS Bank
+                        </option>
+                        <option value="Triodos Bank">
+                            Triodos Bank
+                        </option>
+                        <option value="Van Lanschot Bankiers">
+                            Van Lanschot Bankiers
+                        </option>
+                    </select>
                 </div>
+                <button type="submit"><?= _("Bestel") ?></button>
             </form>
-
         </div>
-        <button><?= _("Verder naar verzenden") ?></button>
     </div>
 </div>
