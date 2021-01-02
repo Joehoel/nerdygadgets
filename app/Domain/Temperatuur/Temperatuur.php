@@ -43,11 +43,11 @@ class Temperatuur{
         $db = new DatabaseInstance();
         $conn = $db->create();
 
-        $stmt = $conn->prepare("SELECT * FROM `temperatuurmeting` ORDER BY meting_time DESC LIMIT 1");
+        $stmt = $conn->prepare("SELECT * FROM `coldroomtemperatures` where ColdRoomSensorNumber = 1 ORDER BY RecordedWhen DESC LIMIT 1");
         $stmt->execute();
         $result = $stmt->fetchAll();
         if (isset($result) && !empty($result)){
-            return $result[0]['temperatuur'] . '°C ';
+            return $result[0]['Temperature'] . '°C ';
         }
         else {
             return "error";

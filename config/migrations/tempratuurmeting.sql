@@ -1,9 +1,14 @@
-CREATE TABLE IF NOT EXISTS temperatuurmeting (
-    metingID int NOT NULL AUTO_INCREMENT,
-    temperatuur varchar(45) NOT NULL, /*in celcius*/
-    meting_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (metingID)
-);
+DELIMITER //
+
+CREATE PROCEDURE AddTempMeting(ColdRoomSensorNumber bigint(20), Temperature decimal(10,2))
+BEGIN
+	INSERT INTO `nerdycopy`.`coldroomtemperatures`
+	(`ColdRoomSensorNumber`,`RecordedWhen`,`Temperature`,`ValidFrom`,`ValidTo`)
+	VALUES
+		(ColdRoomSensorNumber,now(),Temperature,now(),now());
+END //
+
+DELIMITER ;
 
 
 CREATE TABLE IF NOT EXISTS tempguid(

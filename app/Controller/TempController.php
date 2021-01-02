@@ -23,8 +23,9 @@ class TempController
             $db = new DatabaseInstance();
             $conn = $db->create();
 
-            $stmt = $conn->prepare("INSERT INTO temperatuurmeting (temperatuur) VALUES (?)");
-            $stmt->execute([$_GET['meting']]);
+            $stmt = $conn->prepare("CALL AddTempMeting(?, ?)");
+            $stmt->execute([1, $_GET['meting']]);
+
 
             $guid = $temp->createGuid();
 
