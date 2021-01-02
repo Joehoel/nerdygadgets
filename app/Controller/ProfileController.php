@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Domain\User\User;
+use App\Domain\User\Register;
 use App\Domain\Validation\AddressValidation;
 use App\Domain\Validation\ProfileValidation;
 
@@ -17,7 +18,16 @@ class ProfileController
         $user = new User();
         $user = $user->find($_SESSION["User"]["UserID"]);
 
-        return view('profile', compact('user'));
+        $co = new Register();
+        $countries = $co->getCountries();
+
+        return view(
+            'profile',
+            [
+                'user' => $user,
+                'countries' => $countries,
+            ]
+        );
     }
 
     public function updateAddress()
@@ -27,7 +37,7 @@ class ProfileController
         $verify = new AddressValidation();
         $results = $verify->make($data);
 
-        if(!$results->errors()) {
+        if (!$results->errors()) {
             $user = new User();
             $user->updateAddress($data);
         } else {
@@ -44,7 +54,7 @@ class ProfileController
         $verify = new ProfileValidation();
         $results = $verify->make($data);
 
-        if(!$results->errors()) {
+        if (!$results->errors()) {
             $user = new User();
             $user->updateProfile($data);
         } else {
@@ -67,11 +77,10 @@ class ProfileController
     public function uitloggen()
     {
         unset($_SESSION["User"]);
-        return header('Location: ' . base_url . 'browse?uitgelogd=true');
+        return header('Location: ' . base_url . 'browse?category_id=6&uitgelogd=true');
     }
 
     public function update()
     {
-
     }
 }

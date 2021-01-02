@@ -5,9 +5,9 @@ include __DIR__ . "/header.php";
 
 <div class="pop-up" id="pop-up"></div>
 <div class="container">
-    <?php if(isset($_SESSION['errors'])): ?>
+    <?php if (isset($_SESSION['errors'])) : ?>
         <?php $errors = ''; ?>
-        <?php foreach($_SESSION['errors'] as $error): ?>
+        <?php foreach ($_SESSION['errors'] as $error) : ?>
             <?php $errors .= "<li>$error</li>"; ?>
         <?php endforeach; ?>
         <script>
@@ -28,42 +28,55 @@ include __DIR__ . "/header.php";
 
                 <div class="form-group">
                     <label><?= _("Telefoonnummer") ?></label>
-                    <input type="text" name="PhoneNumber" placeholder="<?= _("Telefoonnummer")?>"
-                           value="<?= $user["PhoneNumber"] ?? null?>" />
+                    <input type="text" name="PhoneNumber" placeholder="<?= _("Telefoonnummer") ?>" value="<?= $user["PhoneNumber"] ?? null ?>" />
                 </div>
 
                 <div class="form-group">
-                        <label><?= _("Straatnaam + huisnummer") ?></label>
-                        <input type="text" class="form-control" name="Adress" placeholder="<?= _("Straatnaam + huisnummer")?>"
-                               value="<?= $user["Adress"] ?? null?>" />
+                    <label><?= _("Straatnaam + huisnummer") ?></label>
+                    <input type="text" class="form-control" name="Adress" placeholder="<?= _("Straatnaam + huisnummer") ?>" value="<?= $user["Adress"] ?? null ?>" />
                 </div>
 
                 <div class="form-group">
                     <label><?= _("Woonplaats") ?></label>
-                    <input type="text" name="City" placeholder="<?= _("Woonplaats")?>"
-                           value="<?= $user["City"] ?? null?>" />
+                    <input type="text" name="City" placeholder="<?= _("Woonplaats") ?>" value="<?= $user["City"] ?? null ?>" />
                 </div>
 
                 <div class="form-group">
                     <label><?= _("Postcode") ?></label>
-                    <input type="text" name="PostalCode" placeholder="<?= _("Postcode")?>"
-                           value="<?= $user["PostalCode"] ?? null?>" />
+                    <input type="text" name="PostalCode" placeholder="<?= _("Postcode") ?>" value="<?= $user["PostalCode"] ?? null ?>" />
                 </div>
 
                 <div class="form-group">
                     <label><?= _("Land") ?></label>
-                    <input type="text" name="Country" placeholder="<?= _("Land")?>"
-                           value="<?= $user["Country"] ?? null?>"/>
+
+                    <select type="text" placeholder="<?= _("Land") ?>" name="Country" id="input">
+                        <?php
+                        foreach ($countries as $country) {
+                            if (isset($_SESSION["User"])) {
+                                if ((int)$country["CountryID"] === $_SESSION["User"]["Country"]) {
+                                    echo '<option selected="selected" value="' . $country["CountryID"] . '">' . $country["CountryName"] . '</option>';
+                                } else {
+                                    echo '<option value="' . $country["CountryID"] . '">' . $country["CountryName"] . '</option>';
+                                }
+                            } else {
+                                echo '<option value="' . $country["CountryID"] . '">' . $country["CountryName"] . '</option>';
+                            }
+                        }
+                        ?>
+                    </select>
+
+
+
+
                 </div>
 
-                <div class="form-group">
+                <div class=" form-group">
                     <label><?= _("Bedrijf (optioneel)") ?></label>
-                    <input type="text" name="Company" placeholder="<?= _("Bedrijf (optioneel)")?>"
-                           value="<?= $user["Company"] ?? null?>"/>
+                    <input type="text" name="Company" placeholder="<?= _("Bedrijf (optioneel)") ?>" value="<?= $user["Company"] ?? null ?>" />
                 </div>
 
                 <button class="btn btn-outline-primary">
-                    <?= _("Aanpassingen opslaan")?>
+                    <?= _("Aanpassingen opslaan") ?>
                 </button>
             </form>
         </div>
@@ -75,24 +88,21 @@ include __DIR__ . "/header.php";
 
                     <div class="form-group">
                         <label><?= _("Voornaam") ?></label>
-                        <input type="text" name="FirstName" placeholder="<?= _("Voornaam")?>"
-                               value="<?= $user["FirstName"] ?? null?>" />
+                        <input type="text" name="FirstName" placeholder="<?= _("Voornaam") ?>" value="<?= $user["FirstName"] ?? null ?>" />
                     </div>
 
                     <div class="form-group">
                         <label><?= _("Achternaam") ?></label>
-                        <input type="text" name="LastName" placeholder="<?= _("Achternaam")?>"
-                               value="<?= $user["LastName"] ?? null?>" />
+                        <input type="text" name="LastName" placeholder="<?= _("Achternaam") ?>" value="<?= $user["LastName"] ?? null ?>" />
                     </div>
 
                     <div class="form-group">
                         <label><?= _("E-Mail") ?></label>
-                        <input type="text" name="Email" placeholder="<?= _("E-Mail")?>"
-                               value="<?= $user["Email"] ?? null?>" />
+                        <input type="text" name="Email" placeholder="<?= _("E-Mail") ?>" value="<?= $user["Email"] ?? null ?>" />
                     </div>
 
                     <button class="btn btn-outline-primary">
-                        <?= _("Profiel opslaan")?>
+                        <?= _("Profiel opslaan") ?>
                     </button>
                 </form>
             </div>
@@ -104,21 +114,21 @@ include __DIR__ . "/header.php";
                         <label>
                             <?= _("Ter verificatie hier het oude wachtwoord invullen") ?>
                         </label>
-                        <input type="password" name="OldPassword" placeholder="<?= _("Oude wachtwoord")?>"/>
+                        <input type="password" name="OldPassword" placeholder="<?= _("Oude wachtwoord") ?>" />
                     </div>
 
                     <div class="form-group">
                         <label><?= _("Nieuwe wachtwoord") ?></label>
-                        <input type="password" name="NewPassword" placeholder="<?= _("Nieuwe wachtwoord")?>"/>
+                        <input type="password" name="NewPassword" placeholder="<?= _("Nieuwe wachtwoord") ?>" />
                     </div>
 
                     <div class="form-group">
                         <label><?= _("Nieuwe wachtwoord (herhaling)") ?></label>
-                        <input type="password" name="ConfirmPassword" placeholder="<?= _("Nieuwe wachtwoord (herhaling)")?>"/>
+                        <input type="password" name="ConfirmPassword" placeholder="<?= _("Nieuwe wachtwoord (herhaling)") ?>" />
                     </div>
 
                     <button class="btn btn-outline-primary">
-                        <?= _("Nieuw wachtwoord opslaan")?>
+                        <?= _("Nieuw wachtwoord opslaan") ?>
                     </button>
                 </form>
             </div>
