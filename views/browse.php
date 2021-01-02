@@ -118,7 +118,6 @@ if (isset($_GET["uitgelogd"])) {
                                 <div class="addcard">
                                     <h3><?= _("Toevoegen aan winkelwagen") ?></h3>
                                     <form method="POST" action="<?php echo base_url; ?>add-to-cart-browse/<?php echo $row["StockItemID"]; ?>">
-                                        <input type="hidden" value="<?php echo $_GET["category_id"]; ?>" name="category_id" />
                                         <input type="hidden" value="1" name="aantal" />
                                         <input type="submit" value="" />
                                     </form>
