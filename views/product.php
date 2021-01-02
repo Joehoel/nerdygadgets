@@ -62,7 +62,7 @@ if (isset($_GET['aantal'])) {
 // Get reviews
 $reviewsHandler = new Reviews();
 $reviews = array();
-$reviews = $reviewsHandler->getReviews($_GET['id'], "Rating", true);
+$reviews = array();
 
 if (isset($_GET['review-sort'])) {
     $_SESSION['review-sort'] = $_GET['review-sort'];
