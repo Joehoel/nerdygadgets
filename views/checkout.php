@@ -123,7 +123,7 @@ function berekenTotaallijst($stockitem)
             <tr>
                 <td><?= _("Subtotaal (excl. BTW)") ?></td>
                 <td></td>
-                <td><?php echo ('€' . number_format(berekenSubtotaal($stockitem), 2, ",", ".")); ?>
+                <td><?php echo ('€' . number_format((berekenSubtotaal($stockitem) - berekenBtw(berekenSubtotaal($stockitem))), 2, ",", ".")); ?>
                 </td>
             </tr>
             <tr>
